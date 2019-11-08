@@ -72,30 +72,15 @@
         </div>
       </div>
 
-       
-<%--       <div class="col-md-6" style="border: solid; border-color: white; ">
-        <div class="row">
-            <h2 >Your Favorites</h2>
-        </div>
-           
-<div class="row " style="margin-top: 1rem;">
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <div class="row">
-                <div class="col-md-12">
-<%--                   <h2 >Your Favorites</h2>
-                </div>
-
-            </div>--%>
-        <div class="col-md-6"  style="border: solid; border-color: white;">
-            <div class="row">
-                <div class="col-md-12">
-                   <div class="row">
                     <div class="col-md-6">
                     <h3 >Your Favorites</h3> 
                         </div>
-            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+                    </div>
+            <div style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="height: 225px; overflow:scroll">
+                    <div class="list-group" style="margin-top: 1rem;overflow:scroll">
                         <asp:ListView id="lvFavorites" runat="server" Visible="true" >
 
                             <LayoutTemplate>
@@ -150,11 +135,8 @@
                 </div>
                 </div>
             </div>
-          </div>
-         </div>
         </div>
-      </div>      
-    </div><!-- end div big row -->
+      </div>      <!-- end big row -->
     
     
      <div class="row " style="margin-top: 1rem;">
@@ -204,7 +186,7 @@
 
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="height: 300px; overflow:scroll">
+                    <div class="list-group" style="overflow:scroll">
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
@@ -297,7 +279,8 @@
     
     
     
-</div> <!-- end div container! -->    
+</div> 
+</div><!-- end div container! -->   
 
 </asp:Content>
 
