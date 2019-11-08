@@ -44,6 +44,7 @@
               <div class="col-md-6">
               <label for="formGroupExampleInput">Profile Picture</label><br>
                 <asp:FileUpload id="FileUploadControl" runat="server" />
+                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">Profile Picture is required.</asp:RequiredFieldValidator>
                 <br /><br />
                 <asp:Label runat="server" id="StatusLabel" text=" " />
             </div><!--end col-->
