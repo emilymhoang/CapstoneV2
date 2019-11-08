@@ -32,7 +32,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         insert.ExecuteNonQuery();
         Session["tenantID"] = tenantID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
         filter.Parameters.AddWithValue("@TenantID", tenantID);
         SqlDataReader rdr = filter.ExecuteReader();
         while (rdr.Read())
@@ -41,7 +41,13 @@ public partial class TenantDashboard : System.Web.UI.Page
             emailTextbox.Text = rdr["Email"].ToString();
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
-            image1.ImageUrl = rdr["ProfilePic"].ToString();
+            //image1.ImageUrl = rdr["ProfilePic"].ToString();
+            byte[] imgData = (byte[])rdr["imageV2"];
+            if (!(imgData == null))
+            {
+                string img = Convert.ToBase64String(imgData, 0, imgData.Length);
+                image1.ImageUrl = "data:image;base64," + img;
+            }
         }
         usernameTextbox.Text = Session["username"].ToString();
 
