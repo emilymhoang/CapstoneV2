@@ -71,14 +71,14 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table>
+                <table style="margin-top: 1rem; border-bottom: solid; width:1500px; border-bottom-width: 1px;">
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label>
                         </td>
                         <td>
                             <div>
-                                <asp:Button runat="server" ID="btnFavorite" Text="Favorite"/>
+                                <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/>
                             </div>
                         </td>
                     </tr>
@@ -87,7 +87,7 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label>
                                     </td>
                                 </tr>
                             </table>
@@ -99,7 +99,7 @@
                                 <tr>
                                     <td>
                                         <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
-                                            <asp:Label runat="server" ID="lblResultDesc" Text='<%#Eval("resultDescription") %>'></asp:Label>
+                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultDescription") %>'></asp:Label>
                                         </div>
                                     </td>
                                 </tr>
@@ -108,7 +108,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label>
                         </td>
                     </tr>
                     
