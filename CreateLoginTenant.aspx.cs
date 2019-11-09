@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 
 public partial class CreateLoginTenant : System.Web.UI.Page
 {
@@ -104,18 +105,42 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
                     if (FileUploadControl.HasFile)
                     {
-                        string strname = FileUploadControl.FileName.ToString();
-                        FileUploadControl.PostedFile.SaveAs(Server.MapPath("~/images/") + strname);
-                        SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET ProfilePic = @strname WHERE TenantID = @TenantID", sc);
-                        cmd.Parameters.AddWithValue("@TenantID", tenantID);
-                        cmd.Parameters.AddWithValue("@strname", strname);
-                        cmd.ExecuteNonQuery();
+                        //string strname = FileUploadControl.FileName.ToString();
+                        //FileUploadControl.PostedFile.SaveAs(Server.MapPath("~/images/") + strname);
+                        //SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET ProfilePic = @strname WHERE TenantID = @TenantID", sc);
+                        //cmd.Parameters.AddWithValue("@TenantID", tenantID);
+                        //cmd.Parameters.AddWithValue("@strname", strname);
+                        //cmd.ExecuteNonQuery();
 
-                        StatusLabel.Text = "Image Uploaded successfully";
+                        //StatusLabel.Text = "Image Uploaded successfully";
+
+                        HttpPostedFile postedFile = FileUploadControl.PostedFile;
+                        string fileName = Path.GetFileName(postedFile.FileName);
+                        string fileExtension = Path.GetExtension(fileName);
+                        int fileSize = postedFile.ContentLength;
+
+                        if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
+                            fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+                        {
+                            Stream stream = postedFile.InputStream;
+                            BinaryReader br = new BinaryReader(stream);
+                            byte[] bytes = br.ReadBytes((int)stream.Length);
+
+                            SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET imageV2 = @imgdata WHERE TenantID = @TenantID", sc);
+                            cmd.Parameters.AddWithValue("@TenantID", tenantID);
+                            cmd.Parameters.AddWithValue("@imgdata", bytes);
+                            cmd.ExecuteNonQuery();
+
+                            StatusLabel.Text = "Image Uploaded successfully";
+                        }
+                        else
+                        {
+                            StatusLabel.Text = "Only Images (.jpg, .png, .gif and .bmp) can be uploaded!";
+                        }
                     }
                     else
                     {
-                        StatusLabel.Text = "Plz upload the image!!!!";
+                        StatusLabel.Text = "Please select an image to upload";
                     }
 
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
@@ -201,11 +226,12 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
     //static bool ValidateUsername(string username)
     //{
-    
+
     //    bool noDuplicate;
 
     //    return noDuplicate;
     //}
 
-
+    
+  
 }
