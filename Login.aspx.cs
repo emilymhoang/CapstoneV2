@@ -12,7 +12,7 @@ public partial class _Default : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-        //this is page load
+        //this is page load. yes it is
     }
 
     protected void submitLogin_Click(object sender, EventArgs e)

@@ -43,7 +43,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
             }
             else
             {
-                resultmessage.Text = "Emails do not match. Hi";
+                resultmessage.Text = "Emails do not match.";
             }
         }
         else
