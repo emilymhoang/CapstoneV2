@@ -13,7 +13,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
     {
 
     }
-
+    
     protected void submitBasicInfo(object sender, EventArgs e)
     {
         String emailNew = emailTextbox.Text;
@@ -43,7 +43,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
             }
             else
             {
-                resultmessage.Text = "Emails do not match.";
+                resultmessage.Text = "Emails do not match. Hi";
             }
         }
         else
