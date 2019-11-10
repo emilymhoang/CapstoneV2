@@ -9,6 +9,6 @@ public partial class Contract : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //pageload
+        //pageload hi
     }
 }
