@@ -65,7 +65,9 @@
                  <p><asp:Label ID="usernameTextbox" runat="server" Text="JohnSmith1" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="emailTextbox" Text="johnsmith@gmailcom" runat="server" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="phoneTextbox" Text="xxx-xxx-xxx" runat="server"  BackColor="#ebebeb"></asp:Label></p>
-                 <img src="images/badges-01.png" style="max-width: 150px;">
+                <asp:Image ID="undergraduateBadge" ImageUrl="" class="img-fluid" runat="server" />
+                 <asp:Image ID="graduateBadge" ImageUrl="" class="img-fluid" runat="server" />
+                 <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
             </div>
 
         <%--    end profile container--%>

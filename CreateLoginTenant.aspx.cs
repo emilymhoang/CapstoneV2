@@ -18,7 +18,10 @@ public partial class CreateLoginTenant : System.Web.UI.Page
     String dateOfBirth;
     String email;
     String phoneNumber;
-    
+    String underGraduate;
+    String graduate;
+
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -55,6 +58,9 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         insertTenant.Connection = sc;
         System.Data.SqlClient.SqlCommand insertLogin = new System.Data.SqlClient.SqlCommand();
         insertLogin.Connection = sc;
+        System.Data.SqlClient.SqlCommand insertBadgeTenant= new System.Data.SqlClient.SqlCommand();
+
+        insertBadgeTenant.Connection = sc;
 
         firstName = Session["firstName"].ToString();
         lastName = Session["lastName"].ToString();
@@ -62,6 +68,10 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         dateOfBirth = Session["dateOfBirth"].ToString();
         email = Session["email"].ToString();
         phoneNumber = Session["phoneNumberTextbox"].ToString();
+        underGraduate = Session["underGraduate"].ToString();
+        graduate = Session["graduate"].ToString();
+
+
 
         String password = passwordTextbox.Text;
         String cpassword = confirmPasswordTextbox.Text;
@@ -97,11 +107,24 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     sc.Open();
                     insertTenant.ExecuteNonQuery();
 
+
+
                     SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Tenant] WHERE lower(Email) = @Email", sc);
                     insert.Parameters.AddWithValue("@Email", email.ToLower());
                     insert.Connection = sc;
                     int tenantID = Convert.ToInt32(insert.ExecuteScalar());
                     insert.ExecuteNonQuery();
+
+
+
+                    BadgeTenant newBadgeTenant = new BadgeTenant(tenantID, underGraduate, graduate);
+                    insertBadgeTenant.CommandText = "INSERT INTO [Capstone].[dbo].[BadgeTenant] (TenantID, Undergraduate, graduate) VALUES (@TenantID, @Undergraduate, @graduate);";
+                    insertBadgeTenant.Parameters.AddWithValue("@TenantID", tenantID);
+                    insertBadgeTenant.Parameters.AddWithValue("@Undergraduate", underGraduate);
+                    insertBadgeTenant.Parameters.AddWithValue("@graduate", graduate);
+                    insertBadgeTenant.ExecuteNonQuery();
+
+
 
                     if (FileUploadControl.HasFile)
                     {
