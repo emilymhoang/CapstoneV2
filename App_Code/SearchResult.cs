@@ -14,11 +14,14 @@ public class SearchResult
     public string resultDescription { get; private set; }
     public double resultPrice { get; private set; }
 
-    public SearchResult(string resultName, string resultLocation, string resultDescription, double resultPrice)
+    public int resultID { get; private set; }
+
+    public SearchResult(int resultID, string resultName, string resultLocation, string resultDescription, double resultPrice)
     {
         this.resultName = resultName;
         this.resultLocation = resultLocation;
         this.resultDescription = resultDescription;
         this.resultPrice = resultPrice;
+        this.resultID = resultID;
     }
 }

@@ -89,11 +89,11 @@ public partial class Search : System.Web.UI.Page
                                 string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
                                 
                                 string description = (string)reader["BriefDescription"];
-                                
+                                int id = (int)reader["RoomID"];
                                 
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
                                 
-                                SearchResult result = new SearchResult(name, location, description, price);
+                                SearchResult result = new SearchResult(id, name, location, description, price);
 
                                 SearchResult.lstSearchResults.Add(result);
                             }

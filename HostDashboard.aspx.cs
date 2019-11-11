@@ -28,15 +28,15 @@ public partial class HostDashboard : System.Web.UI.Page
         int accountID = Convert.ToInt32(Session["accountID"]);
         Response.Write(accountID);
 
-        SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
+        SqlCommand insert = new SqlCommand("SELECT HostID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);
         insert.Connection = sc;
-        int tenantID = Convert.ToInt32(insert.ExecuteScalar());
+        int hostID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
-        Session["tenantID"] = tenantID;
+        Session["hostID"] = hostID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
-        filter.Parameters.AddWithValue("@TenantID", tenantID);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
+        filter.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader rdr = filter.ExecuteReader();
         while (rdr.Read())
         {
@@ -45,41 +45,41 @@ public partial class HostDashboard : System.Web.UI.Page
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
             //image1.ImageUrl = rdr["ProfilePic"].ToString();
-            byte[] imgData = (byte[])rdr["imageV2"];
-            if (!(imgData == null))
-            {
-                string img = Convert.ToBase64String(imgData, 0, imgData.Length);
-                image1.ImageUrl = "data:image;base64," + img;
-            }
+            //byte[] imgData = (byte[])rdr["imageV2"];
+            //if (!(imgData == null))
+            //{
+            //    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
+            //    image1.ImageUrl = "data:image;base64," + img;
+            //}
         }
         usernameTextbox.Text = Session["username"].ToString();
 
-        int tenantIDRefresh = Convert.ToInt32(Session["tenantID"]);
+        int hostIDRefresh = Convert.ToInt32(Session["hostID"]);
         Message.lstMessages.Clear();
+        //Change badge property info
+        //SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [Capstone].[dbo].[BadgeProperty] WHERE HostID = @HostID", sc);
+        //badge.Parameters.AddWithValue("@HostID", hostID);
 
-        SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [Capstone].[dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
-        badge.Parameters.AddWithValue("@TenantID", tenantID);
-
-        SqlDataReader rdr2 = badge.ExecuteReader();
-
-
-        while (rdr2.Read())
-        {
-            underGraduate = rdr2["Undergraduate"].ToString();
-            graduate = rdr2["graduate"].ToString();
-        }
-
-        if (underGraduate == "True")
-        {
-            undergraduateBadge.ImageUrl = "images/badges-01.png";
-        }
-
-        if (graduate == "True")
-        {
-            graduateBadge.ImageUrl = "images/badges-02.png";
+        //SqlDataReader rdr2 = badge.ExecuteReader();
 
 
-        }
+        //while (rdr2.Read())
+        //{
+        //    underGraduate = rdr2["Undergraduate"].ToString();
+        //    graduate = rdr2["graduate"].ToString();
+        //}
+
+        //if (underGraduate == "True")
+        //{
+        //    undergraduateBadge.ImageUrl = "images/badges-01.png";
+        //}
+
+        //if (graduate == "True")
+        //{
+        //    graduateBadge.ImageUrl = "images/badges-02.png";
+
+
+        //}
 
 
 
@@ -95,11 +95,11 @@ public partial class HostDashboard : System.Web.UI.Page
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
 
-
+                //Change join for host side
                 command.CommandText = "select  Message.HostID, Message.TenantID, Message.Message, Message.MessageDate," +
                     " Message.LastUpdated, Message.LastUpdatedBy, Host.FirstName, Host.LastName from Message " +
-                    "left join Host on message.HostID = host.HostID where Message.TenantID = @tenantid order by Message.MessageID desc";
-                command.Parameters.AddWithValue("@tenantid", tenantIDRefresh);
+                    "left join Host on message.HostID = host.HostID where Message.HostID = @Hostid order by Message.MessageID desc";
+                command.Parameters.AddWithValue("@hostid", hostIDRefresh);
 
 
                 try
@@ -167,7 +167,7 @@ public partial class HostDashboard : System.Web.UI.Page
                     "on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on " +
                     "[dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID left join [dbo].[Favorite] on " +
                     "[dbo].[PropertyRoom].RoomID = [dbo].[Favorite].RoomID where [dbo].[Favorite].TenantID = @tenantid";
-                command.Parameters.AddWithValue("@tenantid", tenantIDRefresh);
+                command.Parameters.AddWithValue("@hostid", hostIDRefresh);
 
 
                 try
@@ -324,6 +324,27 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
         messageTextbox.Text = string.Empty;
+
+        SqlCommand filterProp = new SqlCommand("SELECT HouseNumber, Street, Zip, CityCounty, HomeState, Country, MonthlyPrice, ProfilePic, imageV2 FROM [Capstone].[dbo].[property] WHERE HostID = @HostID", sc);
+        filterProp.Parameters.AddWithValue("@HostID", hostID);
+        SqlDataReader readr = filterProp.ExecuteReader();
+        while (readr.Read())
+        {
+            addressTextbox.Text = readr["HouseNumber"].ToString() + " " + readr["Street"].ToString() + " " + readr["CityCounty"].ToString() + ", " + readr["HomeState"].ToString() + " " + readr["Zip"].ToString();
+            priceTextbox.Text = readr["MonthlyPrice"].ToString();
+            
+        }
+
+        SqlCommand filterRoom = new SqlCommand("SELECT BriefDescription, RoomDescription FROM [Capstone].[dbo].[PropertyRoom] WHERE HostID = @HostID", sc);
+        filterRoom.Parameters.AddWithValue("@HostID", hostID);
+        SqlDataReader rd = filterRoom.ExecuteReader();
+        while (rd.Read())
+        {
+            
+            descriptionTextbox.Text = rd["BriefDescription"].ToString();
+            roomDescripTextbox.Text = rd["RoomDescription"].ToString();
+            
+        }
     }
 
     protected void contract(object sender, EventArgs e)

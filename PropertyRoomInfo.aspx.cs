@@ -15,6 +15,12 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
     double MonthlyPrice;
     int SquareFootage;
     int NumberBedrooms;
+    string privateBath;
+    string privateEnt;
+    string storage;
+    string furnish;
+    string smoker;
+    string kitchen;
 
     SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
@@ -23,6 +29,21 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
     }
     protected void submitPropRoom(object sender, EventArgs e)
     {
+        Session["privateBathroom"] = rbPrivateBr.SelectedValue;
+        Session["privateEntrance"] = rbPrivateEntr.SelectedValue;
+        Session["Storage"] = rbStorage.SelectedValue;
+        Session["Furnished"] = rbFurnished.SelectedValue;
+        Session["Smoker"] = rbSmoke.SelectedValue;
+        Session["Kitchen"] = rbKitchen.SelectedValue;
+
+        privateBath = Session["privateBathroom"].ToString();
+        privateEnt = Session["privateEntrance"].ToString();
+        storage = Session["Storage"].ToString();
+        furnish = Session["Furnished"].ToString();
+        smoker = Session["Smoker"].ToString();
+        kitchen = Session["Kitchen"].ToString();
+
+
         sc.Open();
         SqlCommand insert = new SqlCommand("SELECT PropertyID FROM [Capstone].[dbo].[Property] WHERE HostID = @HostID", sc);
         insert.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
@@ -37,6 +58,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         String display = displayTextbox.Text;
         
         PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display);
+        System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -55,10 +77,32 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 command.Parameters.AddWithValue("@lu", DateTime.Now);
 
 
+                   
+
+
                 try
                 {
                     connection.Open();
                     int recordsAffected = command.ExecuteNonQuery();
+
+                    SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [Capstone].[dbo].[PropertyRoom]", connection);
+                    room.Connection = connection;
+                    int roomID = Convert.ToInt32(room.ExecuteScalar());
+                    room.ExecuteNonQuery();
+
+
+                    BadgeProperty newBadgeProperty = new BadgeProperty(roomID, privateEnt, kitchen, privateBath, furnish, storage, smoker);
+
+                    insertBadgeProperty.CommandText = "INSERT INTO [Capstone].[dbo].[BadgeProperty] (RoomID, PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker) VALUES (@roomID, @privateEnt, @kitchen, @privateBath, @furnish, @storage, @smoker);";
+                    insertBadgeProperty.Parameters.AddWithValue("@roomID", newBadgeProperty.RoomID);
+                    insertBadgeProperty.Parameters.AddWithValue("@privateEnt", newBadgeProperty.privateEntrance);
+                    insertBadgeProperty.Parameters.AddWithValue("@kitchen", newBadgeProperty.kitchen);
+                    insertBadgeProperty.Parameters.AddWithValue("@privateBath", newBadgeProperty.privateBathroom);
+                    insertBadgeProperty.Parameters.AddWithValue("@furnish", newBadgeProperty.furnished);
+                    insertBadgeProperty.Parameters.AddWithValue("@storage", newBadgeProperty.closetSpace);
+                    insertBadgeProperty.Parameters.AddWithValue("@smoker", newBadgeProperty.nonSmoker);
+                    insertBadgeProperty.Connection = connection;
+                   insertBadgeProperty.ExecuteNonQuery();
                 }
                 catch (Exception t)
                 {
@@ -83,7 +127,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         squareFootageTextbox.Text = "500";
         displayTextbox.Text = "Basement bedroom near City with a balcony";
         rbFurnished.SelectedValue = "y";
-        rbPets.SelectedValue = "y";
+        rbKitchen.SelectedValue = "y";
         rbPrivateBr.SelectedValue = "y";
         rbPrivateEntr.SelectedValue = "y";
         rbSmoke.SelectedValue = "n";
