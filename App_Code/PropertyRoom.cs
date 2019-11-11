@@ -17,9 +17,11 @@ public class PropertyRoom
     public String briefDescription { get; private set; }
     public String lastUpdatedBy { get; private set; }
     public String lastUpdated { get; private set; }
+    public String roomDescription { get; private set; }
+
 
     public PropertyRoom(int propertyID, double monthlyPrice, int squareFootage,
-        String availability, String briefDescription)
+        String availability, String briefDescription, String roomDescription)
     {
         this.monthlyPrice = monthlyPrice;
         this.squareFootage = squareFootage;
@@ -27,6 +29,7 @@ public class PropertyRoom
         this.briefDescription = briefDescription;
         this.propertyID = propertyID;
         this.tenantID = 2;
+        this.roomDescription = roomDescription;
 
     }
 }

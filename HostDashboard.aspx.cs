@@ -12,8 +12,12 @@ using System.Web.UI.WebControls;
 
 public partial class HostDashboard : System.Web.UI.Page
 {
-    String underGraduate;
-    String graduate;
+    String privateEntrance;
+    String kitchen;
+    String privateBathroom;
+    String storage;
+    String smoker;
+    String furnish;
 
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
@@ -45,46 +49,86 @@ public partial class HostDashboard : System.Web.UI.Page
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
             //image1.ImageUrl = rdr["ProfilePic"].ToString();
-            //byte[] imgData = (byte[])rdr["imageV2"];
-            //if (!(imgData == null))
-            //{
-            //    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
-            //    image1.ImageUrl = "data:image;base64," + img;
-            //}
+            byte[] imgData = (byte[])rdr["imageV2"];
+            if (!(imgData == null))
+            {
+                string img = Convert.ToBase64String(imgData, 0, imgData.Length);
+                image1.ImageUrl = "data:image;base64," + img;
+            }
         }
         usernameTextbox.Text = Session["username"].ToString();
 
         int hostIDRefresh = Convert.ToInt32(Session["hostID"]);
         Message.lstMessages.Clear();
         //Change badge property info
-        //SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [Capstone].[dbo].[BadgeProperty] WHERE HostID = @HostID", sc);
-        //badge.Parameters.AddWithValue("@HostID", hostID);
 
-        //SqlDataReader rdr2 = badge.ExecuteReader();
+        int roomID = Convert.ToInt32(Session["RoomID"]);
+        SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [Capstone].[dbo].[BadgeProperty] WHERE RoomID =" + roomID, sc);
 
-
-        //while (rdr2.Read())
-        //{
-        //    underGraduate = rdr2["Undergraduate"].ToString();
-        //    graduate = rdr2["graduate"].ToString();
-        //}
-
-        //if (underGraduate == "True")
-        //{
-        //    undergraduateBadge.ImageUrl = "images/badges-01.png";
-        //}
-
-        //if (graduate == "True")
-        //{
-        //    graduateBadge.ImageUrl = "images/badges-02.png";
+        SqlDataReader rdr2 = badge2.ExecuteReader();
 
 
-        //}
+        while (rdr2.Read())
+        {
+            privateEntrance = rdr2["privateEntrance"].ToString();
+            kitchen = rdr2["Kitchen"].ToString();
+            privateBathroom = rdr2["privateBathroom"].ToString();
+            furnish = Session["Furnished"].ToString();
+            storage = Session["Storage"].ToString();
+            smoker = Session["Smoker"].ToString();
+        }
+
+        if (privateEntrance == "y")
+        {
+            privateEntranceBadge.ImageUrl = "images/badges-04.png";
+        }
+
+        if (kitchen == "y")
+        {
+            kitchenBadge.ImageUrl = "images/badges-06.png";
+
+        }
+
+        if (privateBathroom == "y")
+        {
+            privateBathroomBadge.ImageUrl = "images/badges-07.png";
+
+        }
+
+        if (furnish == "y")
+        {
+            furnishBadge.ImageUrl = "images/badges-08.png";
+
+        }
+
+        if (storage == "y")
+        {
+            storageBadge.ImageUrl = "images/badges-09.png";
+
+        }
+
+        if (smoker == "n")
+        {
+            smokerBadge.ImageUrl = "images/badges-10.png";
+
+        }
 
 
+        SqlCommand filterProp = new SqlCommand("SELECT Property.HostID, Property.PropertyID, Property.HouseNumber, PropertyRoom.BriefDescription, " +
+            "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice FROM PropertyRoom" +
+            " INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
+        filterProp.Parameters.AddWithValue("@HostID", hostID);
+        SqlDataReader readr = filterProp.ExecuteReader();
+        while (readr.Read())
+        {
+            addressTextbox.Text = readr["HouseNumber"].ToString() + " " + readr["Street"].ToString() + " " + readr["CityCounty"].ToString() + ", " + readr["HomeState"].ToString() + " " + readr["Zip"].ToString();
+            priceTextbox.Text = readr["MonthlyPrice"].ToString();
+            descriptionTextbox.Text = readr["BriefDescription"].ToString();
+            roomDescripTextbox.Text = readr["RoomDescription"].ToString();
 
+        }
 
-
+  
 
 
         //displays all of tenants messages
@@ -210,6 +254,7 @@ public partial class HostDashboard : System.Web.UI.Page
                 }
 
             }
+
         }
 
         //lvFavorites.DataSource = Favorite.lstFavorites;
@@ -325,26 +370,7 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessages.DataBind();
         messageTextbox.Text = string.Empty;
 
-        SqlCommand filterProp = new SqlCommand("SELECT HouseNumber, Street, Zip, CityCounty, HomeState, Country, MonthlyPrice, ProfilePic, imageV2 FROM [Capstone].[dbo].[property] WHERE HostID = @HostID", sc);
-        filterProp.Parameters.AddWithValue("@HostID", hostID);
-        SqlDataReader readr = filterProp.ExecuteReader();
-        while (readr.Read())
-        {
-            addressTextbox.Text = readr["HouseNumber"].ToString() + " " + readr["Street"].ToString() + " " + readr["CityCounty"].ToString() + ", " + readr["HomeState"].ToString() + " " + readr["Zip"].ToString();
-            priceTextbox.Text = readr["MonthlyPrice"].ToString();
-            
-        }
-
-        SqlCommand filterRoom = new SqlCommand("SELECT BriefDescription, RoomDescription FROM [Capstone].[dbo].[PropertyRoom] WHERE HostID = @HostID", sc);
-        filterRoom.Parameters.AddWithValue("@HostID", hostID);
-        SqlDataReader rd = filterRoom.ExecuteReader();
-        while (rd.Read())
-        {
-            
-            descriptionTextbox.Text = rd["BriefDescription"].ToString();
-            roomDescripTextbox.Text = rd["RoomDescription"].ToString();
-            
-        }
+        
     }
 
     protected void contract(object sender, EventArgs e)
