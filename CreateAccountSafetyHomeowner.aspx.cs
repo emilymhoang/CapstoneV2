@@ -13,7 +13,7 @@ public partial class CreateAccountSafetyHomeowner : System.Web.UI.Page
     }
     protected void Understand(object sender, EventArgs e)
     {
-        //Response.Redirect("HostDashboard.aspx");
+        Response.Redirect("HostDashboard.aspx");
     }
 
 }

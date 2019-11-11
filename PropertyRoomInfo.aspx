@@ -49,7 +49,7 @@
               <asp:RequiredFieldValidator ID="AvailibilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailibility" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
-                <label for="formGroupExampleInput">Availibility will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
+                <label for="formGroupExampleInput">Availability will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
             </div> <!--end col-->
           </div> <!--end row class-->
  <br>
@@ -69,7 +69,7 @@
             </asp:RadioButtonList>
             </div>
             <div class="col">
-              <label for="formGroupExampleInput">Does the space have a private enterance?*</label>
+              <label for="formGroupExampleInput">Does the space have a private entrance?*</label>
               <asp:RadioButtonList ID="rbPrivateEntr" runat="server">
                     <asp:ListItem Text="Yes" Value="y" />
                     <asp:ListItem Text="No" Value="n" />
