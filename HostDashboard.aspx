@@ -101,8 +101,8 @@
                  <p><asp:Label ID="Label5" runat="server" Text="Harrisonburg 22801" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="Label6" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="Label7" Text="Medium sized room comes with....." runat="server"  BackColor="#ebebeb"></asp:Label></p>
-                <asp:Image ID="Image7" ImageUrl="" class="img-fluid" runat="server" />
-                 <asp:Image ID="Image8" ImageUrl="" class="img-fluid" runat="server" />
+                <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" />
+                 <asp:Image ID="attachedBadge" ImageUrl="" class="img-fluid" runat="server" />
                  <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
             </div>
 
