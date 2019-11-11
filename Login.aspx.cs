@@ -17,6 +17,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void submitLogin_Click(object sender, EventArgs e)
     {
+
         // connect to database to retrieve stored password string
         //try
             System.Data.SqlClient.SqlCommand findPass = new System.Data.SqlClient.SqlCommand();
