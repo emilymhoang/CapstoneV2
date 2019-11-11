@@ -100,8 +100,8 @@
             </asp:RadioButtonList>
             </div> <!--end col-->
                  <div class="col">
-              <label for="formGroupExampleInput">Do you have pets?*</label>
-              <asp:RadioButtonList ID="rbPets" runat="server">
+              <label for="formGroupExampleInput">Is there a personal kitchen?*</label>
+              <asp:RadioButtonList ID="rbKitchen" runat="server">
                     <asp:ListItem Text="Yes" Value="y" />
                     <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>
