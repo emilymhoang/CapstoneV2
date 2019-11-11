@@ -61,9 +61,9 @@
                 </div>
             </div>
              <div class="col-md-6" style="margin-top: 1rem;">
-                <h3><asp:Label ID="nameTextbox" runat="server" Text="John Smith" BackColor="#ebebeb"></asp:Label></h3>
-                 <p><asp:Label ID="usernameTextbox" runat="server" Text="JohnSmith1" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="emailTextbox" Text="johnsmith@gmailcom" runat="server" BackColor="#ebebeb"></asp:Label></p>
+                <h3><asp:Label ID="nameTextbox" runat="server" Text="Name" BackColor="#ebebeb"></asp:Label></h3>
+                 <p><asp:Label ID="usernameTextbox" runat="server" Text="Username" BackColor="#ebebeb"></asp:Label></p>
+                 <p><asp:Label ID="emailTextbox" Text="name@gmailcom" runat="server" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="phoneTextbox" Text="xxx-xxx-xxx" runat="server"  BackColor="#ebebeb"></asp:Label></p>
                 <asp:Image ID="undergraduateBadge" ImageUrl="" class="img-fluid" runat="server" />
                  <asp:Image ID="graduateBadge" ImageUrl="" class="img-fluid" runat="server" />
@@ -97,10 +97,11 @@
                 </div>
             </div>
              <div class="col-md-6" style="margin-top: 1rem;">
-                <h3><asp:Label ID="Label4" runat="server" Text="Single Room" BackColor="#ebebeb"></asp:Label></h3>
-                 <p><asp:Label ID="Label5" runat="server" Text="Harrisonburg 22801" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="Label6" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="Label7" Text="Medium sized room comes with....." runat="server"  BackColor="#ebebeb"></asp:Label></p>
+                <h3><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h3>
+                 <p><asp:Label ID="priceTextbox" runat="server" Text="Price" BackColor="#ebebeb"></asp:Label></p>
+                 <p><asp:Label ID="descriptionTextbox" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
+                 <p><asp:Label ID="roomDescripTextbox" Text="Yes" runat="server"  BackColor="#ebebeb"></asp:Label></p>
+
                 <asp:Image ID="Image7" ImageUrl="" class="img-fluid" runat="server" />
                  <asp:Image ID="Image8" ImageUrl="" class="img-fluid" runat="server" />
                  <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
