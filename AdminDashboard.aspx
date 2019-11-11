@@ -23,7 +23,8 @@
            font-size: 20px;
        }
     </style>
-<div  class="container">
+
+<div class="container">
   <div class="row " style="margin-top: 7rem; ">
     <div class="col-md-9">
         <h1><asp:Label ID="dashboardTitle" runat="server" Text=""></asp:Label></h1>
@@ -46,61 +47,17 @@
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
             <div class="col-md-6" style="margin-top: 1rem;">
-                    <asp:Image ID="image1" ImageUrl="" class="img-fluid" runat="server" />
-                
-                <div class="row" style="margin-top: 1rem;">
-                    <div class="col-md-6">
-                        <asp:Image ID="image2" ImageUrl="" class="img-fluid" runat="server" />
-                    </div>
-                    <div class="col-md-6">
-                        <asp:Image ID="image3" ImageUrl="" class="img-fluid" runat="server" />
-                    </div>
-                </div>
             </div>
              <div class="col-md-6" style="margin-top: 1rem;">
                 <h3><asp:Label ID="nameTextbox" runat="server" Text="John Smith" BackColor="#ebebeb"></asp:Label></h3>
                  <p><asp:Label ID="usernameTextbox" runat="server" Text="JohnSmith1" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="emailTextbox" Text="johnsmith@gmailcom" runat="server" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="phoneTextbox" Text="xxx-xxx-xxx" runat="server"  BackColor="#ebebeb"></asp:Label></p>
-                 <img src="images/badges-01.png" style="max-width: 150px;">
             </div>
 
         <%--    end profile container--%>
         </div>
       </div>
-
-<%--        <div class="col-md-6"  style="border: solid; border-color: white;">
-            </div>
-      </div>      <!-- end big row -->--%>
-    
-    
-     <div class="row " style="margin-top: 1rem;">
         <div class="col-md-6"  style="border: solid; border-color: white;">
-          </div>
-         </div>
-
-
-        <%--<div class="col-md-6" style="border: solid; border-color: white;" >
-        <div class="row">
-            <div class="col-md-12">
-               <h2 >Background Check Status</h2> 
-            </div>
-            
-        </div>
-        
-        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
-            <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-               <h3>Completed</h3>
-                <p style="text-align: center;"><img src="images/icons-07.png" style="max-width: 75px;"></p>
-                <p>Your Backround Check has been completed. Background checks are important to us, we take your safety seriously.</p>
-            </div>
-             
-        </div>
-      </div>
-    
-    </div><!-- end div big row -->
-        <div class="col-md-6"  style="border: solid; border-color: white;">
-            <h2 >Background Check Status</h2> 
+            <h2 >Verify Background Checks</h2> 
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <h3>Completed</h3>
@@ -109,25 +66,14 @@
             </div>
             </div>
             </div>
-    
-   
-    <div class="row " style="margin-top: 1rem;">
-        <div class="col-md-12"  >
-            
-          </div>
-    </div><!-- end div big row -->  
-    
+      </div>      <!-- end big row -->
+    <div class="col-md-12"  style="border: solid; border-color: white;">
+    <h2 >Search for properties</h2>
     <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
         <div class="col-md-12"  style=" margin-top: 1rem;">
-            <h2>Your Rental Agreements</h2>
-            <p>When you have a rental agreement, it will be indicated here. We hope you find your perfect housing match so that you can have some wonderful rental agreements.</p>
-            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Sample Agreement" AutoPostBack="true" type="submit" class="btn"/><br/>
           </div>
-    </div><!-- end div big row -->--%>
-    
-    
-    
-</div> <!-- end div big row -->
+    </div><!-- end div big row -->  
+</div><!-- end div big row -->  
 </div><!-- end div container! -->   
 
 </asp:Content>
