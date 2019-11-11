@@ -43,7 +43,7 @@
                <h2 >Your Profile</h2> 
             </div>
             <div class="col-md-6">
-                <a href="EditProfileTenant.aspx" class="btn" >Edit Profile</a>
+                <a href="EditProfileHost.aspx" class="btn" >Edit Profile</a>
             </div>
         </div>
            <%--    begin file container--%>
