@@ -159,8 +159,12 @@ public partial class AdminDashboard : System.Web.UI.Page
     protected void deleteProperty(object sender, EventArgs e)
     {
 
-        var lcount = lvSearchResultsAdmin.SelectedIndex;
-        var selectedPRid = SearchResult.lstSearchResults[lcount].resultID;
+        //var lcount = lvSearchResultsAdmin.SelectedIndex;
+
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        var selectedPRid = SearchResult.lstSearchResults[index].resultID;
 
         //lvSearchResults.SelectedIndex;
         //lvSearchResults.Items[lcount].Selected = 1;
