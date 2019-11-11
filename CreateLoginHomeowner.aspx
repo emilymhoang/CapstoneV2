@@ -27,7 +27,7 @@
             </div>
               <div class="col">
                <label for="formGroupExampleInput">Profile Picture</label><br>
-                <asp:FileUpload id="FileUploadControl" runat="server" />
+                <asp:FileUpload id="FileUploadControlHost" runat="server" />
                 <br /><br />
                 <asp:Label runat="server" id="StatusLabel" text=" " />
             </div><!--end col-->
