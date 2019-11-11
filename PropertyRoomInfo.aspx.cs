@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 public partial class PropertyRoomInfo : System.Web.UI.Page
 {    
@@ -65,6 +66,10 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         String display = displayTextbox.Text;
         String roomDescription = DropDownListRoom.SelectedValue;
 
+        //roomID
+        int roomID;
+        Session["RoomID"] = null;
+
 
         PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription);
         System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
@@ -97,7 +102,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
 
                     SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [Capstone].[dbo].[PropertyRoom]", connection);
                     room.Connection = connection;
-                    int roomID = Convert.ToInt32(room.ExecuteScalar());
+                    roomID = Convert.ToInt32(room.ExecuteScalar());
                     Session["RoomID"] = roomID;
                     room.ExecuteNonQuery();
 
@@ -122,14 +127,116 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 finally
                 {
                     connection.Close();
-                    Response.Redirect("CreateAccountSafetyHomeowner.aspx");
+                    
                 }
+            }
+        }
+
+        
+
+
+                if (FileUploadControl.HasFile)
+        {
+
+            HttpPostedFile postedFile = FileUploadControl.PostedFile;
+            string fileName = Path.GetFileName(postedFile.FileName);
+            string fileExtension = Path.GetExtension(fileName);
+            int fileSize = postedFile.ContentLength;
+
+            if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
+                fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+            {
+                sc.Open();
+                Stream stream = postedFile.InputStream;
+                BinaryReader br = new BinaryReader(stream);
+                byte[] bytes = br.ReadBytes((int)stream.Length);
+
+                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image1 = @imgdata WHERE RoomID = @RoomID", sc);
+                cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
+                cmd.Parameters.AddWithValue("@imgdata", bytes);
+                cmd.ExecuteNonQuery();
+                sc.Close();
+                StatusLabel.Text = "Image Uploaded successfully";
+                
+            }
+            else
+            {
+                StatusLabel.Text = "Only Images (.jpg, .png, .gif and .bmp) can be uploaded!";
+                return;
+            }
+        }
+        else
+        {
+            StatusLabel.Text = "Please select an image to upload";
+            return;
+            
+        }
+
+        if (FileUpload2.HasFile)
+        {
+
+            HttpPostedFile postedFile = FileUpload2.PostedFile;
+            string fileName = Path.GetFileName(postedFile.FileName);
+            string fileExtension = Path.GetExtension(fileName);
+            int fileSize = postedFile.ContentLength;
+
+            if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
+                fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+            {
+                sc.Open();
+                Stream stream = postedFile.InputStream;
+                BinaryReader br = new BinaryReader(stream);
+                byte[] bytes = br.ReadBytes((int)stream.Length);
+
+                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image2 = @imgdata WHERE RoomID = @RoomID", sc);
+                cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
+                cmd.Parameters.AddWithValue("@imgdata", bytes);
+                cmd.ExecuteNonQuery();
+                sc.Close();
+                StatusLabel.Text = "Image Uploaded successfully";
+
+            }
+            else
+            {
+                StatusLabel.Text = "Only Images (.jpg, .png, .gif and .bmp) can be uploaded!";
+                return;
+            }
+        }
+
+        if (FileUpload3.HasFile)
+        {
+
+            HttpPostedFile postedFile = FileUpload3.PostedFile;
+            string fileName = Path.GetFileName(postedFile.FileName);
+            string fileExtension = Path.GetExtension(fileName);
+            int fileSize = postedFile.ContentLength;
+
+            if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
+                fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+            {
+                sc.Open();
+                Stream stream = postedFile.InputStream;
+                BinaryReader br = new BinaryReader(stream);
+                byte[] bytes = br.ReadBytes((int)stream.Length);
+
+                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image3 = @imgdata WHERE RoomID = @RoomID", sc);
+                cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
+                cmd.Parameters.AddWithValue("@imgdata", bytes);
+                cmd.ExecuteNonQuery();
+                sc.Close();
+                StatusLabel.Text = "Image Uploaded successfully";
+
+            }
+            else
+            {
+                StatusLabel.Text = "Only Images (.jpg, .png, .gif and .bmp) can be uploaded!";
+                return;
             }
         }
 
 
 
-
+        Response.Redirect("CreateAccountSafetyHomeowner.aspx");
     }
 
     protected void populate(object sender, EventArgs e)

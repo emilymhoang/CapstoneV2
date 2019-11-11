@@ -18,6 +18,31 @@
       <div class="container">
           <div class="row">
             <div class="col">
+             <label for="formGroupExampleInput">Room Picture*</label><br>
+                <asp:FileUpload id="FileUploadControl" runat="server" />
+                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">Profile Picture is required.</asp:RequiredFieldValidator>
+                <br /><br />
+
+            </div>
+            <div class="col">
+             <label for="formGroupExampleInput">Room Picture 2</label><br>
+                <asp:FileUpload id="FileUpload2" runat="server" />
+                 <br /><br />
+
+              </div>
+            <div class="col">
+             <label for="formGroupExampleInput">Room Picture 3</label><br>
+                <asp:FileUpload id="FileUpload3" runat="server" />
+                <br /><br />
+
+            
+            </div> <!--end col-->
+          </div> <!--end row class-->
+          
+          
+          
+          <div class="row">
+            <div class="col">
               <label for="formGroupExampleInput">Monthly Price</label>
               <asp:Textbox ID="monthlyPriceTextbox" class="form-control" MaxLength="10" placeholder="Ex. 800.00" runat="server"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="monthlyPriceRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="monthlyPriceTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
@@ -45,12 +70,14 @@
 	<asp:ListItem Value='Y'>Yes</asp:ListItem>
     <asp:ListItem Value='N'>No</asp:ListItem>
                   </asp:DropDownList>
-               
+               <label for="formGroupExampleInput">Availability will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
+          
               <asp:RequiredFieldValidator ID="AvailibilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailibility" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
-                <label for="formGroupExampleInput">Availability will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
-            </div> <!--end col-->
+                 
+                <asp:Label runat="server" id="StatusLabel" text=" " />
+                  </div> <!--end col-->
           </div> <!--end row class-->
  <br>
             <div class="row">
@@ -125,6 +152,8 @@
              <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next>" type="submit" onClick="submitPropRoom" style="float: right;" runat="server"></asp:Button></div>
             
         </div>     
+        </div>
       </div> <!--end container-->
+
     </section>
 </asp:Content>

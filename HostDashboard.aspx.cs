@@ -115,7 +115,7 @@ public partial class HostDashboard : System.Web.UI.Page
 
 
         SqlCommand filterProp = new SqlCommand("SELECT Property.HostID, Property.PropertyID, Property.HouseNumber, PropertyRoom.BriefDescription, " +
-            "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice FROM PropertyRoom" +
+            "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice, PropertyRoom.Image1 as PRimage1 FROM PropertyRoom" +
             " INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
         filterProp.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader readr = filterProp.ExecuteReader();
@@ -125,7 +125,12 @@ public partial class HostDashboard : System.Web.UI.Page
             priceTextbox.Text = readr["MonthlyPrice"].ToString();
             descriptionTextbox.Text = readr["BriefDescription"].ToString();
             roomDescripTextbox.Text = readr["RoomDescription"].ToString();
-
+            byte[] imgData = (byte[])readr["PRimage1"];
+            if (!(imgData == null))
+            {
+                string img = Convert.ToBase64String(imgData, 0, imgData.Length);
+                image4.ImageUrl = "data:image;base64," + img;
+            }
         }
 
   
