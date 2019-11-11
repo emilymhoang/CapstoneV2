@@ -78,7 +78,7 @@
              <div class="col-md-6"><asp:Button ID="searchButton" text="Submit" runat="server" class="btn" type="submit" onClick="search_Click" style="float: right;"></asp:Button></div>
         </div>
         <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 500px;">
-        <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
+        <asp:ListView id="lvSearchResultsAdmin" runat="server" Visible="true" >
             <LayoutTemplate>
                 <h1>Search Results</h1>
                 <table id="tbl1" runat="server">

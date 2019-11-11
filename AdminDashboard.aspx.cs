@@ -82,7 +82,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                     if (searchBy)
                     {
                         command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
-                            "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, " +
+                            "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  [dbo].[PropertyRoom].RoomID, " +
                             "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
                             "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
                             "where [dbo].[Property].Zip = @zip";
@@ -92,7 +92,8 @@ public partial class AdminDashboard : System.Web.UI.Page
                     else
                     {
                         command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
-                            "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, [dbo].[PropertyRoom].[RoomID], isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
+                            "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, [dbo].[PropertyRoom].RoomID, " +
+                            "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
                             "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
                             "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
                         command.Parameters.AddWithValue("@city", propertySearch);
@@ -116,7 +117,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                     string description = (string)reader["BriefDescription"];
 
 
-                                int id = (int)reader["RoomID"];
+                                int id = Convert.ToInt32(reader["RoomID"]);
 
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
 
@@ -151,33 +152,29 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void showResults()
     {
-        lvSearchResults.DataSource = SearchResult.lstSearchResults;
-        lvSearchResults.DataBind();
+        lvSearchResultsAdmin.DataSource = SearchResult.lstSearchResults;
+        lvSearchResultsAdmin.DataBind();
     }
 
     protected void deleteProperty(object sender, EventArgs e)
     {
-        for (int lcount = 0; lcount < lvSearchResults.Items.Count; lcount++)
-        {
-            if (lvSearchResults.Items[lcount].SelectedIndex == true)
-            {
-                var2 = lcount;
-                break;
-            }
-        }
-        lvSearchResults.SelectedIndex;
-        lvSearchResults.Items[lcount].Selected = 1;
-        SqlCommand insert = new SqlCommand("DELETE FROM FROM [Capstone].[dbo].[PropertyRoom] WHERE RoomID = @RoomID", sc);
-        insert.Parameters.AddWithValue("@RoomID", id);
-        insert.Connection = sc;
-        int adminID = Convert.ToInt32(insert.ExecuteScalar());
-        insert.ExecuteNonQuery();
-        Session["adminID"] = adminID;
+
+        var lcount = lvSearchResultsAdmin.SelectedIndex;
+        var selectedPRid = SearchResult.lstSearchResults[lcount].resultID;
+
+        //lvSearchResults.SelectedIndex;
+        //lvSearchResults.Items[lcount].Selected = 1;
+
+        SqlCommand delete = new SqlCommand("DELETE FROM [Capstone].[dbo].[PropertyRoom] WHERE RoomID = @RoomID", sc);
+        delete.Parameters.AddWithValue("@RoomID", selectedPRid);
+        delete.Connection = sc;
+        delete.ExecuteNonQuery();
     }
 
     protected void logout(object sender, EventArgs e)
     {
         Session.Abandon();
         Response.Redirect("Index.aspx");
+        SearchResult.lstSearchResults.Clear();
     }
 }
