@@ -17,7 +17,7 @@ public partial class _Default : System.Web.UI.Page
 
     protected void submitLogin_Click(object sender, EventArgs e)
     {
-        // connect to database to retrieve stored password string
+        // connect to database to retrieve stored password stringhttp://localhost:58981/Login.aspx.cs
         //try
             System.Data.SqlClient.SqlCommand findPass = new System.Data.SqlClient.SqlCommand();
             findPass.Connection = sc;
@@ -48,7 +48,31 @@ public partial class _Default : System.Web.UI.Page
                         Session["AccountID"] = accountID;
                         Session["username"] = userNameTextbox.Text;
                         Session["LoggedIn"] = true;
-                        Response.Redirect("TenantDashboard.aspx");
+
+
+                        SqlCommand filter = new SqlCommand("SELECT TenantID, HostID, AdminID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
+                        filter.Parameters.AddWithValue("@AccountID", accountID);
+                        SqlDataReader rdr = filter.ExecuteReader();
+                        string tenantID = "", hostID = "", adminID = "";
+                        while (rdr.Read())
+                        {
+                            tenantID = rdr["TenantID"].ToString();
+                            hostID = rdr["HostID"].ToString();
+                            adminID = rdr["AdminID"].ToString();
+                        }
+
+                        if (tenantID != "")
+                        {
+                            Response.Redirect("TenantDashboard.aspx");
+                        }
+                        else if(hostID != "")
+                        {
+                            Response.Redirect("HostDashboard.aspx");
+                        }
+                        else if (adminID != "")
+                        {
+                            Response.Redirect("AdminDashboard.aspx");
+                    }
                 }
                     else
                         resultmessage.Text = "Password is wrong.";
