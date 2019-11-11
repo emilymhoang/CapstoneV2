@@ -33,7 +33,7 @@
           
             <div class="col">
               <label for="formGroupExampleInput">Please briefly describe your Room*</label>
-              <asp:DropDownList ID="DropDownList1" runat="server">
+              <asp:DropDownList ID="DropDownListRoom" runat="server">
     <asp:ListItem Value="Single Room">Single Room</asp:ListItem>
                   <asp:ListItem Value="Shared Space">Shared Space</asp:ListItem>
 </asp:DropDownList>

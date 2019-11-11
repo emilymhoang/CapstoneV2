@@ -100,80 +100,22 @@
                 <h3><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h3>
                  <p><asp:Label ID="priceTextbox" runat="server" Text="Price" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="descriptionTextbox" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="roomDescripTextbox" Text="Yes" runat="server"  BackColor="#ebebeb"></asp:Label></p>
+                 <p><asp:Label ID="roomDescripTextbox" Text="Shared Room" runat="server"  BackColor="#ebebeb"></asp:Label></p>
 
-                <asp:Image ID="Image7" ImageUrl="" class="img-fluid" runat="server" />
-                 <asp:Image ID="Image8" ImageUrl="" class="img-fluid" runat="server" />
+                <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+                 <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+                 <asp:Image ID="privateBathroomBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+                 <asp:Image ID="furnishBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+                 <asp:Image ID="storageBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+                 <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+                
                  <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
             </div>
 
         <%--    end profile container--%>
         </div>
       </div>
-        <%--<div class="col-md-6"  style="border: solid; border-color: white;">
-            <div class="row">
-                    <div class="col-md-6">
-                    <h3 >Your Profile</h3> 
-                        </div>
-                    </div>
-            <div style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
-                <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="margin-top: 1rem;overflow:scroll">
-                        <asp:ListView id="lvFavorites" runat="server" Visible="true" >
 
-                            <LayoutTemplate>
-                                    <h2>Your Favorites</h2>
-                                <table id="favorites" runat="server">
-                                    <tr id="itemPlaceholder" runat="server"></tr>
-                                </table>
-                            </LayoutTemplate>
-
-                            <ItemTemplate>
-                                <table>
-                                    <tr>
-                                        <td>
-                                            <h4>
-                                                <asp:Label runat="server" ID="lblResultName" Text='<%#Eval("favName") %>'></asp:Label>
-                                            </h4>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <asp:Label runat="server" ID="lblResultLocation" Text='<%#Eval("favLocation") %>'></asp:Label>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                        </tr>
-                                       <tr>
-                                        <td>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
-                                                            <asp:Label runat="server" ID="lblResultDesc" Text='<%#Eval("favDescription") %>'></asp:Label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <asp:Label runat="server" ID="lblResultPrice" Text='<%#Eval("favPrice") %>'></asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </ItemTemplate>
-
-                    </asp:ListView>
-                </div>
-                </div>
-            </div>
-        </div>--%>
       </div>      <!-- end big row -->
     
     

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 
 public partial class CreateLoginHomeowner : System.Web.UI.Page
 {
@@ -105,6 +106,38 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     int hostID = Convert.ToInt32(insert.ExecuteScalar());
                     insert.ExecuteNonQuery();
                     Session["hostID"] = hostID;
+
+                    if (FileUploadControlHost.HasFile)
+                    {
+
+                        HttpPostedFile postedFile = FileUploadControlHost.PostedFile;
+                        string fileName = Path.GetFileName(postedFile.FileName);
+                        string fileExtension = Path.GetExtension(fileName);
+                        int fileSize = postedFile.ContentLength;
+
+                        if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
+                            fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
+                        {
+                            Stream stream = postedFile.InputStream;
+                            BinaryReader br = new BinaryReader(stream);
+                            byte[] bytes = br.ReadBytes((int)stream.Length);
+
+                            SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Host] SET imageV2 = @imgdata WHERE HostID = @HostID", sc);
+                            cmd.Parameters.AddWithValue("@HostID", hostID);
+                            cmd.Parameters.AddWithValue("@imgdata", bytes);
+                            cmd.ExecuteNonQuery();
+
+                            StatusLabel.Text = "Image Uploaded successfully";
+                        }
+                        else
+                        {
+                            StatusLabel.Text = "Only Images (.jpg, .png, .gif and .bmp) can be uploaded!";
+                        }
+                    }
+                    else
+                    {
+                        StatusLabel.Text = "Please select an image to upload";
+                    }
 
 
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);

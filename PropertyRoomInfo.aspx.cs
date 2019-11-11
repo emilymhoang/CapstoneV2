@@ -50,14 +50,23 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         insert.Connection = sc;
         int propertyID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
+
+        SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE HostID = @HostID", sc);
+        getAccountID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
+        getAccountID.Connection = sc;
+        int accountID = Convert.ToInt32(getAccountID.ExecuteScalar());
+        getAccountID.ExecuteNonQuery();
+        Session["accountID"] = accountID;
         sc.Close();
 
         double monthlyPrice = Convert.ToDouble(monthlyPriceTextbox.Text);
         int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
         String avail = DropDownListAvailibility.SelectedValue;
         String display = displayTextbox.Text;
-        
-        PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display);
+        String roomDescription = DropDownListRoom.SelectedValue;
+
+
+        PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription);
         System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
@@ -65,7 +74,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
             {
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[LastUpdatedBy],[LastUpdated]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@lub,@lu)";
+                command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[RoomDescription],[LastUpdatedBy],[LastUpdated]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@roomdescrip,@lub,@lu)";
 
                 command.Parameters.AddWithValue("@propid", newRoom.propertyID);
                 command.Parameters.AddWithValue("@tenantid", newRoom.tenantID);
@@ -73,6 +82,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 command.Parameters.AddWithValue("@sqft", newRoom.squareFootage);
                 command.Parameters.AddWithValue("@avail", newRoom.availability);
                 command.Parameters.AddWithValue("@desc", newRoom.briefDescription);
+                command.Parameters.AddWithValue("@roomdescrip", newRoom.roomDescription);
                 command.Parameters.AddWithValue("@lub", "Kessler");
                 command.Parameters.AddWithValue("@lu", DateTime.Now);
 
@@ -88,6 +98,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                     SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [Capstone].[dbo].[PropertyRoom]", connection);
                     room.Connection = connection;
                     int roomID = Convert.ToInt32(room.ExecuteScalar());
+                    Session["RoomID"] = roomID;
                     room.ExecuteNonQuery();
 
 
