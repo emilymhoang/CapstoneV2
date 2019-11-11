@@ -12,9 +12,13 @@ using System.Web.UI.WebControls;
 
 public partial class TenantDashboard : System.Web.UI.Page
 {
+
+    String underGraduate;
+    String graduate;
+
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
-    { 
+    {
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
 
@@ -53,6 +57,36 @@ public partial class TenantDashboard : System.Web.UI.Page
 
         int tenantIDRefresh = Convert.ToInt32(Session["tenantID"]);
         Message.lstMessages.Clear();
+
+        SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [Capstone].[dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
+        badge.Parameters.AddWithValue("@TenantID", tenantID);
+
+        SqlDataReader rdr2 = badge.ExecuteReader();
+
+
+        while (rdr2.Read())
+        {
+            underGraduate = rdr2["Undergraduate"].ToString();
+            graduate = rdr2["graduate"].ToString();
+        }
+
+        if (underGraduate == "True")
+        {
+            undergraduateBadge.ImageUrl = "images/badges-01.png";
+        }
+
+        if (graduate == "True")
+        {
+            graduateBadge.ImageUrl = "images/badges-02.png";
+
+
+        }
+    
+        
+
+
+    
+
 
         //displays all of tenants messages
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))

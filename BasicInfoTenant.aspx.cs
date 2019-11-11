@@ -40,11 +40,13 @@ public partial class BasicInfoTenant : System.Web.UI.Page
                 Session["dateOfBirth"] = dateOfBirthTextbox.Text;
                 Session["email"] = emailTextbox.Text;
                 Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
-
+                Session["underGraduate"] = undergradCheck.Checked;
+                Session["graduate"] = gradCheck.Checked;
                 Response.Redirect("CreateLoginTenant.aspx");
             }
             else
             {
+
                 resultmessage.Text = "Emails do not match.";
             }
         }
