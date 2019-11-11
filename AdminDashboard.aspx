@@ -71,6 +71,72 @@
     <h2 >Search for properties</h2>
     <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
         <div class="col-md-12"  style=" margin-top: 1rem;">
+        <asp:Textbox ID="searchTextbox" type="text" style="font-size: 30px; height:75px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+        <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
+        <div class="row" style="margin-bottom: 3rem;"> 
+          <div class="col-md-6"></div>    
+             <div class="col-md-6"><asp:Button ID="searchButton" text="Submit" runat="server" class="btn" type="submit" onClick="search_Click" style="float: right;"></asp:Button></div>
+        </div>
+        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 500px;">
+        <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
+            <LayoutTemplate>
+                <h1>Search Results</h1>
+                <table id="tbl1" runat="server">
+                    <tr id="itemPlaceholder" runat="server"></tr>
+                </table>
+            </LayoutTemplate>
+
+            <ItemTemplate>
+                <table style="margin-top: 1rem; border-bottom: solid; width:1500px; border-bottom-width: 1px;">
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label>
+                        </td>
+                        <td>
+                            <div>
+                                <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                       <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
+                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultDescription") %>'></asp:Label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label>
+                        </td>
+                    </tr>
+                  <tr>
+                        <td>
+                            <asp:Button ID="deleteButton" class="btn" type="submit" style="float: right;" runat="server" Text="Delete Property" OnCommand="deleteProperty" AutoPostBack ="true"></asp:Button>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </ItemTemplate>
+
+        </asp:ListView>
           </div>
     </div><!-- end div big row -->  
 </div><!-- end div big row -->  

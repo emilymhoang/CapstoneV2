@@ -38,6 +38,7 @@
           </div> <!--end row class-->
           <br>
           <div class="row">
+          <div class="row">
             <div class="col">
               <label style="font-size: 32px" for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs</label><br/><br />
                 <label  style="font-size: 30px; color: black;" for="formGroupExampleInput">Search for...</label>
