@@ -49,8 +49,12 @@
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Square Footage</label>
-              <asp:Textbox id="squareFootageTextbox" class="form-control" MaxLength="10" placeholder="Ex. 941" runat="server"></asp:Textbox>
-              <asp:RequiredFieldValidator ID="squareFootageRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="squareFootageTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <asp:DropDownList ID="DropDownListSize" runat="server">
+                     <asp:ListItem Value="Small">Small</asp:ListItem>
+                  <asp:ListItem Value="Medium">Medium</asp:ListItem>
+                  <asp:ListItem Value="Large">Large</asp:ListItem>
+</asp:DropDownList>
+              <asp:RequiredFieldValidator ID="squareFootageRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListSize" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
           <br>

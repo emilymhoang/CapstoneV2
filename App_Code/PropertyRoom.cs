@@ -12,7 +12,7 @@ public class PropertyRoom
     public int roomID { get; private set; }
     public int tenantID { get; private set; }
     public double monthlyPrice { get; private set; }
-    public int squareFootage { get; private set; }
+    public String squareFootage { get; private set; }
     public String availability { get; private set; }
     public String briefDescription { get; private set; }
     public String lastUpdatedBy { get; private set; }
@@ -20,7 +20,7 @@ public class PropertyRoom
     public String roomDescription { get; private set; }
 
 
-    public PropertyRoom(int propertyID, double monthlyPrice, int squareFootage,
+    public PropertyRoom(int propertyID, double monthlyPrice, String squareFootage,
         String availability, String briefDescription, String roomDescription)
     {
         this.monthlyPrice = monthlyPrice;
