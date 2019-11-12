@@ -20,8 +20,9 @@
         .btn {
            font-family: 'Oswald', sans-serif;
            color: white; 
-           font-size: 20px;
+           
        }
+        
     </style>
 <div  class="container">
   <div class="row " style="margin-top: 7rem; ">
@@ -47,7 +48,7 @@
             </div>
         </div>
            <%--    begin file container--%>
-        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+        <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
             <div class="col-md-6" style="margin-top: 1rem;">
                     <asp:Image ID="image1" ImageUrl="" class="img-fluid" runat="server" />
                 
@@ -80,7 +81,7 @@
                     <h3 >Your Favorites</h3> 
                         </div>
                     </div>
-            <div style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+            <div class="container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <div class="list-group" style="margin-top: 1rem;overflow:scroll">
                         <asp:ListView id="lvFavorites" runat="server" Visible="true" >
@@ -152,7 +153,7 @@
                 <div class="col-md-4">
                     <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
                     <div>
-                        <a href="skype:Echo123"><button class="btn btn-primary" style="font-family: 'Oswald', sans-serif; color: white; font-size: 18px; ">Videochat</button></a>
+                        <a href="skype:Echo123"><button class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
                     </div>
                     </div>
               <div class="col-md-3">
@@ -161,9 +162,9 @@
                         </asp:ScriptManager>        
                 <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
                     <center>
-                        <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
+                        <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
                     </center>
-                    <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
+                    <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 20px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
                        
                         <asp:DropDownList ID="hostNameDropdown" runat="server">
                             <asp:ListItem Value="02">Ryan Krane</asp:ListItem>
@@ -186,13 +187,13 @@
             </div>
                 </div>
 
-            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <div class="list-group" style="overflow:scroll">
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
-                           <%-- <h1>Message Board</h1>--%>
+                           <%-- <h2>Message Board</h2>--%>
                         <table id="tbl1" runat="server">
                             <tr id="itemPlaceholder" runat="server"></tr>
                         </table>
@@ -255,11 +256,11 @@
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Background Check Status</h2> 
-            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
+            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-               <h3>Completed</h3>
-                <p style="text-align: center;"><img src="images/icons-07.png" style="max-width: 75px;"></p>
-                <p>Your Backround Check has been completed. Background checks are important to us, we take your safety seriously.<br><br><br><br><br><br></p>
+               <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
+                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 75px;" ImageUrl="" class="img-fluid" runat="server" /></p>
+                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
             </div>
             </div>
             </div>
@@ -271,7 +272,7 @@
           </div>
     </div><!-- end div big row -->  
     
-    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
+    <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
         <div class="col-md-12"  style=" margin-top: 1rem;">
             <h2>Your Rental Agreements</h2>
             <p>When you have a rental agreement, it will be indicated here. We hope you find your perfect housing match so that you can have some wonderful rental agreements.</p>

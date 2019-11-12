@@ -45,7 +45,18 @@ public partial class TenantDashboard : System.Web.UI.Page
             emailTextbox.Text = rdr["Email"].ToString();
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
-            //image1.ImageUrl = rdr["ProfilePic"].ToString();
+            if (backgroundCheckResult == "y")
+            {
+                backgroundCheckResultTitle.Text = "Complete";
+                image7.ImageUrl = "images/icons-07.png";
+                backgroundCheckResultLbl.Text = "Your Background Check has been completed. Background checks are important to us, we take your safety seriously.";
+            }
+            else
+            {
+                backgroundCheckResultTitle.Text = "Incomplete";
+                image7.ImageUrl = "images/NC.png";
+                backgroundCheckResultLbl.Text = "Our people are working hard to get your background check completed. Background checks are important to us, we take your safety seriously.";
+            }
             byte[] imgData = (byte[])rdr["imageV2"];
             if (!(imgData == null))
             {
