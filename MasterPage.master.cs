@@ -30,8 +30,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         if (Session["LoggedIn"].ToString() == "true")
         {
-             
-
             sc.Open();
             int accountID = Convert.ToInt32(Session["accountID"]);
             Response.Write(accountID);
