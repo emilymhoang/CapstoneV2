@@ -61,7 +61,8 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         sc.Close();
 
         double monthlyPrice = Convert.ToDouble(monthlyPriceTextbox.Text);
-        int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
+        //int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
+        String sqFoot = DropDownListSize.SelectedValue;
         String avail = DropDownListAvailibility.SelectedValue;
         String display = displayTextbox.Text;
         String roomDescription = DropDownListRoom.SelectedValue;
@@ -242,7 +243,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
     protected void populate(object sender, EventArgs e)
     {
         monthlyPriceTextbox.Text = "800.00";
-        squareFootageTextbox.Text = "500";
+        DropDownListSize.Text = "500";
         displayTextbox.Text = "Basement bedroom near City with a balcony";
         rbFurnished.SelectedValue = "y";
         rbKitchen.SelectedValue = "y";

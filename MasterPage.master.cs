@@ -28,10 +28,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void dashboard(object sender, EventArgs e)
     {
-        if (Session["LoggedIn"].ToString() == "true")
+        if (Session["LoggedIn"] == null)
         {
-             
-
+            Response.Redirect("Login.aspx");
+        }
+        else if (Session["LoggedIn"].ToString() == "true")
+        {
             sc.Open();
             int accountID = Convert.ToInt32(Session["accountID"]);
             Response.Write(accountID);
@@ -63,10 +65,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 Response.Redirect("AdminDashboard.aspx");
             }
             sc.Close();
-        }
-        else
-        {
-            Response.Redirect("Login.aspx");
         }
     }
     protected void FAQ(object sender, EventArgs e)

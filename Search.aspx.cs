@@ -57,7 +57,7 @@ public partial class Search : System.Web.UI.Page
                 if (searchBy)
                 {
                     command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
-                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, " +
+                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
                         "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
                         "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
                         "where [dbo].[Property].Zip = @zip";
@@ -67,13 +67,14 @@ public partial class Search : System.Web.UI.Page
                 else
                 {
                     command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
-                        "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
+                        "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
+                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
                         "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
                         "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
                     command.Parameters.AddWithValue("@city", propertySearch);
                 }
-                
-                
+
+
 
                 try
                 {
@@ -89,8 +90,8 @@ public partial class Search : System.Web.UI.Page
                                 string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
                                 
                                 string description = (string)reader["BriefDescription"];
-                                int id = (int)reader["RoomID"];
-                                
+                                int id = Convert.ToInt32(reader["RoomID"]);
+
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
                                 
                                 SearchResult result = new SearchResult(id, name, location, description, price);

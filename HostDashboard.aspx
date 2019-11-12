@@ -85,7 +85,43 @@
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
             <div class="col-md-6" style="margin-top: 1rem;">
-                    <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat="server" />
+
+
+                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="row">
+                        <div class="carousel-item active">    
+                            <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat="server" />
+                               </div>
+
+                        <div class="carousel-item ">
+                           <asp:Image ID="image5" ImageUrl="" class="img-fluid" runat="server" />
+                               </div>
+                        <div class="carousel-item ">                
+                               <asp:Image ID="image6" ImageUrl="" class="img-fluid" runat="server" />
+                            </div>
+                    </div>
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+                   <%-- <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat="server" />
+
+
                 
                 <div class="row" style="margin-top: 1rem;">
                     <div class="col-md-6">
@@ -94,7 +130,7 @@
                     <div class="col-md-6">
                         <asp:Image ID="image6" ImageUrl="" class="img-fluid" runat="server" />
                     </div>
-                </div>
+                </div>--%>
             </div>
              <div class="col-md-6" style="margin-top: 1rem;">
                 <h3><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h3>
@@ -236,8 +272,8 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <h3>Completed</h3>
-                <p style="text-align: center;"><img src="images/icons-07.png" style="max-width: 75px;"></p>
-                <p>Your Backround Check has been completed. Background checks are important to us, we take your safety seriously.<br><br><br><br><br><br></p>
+                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 75px;" ImageUrl="" class="img-fluid" runat="server" /></p>
+                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
             </div>
             </div>
             </div>

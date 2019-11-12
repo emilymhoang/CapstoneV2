@@ -25,10 +25,8 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
 
-        //lvFavorites.DataSource = Favorite.lstFavorites;
-        //lvFavorites.DataBind();
-
         sc.Open();
+
         int accountID = Convert.ToInt32(Session["accountID"]);
         Response.Write(accountID);
 
@@ -39,16 +37,28 @@ public partial class HostDashboard : System.Web.UI.Page
         insert.ExecuteNonQuery();
         Session["hostID"] = hostID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
         filter.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader rdr = filter.ExecuteReader();
+        String backgroundCheckResult;
         while (rdr.Read())
         {
             nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
             emailTextbox.Text = rdr["Email"].ToString();
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
-            //image1.ImageUrl = rdr["ProfilePic"].ToString();
+            backgroundCheckResult = rdr["BackgroundCheckResult"].ToString();
+            if (backgroundCheckResult == "y")
+            {
+                image7.ImageUrl = "images/icons-07.png";
+                backgroundCheckResultLbl.Text = "Your Background Check has been completed. Background checks are important to us, we take your safety seriously.";
+            }
+            else
+            {
+                image7.ImageUrl = "images/NC.png";
+                backgroundCheckResultLbl.Text = "Our people are working hard to get your background check completed. Background checks are important to us, we take your safety seriously.";
+            }
+
             byte[] imgData = (byte[])rdr["imageV2"];
             if (!(imgData == null))
             {
@@ -114,8 +124,9 @@ public partial class HostDashboard : System.Web.UI.Page
         }
 
 
+
         SqlCommand filterProp = new SqlCommand("SELECT Property.HostID, Property.PropertyID, Property.HouseNumber, PropertyRoom.BriefDescription, " +
-            "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice, PropertyRoom.Image1 as PRimage1 FROM PropertyRoom" +
+            "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice, PropertyRoom.Image1 as PRimage1, PropertyRoom.Image2 as PRimage2, PropertyRoom.Image3 as PRimage3 FROM PropertyRoom" +
             " INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
         filterProp.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader readr = filterProp.ExecuteReader();
@@ -130,6 +141,18 @@ public partial class HostDashboard : System.Web.UI.Page
             {
                 string img = Convert.ToBase64String(imgData, 0, imgData.Length);
                 image4.ImageUrl = "data:image;base64," + img;
+            }
+            byte[] imgData2 = (byte[])readr["PRimage2"];
+            if (!(imgData2 == null))
+            {
+                string img = Convert.ToBase64String(imgData2, 0, imgData2.Length);
+                image5.ImageUrl = "data:image;base64," + img;
+            }
+            byte[] imgData3 = (byte[])readr["PRimage3"];
+            if (!(imgData3 == null))
+            {
+                string img = Convert.ToBase64String(imgData3, 0, imgData3.Length);
+                image6.ImageUrl = "data:image;base64," + img;
             }
         }
 
@@ -200,70 +223,6 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
 
-        //favorite
-        Favorite.lstFavorites.Clear();
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-
-
-                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
-                    "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') " +
-                    "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] " +
-                    "on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on " +
-                    "[dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID left join [dbo].[Favorite] on " +
-                    "[dbo].[PropertyRoom].RoomID = [dbo].[Favorite].RoomID where [dbo].[Favorite].TenantID = @tenantid";
-                command.Parameters.AddWithValue("@hostid", hostIDRefresh);
-
-
-                try
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
-
-                                string description = (string)reader["BriefDescription"];
-
-
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
-
-                                Favorite fav = new Favorite(name, location, description, price);
-                                Favorite.lstFavorites.Add(fav);
-                            }
-
-                        }
-                        else
-                        {
-                            //lblInvalidSearch.Text = "Search returned no properties";
-                        }
-
-                    }
-                }
-                catch (SqlException t)
-                {
-                    string b = t.ToString();
-                }
-                finally
-                {
-                    connection.Close();
-
-                }
-
-            }
-
-        }
-
-        //lvFavorites.DataSource = Favorite.lstFavorites;
-        //lvFavorites.DataBind();
     }
     protected void sendMessage(object sender, EventArgs e)
     {

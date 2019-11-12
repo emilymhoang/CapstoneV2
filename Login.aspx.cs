@@ -47,7 +47,7 @@ public partial class _Default : System.Web.UI.Page
                         insert.ExecuteNonQuery();
                         Session["AccountID"] = accountID;
                         Session["username"] = userNameTextbox.Text;
-                        Session["LoggedIn"] = true;
+                        Session["LoggedIn"] = "true";
 
 
                         SqlCommand filter = new SqlCommand("SELECT TenantID, HostID, AdminID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
@@ -65,7 +65,7 @@ public partial class _Default : System.Web.UI.Page
                         {
                             Response.Redirect("TenantDashboard.aspx");
                         }
-                        else if(hostID != "")
+                    else if(hostID != "")
                         {
                             Response.Redirect("HostDashboard.aspx");
                         }
