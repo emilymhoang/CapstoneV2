@@ -15,6 +15,7 @@ public partial class AdminDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        BackgroundCheckApplicant.lstBackgroundCheckApplicants.Clear();
         sc.Open();
         int accountID = Convert.ToInt32(Session["accountID"]);
         Response.Write(accountID);
@@ -73,17 +74,12 @@ public partial class AdminDashboard : System.Web.UI.Page
                                     img = Convert.ToBase64String(imgData, 0, imgData.Length);
                                     img = "data:image;base64," + img;
                                 }
-                                BackgroundCheckApplicant result = new BackgroundCheckApplicant(name, phone, email, img, applicantType);
+                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(name, phone, email, img, applicantType);
 
-                                BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(result);
+                                BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(hostresult);
                             }
 
                         }
-                        else
-                        {
-                            lblInvalidSearch.Text = "No one needs background check approved.";
-                        }
-
                     }
                 }
                 catch (SqlException t)
@@ -134,11 +130,6 @@ public partial class AdminDashboard : System.Web.UI.Page
                             }
 
                         }
-                        else
-                        {
-                            lblInvalidSearch.Text = "No one needs background check approved.";
-                        }
-
                     }
                 }
                 catch (SqlException t)
@@ -152,6 +143,13 @@ public partial class AdminDashboard : System.Web.UI.Page
 
                 }
             }
+        }
+        showBackgroundResults();
+
+        bool isEmpty = !BackgroundCheckApplicant.lstBackgroundCheckApplicants.Any();
+        if (isEmpty)
+        {
+            backgroundChecklbl.Text = "No one needs background check approved.";
         }
     }
 
@@ -258,7 +256,6 @@ public partial class AdminDashboard : System.Web.UI.Page
             }
 
         showResults();
-        showBackgroundResults();
         }
 
     protected void showResults()
@@ -269,7 +266,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void showBackgroundResults()
     {
-        lvBackgroundResults.DataSource = SearchResult.lstSearchResults;
+        lvBackgroundResults.DataSource = BackgroundCheckApplicant.lstBackgroundCheckApplicants;
         lvBackgroundResults.DataBind();
     }
 

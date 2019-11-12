@@ -60,17 +60,22 @@
             <h2 >Verify Background Checks</h2> 
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+            <asp:Label ID="backgroundChecklbl" runat="server"></asp:Label>
                <div>
         <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
             <LayoutTemplate>
-                <h1>Background checks to be verified</h1>
                 <table id="tbl1" runat="server">
                     <tr id="itemPlaceholder" runat="server"></tr>
                 </table>
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table style="margin-top: 1rem; border-bottom: solid; width:1500px; border-bottom-width: 1px;">
+                <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                   <tr>
+                        <td>
+                            <asp:Image ID="image7" style="max-width: 75px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResult" Text='<%#Eval("resultName") %>'></asp:Label>
@@ -105,16 +110,7 @@
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultImageV2") %>'></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label1" Text='<%#Eval("applicantType") %>'></asp:Label>
-                        </td>
-                    </tr>
+                  
                     
                 </table>
             </ItemTemplate>
