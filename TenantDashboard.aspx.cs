@@ -36,15 +36,17 @@ public partial class TenantDashboard : System.Web.UI.Page
         insert.ExecuteNonQuery();
         Session["tenantID"] = tenantID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
         filter.Parameters.AddWithValue("@TenantID", tenantID);
         SqlDataReader rdr = filter.ExecuteReader();
+        String backgroundCheckResult;
         while (rdr.Read())
         {
             nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
             emailTextbox.Text = rdr["Email"].ToString();
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
+            backgroundCheckResult = rdr["BackgroundCheckResult"].ToString();
             if (backgroundCheckResult == "y")
             {
                 backgroundCheckResultTitle.Text = "Complete";

@@ -2,10 +2,10 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-              <style type="text/css">
+       <style type="text/css">
        h1 {
         font-family: 'Oswald', sans-serif;
-        color: #CC6559;
+        
         font-size: 50px;
         }
 
@@ -134,7 +134,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
             
-             <div class="col-md-6"><asp:Button ID ="submitPropInfoButton" class="btn" Text ="Next>" type="submit" onClick="submitPropInfo" style="float: right;" runat="server"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="submitPropInfoButton" class="btn" Text ="Next" type="submit" onClick="submitPropInfo" style="float: right;" runat="server"></asp:Button></div>
             
         </div>     
       </div> <!--end container-->

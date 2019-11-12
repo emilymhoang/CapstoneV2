@@ -60,9 +60,62 @@
             <h2 >Verify Background Checks</h2> 
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-               <h3>Completed</h3>
-                <p style="text-align: center;"><img src="images/icons-07.png" style="max-width: 75px;"></p>
-                <p>Your Backround Check has been completed. Background checks are important to us, we take your safety seriously.<br><br><br><br><br><br></p>
+               <div>
+        <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
+            <LayoutTemplate>
+                <h1>Background checks to be verified</h1>
+                <table id="tbl1" runat="server">
+                    <tr id="itemPlaceholder" runat="server"></tr>
+                </table>
+            </LayoutTemplate>
+
+            <ItemTemplate>
+                <table style="margin-top: 1rem; border-bottom: solid; width:1500px; border-bottom-width: 1px;">
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResult" Text='<%#Eval("resultName") %>'></asp:Label>
+                        </td>
+                        <td>
+                            <div>
+                                <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                       <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
+                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultDescription") %>'></asp:Label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label>
+                        </td>
+                    </tr>
+                    
+                </table>
+            </ItemTemplate>
+
+        </asp:ListView>
+    </div>
             </div>
             </div>
             </div>
