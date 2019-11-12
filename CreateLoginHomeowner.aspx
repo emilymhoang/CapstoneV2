@@ -61,9 +61,13 @@
         
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
-            <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div
-             <div class="col-md-6"><asp:Button ID="nextButton" class="btn" type="submit" style="float: right;" runat="server" Text="Next>" OnClick="submitLogin_Click"></asp:Button></div>
-            
+            <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button>
+             <div class="col-md-6"><asp:Button ID="nextButton" class="btn" type="submit" style="float: right;" runat="server" Text="Next>" OnClick="submitLogin_Click"></asp:Button>
+            <div class="col-md-6"><asp:Button ID="backbutton" class="btn" type="submit" style="float: right;" runat="server" Text="<Back" OnClick="Back_Click"></asp:Button>
+
+            </div>
+
+             </div>
         </div>     
       </div> <!--end container-->
     </section>
