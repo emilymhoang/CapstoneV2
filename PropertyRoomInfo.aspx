@@ -1,6 +1,25 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="PropertyRoomInfo.aspx.cs" Inherits="PropertyRoomInfo" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <style type="text/css">
+       h1 {
+        font-family: 'Oswald', sans-serif;
+        
+        font-size: 50px;
+        }
+
+        .btn {
+           font-family: 'Oswald', sans-serif;
+           color: white; 
+           font-size: 20px;
+       }
+
+        .form-control{
+            height: 50px;
+            font-size:20px;
+        }
+        </style>
+
    <header style="margin-top: 8rem;">
       <div class="container">
         <h1>Tell us about the room</h1>
@@ -153,7 +172,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
              <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next>" type="submit" onClick="submitPropRoom" style="float: right;" runat="server"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" onClick="submitPropRoom" style="float: right;" runat="server"></asp:Button></div>
             
         </div>     
         </div>
