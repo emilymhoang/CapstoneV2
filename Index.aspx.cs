@@ -22,49 +22,14 @@ public partial class Index : System.Web.UI.Page
     }
     protected void myAccount(object sender, EventArgs e)
     {
-
         if (Session["LoggedIn"].ToString() == "true")
         {
-
-            sc.Open();
-            int accountID = Convert.ToInt32(Session["accountID"]);
-            Response.Write(accountID);
-
-            SqlCommand login = new SqlCommand("SELECT HostID, TenantID, AdminID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
-            login.Parameters.AddWithValue("@AccountID", accountID);
-            login.Connection = sc;
-            //login.ExecuteNonQuery();
-            SqlDataReader rdr = login.ExecuteReader();
-            string tenantID = "", hostID = "", adminID = "";
-            while (rdr.Read())
-            {
-                adminID = rdr["AdminID"].ToString();
-                Session["adminID"] = adminID;
-                hostID = rdr["HostID"].ToString();
-                Session["hostID"] = hostID;
-                tenantID = rdr["TenantID"].ToString();
-                Session["tenantID"] = tenantID;
-                if (tenantID != "")
-                {
-                    Response.Redirect("TenantDashboard.aspx");
-                }
-                else if (hostID != "")
-                {
-                    Response.Redirect("HostDashboard.aspx");
-                }
-                else if (adminID != "")
-                {
-                    Response.Redirect("AdminDashboard.aspx");
-                }
-                sc.Close();
-            }
+            Response.Redirect("TenantDashboard.aspx");
         }
         else
         {
             Response.Redirect("Login.aspx");
         }
-
-        
     }
     protected void translate(object sender, EventArgs e)
     {
