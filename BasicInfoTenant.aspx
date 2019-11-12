@@ -106,7 +106,7 @@
           </div> <!--end row class-->
                           
         <div class="row" style="margin-bottom: 3rem;"> 
-          <div class="col-md-6"></div>
+          
             <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
              <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
         </div>     

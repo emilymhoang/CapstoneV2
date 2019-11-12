@@ -100,4 +100,9 @@ public partial class EditProfileHost : System.Web.UI.Page
             }
         }
     }
+    protected void Back_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("HostDashboard.aspx");
+
+    }
 }

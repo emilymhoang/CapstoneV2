@@ -5,7 +5,7 @@
           <style type="text/css">   
     h1 {
         font-family: 'Oswald', sans-serif;
-        color: #CC6559;
+        
         font-size: 50px;
         }
 
@@ -81,14 +81,15 @@
             </div>
           </div> <!--end row class-->--%>
 
- 
-        <div class="row" style="margin-bottom: 3rem; margin-left:1rem;"> 
+         </div> 
+       
+          <div class="row" style="margin-bottom: 3rem; margin-left:1rem;"> 
         
-            <div class="col-md-4 offset-1"><asp:Button ID ="backButton" class="btn" Text ="Back" type="submit" onClick="goBack" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-4 offset-3"><asp:Button ID="next2Button" class="btn" type="submit" style="float: left;" runat="server" Text="Next" OnCommand="submitLogin_Click" AutoPostBack ="true"></asp:Button></div>
+            <div class="col-md-6 "><asp:Button ID ="backButton" class="btn" Text ="Back" type="submit" onClick="goBack" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
+             <div class="col-md-6 "><asp:Button ID="next2Button" class="btn" type="submit" style="float: left;" runat="server" Text="Next" OnCommand="submitLogin_Click" AutoPostBack ="true"></asp:Button></div>
             
         </div>     
-      </div> 
+     
         </div> <!--end container--> 
     </section>
     </asp:Content>
