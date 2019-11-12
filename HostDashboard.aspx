@@ -29,7 +29,7 @@
         <h1><asp:Label ID="dashboardTitle" runat="server" Text=""></asp:Label></h1>
       </div>
     <div class="col-md-3">
-        <a href="Search.aspx" class="btn " style="margin-top: 1rem;">Search Properties</a>
+        <a href="AddRoom.aspx" class="btn " style="margin-top: 1rem;">Add Room</a>
         <asp:Button ID="logoutButton" onClick="logout" style="margin-top: 1rem;" runat="server" Text="Logout" AutoPostBack="true" type="submit" class="btn"/>
 
       </div>
