@@ -115,7 +115,7 @@ public partial class HostDashboard : System.Web.UI.Page
 
 
         SqlCommand filterProp = new SqlCommand("SELECT Property.HostID, Property.PropertyID, Property.HouseNumber, PropertyRoom.BriefDescription, " +
-            "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice, PropertyRoom.Image1 as PRimage1 FROM PropertyRoom" +
+            "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice, PropertyRoom.Image1 as PRimage1, PropertyRoom.Image2 as PRimage2, PropertyRoom.Image3 as PRimage3 FROM PropertyRoom" +
             " INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
         filterProp.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader readr = filterProp.ExecuteReader();
@@ -130,6 +130,18 @@ public partial class HostDashboard : System.Web.UI.Page
             {
                 string img = Convert.ToBase64String(imgData, 0, imgData.Length);
                 image4.ImageUrl = "data:image;base64," + img;
+            }
+            byte[] imgData2 = (byte[])readr["PRimage2"];
+            if (!(imgData2 == null))
+            {
+                string img = Convert.ToBase64String(imgData2, 0, imgData2.Length);
+                image5.ImageUrl = "data:image;base64," + img;
+            }
+            byte[] imgData3 = (byte[])readr["PRimage3"];
+            if (!(imgData3 == null))
+            {
+                string img = Convert.ToBase64String(imgData3, 0, imgData3.Length);
+                image6.ImageUrl = "data:image;base64," + img;
             }
         }
 
