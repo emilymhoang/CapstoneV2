@@ -81,7 +81,11 @@
           <div class="col-md-6"></div>
             
            
-             <div class="col-md-6"><asp:Button ID ="saveChangesButton" class="btn" Text ="Save Changes" type="submit" onClick="saveChanges" style="float: right;" runat="server"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="saveChangesButton" class="btn" Text ="Save Changes" type="submit" onClick="saveChanges" style="float: right;" runat="server"></asp:Button>
+             <div class="col-md-6"><asp:Button ID="backbutton" class="btn" type="submit" style="float: right;" runat="server" Text="<Back" OnClick="Back_Click"></asp:Button>
+
+            </div>
+             </div>
             
         </div>     
       </div> <!--end container-->
