@@ -273,7 +273,7 @@
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <h3>Completed</h3>
                 <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 75px;" ImageUrl="" class="img-fluid" runat="server" /></p>
-                <p>Your Backround Check has been completed. Background checks are important to us, we take your safety seriously.<br><br><br><br><br><br></p>
+                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
             </div>
             </div>
             </div>
