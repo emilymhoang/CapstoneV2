@@ -48,6 +48,15 @@ public partial class HostDashboard : System.Web.UI.Page
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
             backgroundCheckResult = rdr["BackgroundCheckResult"].ToString();
+            if (backgroundCheckResult == "y")
+            {
+                image7.ImageUrl = "images/icons-07.png";
+            }
+            else
+            {
+                image7.ImageUrl = "images/NC.png";
+            }
+
             byte[] imgData = (byte[])rdr["imageV2"];
             if (!(imgData == null))
             {
@@ -110,15 +119,6 @@ public partial class HostDashboard : System.Web.UI.Page
         {
             smokerBadge.ImageUrl = "images/badges-10.png";
 
-        }
-
-        if (backgroundCheckResult == "y")
-        {
-            image7.ImageUrl = "images/icons-07.png";
-        }
-        else
-        {
-            image7.ImageUrl = "images/NC.png";
         }
 
 

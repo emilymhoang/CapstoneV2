@@ -8,6 +8,7 @@ using System.Web;
 /// </summary>
 public class PropertyRoom
 {
+    public static List<PropertyRoom> listPropertyRoom = new List<PropertyRoom>();
     public int propertyID { get; private set; }
     public int roomID { get; private set; }
     public int tenantID { get; private set; }
