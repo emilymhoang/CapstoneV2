@@ -153,109 +153,149 @@ public partial class AdminDashboard : System.Web.UI.Page
         }
     }
 
-        protected void search_Click(object sender, EventArgs e)
+protected void search_Click(object sender, EventArgs e)
         {
-            SearchResult.lstSearchResults.Clear();
+        SearchResult.lstSearchResults.Clear();
 
-            bool searchBy;
-            int a;
-            string propertySearch = searchTextbox.Text;
+        bool searchBy;
+        int a;
+        string propertySearch = searchTextbox.Text;
 
-            if (string.IsNullOrEmpty(propertySearch))
+        if (string.IsNullOrEmpty(propertySearch))
+        {
+            lblInvalidSearch.Text = "You must enter a city OR a zip!";
+            return;
+        }
+        else
+        {
+            searchBy = Int32.TryParse(propertySearch, out a);
+            if (a < 0)
             {
-                lblInvalidSearch.Text = "You must enter a city OR a zip!";
+                lblInvalidSearch.Text = "Enter a valid zip.";
                 return;
             }
-            else
+            lblInvalidSearch.Text = String.Empty;
+        }
+
+
+
+
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand())
             {
-                searchBy = Int32.TryParse(propertySearch, out a);
-                if (a < 0)
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+
+                if (searchBy)
                 {
-                    lblInvalidSearch.Text = "Enter a valid zip.";
-                    return;
+                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
+                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
+                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
+                        "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
+                        "where [dbo].[Property].Zip = @zip";
+
+                    command.Parameters.AddWithValue("@zip", propertySearch);
                 }
-                lblInvalidSearch.Text = String.Empty;
-            }
-
-
-
-
-            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
+                else
                 {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.Text;
+                    command.CommandText = "select isnull([dbo].[PropertyRoom].Image1, 0), isnull([dbo].[PropertyRoom].Image2, 0)," +
+                        " isnull([dbo].[PropertyRoom].Image3, 0)" +
+                        ", [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
+                        "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
+                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
+                        "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
+                        "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
 
-                    if (searchBy)
+                    command.Parameters.AddWithValue("@city", propertySearch);
+                    //command.Parameters.AddWithValue("@default", Session["defaultPicture"]);
+                }
+
+
+
+                try
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
-                            "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  [dbo].[PropertyRoom].RoomID, " +
-                            "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
-                            "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
-                            "where [dbo].[Property].Zip = @zip";
-
-                        command.Parameters.AddWithValue("@zip", propertySearch);
-                    }
-                    else
-                    {
-                        command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
-                            "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, [dbo].[PropertyRoom].RoomID, " +
-                            "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
-                            "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
-                            "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
-                        command.Parameters.AddWithValue("@city", propertySearch);
-                    }
-
-
-
-                    try
-                    {
-                        connection.Open();
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        if (reader.HasRows)
                         {
-                            if (reader.HasRows)
+                            while (reader.Read())
                             {
-                                while (reader.Read())
-                                {
 
-                                    string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                    string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
+                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
+                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
 
-                                    string description = (string)reader["BriefDescription"];
-
-
+                                string description = (string)reader["BriefDescription"];
                                 int id = Convert.ToInt32(reader["RoomID"]);
 
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
 
-                                SearchResult result = new SearchResult(id, name, location, description, price);
+                                byte[] imgData1;
+                                byte[] imgData2;
+                                byte[] imgData3;
 
-                                SearchResult.lstSearchResults.Add(result);
+                                try
+                                {
+                                    imgData1 = (byte[])reader["Image1"];
+                                }
+                                catch
+                                {
+                                    imgData1 = (byte[])Session["defaultPicture"];
                                 }
 
-                            }
-                            else
-                            {
-                                lblInvalidSearch.Text = "Search returned no properties";
+                                try
+                                {
+                                    imgData2 = (byte[])reader["Image2"];
+                                }
+                                catch
+                                {
+                                    imgData2 = (byte[])Session["defaultPicture"];
+                                }
+
+                                try
+                                {
+                                    imgData3 = (byte[])reader["Image3"];
+                                }
+                                catch
+                                {
+                                    imgData3 = (byte[])Session["defaultPicture"];
+                                }
+
+
+
+                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length);
+                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length);
+                                string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length);
+
+
+
+                                SearchResult result = new SearchResult(id, name, location, description, price, image1, image2, image3);
+
+                                SearchResult.lstSearchResults.Add(result);
                             }
 
                         }
-                    }
-                    catch (SqlException t)
-                    {
-                        string b = t.ToString();
-                    }
-                    finally
-                    {
-                        searchTextbox.Text = string.Empty;
-                        connection.Close();
+                        else
+                        {
+                            lblInvalidSearch.Text = "Search returned no properties";
+                        }
 
                     }
                 }
-            }
+                catch (SqlException t)
+                {
+                    string b = t.ToString();
+                }
+                finally
+                {
+                    searchTextbox.Text = string.Empty;
+                    connection.Close();
 
-        showResults();
+                }
+            }
+        }
+            showResults();
         }
 
     protected void showResults()
@@ -287,6 +327,27 @@ public partial class AdminDashboard : System.Web.UI.Page
         delete.Parameters.AddWithValue("@RoomID", selectedPRid);
         delete.Connection = sc;
         delete.ExecuteNonQuery();
+    }
+
+    protected void approveApplicant(object sender, EventArgs e)
+    {
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        var selectedPRid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].ID;
+
+        //lvSearchResults.SelectedIndex;
+        //lvSearchResults.Items[lcount].Selected = 1;
+
+        SqlCommand approvet = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
+        approvet.Parameters.AddWithValue("@TenantID", tenantID);
+        approvet.Connection = sc;
+        approvet.ExecuteNonQuery();
+
+        SqlCommand approveh = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
+        approveh.Parameters.AddWithValue("@HostID", hostID);
+        approveh.Connection = sc;
+        approveh.ExecuteNonQuery();
     }
 
     protected void logout(object sender, EventArgs e)
