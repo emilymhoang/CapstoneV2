@@ -76,10 +76,55 @@
                         <td>
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label>
                         </td>
+                        
                         <td>
                             <div>
                                 <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/>
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+                                <div class="col-md-6" style="margin-top: 1rem;">
+
+
+                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    </ol>
+
+                                    <div class="carousel-inner">
+                                        <div class="row">
+                                            <div class="carousel-item active">    
+                                                <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1") %>' class="img-fluid" runat="server" />
+                                                   </div>
+
+                                            <div class="carousel-item ">
+                                               <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2") %>' class="img-fluid" runat="server" />
+                                                   </div>
+                                            <div class="carousel-item ">                
+                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3") %>' class="img-fluid" runat="server" />
+                                                </div>
+                                        </div>
+
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                               </div>
+                              </div>
                         </td>
                     </tr>
                     <tr>
@@ -105,6 +150,7 @@
                                 </tr>
                             </table>
                         </td>
+                        
                     </tr>
                     <tr>
                         <td>
@@ -113,6 +159,8 @@
                     </tr>
                     
                 </table>
+
+                
             </ItemTemplate>
 
         </asp:ListView>

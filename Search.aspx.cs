@@ -66,12 +66,16 @@ public partial class Search : System.Web.UI.Page
                 }
                 else
                 {
-                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
+                    command.CommandText = "select isnull([dbo].[PropertyRoom].Image1, 0), isnull([dbo].[PropertyRoom].Image2, 0)," +
+                        " isnull([dbo].[PropertyRoom].Image3, 0)" +
+                        ", [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
                         "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
                         "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
                         "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
                         "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
+
                     command.Parameters.AddWithValue("@city", propertySearch);
+                    //command.Parameters.AddWithValue("@default", Session["defaultPicture"]);
                 }
 
 
@@ -93,8 +97,46 @@ public partial class Search : System.Web.UI.Page
                                 int id = Convert.ToInt32(reader["RoomID"]);
 
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
-                                
-                                SearchResult result = new SearchResult(id, name, location, description, price);
+
+                                byte[] imgData1;
+                                byte[] imgData2;
+                                byte[] imgData3;
+
+                                try
+                                {
+                                    imgData1 = (byte[])reader["Image1"];
+                                } catch
+                                {
+                                    imgData1 = (byte[])Session["defaultPicture"];
+                                }
+
+                                try
+                                {
+                                    imgData2 = (byte[])reader["Image2"];
+                                }
+                                catch
+                                {
+                                    imgData2 = (byte[])Session["defaultPicture"];
+                                }
+
+                                try
+                                {
+                                    imgData3 = (byte[])reader["Image3"];
+                                }
+                                catch
+                                {
+                                    imgData3 = (byte[])Session["defaultPicture"];
+                                }
+
+                                 
+
+                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length); 
+                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length); 
+                                string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length); 
+
+
+
+                                SearchResult result = new SearchResult(id, name, location, description, price, image1, image2, image3);
 
                                 SearchResult.lstSearchResults.Add(result);
                             }
