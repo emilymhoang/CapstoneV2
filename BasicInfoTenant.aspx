@@ -5,7 +5,6 @@
           <style type="text/css">
        h1 {
         font-family: 'Oswald', sans-serif;
-        color: #CC6559;
         font-size: 50px;
         }
 
@@ -77,7 +76,7 @@
              </div> <!--end col-->
           </div> <!--end row class-->
 
-        <div class="row">
+        <div class="row" style="margin-top: 2rem;">
             <div class="col">
               <label for="formGroupExampleInput">Email</label>
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
@@ -93,13 +92,14 @@
                 <asp:RequiredFieldValidator ID="confirmRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="confirmEmailTextbox" ForeColor="#B23325" Display="Dynamic"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
-          <div class="row">
+          <div class="row" style="margin-top: 2rem;">
              <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
               <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="15" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
+                  <h3>Institution Level</h3>
               <asp:CheckBox ID="undergradCheck" type=" checkbox" name="Undergraduate Student" value="undergrad" runat="server"></asp:Checkbox> Undergraduate Student<br>
                <asp:CheckBox ID="gradCheck" type=" checkbox" name="Graduate Student" value="grad" runat="server"></asp:Checkbox> Graduate Student<br>
              </div> <!--end col-->
@@ -108,7 +108,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
             <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next>" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
         </div>     
       </div> <!--end container-->
     </section>
