@@ -52,7 +52,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 int hostID = Convert.ToInt32(Session["hostID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Host] WHERE BackgroundCheckResult = 'n'";
+                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
                 try
                 {
                     connection.Open();
@@ -66,7 +66,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 String email = reader["Email"].ToString();
                                 String phone = reader["PhoneNumber"].ToString();
                                 String applicantType = "h";
-                                byte[] imgData = (byte[])rdr["imageV2"];
+                                byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
                                 if (!(imgData == null))
                                 {
@@ -107,7 +107,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 int tenantID = Convert.ToInt32(Session["tenantID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE BackgroundCheckResult = 'n'";
+                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
                 try
                 {
                     connection.Open();
@@ -121,7 +121,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 String email = reader["Email"].ToString();
                                 String phone = reader["PhoneNumber"].ToString();
                                 String applicantType = "t";
-                                byte[] imgData = (byte[])rdr["imageV2"];
+                                byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
                                 if (!(imgData == null))
                                 {
