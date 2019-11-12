@@ -48,31 +48,12 @@ public partial class AdminDashboard : System.Web.UI.Page
         {
             using (SqlCommand command = new SqlCommand())
             {
+                int tenantID = Convert.ToInt32(Session["tenantID"]);
+                int hostID = Convert.ToInt32(Session["hostID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-
-                if (searchBy)
-                {
-                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
-                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
-                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
-                        "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
-                        "where [dbo].[Property].Zip = @zip";
-
-                    command.Parameters.AddWithValue("@zip", propertySearch);
-                }
-                else
-                {
-                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
-                        "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
-                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
-                        "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
-                        "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
-                    command.Parameters.AddWithValue("@city", propertySearch);
-                }
-
-
-
+                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID";
+                filter.Parameters.AddWithValue("@HostID", hostID);
                 try
                 {
                     connection.Open();
@@ -82,20 +63,20 @@ public partial class AdminDashboard : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-
-                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
-                                
-                                string description = (string)reader["BriefDescription"];
-                                int id = Convert.ToInt32(reader["RoomID"]);
-
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
-                                
+                                String name = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+                                String email = reader["Email"].ToString();
+                                String phone = reader["PhoneNumber"].ToString();
+                                byte[] imgData = (byte[])rdr["imageV2"];
+                                if (!(imgData == null))
+                                {
+                                    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
+                                    profilePicture.ImageUrl = "data:image;base64," + img;
+                                }
                                 SearchResult result = new SearchResult(id, name, location, description, price);
 
                                 SearchResult.lstSearchResults.Add(result);
                             }
-                          
+
                         }
                         else
                         {
