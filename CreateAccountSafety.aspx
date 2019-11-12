@@ -4,12 +4,12 @@
 <style type="text/css">   
     h1 {
         font-family: 'Oswald', sans-serif;
-        color: #CC6559;
+        
         font-size: 50px;
         }
     h4{
         font-family: 'Oswald', sans-serif;
-        color: #CC6559;
+        
         font-size: 30px;
     }
 
