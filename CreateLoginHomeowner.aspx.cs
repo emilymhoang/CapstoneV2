@@ -92,7 +92,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     insertHost.Parameters.AddWithValue("@BirthDate", dateOfBirth);
                     insertHost.Parameters.AddWithValue("@Gender", gender);
                     insertHost.Parameters.AddWithValue("@BackgroundCheckDate", DateTime.Now);
-                    insertHost.Parameters.AddWithValue("@BackgroundCheckResult", "Y");
+                    insertHost.Parameters.AddWithValue("@BackgroundCheckResult", "n");
                     //ADD USERNAME and CONFIRM PASSOWRD IN DATABASE
                     insertHost.Parameters.AddWithValue("@LastUpdatedBy", lastName);
                     insertHost.Parameters.AddWithValue("@LastUpdated", DateTime.Now);

@@ -99,7 +99,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     insertTenant.Parameters.AddWithValue("@BirthDate", dateOfBirth);
                     insertTenant.Parameters.AddWithValue("@Gender", gender);
                     insertTenant.Parameters.AddWithValue("@BackgroundCheckDate", DateTime.Now);
-                    insertTenant.Parameters.AddWithValue("@BackgroundCheckResult", "Y");
+                    insertTenant.Parameters.AddWithValue("@BackgroundCheckResult", "n");
                     //ADD USERNAME and CONFIRM PASSOWRD IN DATABASE
                     insertTenant.Parameters.AddWithValue("@LastUpdatedBy", lastName);
                     insertTenant.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
