@@ -22,6 +22,7 @@ public class Homeowner
     public int propertyID { get; private set; }
     public String userName { get; private set; }
     public String confirmPassword { get; private set; }
+    public String imageV2 { get; private set; }
 
 
 
@@ -54,6 +55,16 @@ public class Homeowner
         this.userName = userName;
         this.password = password;
         this.confirmPassword = confirmPassword;
+    }
+
+    public Homeowner(String firstName, String lastName, String email, String phoneNumber, String imageV2)
+    {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.imageV2 = imageV2;
+
     }
     public void setMiddleName(String middleName) { this.middleName = middleName; }
 
