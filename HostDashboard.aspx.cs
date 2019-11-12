@@ -25,10 +25,8 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
 
-        //lvFavorites.DataSource = Favorite.lstFavorites;
-        //lvFavorites.DataBind();
-
         sc.Open();
+
         int accountID = Convert.ToInt32(Session["accountID"]);
         Response.Write(accountID);
 
@@ -39,16 +37,17 @@ public partial class HostDashboard : System.Web.UI.Page
         insert.ExecuteNonQuery();
         Session["hostID"] = hostID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, ProfilePic, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
         filter.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader rdr = filter.ExecuteReader();
+        String backgroundCheckResult;
         while (rdr.Read())
         {
             nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
             emailTextbox.Text = rdr["Email"].ToString();
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
-            //image1.ImageUrl = rdr["ProfilePic"].ToString();
+            backgroundCheckResult = rdr["BackgroundCheckResult"].ToString();
             byte[] imgData = (byte[])rdr["imageV2"];
             if (!(imgData == null))
             {
@@ -112,6 +111,16 @@ public partial class HostDashboard : System.Web.UI.Page
             smokerBadge.ImageUrl = "images/badges-10.png";
 
         }
+
+        if (backgroundCheckResult == "y")
+        {
+            image7.ImageUrl = "images/icons-07.png";
+        }
+        else
+        {
+            image7.ImageUrl = "images/NC.png";
+        }
+
 
 
         SqlCommand filterProp = new SqlCommand("SELECT Property.HostID, Property.PropertyID, Property.HouseNumber, PropertyRoom.BriefDescription, " +
@@ -200,70 +209,6 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
 
-        //favorite
-        Favorite.lstFavorites.Clear();
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-
-
-                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
-                    "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') " +
-                    "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] " +
-                    "on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on " +
-                    "[dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID left join [dbo].[Favorite] on " +
-                    "[dbo].[PropertyRoom].RoomID = [dbo].[Favorite].RoomID where [dbo].[Favorite].TenantID = @tenantid";
-                command.Parameters.AddWithValue("@hostid", hostIDRefresh);
-
-
-                try
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
-
-                                string description = (string)reader["BriefDescription"];
-
-
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
-
-                                Favorite fav = new Favorite(name, location, description, price);
-                                Favorite.lstFavorites.Add(fav);
-                            }
-
-                        }
-                        else
-                        {
-                            //lblInvalidSearch.Text = "Search returned no properties";
-                        }
-
-                    }
-                }
-                catch (SqlException t)
-                {
-                    string b = t.ToString();
-                }
-                finally
-                {
-                    connection.Close();
-
-                }
-
-            }
-
-        }
-
-        //lvFavorites.DataSource = Favorite.lstFavorites;
-        //lvFavorites.DataBind();
     }
     protected void sendMessage(object sender, EventArgs e)
     {

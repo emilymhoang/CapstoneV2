@@ -236,7 +236,7 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <h3>Completed</h3>
-                <p style="text-align: center;"><img src="images/icons-07.png" style="max-width: 75px;"></p>
+                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 75px;" ImageUrl="" class="img-fluid" runat="server" /></p>
                 <p>Your Backround Check has been completed. Background checks are important to us, we take your safety seriously.<br><br><br><br><br><br></p>
             </div>
             </div>
