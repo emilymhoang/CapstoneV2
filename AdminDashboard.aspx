@@ -61,7 +61,7 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <div>
-        <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
+        <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
             <LayoutTemplate>
                 <h1>Background checks to be verified</h1>
                 <table id="tbl1" runat="server">
@@ -77,7 +77,7 @@
                         </td>
                         <td>
                             <div>
-                                <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/>
+                                <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Approve"/>
                             </div>
                         </td>
                     </tr>
@@ -86,7 +86,7 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultPhone") %>'></asp:Label>
                                     </td>
                                 </tr>
                             </table>
@@ -98,7 +98,7 @@
                                 <tr>
                                     <td>
                                         <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
-                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultDescription") %>'></asp:Label>
+                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label>
                                         </div>
                                     </td>
                                 </tr>
@@ -107,7 +107,12 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultImageV2") %>'></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label1" Text='<%#Eval("applicantType") %>'></asp:Label>
                         </td>
                     </tr>
                     

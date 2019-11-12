@@ -44,16 +44,15 @@ public partial class AdminDashboard : System.Web.UI.Page
 
         int adminIDRefresh = Convert.ToInt32(Session["adminID"]);
 
+        //host applicants
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
             {
-                int tenantID = Convert.ToInt32(Session["tenantID"]);
                 int hostID = Convert.ToInt32(Session["hostID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID";
-                filter.Parameters.AddWithValue("@HostID", hostID);
+                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Host] WHERE BackgroundCheckResult = 'n'";
                 try
                 {
                     connection.Open();
@@ -66,21 +65,23 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 String name = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
                                 String email = reader["Email"].ToString();
                                 String phone = reader["PhoneNumber"].ToString();
+                                String applicantType = "h";
                                 byte[] imgData = (byte[])rdr["imageV2"];
+                                string img = "";
                                 if (!(imgData == null))
                                 {
-                                    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
-                                    profilePicture.ImageUrl = "data:image;base64," + img;
+                                    img = Convert.ToBase64String(imgData, 0, imgData.Length);
+                                    img = "data:image;base64," + img;
                                 }
-                                SearchResult result = new SearchResult(id, name, location, description, price);
+                                BackgroundCheckApplicant result = new BackgroundCheckApplicant(name, phone, email, img, applicantType);
 
-                                SearchResult.lstSearchResults.Add(result);
+                                BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(result);
                             }
 
                         }
                         else
                         {
-                            lblInvalidSearch.Text = "Search returned no properties";
+                            lblInvalidSearch.Text = "No one needs background check approved.";
                         }
 
                     }
@@ -97,11 +98,61 @@ public partial class AdminDashboard : System.Web.UI.Page
                 }
             }
         }
-        Response.Redirect("SearchResults.aspx");
 
+        //tenant applicants
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                int tenantID = Convert.ToInt32(Session["tenantID"]);
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE BackgroundCheckResult = 'n'";
+                try
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                String name = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
+                                String email = reader["Email"].ToString();
+                                String phone = reader["PhoneNumber"].ToString();
+                                String applicantType = "t";
+                                byte[] imgData = (byte[])rdr["imageV2"];
+                                string img = "";
+                                if (!(imgData == null))
+                                {
+                                    img = Convert.ToBase64String(imgData, 0, imgData.Length);
+                                    img = "data:image;base64," + img;
+                                }
+                                BackgroundCheckApplicant result = new BackgroundCheckApplicant(name, phone, email, img, applicantType);
 
-    }
+                                BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(result);
+                            }
 
+                        }
+                        else
+                        {
+                            lblInvalidSearch.Text = "No one needs background check approved.";
+                        }
+
+                    }
+                }
+                catch (SqlException t)
+                {
+                    string b = t.ToString();
+                }
+                finally
+                {
+                    searchTextbox.Text = string.Empty;
+                    connection.Close();
+
+                }
+            }
+        }
     }
 
         protected void search_Click(object sender, EventArgs e)
@@ -207,12 +258,19 @@ public partial class AdminDashboard : System.Web.UI.Page
             }
 
         showResults();
+        showBackgroundResults();
         }
 
     protected void showResults()
     {
         lvSearchResultsAdmin.DataSource = SearchResult.lstSearchResults;
         lvSearchResultsAdmin.DataBind();
+    }
+
+    protected void showBackgroundResults()
+    {
+        lvBackgroundResults.DataSource = SearchResult.lstSearchResults;
+        lvBackgroundResults.DataBind();
     }
 
     protected void deleteProperty(object sender, EventArgs e)

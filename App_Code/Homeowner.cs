@@ -5,6 +5,7 @@ using System.Web;
 
 public class Homeowner
 {
+    public static List<Homeowner> lstBackgroundCheck = new List<Homeowner>();
     public int HomeownerID { get; private set; }
     public String email { get; private set; }
     public String phoneNumber { get; private set; }
@@ -23,6 +24,7 @@ public class Homeowner
     public String userName { get; private set; }
     public String confirmPassword { get; private set; }
     public String imageV2 { get; private set; }
+    public String name { get; private set; }
 
 
 
@@ -57,12 +59,11 @@ public class Homeowner
         this.confirmPassword = confirmPassword;
     }
 
-    public Homeowner(String firstName, String lastName, String email, String phoneNumber, String imageV2)
+    public Homeowner(String name, String email, String phoneNumber, String imageV2)
     {
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = firstName + " " + lastName;
         this.imageV2 = imageV2;
 
     }
