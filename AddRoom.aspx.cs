@@ -72,14 +72,11 @@ public partial class AddRoom : System.Web.UI.Page
         String roomDescription = DropDownListRoom.SelectedValue;
 
         //roomID
-
-        int roomID;
-        Session["RoomID"] = null;
         sc.Open();
         SqlCommand getRoomID = new SqlCommand("SELECT PropertyRoom.RoomID FROM [Capstone].[dbo].[PropertyRoom] INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
         getRoomID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         getRoomID.Connection = sc;
-        roomID = Convert.ToInt32(getRoomID.ExecuteScalar());
+        int roomID = Convert.ToInt32(getRoomID.ExecuteScalar());
         getRoomID.ExecuteNonQuery();
         Session["RoomID"] = roomID;
         sc.Close();
@@ -116,9 +113,9 @@ public partial class AddRoom : System.Web.UI.Page
                 {
                     connection.Open();
                     int recordsAffected = command.ExecuteNonQuery();
+                    int roomID2 = (int)Session["RoomID"];
 
-
-                    BadgeProperty newBadgeProperty = new BadgeProperty(roomID, privateEnt, kitchen, privateBath, furnish, storage, smoker);
+                    BadgeProperty newBadgeProperty = new BadgeProperty(roomID2, privateEnt, kitchen, privateBath, furnish, storage, smoker);
 
                     insertBadgeProperty.CommandText = "INSERT INTO [Capstone].[dbo].[BadgeProperty] (RoomID, PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker) VALUES (@roomID, @privateEnt, @kitchen, @privateBath, @furnish, @storage, @smoker);";
                     insertBadgeProperty.Parameters.AddWithValue("@roomID", newBadgeProperty.RoomID);
@@ -200,7 +197,7 @@ public partial class AddRoom : System.Web.UI.Page
                 BinaryReader br = new BinaryReader(stream);
                 byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image2 = @imgdata WHERE RoomID = @RoomID", sc);
+                SqlCommand cmd = new SqlCommand("UPDATE [Capstone].[dbo].[PropertyRoom] SET Image2 = @imgdata WHERE RoomID = @RoomID", sc);
                 cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
                 cmd.Parameters.AddWithValue("@imgdata", bytes);
                 cmd.ExecuteNonQuery();
@@ -231,7 +228,7 @@ public partial class AddRoom : System.Web.UI.Page
                 BinaryReader br = new BinaryReader(stream);
                 byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image3 = @imgdata WHERE RoomID = @RoomID", sc);
+                SqlCommand cmd = new SqlCommand("UPDATE [Capstone].[dbo].[PropertyRoom] SET Image3 = @imgdata WHERE RoomID = @RoomID", sc);
                 cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
                 cmd.Parameters.AddWithValue("@imgdata", bytes);
                 cmd.ExecuteNonQuery();
@@ -248,7 +245,7 @@ public partial class AddRoom : System.Web.UI.Page
 
 
 
-        Response.Redirect("HostDashboard.aspx");
+        //Response.Redirect("HostDashboard.aspx");
     }
 
     protected void populate(object sender, EventArgs e)

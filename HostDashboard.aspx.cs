@@ -140,9 +140,9 @@ public partial class HostDashboard : System.Web.UI.Page
         while (readr.Read())
         {
             addressTextbox.Text = readr["HouseNumber"].ToString() + " " + readr["Street"].ToString() + " " + readr["CityCounty"].ToString() + ", " + readr["HomeState"].ToString() + " " + readr["Zip"].ToString();
-            priceTextbox.Text = readr["MonthlyPrice"].ToString();
-            descriptionTextbox.Text = readr["BriefDescription"].ToString();
-            roomDescripTextbox.Text = readr["RoomDescription"].ToString();
+            //priceTextbox.Text = readr["MonthlyPrice"].ToString();
+            //descriptionTextbox.Text = readr["BriefDescription"].ToString();
+            //roomDescripTextbox.Text = readr["RoomDescription"].ToString();
             byte[] imgData = (byte[])readr["PRimage1"];
             //if (!(imgData == null))
             //{
@@ -166,6 +166,7 @@ public partial class HostDashboard : System.Web.UI.Page
         //display property rooms
 
         PropertyRoom.listPropertyRoom.Clear();
+
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
