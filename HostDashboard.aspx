@@ -111,14 +111,14 @@
                                     <div class="carousel-inner">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1") %>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" ImageUrl='<%#Eval("roomimage1") %>' class="img-fluid" runat="server" />
                                                    </div>
 
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2") %>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" ImageUrl='<%#Eval("roomimage2") %>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3") %>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("roomimage3") %>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>
@@ -184,9 +184,9 @@
             </div>
              <div class="col-md-6" style="margin-top: 1rem;">
                 <h3><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h3>
-                 <p><asp:Label ID="priceTextbox" runat="server" Text="Price" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="descriptionTextbox" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="roomDescripTextbox" Text="Shared Room" runat="server"  BackColor="#ebebeb"></asp:Label></p>
+<%--                 <p><asp:Label ID="priceTextbox" runat="server" Text="Price" BackColor="#ebebeb"></asp:Label></p>--%>
+<%--                 <p><asp:Label ID="descriptionTextbox" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
+                 <p><asp:Label ID="roomDescripTextbox" Text="Shared Room" runat="server"  BackColor="#ebebeb"></asp:Label></p>--%>
 
                 <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
                  <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
