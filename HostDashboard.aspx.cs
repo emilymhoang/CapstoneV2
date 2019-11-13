@@ -18,6 +18,9 @@ public partial class HostDashboard : System.Web.UI.Page
     String storage;
     String smoker;
     String furnish;
+    String roomImg1;
+    String roomImg2;
+    String roomImg3;
 
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
@@ -161,6 +164,8 @@ public partial class HostDashboard : System.Web.UI.Page
         }
 
         //display property rooms
+
+        PropertyRoom.listPropertyRoom.Clear();
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -169,7 +174,7 @@ public partial class HostDashboard : System.Web.UI.Page
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
                 command.CommandText = "SELECT PropertyRoom.RoomID, PropertyRoom.PropertyID, Host.HostID, PropertyRoom.MonthlyPrice, PropertyRoom.BriefDescription, PropertyRoom.RoomDescription, PropertyRoom.Availability," +
-                "PropertyRoom.SquareFootage, isnull(PropertyRoom.Image1, 0), isnull(PropertyRoom.Image2, 0), isnull(PropertyRoom.Image3, 0) FROM Capstone.[dbo].[Host] inner join Capstone.[dbo].[Property]" +
+                "PropertyRoom.SquareFootage, isnull(PropertyRoom.Image1, 0) AS Image1, isnull(PropertyRoom.Image2, 0) AS Image2, isnull(PropertyRoom.Image3, 0) AS Image3 FROM Capstone.[dbo].[Host] inner join Capstone.[dbo].[Property]" +
                 "on Property.HostID = Host.HostID left join Capstone.[dbo].[PropertyRoom] ON PropertyRoom.propertyID = Property.PropertyID WHERE Host.HostID = @HostID";
 
                 command.Parameters.AddWithValue("@HostID", hostID);
@@ -230,8 +235,7 @@ public partial class HostDashboard : System.Web.UI.Page
 
 
                                PropertyRoom newRoom = new PropertyRoom(propertyID, price, squareFootage, availability, description, roomDescription, image1, image2, image3);
-
-                                PropertyRoom.listPropertyRoom.Add(newRoom);
+                               PropertyRoom.listPropertyRoom.Add(newRoom);
                             }
                         }
                     }
@@ -248,7 +252,7 @@ public partial class HostDashboard : System.Web.UI.Page
 
             }
         }
-        //PropertyRoom.listPropertyRoom.Clear();
+        
 
 
         //displays all of tenants messages
