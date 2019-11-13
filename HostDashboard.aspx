@@ -85,9 +85,107 @@
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
             <div class="col-md-6" style="margin-top: 1rem;">
+                 <div>
+        <asp:ListView id="lvPropertyRoom" runat="server" Visible="true" >
+
+            <LayoutTemplate>
+                <h1>Your Property Room</h1>
+                <table id="tbl1" runat="server">
+                    <tr id="itemPlaceholder" runat="server"></tr>
+                </table>
+            </LayoutTemplate>
+
+            <ItemTemplate>
+                <table style="margin-top: 1rem; border-bottom: solid; width:1500px; border-bottom-width: 1px;">
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("availability") %>'></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+                                <div class="col-md-6" style="margin-top: 1rem;">
 
 
-                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                    </ol>
+
+                                    <div class="carousel-inner">
+                                        <div class="row">
+                                            <div class="carousel-item active">    
+                                                <asp:Image ID="image4" ImageUrl='<%#Eval("roomimage1") %>' class="img-fluid" runat="server" />
+                                                   </div>
+
+                                            <div class="carousel-item ">
+                                               <asp:Image ID="image5" ImageUrl='<%#Eval("roomimage2") %>' class="img-fluid" runat="server" />
+                                                   </div>
+                                            <div class="carousel-item ">                
+                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("roomimage3") %>' class="img-fluid" runat="server" />
+                                                </div>
+                                        </div>
+
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                               </div>
+                              </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("briefDescription") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                       <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
+                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("roomDescription") %>'></asp:Label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label>
+                        </td>
+                    </tr>
+                    
+                </table>
+
+                
+            </ItemTemplate>
+
+        </asp:ListView>
+    </div>
+
+<%--                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -117,20 +215,8 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
+            </div>--%>
 
-                   <%-- <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat="server" />
-
-
-                
-                <div class="row" style="margin-top: 1rem;">
-                    <div class="col-md-6">
-                        <asp:Image ID="image5" ImageUrl="" class="img-fluid" runat="server" />
-                    </div>
-                    <div class="col-md-6">
-                        <asp:Image ID="image6" ImageUrl="" class="img-fluid" runat="server" />
-                    </div>
-                </div>--%>
             </div>
              <div class="col-md-6" style="margin-top: 1rem;">
                 <h3><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h3>

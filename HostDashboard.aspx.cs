@@ -24,6 +24,8 @@ public partial class HostDashboard : System.Web.UI.Page
     {
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
+        lvPropertyRoom.DataSource = PropertyRoom.listPropertyRoom;
+        lvPropertyRoom.DataBind();
 
         sc.Open();
 
@@ -139,26 +141,114 @@ public partial class HostDashboard : System.Web.UI.Page
             descriptionTextbox.Text = readr["BriefDescription"].ToString();
             roomDescripTextbox.Text = readr["RoomDescription"].ToString();
             byte[] imgData = (byte[])readr["PRimage1"];
-            if (!(imgData == null))
-            {
-                string img = Convert.ToBase64String(imgData, 0, imgData.Length);
-                image4.ImageUrl = "data:image;base64," + img;
-            }
-            byte[] imgData2 = (byte[])readr["PRimage2"];
-            if (!(imgData2 == null))
-            {
-                string img = Convert.ToBase64String(imgData2, 0, imgData2.Length);
-                image5.ImageUrl = "data:image;base64," + img;
-            }
-            byte[] imgData3 = (byte[])readr["PRimage3"];
-            if (!(imgData3 == null))
-            {
-                string img = Convert.ToBase64String(imgData3, 0, imgData3.Length);
-                image6.ImageUrl = "data:image;base64," + img;
-            }
+            //if (!(imgData == null))
+            //{
+            //    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
+            //    image4.ImageUrl = "data:image;base64," + img;
+            //}
+            //byte[] imgData2 = (byte[])readr["PRimage2"];
+            //if (!(imgData2 == null))
+            //{
+            //    string img = Convert.ToBase64String(imgData2, 0, imgData2.Length);
+            //    image5.ImageUrl = "data:image;base64," + img;
+            //}
+            //byte[] imgData3 = (byte[])readr["PRimage3"];
+            //if (!(imgData3 == null))
+            //{
+            //    string img = Convert.ToBase64String(imgData3, 0, imgData3.Length);
+            //    image6.ImageUrl = "data:image;base64," + img;
+            //}
         }
 
-  
+        //display property rooms
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                hostID = Convert.ToInt32(Session["hostID"]);
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+                command.CommandText = "SELECT PropertyRoom.RoomID, PropertyRoom.PropertyID, Host.HostID, PropertyRoom.MonthlyPrice, PropertyRoom.BriefDescription, PropertyRoom.RoomDescription, PropertyRoom.Availability," +
+                "PropertyRoom.SquareFootage, isnull(PropertyRoom.Image1, 0), isnull(PropertyRoom.Image2, 0), isnull(PropertyRoom.Image3, 0) FROM Capstone.[dbo].[Host] inner join Capstone.[dbo].[Property]" +
+                "on Property.HostID = Host.HostID left join Capstone.[dbo].[PropertyRoom] ON PropertyRoom.propertyID = Property.PropertyID WHERE Host.HostID = @HostID";
+
+                command.Parameters.AddWithValue("@HostID", hostID);
+                try
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                int propertyID = Convert.ToInt32(reader["PropertyID"]);
+                                string description = (string)reader["BriefDescription"];
+                                int id = Convert.ToInt32(reader["RoomID"]);
+                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
+                                string squareFootage = (string)reader["SquareFootage"];
+                                string availability = (string)reader["Availability"];
+                                string roomDescription = (string)reader["RoomDescription"];
+
+                                byte[] imgData1;
+                                byte[] imgData2;
+                                byte[] imgData3;
+
+                                try
+                                {
+                                    imgData1 = (byte[])reader["Image1"];
+                                }
+                                catch
+                                {
+                                    imgData1 = (byte[])Session["defaultPicture"];
+                                }
+
+                                try
+                                {
+                                    imgData2 = (byte[])reader["Image2"];
+                                }
+                                catch
+                                {
+                                    imgData2 = (byte[])Session["defaultPicture"];
+                                }
+
+                                try
+                                {
+                                    imgData3 = (byte[])reader["Image3"];
+                                }
+                                catch
+                                {
+                                    imgData3 = (byte[])Session["defaultPicture"];
+                                }
+
+
+
+                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length);
+                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length);
+                                string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length);
+
+
+
+                               PropertyRoom newRoom = new PropertyRoom(propertyID, price, squareFootage, availability, description, roomDescription, image1, image2, image3);
+
+                                PropertyRoom.listPropertyRoom.Add(newRoom);
+                            }
+                        }
+                    }
+                }
+                catch (SqlException t)
+                {
+                    string b = t.ToString();
+                }
+                finally
+                {
+                    connection.Close();
+
+                }
+
+            }
+        }
+        //PropertyRoom.listPropertyRoom.Clear();
 
 
         //displays all of tenants messages
