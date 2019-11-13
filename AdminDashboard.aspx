@@ -125,12 +125,9 @@
     <h2 >Search for properties</h2>
     <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
         <div class="col-md-12"  style=" margin-top: 1rem;">
-        <asp:Textbox ID="searchTextbox" type="text" style="font-size: 30px; height:75px;" class="form-control" AutoPostBack="false" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
-        <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
-        <div class="row" style="margin-bottom: 3rem;"> 
-          <div class="col-md-6"></div>    
-             <div class="col-md-6"><asp:Button ID="searchButton" onClick="search_Click" runat="server" IsPostBack="false" Text="Submit" type="button" class="btn"/></div>
-        </div>
+       <asp:Textbox ID="searchTextbox" type="text" style="font-size: 30px; height:75px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+              <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
+             <div class="col-md-6"><asp:Button ID="searchButton" onClick="search_Click" AutoPostBack="false" runat="server" Text="Search" class="btn"/></div>
         <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 500px;">
         <div>
         <asp:ListView id="lvSearchResultsAdmin" runat="server" Visible="true" >

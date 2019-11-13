@@ -88,7 +88,6 @@ public partial class AdminDashboard : System.Web.UI.Page
                 }
                 finally
                 {
-                    searchTextbox.Text = string.Empty;
                     connection.Close();
 
                 }
@@ -138,7 +137,6 @@ public partial class AdminDashboard : System.Web.UI.Page
                 }
                 finally
                 {
-                    searchTextbox.Text = string.Empty;
                     connection.Close();
 
                 }
@@ -207,9 +205,6 @@ public partial class AdminDashboard : System.Web.UI.Page
                     command.Parameters.AddWithValue("@city", propertySearch);
                     //command.Parameters.AddWithValue("@default", Session["defaultPicture"]);
                 }
-
-
-
                 try
                 {
                     connection.Open();
