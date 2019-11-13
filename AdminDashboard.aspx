@@ -58,10 +58,10 @@
       </div>
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Verify Background Checks</h2> 
-            <div class="row" style="background-color: #ebebeb; overflow:scroll; margin-top: 1rem; margin-bottom: 1rem; " >
+            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
             <asp:Label ID="backgroundChecklbl" runat="server"></asp:Label>
-               <div>
+        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 400px;">
         <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
             <LayoutTemplate>
                 <table id="tbl1" runat="server">
