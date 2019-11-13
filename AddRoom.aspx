@@ -4,9 +4,6 @@
    <header style="margin-top: 8rem;">
       <div class="container">
         <h1>Tell us about the room</h1>
-                <div class="progress " >
-                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 90%; " aria-valuenow="90" ></div>
-               </div>
       </div>
        
    
