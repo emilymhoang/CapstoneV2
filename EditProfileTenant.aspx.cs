@@ -98,8 +98,52 @@ public partial class EditProfileTenant : System.Web.UI.Page
 
                 }
             }
+            using (SqlCommand emailcheck = new SqlCommand())
+            {
+                try
+                {
+                    String emailNew = emailTextbox.Text;
+                    Session["Email"] = emailNew;
+
+
+                    sc.Open();
+                    SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
+                    emailCheck.Parameters.AddWithValue("@Email", emailNew);
+                    emailCheck.Connection = sc;
+                    int count = Convert.ToInt32(emailCheck.ExecuteScalar());
+                    emailCheck.ExecuteNonQuery();
+                    
+
+                    if (count == 0)
+                    {
+
+                        Session["firstName"] = firstNameTextbox.Text;
+                        Session["lastName"] = lastNameTextbox.Text;
+                        Session["email"] = emailTextbox.Text;
+                        Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
+
+                    }
+                    else
+                    {
+                        emailLabel.Text = "Email already exists.";
+                    }
+                }
+                catch (Exception t)
+                {
+                    string f = t.ToString();
+                }
+                finally
+                {
+                    sc.Close();
+
+                }
+
+                
+            }
         }
+
         
+
     }
     protected void Back_Click(object sender, EventArgs e)
         {
@@ -107,3 +151,6 @@ public partial class EditProfileTenant : System.Web.UI.Page
 
         }
 }
+
+   
+

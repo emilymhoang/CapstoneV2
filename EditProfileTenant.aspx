@@ -68,6 +68,7 @@
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
                 <asp:Label ID="resultmessage" runat="server" ForeColor="#53A39F"></asp:Label>  
+                <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="#53A39F"></asp:Label>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
