@@ -25,6 +25,10 @@ public partial class HostDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["username"] == null)
+        {
+            Response.Redirect("Login.aspx");
+        }
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
         lvPropertyRoom.DataSource = PropertyRoom.listPropertyRoom;

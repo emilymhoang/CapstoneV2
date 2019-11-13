@@ -15,6 +15,11 @@ public partial class AdminDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["username"] == null)
+        {
+            Response.Redirect("Login.aspx");
+        }
+
         BackgroundCheckApplicant.lstBackgroundCheckApplicants.Clear();
         sc.Open();
         int accountID = Convert.ToInt32(Session["accountID"]);
