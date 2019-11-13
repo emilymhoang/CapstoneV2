@@ -16,9 +16,10 @@ public class BackgroundCheckApplicant
     public string applicantType { get; private set; }
     public string backgroundCheckResult { get; private set; }
 
-    public int userID { get; private set; }
-    public BackgroundCheckApplicant(String resultName, String resultPhone, String resultEmail, String resultImageV2, String applicantType, String backgroundCheckResult)
+    public int userid { get; private set; }
+    public BackgroundCheckApplicant(int userid, String resultName, String resultPhone, String resultEmail, String resultImageV2, String applicantType, String backgroundCheckResult)
     {
+        this.userid = userid;
         this.resultName = resultName;
         this.resultEmail = resultEmail;
         this.resultPhone = resultPhone;

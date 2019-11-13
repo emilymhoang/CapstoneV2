@@ -53,7 +53,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 int hostID = Convert.ToInt32(Session["hostID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
+                command.CommandText = "SELECT HostID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
                 try
                 {
                     connection.Open();
@@ -67,6 +67,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 String email = reader["Email"].ToString();
                                 String phone = reader["PhoneNumber"].ToString();
                                 String applicantType = "h";
+                                int id = Convert.ToInt32(reader["HostID"]);
                                 string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
@@ -85,7 +86,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 {
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }
-                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(name, phone, email, img, applicantType, backgroundCheckPhoto);
+                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(id, name, phone, email, img, applicantType, backgroundCheckPhoto);
 
                                 BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(hostresult);
                             }
@@ -113,7 +114,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 int tenantID = Convert.ToInt32(Session["tenantID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
+                command.CommandText = "SELECT TenantID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
                 try
                 {
                     connection.Open();
@@ -127,6 +128,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 String email = reader["Email"].ToString();
                                 String phone = reader["PhoneNumber"].ToString();
                                 String applicantType = "t";
+                                int id = Convert.ToInt32(reader["TenantID"]);
                                 string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
@@ -145,7 +147,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 {
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }
-                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(name, phone, email, img, applicantType, backgroundCheckPhoto);
+                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(id, name, phone, email, img, applicantType, backgroundCheckPhoto);
 
                                 BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(hostresult);
                             }
@@ -353,23 +355,25 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void approveApplicant(object sender, EventArgs e)
     {
-        //Button btn = sender as Button;
-        //ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
-        //var index = item.DataItemIndex;
-        //var selectedPRid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].ID;
-
-        ////lvSearchResults.SelectedIndex;
-        ////lvSearchResults.Items[lcount].Selected = 1;
-
-        //SqlCommand approvet = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
-        //approvet.Parameters.AddWithValue("@TenantID", tenantID);
-        //approvet.Connection = sc;
-        //approvet.ExecuteNonQuery();
-
-        //SqlCommand approveh = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
-        //approveh.Parameters.AddWithValue("@HostID", hostID);
-        //approveh.Connection = sc;
-        //approveh.ExecuteNonQuery();
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        if (BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType == "h")
+        {
+            var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
+            SqlCommand approveh = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
+            approveh.Parameters.AddWithValue("@HostID", userid);
+            approveh.Connection = sc;
+            approveh.ExecuteNonQuery();
+        }
+        else if (BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType == "t")
+        {
+            var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
+            SqlCommand approvet = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
+            approvet.Parameters.AddWithValue("@TenantID", userid);
+            approvet.Connection = sc;
+            approvet.ExecuteNonQuery();
+        }
     }
 
     protected void logout(object sender, EventArgs e)
