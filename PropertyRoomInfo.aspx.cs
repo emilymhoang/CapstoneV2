@@ -22,7 +22,9 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
     string furnish;
     string smoker;
     string kitchen;
-
+    string image1;
+    string image2;
+    string image3;
     SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -72,7 +74,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         Session["RoomID"] = null;
 
 
-        PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription);
+        PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription, image1, image2, image3);
         System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
@@ -80,7 +82,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
             {
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[RoomDescription],[LastUpdatedBy],[LastUpdated]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@roomdescrip,@lub,@lu)";
+                command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[RoomDescription],[LastUpdatedBy],[LastUpdated],[Image1],[Image2],[Image3]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@roomdescrip,@lub,@lu, @image1, @image2, @image3)";
 
                 command.Parameters.AddWithValue("@propid", newRoom.propertyID);
                 command.Parameters.AddWithValue("@tenantid", newRoom.tenantID);
@@ -91,13 +93,16 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 command.Parameters.AddWithValue("@roomdescrip", newRoom.roomDescription);
                 command.Parameters.AddWithValue("@lub", "Kessler");
                 command.Parameters.AddWithValue("@lu", DateTime.Now);
+                command.Parameters.AddWithValue("@image1", 0);
+                command.Parameters.AddWithValue("@image2", 0);
+                command.Parameters.AddWithValue("@image3", 0);
 
 
-                   
+
 
 
                 try
-                {
+               {
                     connection.Open();
                     int recordsAffected = command.ExecuteNonQuery();
 
@@ -136,12 +141,13 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         
 
 
-                if (FileUploadControl.HasFile)
+        if (FileUploadControl.HasFile)
         {
 
             HttpPostedFile postedFile = FileUploadControl.PostedFile;
             string fileName = Path.GetFileName(postedFile.FileName);
             string fileExtension = Path.GetExtension(fileName);
+
             int fileSize = postedFile.ContentLength;
 
             if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
@@ -152,7 +158,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 BinaryReader br = new BinaryReader(stream);
                 byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image1 = @imgdata WHERE RoomID = @RoomID", sc);
+                SqlCommand cmd = new SqlCommand("UPDATE [Capstone].[dbo].[PropertyRoom] SET Image1 = @imgdata WHERE RoomID = @RoomID", sc);
                 cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
                 cmd.Parameters.AddWithValue("@imgdata", bytes);
                 cmd.ExecuteNonQuery();
@@ -234,7 +240,6 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 return;
             }
         }
-
 
 
         Response.Redirect("CreateAccountSafetyHomeowner.aspx");

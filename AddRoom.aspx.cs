@@ -22,6 +22,9 @@ public partial class AddRoom : System.Web.UI.Page
     string furnish;
     string smoker;
     string kitchen;
+    string image1;
+    string image2;
+    string image3;
 
     SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
@@ -30,6 +33,7 @@ public partial class AddRoom : System.Web.UI.Page
     }
     protected void submitPropRoom(object sender, EventArgs e)
     {
+
         Session["privateBathroom"] = rbPrivateBr.SelectedValue;
         Session["privateEntrance"] = rbPrivateEntr.SelectedValue;
         Session["Storage"] = rbStorage.SelectedValue;
@@ -68,11 +72,20 @@ public partial class AddRoom : System.Web.UI.Page
         String roomDescription = DropDownListRoom.SelectedValue;
 
         //roomID
+
         int roomID;
         Session["RoomID"] = null;
+        sc.Open();
+        SqlCommand getRoomID = new SqlCommand("SELECT PropertyRoom.RoomID FROM [Capstone].[dbo].[PropertyRoom] INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
+        getRoomID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
+        getRoomID.Connection = sc;
+        roomID = Convert.ToInt32(getRoomID.ExecuteScalar());
+        getRoomID.ExecuteNonQuery();
+        Session["RoomID"] = roomID;
+        sc.Close();
 
 
-        PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription);
+        PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription, image1, image2, image3);
         System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
@@ -80,7 +93,7 @@ public partial class AddRoom : System.Web.UI.Page
             {
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[RoomDescription],[LastUpdatedBy],[LastUpdated]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@roomdescrip,@lub,@lu)";
+                command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[RoomDescription],[LastUpdatedBy],[LastUpdated],[Image1],[Image2],[Image3]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@roomdescrip,@lub,@lu, @image1, @image2, @image3)";
 
                 command.Parameters.AddWithValue("@propid", newRoom.propertyID);
                 command.Parameters.AddWithValue("@tenantid", newRoom.tenantID);
@@ -91,6 +104,9 @@ public partial class AddRoom : System.Web.UI.Page
                 command.Parameters.AddWithValue("@roomdescrip", newRoom.roomDescription);
                 command.Parameters.AddWithValue("@lub", "Kessler");
                 command.Parameters.AddWithValue("@lu", DateTime.Now);
+                command.Parameters.AddWithValue("@image1", 0);
+                command.Parameters.AddWithValue("@image2", 0);
+                command.Parameters.AddWithValue("@image3", 0);
 
 
 
@@ -100,12 +116,6 @@ public partial class AddRoom : System.Web.UI.Page
                 {
                     connection.Open();
                     int recordsAffected = command.ExecuteNonQuery();
-
-                    SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [Capstone].[dbo].[PropertyRoom]", connection);
-                    room.Connection = connection;
-                    roomID = Convert.ToInt32(room.ExecuteScalar());
-                    Session["RoomID"] = roomID;
-                    room.ExecuteNonQuery();
 
 
                     BadgeProperty newBadgeProperty = new BadgeProperty(roomID, privateEnt, kitchen, privateBath, furnish, storage, smoker);
@@ -142,6 +152,7 @@ public partial class AddRoom : System.Web.UI.Page
             HttpPostedFile postedFile = FileUploadControl.PostedFile;
             string fileName = Path.GetFileName(postedFile.FileName);
             string fileExtension = Path.GetExtension(fileName);
+
             int fileSize = postedFile.ContentLength;
 
             if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
@@ -152,7 +163,7 @@ public partial class AddRoom : System.Web.UI.Page
                 BinaryReader br = new BinaryReader(stream);
                 byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image1 = @imgdata WHERE RoomID = @RoomID", sc);
+                SqlCommand cmd = new SqlCommand("UPDATE [Capstone].[dbo].[PropertyRoom] SET Image1 = @imgdata WHERE RoomID = @RoomID", sc);
                 cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
                 cmd.Parameters.AddWithValue("@imgdata", bytes);
                 cmd.ExecuteNonQuery();
