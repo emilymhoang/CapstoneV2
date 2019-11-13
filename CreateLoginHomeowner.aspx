@@ -48,12 +48,13 @@
             <div class="col">
               <label for="formGroupExampleInput">User Name</label>
               <asp:Textbox type="text" ID="userNameTextbox" class="form-control" MaxLength="30" placeholder="User Name" runat="server"></asp:Textbox>
-                <asp:RequiredFieldValidator ID="userNameRequiredFieldValidator" runat="server" ControlToValidate="usernameTextbox" ErrorMessage="RequiredFieldValidator" ForeColor="#B23325">User Name is required.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="userNameRequiredFieldValidator" runat="server" ControlToValidate="usernameTextbox" ErrorMessage="Required" ForeColor="#B23325">User Name is required.</asp:RequiredFieldValidator>
             <asp:Label ID="resultUser" runat="server" ForeColor="Red"></asp:Label>
             </div>
               <div class="col">
                <label for="formGroupExampleInput">Profile Picture</label><br>
                 <asp:FileUpload id="FileUploadControlHost" runat="server" />
+                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControlHost" ErrorMessage="Required" ForeColor="#B23325">Profile picture is required.</asp:RequiredFieldValidator>
                 <br /><br />
                 <asp:Label runat="server" id="StatusLabel" text=" " />
             </div><!--end col-->
@@ -63,7 +64,7 @@
             <div class="col">
               <label for="formGroupExampleInput">Password</label>
               <asp:Textbox type="password" ID="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"></asp:Textbox>
-                <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ControlToValidate="passwordTextbox" ErrorMessage="RequiredFieldValidator" ForeColor="#B23325">Password is required.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ControlToValidate="passwordTextbox" ErrorMessage="Required" ForeColor="#B23325">Password is required.</asp:RequiredFieldValidator>
             </div>
               <div class="col">
               <label for="formGroupExampleInput">Your Password Must:<br>*contain at least 8 characters<br>*contain at least 1 number<br>*contain at least 1 uppercase letter<br>*contain at least 1 lower case letter </label>

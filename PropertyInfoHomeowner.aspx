@@ -34,6 +34,9 @@
     <section id="creation" style="margin-top: 4rem; font-family: 'Oswald', sans-serif; color: #756664; font-size: 18px">
       <div class="container">
           <div class="row">
+            <label for="formGroupExampleInput">Don't fret, only your city, state, and zip code will appear on your profile to potential tenants</label>
+          </div>
+          <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">House Number*</label>
               <asp:Textbox ID="houseNumTextbox" class="form-control" placeholder="" runat="server" MaxLength="15"></asp:Textbox>
@@ -117,9 +120,9 @@
               <asp:Textbox id="zipTextbox" class="form-control" placeholder="" runat="server" MaxLength="9"></asp:Textbox>
                   <asp:RequiredFieldValidator ID="zipRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="zipTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
-              <div class="col">
+<%--              <div class="col">
                 <label for="formGroupExampleInput">Don't fret, only your city, state, and zip code will appear on your profile to potential tenants</label>
-            </div> <!--end col-->
+            </div> <!--end col-->--%>
           </div> <!--end row class-->
           <br>
           <div class="row">
@@ -138,5 +141,6 @@
             
         </div>     
       </div> <!--end container-->
+          </div>
     </section>
 </asp:Content>

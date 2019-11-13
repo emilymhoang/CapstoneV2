@@ -1,8 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AdminDashboard.aspx.cs" Inherits="AdminDashboard" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <style>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <style>
         .modalBackground{
             background-color: black;
             filter:alpha(opacity=90) !important;
@@ -71,14 +77,29 @@
 
             <ItemTemplate>
                 <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                    <table id="profilepicandbutton" style="border: 1px solid; float: left; ">
                         <tr>
                             <td>
-                                <asp:Image ID="image7" style="  object-fit: cover; width:100px; height:100px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
+                                <asp:Image ID="image7" style="max-width: 200px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
                             </td>
                             <td>
-                                <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label2" Text='<%#Eval("resultName") %>'></asp:Label></br>
-                                <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label3" Text='<%#Eval("resultPhone") %>'></asp:Label></br>
-                                <asp:Label runat="server" ID="Label4" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label></br>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label2" Text='<%#Eval("resultName") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label3" Text='<%#Eval("resultPhone") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
+                                            <asp:Label runat="server" ID="Label4" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label>
+                                        </div>
+                                    </td>
+                                </tr>
                             </td>
                         </tr>
                         <tr>
@@ -86,6 +107,47 @@
                                 <asp:Button runat="server" class="btn" ID="btnApprove" AutoPostBack="true" OnClick="approveApplicant" Text="Approve"/>
                             </td>
                         </tr>
+                    </table>
+                   <%--<tr>
+                        <td>
+                            <asp:Image ID="image7" style="max-width: 200px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResult" Text='<%#Eval("resultName") %>'></asp:Label>
+                        </td>
+                        <td>
+                            <div>
+                                <asp:Button runat="server" class="btn" ID="btnApprove" AutoPostBack="true" OnClick="approveApplicant" Text="Approve"/>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultPhone") %>'></asp:Label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        </tr>
+                       <tr>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
+                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>--%>
+                    
                 </table>
             </ItemTemplate>
 
@@ -108,8 +170,8 @@
 
             <LayoutTemplate>
                 <h1>Search Results</h1>
-                <table id="tbl1" runat="server">
-                    <tr id="itemPlaceholder" runat="server"></tr>
+                <table id="Table1" runat="server">
+                    <tr id="Tr1" runat="server"></tr>
                 </table>
             </LayoutTemplate>
 
@@ -187,7 +249,7 @@
                                 <tr>
                                     <td>
                                         <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
-                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultDescription") %>'></asp:Label>
+                                            <asp:Label runat="server" ID="Label1" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultDescription") %>'></asp:Label>
                                         </div>
                                     </td>
                                 </tr>
@@ -213,6 +275,9 @@
 </div><!-- end div container! -->
         </div>
     </div>
-
-</asp:Content>
-
+        <div>
+        </div>
+    </form>
+</body>
+</html>
+    
