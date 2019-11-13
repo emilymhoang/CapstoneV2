@@ -129,7 +129,7 @@
         <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>    
-             <div class="col-md-6"><asp:Button ID="searchButton" text="Submit" runat="server" class="btn" type="submit" onClick="search_Click" style="float: right;"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID="searchButton" onClick="search_Click" runat="server" IsPostBack="false" Text="Submit" type="button" class="btn"/></div>
         </div>
         <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 500px;">
         <div>
@@ -239,7 +239,9 @@
     </div>
     </div><!-- end div big row -->  
 </div><!-- end div big row -->  
-</div><!-- end div container! -->   
+</div><!-- end div container! -->
+        </div>
+    </div>
 
 </asp:Content>
 
