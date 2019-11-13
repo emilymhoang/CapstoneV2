@@ -193,7 +193,6 @@
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
-                           <%-- <h2>Message Board</h2>--%>
                         <table id="tbl1" runat="server">
                             <tr id="itemPlaceholder" runat="server"></tr>
                         </table>
@@ -203,27 +202,28 @@
                         <table>
                                 <tr>
                                     <td>
-                                        <h3>
+                                        <h4>
                                             <asp:Label ID="lblSenderName" runat="Server" Text='<%#Eval("recieverName") %>' />
-                                        </h3>
+                                        </h4>
                                     </td>
-                                    <td>
+<%--                                    <td>
                                         <h3>
                                             <asp:Label ID="Label3" runat="Server" Text="--" />
                                         </h3>
-                                    </td>
+                                    </td>--%>
                                     <td>
-                                        <h3>
-                                            <asp:Label ID="lblMessageDate" runat="Server" Text='<%#Eval("messageDate") %>' />
-                                        </h3>
+                                        <h5>
+                                            <asp:Label style="float: right;" ID="lblMessageDate" runat="Server" Text='<%#Eval("messageDate") %>' />
+                                        </h5>
                                     </td>
                                 </tr>
+                            </table>
+                            <table style="border-bottom: 1px solid black">
                                 <tr>
                                     <td>
                                         <asp:Label ID="lblMessage" runat="Server" Text='<%#Eval("message") %>' />
                                     </td>
                                 </tr>
-                                
                             </table>
                         </ItemTemplate>
 

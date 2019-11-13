@@ -76,7 +76,7 @@
                                 <asp:Image ID="image7" style="  object-fit: cover; width:100px; height:100px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
                             </td>
                             <td>
-                                <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label2" Text='<%#Eval("resultName") %>'></asp:Label></br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="backgroundcheck" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 20px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
                                 <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label3" Text='<%#Eval("resultPhone") %>'></asp:Label></br>
                                 <asp:Label runat="server" ID="Label4" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label></br>
                             </td>
@@ -99,11 +99,17 @@
     <div class="col-md-12"  style="border: solid; border-color: white;">
     <h2 >User Data</h2>
     <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
-        <asp:Label ID="Label1" runat="server"> .</asp:Label>
-         <div class='tableauPlaceholder' id='viz1573615380479' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Nu&#47;NumberofHosts&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='NumberofHosts&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Nu&#47;NumberofHosts&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1573615380479');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='450px';vizElement.style.height='497px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='450px';vizElement.style.height='497px';} else { vizElement.style.width='100%';vizElement.style.height='527px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
-       
+        <div class="col-md-4"  style=" margin-top: 1rem;">
+              <label for="formGroupExampleInput">Number of tenants</label>
+             <div class='tableauPlaceholder' id='viz1573680553156' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Nu&#47;NumberofTenants2&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='NumberofTenants2&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Nu&#47;NumberofTenants2&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1573680553156');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='215px';vizElement.style.height='352px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='215px';vizElement.style.height='352px';} else { vizElement.style.width='100%';vizElement.style.height='427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>  </div>
+              <div class="col-md-4"  style=" margin-top: 1rem;">
+              <label for="formGroupExampleInput">Number of hosts</label>
+                   <div class='tableauPlaceholder' id='viz1573680438005' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Nu&#47;NumberofHostss&#47;Dashboard2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='NumberofHostss&#47;Dashboard2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Nu&#47;NumberofHostss&#47;Dashboard2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1573680438005');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='215px';vizElement.style.height='352px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='215px';vizElement.style.height='352px';} else { vizElement.style.width='100%';vizElement.style.height='427px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> </div>
+        <div class="col-md-4"  style=" margin-top: 1rem;">
+              <label for="formGroupExampleInput">Number of matches</label>
+            </div>
         </div>
-         </div>
+        </div>
 
     
     
@@ -128,32 +134,15 @@
             <ItemTemplate>
                 <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <tr>
-                        <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label>
-                        </td>
-                        
-                        <td>
-                            <div>
-                                <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                        </td>
-                        <td>
-                            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+                        <td style="max-width: 500px;">
+                            <div class="row" style="margin:auto; margin-bottom: 1rem;" >
                                 <div class="col-md-6" style="margin-top: 1rem;">
-
-
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-
                                     <div class="carousel-inner">
                                         <div class="row">
                                             <div class="carousel-item active">    
@@ -167,7 +156,6 @@
                                                    <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3") %>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
-
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -181,38 +169,14 @@
                                </div>
                               </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        </tr>
-                       <tr>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
-                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultDescription") %>'></asp:Label>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> </br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label></br>
+                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text='<%#Eval("resultDescription") %>'></asp:Label></br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>
+                            <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/></br>
                         </td>
                     </tr>
-                    
                 </table>
 
                 

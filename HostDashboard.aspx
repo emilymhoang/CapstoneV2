@@ -99,39 +99,28 @@
                 <table style="margin-top: 1rem; border-bottom: solid; width:1500px; border-bottom-width: 1px;">
                     <tr>
                         <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("availability") %>'></asp:Label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-
-                        </td>
-                        <td>
-                            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+                            <td style="max-width: 500px;">
+                            <div class="row" style="margin:auto; margin-bottom: 1rem;" >
                                 <div class="col-md-6" style="margin-top: 1rem;">
-
-
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-
                                     <div class="carousel-inner">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" ImageUrl='<%#Eval("roomimage1") %>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1") %>' class="img-fluid" runat="server" />
                                                    </div>
 
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" ImageUrl='<%#Eval("roomimage2") %>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2") %>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("roomimage3") %>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3") %>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
-
                                     </div>
                                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -145,38 +134,13 @@
                                </div>
                               </div>
                         </td>
-                    </tr>
-                    <tr>
                         <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("briefDescription") %>'></asp:Label>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        </tr>
-                       <tr>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div style="max-width: 200px; min-width: 200px; word-wrap: break-word">
-                                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("roomDescription") %>'></asp:Label>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                        
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("availability") %>'></asp:Label> </br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
+                            <asp:Label runat="server" ID="lblResultDesc" style="max-width: 200px; min-width: 200px; word-wrap: break-word; font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("roomDescription") %>'></asp:Label></br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label></br>    
                         </td>
                     </tr>
-                    
                 </table>
 
                 

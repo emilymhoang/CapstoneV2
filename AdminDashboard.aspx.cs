@@ -220,7 +220,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
                                 string description = (string)reader["BriefDescription"];
                                 int id = Convert.ToInt32(reader["RoomID"]);
-
+                                string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
 
                                 byte[] imgData1;
@@ -260,9 +260,18 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length);
                                 string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length);
 
+                                string backgroundCheckPhoto = "";
+                                if (backgroundCheckResult == "n")
+                                {
+                                    backgroundCheckPhoto = "images/NC.png";
+                                }
+                                if (backgroundCheckResult == "y")
+                                {
+                                    backgroundCheckPhoto = "images/icons-07.png";
+                                }
 
 
-                                SearchResult result = new SearchResult(id, name, location, description, price, image1, image2, image3);
+                                SearchResult result = new SearchResult(id, name, location, description, price, image1, image2, image3, backgroundCheckPhoto);
 
                                 SearchResult.lstSearchResults.Add(result);
                             }
