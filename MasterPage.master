@@ -1,7 +1,6 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
 
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
 <meta charset="UTF-8">
@@ -30,7 +29,8 @@
 
 
 </head>
-<body>
+<body onclick="clicked=true;" onunload="CheckBrowser()">
+    <script type="text/javascript" src="js/autoLogoff.js"></script>
     <form id="form1" runat="server">
     <div>
          <div class="container">
