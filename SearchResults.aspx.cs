@@ -20,7 +20,7 @@ public partial class SearchResults : System.Web.UI.Page
 
     protected void FavoritesButton(object sender, EventArgs e)
     {
-        Property.lstPropertySearchResults.Clear();
+
 
 
 
@@ -30,7 +30,6 @@ public partial class SearchResults : System.Web.UI.Page
             {
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-
                 try
                 {
                     connection.Open();

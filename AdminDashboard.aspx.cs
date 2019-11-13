@@ -153,8 +153,8 @@ public partial class AdminDashboard : System.Web.UI.Page
         }
     }
 
-protected void search_Click(object sender, EventArgs e)
-        {
+    protected void search_Click(object sender, EventArgs e)
+    {
         SearchResult.lstSearchResults.Clear();
 
         bool searchBy;
@@ -176,9 +176,6 @@ protected void search_Click(object sender, EventArgs e)
             }
             lblInvalidSearch.Text = String.Empty;
         }
-
-
-
 
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
@@ -331,23 +328,23 @@ protected void search_Click(object sender, EventArgs e)
 
     protected void approveApplicant(object sender, EventArgs e)
     {
-        Button btn = sender as Button;
-        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
-        var index = item.DataItemIndex;
-        var selectedPRid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].ID;
+        //Button btn = sender as Button;
+        //ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        //var index = item.DataItemIndex;
+        //var selectedPRid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].ID;
 
-        //lvSearchResults.SelectedIndex;
-        //lvSearchResults.Items[lcount].Selected = 1;
+        ////lvSearchResults.SelectedIndex;
+        ////lvSearchResults.Items[lcount].Selected = 1;
 
-        SqlCommand approvet = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
-        approvet.Parameters.AddWithValue("@TenantID", tenantID);
-        approvet.Connection = sc;
-        approvet.ExecuteNonQuery();
+        //SqlCommand approvet = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
+        //approvet.Parameters.AddWithValue("@TenantID", tenantID);
+        //approvet.Connection = sc;
+        //approvet.ExecuteNonQuery();
 
-        SqlCommand approveh = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
-        approveh.Parameters.AddWithValue("@HostID", hostID);
-        approveh.Connection = sc;
-        approveh.ExecuteNonQuery();
+        //SqlCommand approveh = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
+        //approveh.Parameters.AddWithValue("@HostID", hostID);
+        //approveh.Connection = sc;
+        //approveh.ExecuteNonQuery();
     }
 
     protected void logout(object sender, EventArgs e)
