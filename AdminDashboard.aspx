@@ -170,7 +170,7 @@
                               </div>
                         </td>
                         <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> </br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="backgroundcheck" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 20px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label></br>
                             <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text='<%#Eval("resultDescription") %>'></asp:Label></br>
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>

@@ -53,7 +53,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 int hostID = Convert.ToInt32(Session["hostID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
+                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
                 try
                 {
                     connection.Open();
@@ -67,6 +67,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 String email = reader["Email"].ToString();
                                 String phone = reader["PhoneNumber"].ToString();
                                 String applicantType = "h";
+                                string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
                                 if (!(imgData == null))
@@ -74,7 +75,17 @@ public partial class AdminDashboard : System.Web.UI.Page
                                     img = Convert.ToBase64String(imgData, 0, imgData.Length);
                                     img = "data:image;base64," + img;
                                 }
-                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(name, phone, email, img, applicantType);
+
+                                string backgroundCheckPhoto = "";
+                                if (backgroundCheckResult == "n")
+                                {
+                                    backgroundCheckPhoto = "images/NC.png";
+                                }
+                                if (backgroundCheckResult == "y")
+                                {
+                                    backgroundCheckPhoto = "images/icons-07.png";
+                                }
+                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(name, phone, email, img, applicantType, backgroundCheckPhoto);
 
                                 BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(hostresult);
                             }
@@ -102,7 +113,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 int tenantID = Convert.ToInt32(Session["tenantID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
+                command.CommandText = "SELECT FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
                 try
                 {
                     connection.Open();
@@ -116,6 +127,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 String email = reader["Email"].ToString();
                                 String phone = reader["PhoneNumber"].ToString();
                                 String applicantType = "t";
+                                string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
                                 if (!(imgData == null))
@@ -123,9 +135,19 @@ public partial class AdminDashboard : System.Web.UI.Page
                                     img = Convert.ToBase64String(imgData, 0, imgData.Length);
                                     img = "data:image;base64," + img;
                                 }
-                                BackgroundCheckApplicant result = new BackgroundCheckApplicant(name, phone, email, img, applicantType);
 
-                                BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(result);
+                                string backgroundCheckPhoto = "";
+                                if (backgroundCheckResult == "n")
+                                {
+                                    backgroundCheckPhoto = "images/NC.png";
+                                }
+                                if (backgroundCheckResult == "y")
+                                {
+                                    backgroundCheckPhoto = "images/icons-07.png";
+                                }
+                                BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(name, phone, email, img, applicantType, backgroundCheckPhoto);
+
+                                BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(hostresult);
                             }
 
                         }
@@ -184,7 +206,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
                 if (searchBy)
                 {
-                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
+                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, " +
                         "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
                         "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
                         "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
@@ -196,7 +218,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 {
                     command.CommandText = "select isnull([dbo].[PropertyRoom].Image1, 0), isnull([dbo].[PropertyRoom].Image2, 0)," +
                         " isnull([dbo].[PropertyRoom].Image3, 0)" +
-                        ", [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
+                        ", [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
                         "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
                         "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
                         "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
@@ -217,7 +239,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
                                 string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
                                 string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
-
+                                
                                 string description = (string)reader["BriefDescription"];
                                 int id = Convert.ToInt32(reader["RoomID"]);
                                 string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
@@ -230,8 +252,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 try
                                 {
                                     imgData1 = (byte[])reader["Image1"];
-                                }
-                                catch
+                                } catch
                                 {
                                     imgData1 = (byte[])Session["defaultPicture"];
                                 }
@@ -254,10 +275,10 @@ public partial class AdminDashboard : System.Web.UI.Page
                                     imgData3 = (byte[])Session["defaultPicture"];
                                 }
 
+                                 
 
-
-                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length);
-                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length);
+                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length); 
+                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length); 
                                 string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length);
 
                                 string backgroundCheckPhoto = "";
@@ -265,7 +286,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 {
                                     backgroundCheckPhoto = "images/NC.png";
                                 }
-                                if (backgroundCheckResult == "y")
+                                if(backgroundCheckResult == "y")
                                 {
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }

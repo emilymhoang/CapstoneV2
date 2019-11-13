@@ -14,14 +14,16 @@ public class BackgroundCheckApplicant
     public string resultEmail { get; private set; }
     public string resultImageV2 { get; private set; }
     public string applicantType { get; private set; }
+    public string backgroundCheckResult { get; private set; }
 
     public int userID { get; private set; }
-    public BackgroundCheckApplicant(String resultName, String resultPhone, String resultEmail, String resultImageV2, String applicantType)
+    public BackgroundCheckApplicant(String resultName, String resultPhone, String resultEmail, String resultImageV2, String applicantType, String backgroundCheckResult)
     {
         this.resultName = resultName;
         this.resultEmail = resultEmail;
         this.resultPhone = resultPhone;
         this.resultName = resultName;
         this.resultImageV2 = resultImageV2;
+        this.backgroundCheckResult = backgroundCheckResult;
     }
 }
