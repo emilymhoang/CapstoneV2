@@ -84,7 +84,7 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
             <asp:Label ID="backgroundChecklbl" runat="server"></asp:Label>
-        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 700px;">
+        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 750px;">
         <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
             <LayoutTemplate>
                 <table id="tbl1" runat="server">
@@ -142,12 +142,15 @@
     <div class="col-md-12"  style="border: solid; border-color: white;">
     <h2 >Search for properties</h2>
     <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
-        <div class="col-md-12"  style=" margin-top: 1rem;">
+        <div class="col-md-10"  style=" margin-top: 1rem;">
        <asp:Textbox ID="searchTextbox" type="text" style="font-size: 30px; height:75px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
               <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
-             <div class="col-md-6"><asp:Button ID="searchButton" onClick="search_Click" AutoPostBack="false" runat="server" Text="Search" class="btn"/></div>
-        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 500px;">
-        <div>
+        </div>
+        <div class="col-md-2">
+                <asp:Button ID="searchButton" style="margin-top: 2rem;" onClick="search_Click" AutoPostBack="false" runat="server" Text="Search" class="btn"/>
+        </div>
+        <div class="list-group" style="overflow:scroll; height: 500px;">
+        <div style="margin-left: 1rem;">
         <asp:ListView id="lvSearchResultsAdmin" runat="server" Visible="true" >
 
             <LayoutTemplate>
@@ -160,7 +163,45 @@
             <ItemTemplate>
                 <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <tr>
-                        <td style="max-width: 500px;">
+                         <td style="width: 450px;">
+                             <table style="display:block;width:99.9%;clear:both">
+                                 <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="Image1" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 35px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
+</br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label></br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("resultDescription") %>'></asp:Label></br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                     <td>
+                                        <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br>
+                                         </br>
+                                    </td>
+                                 </tr>   
+                                <tr>
+                                     <td>
+                                        <asp:Button runat="server" class="btn" ID="deleteProperties" OnClick="deleteProperty" Text="Delete Property Room"/>
+                                        &nbsp;
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" />
+                                    </td
+                                </tr>
+                             </table>
+                        </td>
+                        <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
                                 <div class="col-md-6" style="margin-top: 1rem;">
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -172,14 +213,13 @@
                                     <div class="carousel-inner">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1") %>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
-
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2") %>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3") %>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>
@@ -194,13 +234,6 @@
                                 </div>
                                </div>
                               </div>
-                        </td>
-                        <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="backgroundcheck" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 20px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label></br>
-                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text='<%#Eval("resultDescription") %>'></asp:Label></br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>
-                            <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/></br>
                         </td>
                     </tr>
                 </table>

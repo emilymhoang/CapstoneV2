@@ -128,7 +128,7 @@
                                         <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" />
                                     </td
                                 </tr>
-                             </table>]\
+                             </table>
                         </td>
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
