@@ -363,10 +363,11 @@ public partial class AdminDashboard : System.Web.UI.Page
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
-        if (BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType == "h")
+        var spot = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType;
+        if (spot == "h")
         {
             var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
-            SqlCommand approveh = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
+            SqlCommand approveh = new SqlCommand("UPDATE [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
             approveh.Parameters.AddWithValue("@HostID", userid);
             approveh.Connection = sc;
             approveh.ExecuteNonQuery();
@@ -374,11 +375,12 @@ public partial class AdminDashboard : System.Web.UI.Page
         else if (BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType == "t")
         {
             var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
-            SqlCommand approvet = new SqlCommand("UPDATE FROM [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
+            SqlCommand approvet = new SqlCommand("UPDATE [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
             approvet.Parameters.AddWithValue("@TenantID", userid);
             approvet.Connection = sc;
             approvet.ExecuteNonQuery();
         }
+        Response.Redirect("AdminDashboard.aspx");
     }
 
     protected void logout(object sender, EventArgs e)
