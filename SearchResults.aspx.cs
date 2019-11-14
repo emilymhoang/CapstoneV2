@@ -20,7 +20,8 @@ public partial class SearchResults : System.Web.UI.Page
 
     protected void FavoritesButton(object sender, EventArgs e)
     {
-        if (!String.IsNullOrEmpty(Session["tenantID"].ToString()))
+        //var int = Session["tenantID"].ToString();
+        if (Convert.ToInt32(Session["tenantID"]) >0)
         {
             using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
