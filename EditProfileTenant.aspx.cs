@@ -47,6 +47,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
     {
         using (SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
+            
             using (SqlCommand update = new SqlCommand())
             {
                 try
@@ -59,11 +60,32 @@ public partial class EditProfileTenant : System.Web.UI.Page
                     update.Parameters.AddWithValue("@FirstName", firstNameTextbox.Text);
                     update.Parameters.AddWithValue("@LastName", lastNameTextbox.Text);
                     sc.Open();
+
+                    //email stuff
+                    String emailNew = emailTextbox.Text;
+                    Session["Email"] = emailNew;
+                    SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
+                    emailCheck.Parameters.AddWithValue("@Email", emailNew);
+                    emailCheck.Connection = sc;
+                    int count = Convert.ToInt32(emailCheck.ExecuteScalar());
+                    emailCheck.ExecuteNonQuery();
+
+                    if (count == 0)
+                    {
+
+                    Session["email"] = emailTextbox.Text;
                     update.ExecuteNonQuery();
                     resultmessage.Text = "Profile is updated.";
                     Session["FirstName"] = firstNameTextbox.Text;
                     Session["LastName"] = lastNameTextbox.Text;
                     Session["PhoneNumber"] = phoneNumberTextbox.Text;
+
+                    }
+                    else
+                    {
+                        resultmessage.Text = "Email already exists.";
+                    }
+                    
                 }
                 catch (Exception t)
                 {
@@ -76,6 +98,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
                 }
 
             }
+          
             using (SqlCommand updateLogin = new SqlCommand())
             {
                 updateLogin.Connection = sc;
@@ -86,7 +109,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
                 {
                     sc.Open();
                     updateLogin.ExecuteNonQuery();
-                    resultmessage.Text = "Profile is updated.";
+                    //resultmessage.Text = "Profile is updated.";
                 }
                 catch (Exception t)
                 {
@@ -98,48 +121,8 @@ public partial class EditProfileTenant : System.Web.UI.Page
 
                 }
             }
-            using (SqlCommand emailcheck = new SqlCommand())
-            {
-                try
-                {
-                    String emailNew = emailTextbox.Text;
-                    Session["Email"] = emailNew;
-
-
-                    sc.Open();
-                    SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
-                    emailCheck.Parameters.AddWithValue("@Email", emailNew);
-                    emailCheck.Connection = sc;
-                    int count = Convert.ToInt32(emailCheck.ExecuteScalar());
-                    emailCheck.ExecuteNonQuery();
-                    
-
-                    if (count == 0)
-                    {
-
-                        Session["firstName"] = firstNameTextbox.Text;
-                        Session["lastName"] = lastNameTextbox.Text;
-                        Session["email"] = emailTextbox.Text;
-                        Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
-
-                    }
-                    else
-                    {
-                        emailLabel.Text = "Email already exists.";
-                    }
-                }
-                catch (Exception t)
-                {
-                    string f = t.ToString();
-                }
-                finally
-                {
-                    sc.Close();
-
-                }
-
-                
-            }
+            //duplicate email 
+            
         }
 
         
