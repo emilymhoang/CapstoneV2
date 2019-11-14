@@ -20,74 +20,137 @@ public partial class SearchResults : System.Web.UI.Page
 
     protected void FavoritesButton(object sender, EventArgs e)
     {
-
-
-
-
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString))
+        if (!String.IsNullOrEmpty(Session["tenantID"].ToString()))
         {
-            using (SqlCommand command = new SqlCommand())
+            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-                try
+                using (SqlCommand command = new SqlCommand())
                 {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+
+                    Button btn = sender as Button;
+                    ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+                    var index = item.DataItemIndex;
+                    var roomID = SearchResult.lstSearchResults[index].resultID;
+
+                    command.CommandText = "SELECT PropertyID, HostID FROM [Capstone].[dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [Capstone].[dbo].[PropertyRoom] where RoomID = @RoomID)";
+                    command.CommandText = "SELECT FirstName, LastName from [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID";
+                    command.Parameters.AddWithValue("@RoomID", roomID);
+                    command.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["tenantID"]));
+                    int propertyID = 0, hostID = 0;
+                    string firstName = "", lastName = "";
+                    try
                     {
-                        if (reader.HasRows)
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
+                            if (reader.HasRows)
                             {
-                                int house = Convert.ToInt32(reader["HouseNumber"]);
-                                string street = (string)reader["Street"];
-                                string city = (string)reader["CityCounty"];
-                                string state = (string)reader["HomeState"];
-                                string country = (string)reader["Country"];
-                                int zip = Convert.ToInt32(reader["Zip"]);
-                                double price = Convert.ToDouble(reader["PriceRange"]);
-                                int rooms = (int)reader["NumberBedrooms"];
-                                int availability = 1;
-                                int host = (int)reader["HostID"];
-                                int tenantID = (int)reader["TenantID"];
+                                while (reader.Read())
+                                {
+                                    propertyID = Convert.ToInt32(reader["PropertyID"]);
+                                    hostID = Convert.ToInt32(reader["HostID"]);
+                                    firstName = reader["FirstName"].ToString();
+                                    lastName = reader["LastName"].ToString();
+                                }
 
-
-                                //Favorite fav = new Favorite(house, street, city, state, country, zip, price, rooms, availability, host, tenantID);
-
-                                //Favorite.lstFavorites.Add(fav);
                             }
-
                         }
-                        else
-                        {
-                            //no favs found
-                        }
-
+                        SqlCommand favorite = new SqlCommand("INSERT INTO [Capstone].[dbo].[Favorite] (TenantID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated, HostID)" +
+                        " values (@TenantID, @PropertyID, @RoomID, @SearchDate, @LastUpdatedBy, @LastUpdated, @HostID)", connection);
+                        favorite.Parameters.AddWithValue("@TenantID", Session["tenantID"].ToString());
+                        favorite.Parameters.AddWithValue("@PropertyID", propertyID);
+                        favorite.Parameters.AddWithValue("@RoomID", roomID);
+                        favorite.Parameters.AddWithValue("@HostID", hostID);
+                        favorite.Parameters.AddWithValue("@SearchDate", DateTime.Now.ToString("yyyy-MM-dd"));
+                        favorite.Parameters.AddWithValue("@LastUpdatedBy", DateTime.Now.ToString("yyyy-MM-dd") + DateTime.Now.ToString("hh:mm:ss"));
+                        favorite.Parameters.AddWithValue("@LastUpdated", firstName + lastName);
+                        favorite.ExecuteNonQuery();
+                    }
+                    catch (SqlException t)
+                    {
+                        string b = t.ToString();
+                    }
+                    finally
+                    {
+                        connection.Close();
                     }
                 }
-                catch (SqlException t)
-                {
-                    string b = t.ToString();
-                }
-
             }
+
         }
-
+        else
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
-    //protected void addFavorite(object sender, EventArgs e)
-    //{
-    //    using (SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-    //    {
-    //        SqlCommand insert = new SqlCommand("INSERT INTO [Capstone].[dbo].[Favorite] (TenantID, HostID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated) VALUES (" +
-    //            "@TenantID, @HostID, @PropertyID, @RoomID, @SearchDate, @LastUpdatedBy, @LastUpdated)", sc);
-    //        insert.Parameters.AddWithValue("@TenantID", Session["tenantID"].ToString());
-    //        insert.Parameters.AddWithValue("@HostID", );
-    //        insert.Parameters.AddWithValue("@PropertyID", );
-    //        insert.Parameters.AddWithValue("@RoomID", );
-    //        insert.Parameters.AddWithValue("@SearchDate", DateTime.Now);
-    //        insert.Parameters.AddWithValue("@LastUpdatedBy", Session["firstName"].ToString() + " " + Session["LastName"].ToString());
-    //        insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
-    //        insert.ExecuteNonQuery();
-    //    }
 
+    protected void redirect()
+    {
+        if (!String.IsNullOrEmpty(Session["tenantID"].ToString()))
+        {
+            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+
+                    Button btn = sender as Button;
+                    ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+                    var index = item.DataItemIndex;
+                    var roomID = SearchResult.lstSearchResults[index].resultID;
+
+                    command.CommandText = "SELECT PropertyID, HostID FROM [Capstone].[dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [Capstone].[dbo].[PropertyRoom] where RoomID = @RoomID)";
+                    command.CommandText = "SELECT FirstName, LastName from [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID";
+                    command.Parameters.AddWithValue("@RoomID", roomID);
+                    command.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["tenantID"]));
+                    int propertyID = 0, hostID = 0;
+                    string firstName = "", lastName = "";
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    propertyID = Convert.ToInt32(reader["PropertyID"]);
+                                    hostID = Convert.ToInt32(reader["HostID"]);
+                                    firstName = reader["FirstName"].ToString();
+                                    lastName = reader["LastName"].ToString();
+                                }
+
+                            }
+                        }
+                        SqlCommand favorite = new SqlCommand("INSERT INTO [Capstone].[dbo].[Favorite] (TenantID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated, HostID)" +
+                        " values (@TenantID, @PropertyID, @RoomID, @SearchDate, @LastUpdatedBy, @LastUpdated, @HostID)", connection);
+                        favorite.Parameters.AddWithValue("@TenantID", Session["tenantID"].ToString());
+                        favorite.Parameters.AddWithValue("@PropertyID", propertyID);
+                        favorite.Parameters.AddWithValue("@RoomID", roomID);
+                        favorite.Parameters.AddWithValue("@HostID", hostID);
+                        favorite.Parameters.AddWithValue("@SearchDate", DateTime.Now.ToString("yyyy-MM-dd"));
+                        favorite.Parameters.AddWithValue("@LastUpdatedBy", DateTime.Now.ToString("yyyy-MM-dd") + DateTime.Now.ToString("hh:mm:ss"));
+                        favorite.Parameters.AddWithValue("@LastUpdated", firstName + lastName);
+                        favorite.ExecuteNonQuery();
+                    }
+                    catch (SqlException t)
+                    {
+                        string b = t.ToString();
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+
+        }
+        else
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
+}

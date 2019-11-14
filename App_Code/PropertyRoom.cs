@@ -39,4 +39,5 @@ public class PropertyRoom
         this.roomimage3 = roomimage3;
 
     }
-}
+
+    }

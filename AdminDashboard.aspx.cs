@@ -55,12 +55,11 @@ public partial class AdminDashboard : System.Web.UI.Page
         {
             using (SqlCommand command = new SqlCommand())
             {
-                int hostID = Convert.ToInt32(Session["hostID"]);
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT HostID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
                 try
                 {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT HostID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -116,12 +115,12 @@ public partial class AdminDashboard : System.Web.UI.Page
         {
             using (SqlCommand command = new SqlCommand())
             {
-                int tenantID = Convert.ToInt32(Session["tenantID"]);
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT TenantID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
+               
                 try
                 {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "SELECT TenantID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

@@ -1,6 +1,25 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="SearchResults.aspx.cs" Inherits="SearchResults" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <style>
+        .modalBackground{
+            background-color: black;
+            filter:alpha(opacity=90) !important;
+            opacity:0.6 ! important;
+            z-index: 20;
+        }
+        .modalpopup{
+            padding: 20px 0px 24px 10px;
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: white;
+            border: 1px solid black;
+        }
+
+    </style>
 <div  class="container">
   <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
     <div class="col-md-8">
@@ -87,7 +106,6 @@
                                             <div class="carousel-item active">    
                                                 <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
-
                                             <div class="carousel-item ">
                                                <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
@@ -113,7 +131,7 @@
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label></br>
                             <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text='<%#Eval("resultDescription") %>'></asp:Label></br>
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>
-                            <asp:Button runat="server" class="btn" ID="btnFavorite" Text="Favorite"/></br>
+                            <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/></br>
                         </td>
                     </tr>
                 </table>
@@ -122,11 +140,15 @@
             </ItemTemplate>
 
         </asp:ListView>
-    </div>
-
-    
-    
-    
+            <asp:Button runat="server" class="btn" ID="btnRedirect" style="display: none;" Text="Favorite"/>
+            <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
+                        <asp:Label style="font-family: 'Oswald', sans-serif;  font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
+                        <asp:Button class="btn" ID="redirectButton" href="GetStarted.aspx" runat="server" Text="Create an Account" />
+                        <asp:Button class="btn" ID="okButton" runat="server" Text="OK" /> <br/>
+                </asp:Panel>
+                <AjaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="btnRedirect" BackgroundCssClass="modalBackground" CancelControlID="OKButton">
+                </AjaxToolkit:ModalPopupExtender>
+    </div>    
 </div> <!-- end div container! -->   
 </asp:Content>
 
