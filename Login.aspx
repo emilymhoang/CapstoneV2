@@ -4,7 +4,7 @@
    <style type="text/css">
        h1 {
         font-family: 'Oswald', sans-serif;
-        color: #CC6559;
+        
         font-size: 50px;
         }
 
@@ -21,7 +21,7 @@
         </style>
     <header style="margin-top: 8rem;">
       <div class="container"> 
-        <h1>Login to your account</h1>
+        <h1 style="color: #756664;">Login to your account</h1>
         <p style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Let us find you the perfect space.</p> 
       </div>
     </header>

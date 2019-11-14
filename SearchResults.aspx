@@ -6,8 +6,8 @@
     <div class="col-md-8">
       <h1 style="margin-left: 2rem;">Search for your perfect space.</h1>
       </div>
-    <div class="col-md-4" style="margin-top: 1rem; ">
-                <a href="Search.aspx" class="btn " style="margin-top: 1rem; font-size: 30px;">Go Back to Search</a>
+    <div class="col-md-4" style="margin-top: .3rem; ">
+                <a href="Search.aspx" class="btn " style=" font-size: 22px;">Go Back to Search</a>
         </div> <!--end col-->
     </div><!-- end div row -->  
     
