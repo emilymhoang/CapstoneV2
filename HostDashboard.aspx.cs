@@ -31,6 +31,7 @@ public partial class HostDashboard : System.Web.UI.Page
         }
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
+
         lvPropertyRoom.DataSource = PropertyRoom.listPropertyRoom;
         lvPropertyRoom.DataBind();
 
@@ -99,40 +100,40 @@ public partial class HostDashboard : System.Web.UI.Page
             smoker = Session["Smoker"].ToString();
         }
 
-        if (privateEntrance == "y")
-        {
-            privateEntranceBadge.ImageUrl = "images/badges-04.png";
-        }
+        //if (privateEntrance == "y")
+        //{
+        //    privateEntranceBadge.ImageUrl = "images/badges-04.png";
+        //}
 
-        if (kitchen == "y")
-        {
-            kitchenBadge.ImageUrl = "images/badges-06.png";
+        //if (kitchen == "y")
+        //{
+        //    kitchenBadge.ImageUrl = "images/badges-06.png";
 
-        }
+        //}
 
-        if (privateBathroom == "y")
-        {
-            privateBathroomBadge.ImageUrl = "images/badges-07.png";
+        //if (privateBathroom == "y")
+        //{
+        //    privateBathroomBadge.ImageUrl = "images/badges-07.png";
 
-        }
+        //}
 
-        if (furnish == "y")
-        {
-            furnishBadge.ImageUrl = "images/badges-08.png";
+        //if (furnish == "y")
+        //{
+        //    furnishBadge.ImageUrl = "images/badges-08.png";
 
-        }
+        //}
 
-        if (storage == "y")
-        {
-            storageBadge.ImageUrl = "images/badges-09.png";
+        //if (storage == "y")
+        //{
+        //    storageBadge.ImageUrl = "images/badges-09.png";
 
-        }
+        //}
 
-        if (smoker == "n")
-        {
-            smokerBadge.ImageUrl = "images/badges-10.png";
+        //if (smoker == "n")
+        //{
+        //    smokerBadge.ImageUrl = "images/badges-10.png";
 
-        }
+        //}
 
 
 

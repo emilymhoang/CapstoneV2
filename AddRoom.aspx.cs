@@ -72,15 +72,15 @@ public partial class AddRoom : System.Web.UI.Page
         String roomDescription = DropDownListRoom.SelectedValue;
 
         //roomID
+        int roomID;
         sc.Open();
         SqlCommand getRoomID = new SqlCommand("SELECT PropertyRoom.RoomID FROM [Capstone].[dbo].[PropertyRoom] INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
         getRoomID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         getRoomID.Connection = sc;
-        int roomID = Convert.ToInt32(getRoomID.ExecuteScalar());
+        roomID = Convert.ToInt32(getRoomID.ExecuteScalar());
         getRoomID.ExecuteNonQuery();
         Session["RoomID"] = roomID;
         sc.Close();
-
 
         PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription, image1, image2, image3);
         System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
@@ -108,14 +108,19 @@ public partial class AddRoom : System.Web.UI.Page
 
 
 
-
                 try
                 {
                     connection.Open();
                     int recordsAffected = command.ExecuteNonQuery();
-                    int roomID2 = (int)Session["RoomID"];
 
-                    BadgeProperty newBadgeProperty = new BadgeProperty(roomID2, privateEnt, kitchen, privateBath, furnish, storage, smoker);
+                    SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [Capstone].[dbo].[PropertyRoom]", connection);
+                    room.Connection = connection;
+                    roomID = Convert.ToInt32(room.ExecuteScalar());
+                    Session["RoomID"] = roomID;
+                    room.ExecuteNonQuery();
+
+
+                    BadgeProperty newBadgeProperty = new BadgeProperty(roomID, privateEnt, kitchen, privateBath, furnish, storage, smoker);
 
                     insertBadgeProperty.CommandText = "INSERT INTO [Capstone].[dbo].[BadgeProperty] (RoomID, PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker) VALUES (@roomID, @privateEnt, @kitchen, @privateBath, @furnish, @storage, @smoker);";
                     insertBadgeProperty.Parameters.AddWithValue("@roomID", newBadgeProperty.RoomID);
@@ -245,7 +250,7 @@ public partial class AddRoom : System.Web.UI.Page
 
 
 
-        //Response.Redirect("HostDashboard.aspx");
+        Response.Redirect("HostDashboard.aspx");
     }
 
     protected void populate(object sender, EventArgs e)

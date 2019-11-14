@@ -85,18 +85,20 @@
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
             <div class="col-md-6" style="margin-top: 1rem;">
+                                <h2><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h2>
+
                  <div>
         <asp:ListView id="lvPropertyRoom" runat="server" Visible="true" >
 
             <LayoutTemplate>
-                <h1>Your Property Room</h1>
+                <%--<h1>Your Property Room</h1>--%>
                 <table id="tbl1" runat="server">
                     <tr id="itemPlaceholder" runat="server"></tr>
                 </table>
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table style="margin-top: 1rem; border-bottom: solid; width:1500px; border-bottom-width: 1px;">
+                <table style="margin-top: 1rem; border-bottom: solid; width:500px; border-bottom-width: 1px;">
                     <tr>
                         <td>
                             <td style="max-width: 500px;">
@@ -133,12 +135,18 @@
                                 </div>
                                </div>
                               </div>
+                                <td>
+                                     <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label4" Text='<%#Eval("availability") %>'></asp:Label> </br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label5" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
+                            <asp:Label runat="server" ID="Label6" style="max-width: 200px; min-width: 200px; word-wrap: break-word; font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("roomDescription") %>'></asp:Label></br>
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label7" Text='<%#Eval("monthlyPrice") %>'></asp:Label></br>    
+                                    </td>
                         </td>
                         <td>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("availability") %>'></asp:Label> </br>
+                           <%-- <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("availability") %>'></asp:Label> </br>
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
                             <asp:Label runat="server" ID="lblResultDesc" style="max-width: 200px; min-width: 200px; word-wrap: break-word; font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("roomDescription") %>'></asp:Label></br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label></br>    
+                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label></br>    --%>
                         </td>
                     </tr>
                 </table>
@@ -182,21 +190,21 @@
             </div>--%>
 
             </div>
-             <div class="col-md-6" style="margin-top: 1rem;">
-                <h3><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h3>
+             <%--<div class="col-md-6" style="margin-top: 1rem;">
+<%--                <h2><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h2>--%>
 <%--                 <p><asp:Label ID="priceTextbox" runat="server" Text="Price" BackColor="#ebebeb"></asp:Label></p>--%>
 <%--                 <p><asp:Label ID="descriptionTextbox" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="roomDescripTextbox" Text="Shared Room" runat="server"  BackColor="#ebebeb"></asp:Label></p>--%>
 
-                <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+<%--                <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
                  <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
                  <asp:Image ID="privateBathroomBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
                  <asp:Image ID="furnishBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
                  <asp:Image ID="storageBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
-                 <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
+                 <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />--%>
                 
                  <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
-            </div>
+            <%--</div>--%>
 
         <%--    end profile container--%>
         </div>
