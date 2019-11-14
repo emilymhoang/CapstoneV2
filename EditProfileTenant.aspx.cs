@@ -47,7 +47,6 @@ public partial class EditProfileTenant : System.Web.UI.Page
     {
         using (SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
-            
             using (SqlCommand update = new SqlCommand())
             {
                 try
@@ -121,12 +120,9 @@ public partial class EditProfileTenant : System.Web.UI.Page
 
                 }
             }
-            //duplicate email 
+            
             
         }
-
-        
-
     }
     protected void Back_Click(object sender, EventArgs e)
         {

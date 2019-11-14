@@ -18,10 +18,34 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     
     protected void submitBasicInfo(object sender, EventArgs e)
     {
+        
+        //AGE VALIDATION
+        //var today = DateTime.Today;
+        //var birthdate = Convert.ToDateTime(dateOfBirthTextbox.Text);
+        //var age = today.Year - birthdate.Year;
+
+        //age = new DateTime(DateTime.Now.Subtract(birthdate).Ticks).Year - 1;
+        //DateTime lastYear = birthdate.AddYears(age);
+        //int month = 0;
+        //for (int z = 1; z <= 12; z++)
+        //{
+        //    if (lastYear.AddMonths(z) == today)
+        //    {
+        //        month = z;
+        //        break;
+        //    }
+        //    else if (lastYear.AddMonths(z) >= today)
+        //    {
+        //        month = z - 1;
+        //        break;
+        //    }
+        //}
+
+        //int days = today.Subtract(lastYear.AddMonths(month)).Days;
+        //int hours = today.Subtract(lastYear).Hours;
+        
         String emailNew = emailTextbox.Text;
         Session["Email"] = emailNew;
-
-
         sc.Open();
         SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
         emailCheck.Parameters.AddWithValue("@Email", emailNew);
@@ -34,15 +58,20 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         {
             if (emailTextbox.Text == confirmEmailTextbox.Text)
             {
-                Session["firstName"] = firstNameTextbox.Text;
-                Session["lastName"] = lastNameTextbox.Text;
-                Session["gender"] = DropDownListGender.SelectedValue;
-                Session["dateOfBirth"] = dateOfBirthTextbox.Text;
-                Session["email"] = emailTextbox.Text;
-                Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
-                Session["underGraduate"] = undergradCheck.Checked;
-                Session["graduate"] = gradCheck.Checked;
-                Response.Redirect("CreateLoginTenant.aspx");
+                //if (age > 18 || age < 100)
+                //    {
+                        Session["firstName"] = firstNameTextbox.Text;
+                        Session["lastName"] = lastNameTextbox.Text;
+                        Session["gender"] = DropDownListGender.SelectedValue;
+                        Session["dateOfBirth"] = dateOfBirthTextbox.Text;
+                        Session["email"] = emailTextbox.Text;
+                        Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
+                        Session["underGraduate"] = undergradCheck.Checked;
+                        Session["graduate"] = gradCheck.Checked;
+                        Response.Redirect("CreateLoginTenant.aspx");
+                        //resultmessagedob.Text = "Student must be between 18 - 30 years old, age is " + age;
+                        
+                //}
             }
             else
             {
