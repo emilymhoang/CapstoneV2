@@ -12,7 +12,7 @@ public class SearchResult
     public string resultName { get; private set; }
     public string resultLocation { get; private set; }
     public string resultDescription { get; private set; }
-    public double resultPrice { get; private set; }
+    public string resultPrice { get; private set; }
 
     public int resultID { get; private set; }
 
@@ -26,7 +26,7 @@ public class SearchResult
         this.resultName = resultName;
         this.resultLocation = resultLocation;
         this.resultDescription = resultDescription;
-        this.resultPrice = resultPrice;
+        this.resultPrice = "$" + resultPrice + "/Month";
         this.resultID = resultID;
         this.resultimage1 = resultimage1;
         this.resultimage2 = resultimage2;

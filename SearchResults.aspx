@@ -92,15 +92,43 @@
             <ItemTemplate>
                 <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <tr>
-                         <td style="width: 600px;">
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="backgroundcheck" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 20px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label></br>
-                            <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("resultDescription") %>'></asp:Label></br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>
-                            <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/></br>
-                        </td>
-                        <td>
-                             <asp:Label runat="server" Text=" "></asp:Label>
+                         <td style="width: 450px;">
+                             <table style="display:block;width:99.9%;clear:both">
+                                 <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="Image1" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 35px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
+</br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label></br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("resultDescription") %>'></asp:Label></br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                     <td>
+                                        <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br>
+                                         </br>
+                                    </td>
+                                 </tr>   
+                                <tr>
+                                     <td>
+                                        <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/>
+                                        &nbsp;
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" />
+                                    </td
+                                </tr>
+                             </table>]\
                         </td>
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >

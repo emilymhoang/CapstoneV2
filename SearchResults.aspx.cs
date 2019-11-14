@@ -36,11 +36,11 @@ public partial class SearchResults : System.Web.UI.Page
                     var roomID = SearchResult.lstSearchResults[index].resultID;
 
                     command.CommandText = "SELECT PropertyID, HostID FROM [Capstone].[dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [Capstone].[dbo].[PropertyRoom] where RoomID = @RoomID)";
-                    command.CommandText = "SELECT FirstName, LastName from [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID";
+                    //command.CommandText = "SELECT FirstName, LastName from [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID";
                     command.Parameters.AddWithValue("@RoomID", roomID);
-                    command.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["tenantID"]));
+                    //command.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["tenantID"]));
                     int propertyID = 0, hostID = 0;
-                    string firstName = "", lastName = "";
+                    //string firstName = "", lastName = "";
                     try
                     {
                         connection.Open();
@@ -52,8 +52,8 @@ public partial class SearchResults : System.Web.UI.Page
                                 {
                                     propertyID = Convert.ToInt32(reader["PropertyID"]);
                                     hostID = Convert.ToInt32(reader["HostID"]);
-                                    firstName = reader["FirstName"].ToString();
-                                    lastName = reader["LastName"].ToString();
+                                    //firstName = reader["FirstName"].ToString();
+                                    //lastName = reader["LastName"].ToString();
                                 }
 
                             }
@@ -65,8 +65,8 @@ public partial class SearchResults : System.Web.UI.Page
                         favorite.Parameters.AddWithValue("@RoomID", roomID);
                         favorite.Parameters.AddWithValue("@HostID", hostID);
                         favorite.Parameters.AddWithValue("@SearchDate", DateTime.Now.ToString("yyyy-MM-dd"));
-                        favorite.Parameters.AddWithValue("@LastUpdatedBy", DateTime.Now.ToString("yyyy-MM-dd") + DateTime.Now.ToString("hh:mm:ss"));
-                        favorite.Parameters.AddWithValue("@LastUpdated", firstName + lastName);
+                        favorite.Parameters.AddWithValue("@LastUpdatedBy", "Emily");
+                        favorite.Parameters.AddWithValue("@LastUpdated", DateTime.Now.ToString("yyyy-MM-dd") + DateTime.Now.ToString("hh:mm:ss"));
                         favorite.ExecuteNonQuery();
                     }
                     catch (SqlException t)
