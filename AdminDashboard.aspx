@@ -46,15 +46,14 @@
         </div>
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
-            <div class="col-md-6" style="margin-top: 1rem;">
-            </div>
              <div class="col-md-6" style="margin-top: 1rem;">
-                <h3><asp:Label ID="nameTextbox" runat="server" Text="John Smith" BackColor="#ebebeb"></asp:Label></h3>
+                <h2><asp:Label ID="nameTextbox" runat="server" Text="John Smith" BackColor="#ebebeb"></asp:Label></h2>
                  <p><asp:Label ID="usernameTextbox" runat="server" Text="JohnSmith1" BackColor="#ebebeb"></asp:Label></p>
             </div>
 
         <%--    end profile container--%>
 
+            <%-- tableau start --%>
     <div class="col-md-12"  style="border: solid; border-color: white;">
     <h2 >User Data</h2>
     <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
@@ -74,9 +73,7 @@
         </div>
              </div>
         </div>
-
-
-
+<%-- tableau end --%>
 
 
 
@@ -87,7 +84,7 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
             <asp:Label ID="backgroundChecklbl" runat="server"></asp:Label>
-        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 400px;">
+        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 700px;">
         <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
             <LayoutTemplate>
                 <table id="tbl1" runat="server">

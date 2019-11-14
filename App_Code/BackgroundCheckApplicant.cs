@@ -25,6 +25,7 @@ public class BackgroundCheckApplicant
         this.resultPhone = resultPhone;
         this.resultName = resultName;
         this.resultImageV2 = resultImageV2;
+        this.applicantType = applicantType;
         this.backgroundCheckResult = backgroundCheckResult;
     }
 }

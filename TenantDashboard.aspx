@@ -22,6 +22,16 @@
            color: white; 
            
        }
+
+        .big-table {
+            display: table; /* Make the container element behave like a table */
+            width: 100%; /* Set full-width to expand the whole page */
+        }
+
+        .table-cell {
+            display: table-cell; /* Make elements inside the container behave like table cells */
+        }
+        
         
     </style>
 <div  class="container">
@@ -48,8 +58,8 @@
             </div>
         </div>
            <%--    begin file container--%>
-        <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
-            <div class="col-md-6" style="margin-top: 1rem;">
+        <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto;" >
+            <div class="col-md-6 " style="margin-top: 1rem;">
                     <asp:Image ID="image1" ImageUrl="" class="img-fluid" runat="server" />
                 
                 <div class="row" style="margin-top: 1rem;">
@@ -81,9 +91,9 @@
                     <h3 >Your Favorites</h3> 
                         </div>
                     </div>
-            <div class="container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+            <div class="container row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="margin-top: 1rem;overflow:scroll">
+                    <div class="list-group " style="margin-top: 1rem; overflow:auto">
                         <asp:ListView id="lvFavorites" runat="server" Visible="true" >
 
                             <LayoutTemplate>
@@ -150,7 +160,7 @@
                     <div class="col-md-4">
                     <h3 >Message Board</h3> 
                         </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
                     <div>
                         <a href="skype:Echo123"><button class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
@@ -162,9 +172,9 @@
                         </asp:ScriptManager>        
                 <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
                     <center>
-                        <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
+                        <asp:Label style="font-family: 'Oswald', sans-serif;  font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
                     </center>
-                    <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 20px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
+                    <asp:Label style="font-family: 'Oswald', sans-serif; ; font-size: 20px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
                        
                         <asp:DropDownList ID="hostNameDropdown" runat="server">
                             <asp:ListItem Value="02">Ryan Krane</asp:ListItem>
@@ -189,7 +199,7 @@
 
             <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="overflow:scroll">
+                    <div class="list-group" style="overflow:auto;">
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
@@ -256,11 +266,11 @@
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Background Check Status</h2> 
-            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
-            <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem;" >
+            <div class="col-md-12" style="margin-top: 1rem; ">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
-                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 200px;" ImageUrl="" class="img-fluid" runat="server" /></p>
-                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
+                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 100px;" ImageUrl="" class="img-fluid" runat="server" /></p>
+                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br></p>
             </div>
             </div>
             </div>
@@ -276,7 +286,7 @@
         <div class="col-md-12"  style=" margin-top: 1rem;">
             <h2>Your Rental Agreements</h2>
             <p>When you have a rental agreement, it will be indicated here. We hope you find your perfect housing match so that you can have some wonderful rental agreements.</p>
-            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Sample Agreement" AutoPostBack="true" type="submit" class="btn"/><br/>
+            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Sample Agreement" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
           </div>
     </div><!-- end div big row -->  
     
