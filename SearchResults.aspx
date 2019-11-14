@@ -140,14 +140,14 @@
             </ItemTemplate>
 
         </asp:ListView>
-            <asp:Button runat="server" class="btn" ID="btnRedirect" style="display: none;" Text="Favorite"/>
+<%--            <asp:Button runat="server" class="btn" ID="btnRedirect" style="display: none;" Text="Favorite"/>
             <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
                         <asp:Label style="font-family: 'Oswald', sans-serif;  font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
                         <asp:Button class="btn" ID="redirectButton" href="GetStarted.aspx" runat="server" Text="Create an Account" />
                         <asp:Button class="btn" ID="okButton" runat="server" Text="OK" /> <br/>
                 </asp:Panel>
                 <AjaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="btnRedirect" BackgroundCssClass="modalBackground" CancelControlID="OKButton">
-                </AjaxToolkit:ModalPopupExtender>
+                </AjaxToolkit:ModalPopupExtender>--%>
     </div>    
 </div> <!-- end div container! -->   
 </asp:Content>
