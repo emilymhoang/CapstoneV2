@@ -180,9 +180,10 @@ public partial class TenantDashboard : System.Web.UI.Page
                 command.CommandType = CommandType.Text;
 
 
-                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Property].CityCounty, " +
+                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, " +
                     "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') " +
-                    "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] " +
+                    "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, isnull(PropertyRoom.Image1, 0) " +
+                    "AS Image1, isnull(PropertyRoom.Image2, 0) AS Image2, isnull(PropertyRoom.Image3, 0) AS Image3 from [dbo].[Host] left join [dbo].[Property] " +
                     "on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on " +
                     "[dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID left join [dbo].[Favorite] on " +
                     "[dbo].[PropertyRoom].RoomID = [dbo].[Favorite].RoomID where [dbo].[Favorite].TenantID = @tenantid";
@@ -204,9 +205,54 @@ public partial class TenantDashboard : System.Web.UI.Page
                                 string description = (string)reader["BriefDescription"];
 
 
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
+                                string price = reader["MonthlyPrice"].ToString();
+                                backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
+                                string backgroundCheckPhoto = "";
+                                if (backgroundCheckResult == "n")
+                                {
+                                    backgroundCheckPhoto = "images/NC.png";
+                                }
+                                if (backgroundCheckResult == "y")
+                                {
+                                    backgroundCheckPhoto = "images/icons-07.png";
+                                }
+                                byte[] imgData1;
+                                byte[] imgData2;
+                                byte[] imgData3;
 
-                                Favorite fav = new Favorite(name, location, description, price);
+                                try
+                                {
+                                    imgData1 = (byte[])reader["Image1"];
+                                }
+                                catch
+                                {
+                                    imgData1 = (byte[])Session["defaultPicture"];
+                                }
+
+                                try
+                                {
+                                    imgData2 = (byte[])reader["Image2"];
+                                }
+                                catch
+                                {
+                                    imgData2 = (byte[])Session["defaultPicture"];
+                                }
+
+                                try
+                                {
+                                    imgData3 = (byte[])reader["Image3"];
+                                }
+                                catch
+                                {
+                                    imgData3 = (byte[])Session["defaultPicture"];
+                                }
+
+
+
+                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length);
+                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length);
+                                string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length);
+                                Favorite fav = new Favorite(name, location, description, price, backgroundCheckPhoto, image1, image2, image3);
                                 Favorite.lstFavorites.Add(fav);
                             }
 
