@@ -62,6 +62,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
         emailTextbox.Text = "colecb@jmu.edu";
         confirmEmailTextbox.Text = "colecb@jmu.edu";
         phoneNumberTextbox.Text = "571-555-5555";
+        HostBioTextbox.Text = "I am college professor who lives with my wife. I have an empty furnished basement that I am looking to fill and am hoping to find someone who will help with chores around my house since I am very busy.";
     
     }
 

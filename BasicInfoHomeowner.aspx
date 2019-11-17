@@ -61,9 +61,10 @@
             <div class="col">
              <label for="formGroupExampleInput">Gender</label>
               <asp:DropDownList ID="DropDownListGender" runat="server">
-	<asp:ListItem Value="M">Male</asp:ListItem>
-    <asp:ListItem Value="F">Female</asp:ListItem>
-    <asp:ListItem Value="O">Other</asp:ListItem>
+                  <asp:ListItem Value="O">I do not wish to Answer</asp:ListItem>
+	                <asp:ListItem Value="M">Male</asp:ListItem>
+                    <asp:ListItem Value="F">Female</asp:ListItem>
+    
                   </asp:DropDownList>
               <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListGender" ForeColor="#B23325"></asp:RequiredFieldValidator>
                 </div>
@@ -73,7 +74,6 @@
                     
               <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server" CssClass="m-wrap span12 date form_datetime" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY"></asp:TextBox>
 
-<%--              <asp:Textbox id="dateOfBirthTextbox" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" runat="server"></asp:Textbox>--%>
               <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             <script type="text/javascript">
             $(function () {
@@ -113,6 +113,11 @@
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
+                   <label for="formGroupExampleInput">Host Bio</label>
+                   <asp:Textbox id="HostBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="300" placeholder="Ex. I am retired and live at home. I have an empty furnished basement that I am looking to fill and am hoping to find someone who will help with chores around my house."></asp:Textbox>
+                   <asp:Label ID="result" runat="server" ForeColor="Red"></asp:Label>
+                   <asp:RequiredFieldValidator ID="BioRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="HostBioTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+           
              </div>
           <!--end col-->
           </div> <!--end row class-->

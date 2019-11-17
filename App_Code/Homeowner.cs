@@ -25,7 +25,7 @@ public class Homeowner
     public String confirmPassword { get; private set; }
     public String imageV2 { get; private set; }
     public String name { get; private set; }
-
+    public String hostBio { get; private set; }
 
 
     public Homeowner(String firstName, String lastName, String gender, String dateOfBirth, String email, String phoneNumber)
@@ -37,6 +37,17 @@ public class Homeowner
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         setMiddleName(middleName);
+    }
+    public Homeowner(String firstName, String lastName, String gender, String dateOfBirth, String email, String phoneNumber, String hostBio)
+    {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        setMiddleName(middleName);
+        this.hostBio = hostBio;
     }
 
     public Homeowner(String userName, String password, String confirmPassword)
