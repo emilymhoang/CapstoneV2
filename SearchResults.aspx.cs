@@ -64,9 +64,9 @@ public partial class SearchResults : System.Web.UI.Page
                         favorite.Parameters.AddWithValue("@PropertyID", propertyID);
                         favorite.Parameters.AddWithValue("@RoomID", roomID);
                         favorite.Parameters.AddWithValue("@HostID", hostID);
-                        favorite.Parameters.AddWithValue("@SearchDate", DateTime.Now.ToString("yyyy-MM-dd"));
+                        favorite.Parameters.AddWithValue("@SearchDate", DateTime.Now);
                         favorite.Parameters.AddWithValue("@LastUpdatedBy", "Emily");
-                        favorite.Parameters.AddWithValue("@LastUpdated", DateTime.Now.ToString("yyyy-MM-dd") + DateTime.Now.ToString("hh:mm:ss"));
+                        favorite.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
                         favorite.ExecuteNonQuery();
                     }
                     catch (SqlException t)
