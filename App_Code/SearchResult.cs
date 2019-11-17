@@ -9,6 +9,9 @@ using System.Web;
 public class SearchResult
 {
     public static List<SearchResult> lstSearchResults = new List<SearchResult>();
+
+    public static string selectedReultFullAddress;
+
     public string resultName { get; private set; }
     public string resultLocation { get; private set; }
     public string resultDescription { get; private set; }
@@ -20,6 +23,8 @@ public class SearchResult
     public string resultimage2 { get; private set; }
     public string resultimage3 { get; private set; }
     public string backgroundCheckResult { get; private set; }
+
+    public string resultFullAddress { get; private set; }
 
     public SearchResult(int resultID, string resultName, string resultLocation, string resultDescription, double resultPrice, string resultimage1, string resultimage2, string resultimage3, string backgroundCheckResult)
     {
@@ -33,4 +38,10 @@ public class SearchResult
         this.resultimage3 = resultimage3;
         this.backgroundCheckResult = backgroundCheckResult;
     }
+
+    public void setFullAddress(string resultFullAddress)
+    {
+        this.resultFullAddress = resultFullAddress;
+    }
+
 }

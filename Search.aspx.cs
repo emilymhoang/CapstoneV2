@@ -56,9 +56,12 @@ public partial class Search : System.Web.UI.Page
 
                 if (searchBy)
                 {
-                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, " +
+                    command.CommandText = "select " +
+                        "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
+                        "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
                         "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
-                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
+                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from" +
+                        " [dbo].[Host] left join [dbo].[Property] on " +
                         "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
                         "where [dbo].[Property].Zip = @zip";
 
@@ -66,13 +69,14 @@ public partial class Search : System.Web.UI.Page
                 }
                 else
                 {
-                    command.CommandText = "select isnull([dbo].[PropertyRoom].Image1, 0), isnull([dbo].[PropertyRoom].Image2, 0)," +
-                        " isnull([dbo].[PropertyRoom].Image3, 0)" +
-                        ", [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
+                    command.CommandText = "select " +
+                        "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
+                        "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
                         "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
                         "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
-                        "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
-                        "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
+                        "[dbo].[Host] left join [dbo].[Property] on " +
+                        "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
+                        "where [dbo].[Property].CityCounty = @city";
 
                     command.Parameters.AddWithValue("@city", propertySearch);
                     //command.Parameters.AddWithValue("@default", Session["defaultPicture"]);
@@ -97,6 +101,7 @@ public partial class Search : System.Web.UI.Page
                                 int id = Convert.ToInt32(reader["RoomID"]);
                                 string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
+                                string fullAddress = (string)reader["HouseNumber"] + " " + (string)reader["Street"] + ", " + (string)reader["CityCounty"] + ", " +(string)reader["HomeState"] + " " + (string)reader["Zip"]; 
 
                                 byte[] imgData1;
                                 byte[] imgData2;
@@ -146,6 +151,7 @@ public partial class Search : System.Web.UI.Page
 
 
                                 SearchResult result = new SearchResult(id, name, location, description, price, image1, image2, image3, backgroundCheckPhoto);
+                                result.setFullAddress(fullAddress);
 
                                 SearchResult.lstSearchResults.Add(result);
                             }
@@ -154,6 +160,7 @@ public partial class Search : System.Web.UI.Page
                         else
                         {
                             lblInvalidSearch.Text = "Search returned no properties";
+                            return;
                         }
 
                     }

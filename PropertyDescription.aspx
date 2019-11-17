@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PropertyDescription.aspx.cs" Inherits="PropertyDescription" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 
@@ -20,7 +22,17 @@
             border: 1px solid black;
         }
 
-</style>   
+        #googleMapsApi{
+            height: 400px;  
+            width:100%;
+            margin: 15px;  
+            padding: 15px  
+        }
+
+
+</style> 
+    
+
       <head>
 <meta charset="UTF-8">
 <meta name="description" content="Room Magnet">
@@ -186,9 +198,108 @@
         </div>
         
     </div><!-- end div row --> 
+
     
+</div> <!-- end div container! -->   
     
-    
-</div> <!-- end div container! -->    
+   
+    <div id="googleMapsApi">
+         <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCoG7Yz9O6kPXgfXB8dk3S0Ehl0YZwn4r8&sensor=false&libraries=places,geometry"></script>
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
+                <div class="container" id="map-canvas" style="height: 400px; width:100%;"></div>
+
+        <script type="text/javascript">  
+           
+                    function init() {
+                
+                        var geocoder = new google.maps.Geocoder();
+                        //will use this once pages are all linked up
+                        //--code here--
+                        //
+                        var address = 'san francisco, ca';
+                        var map;
+                        var marker;
+                        var circle;
+                        var searchBox;
+                
+                        geocoder.geocode({ 'address': address }, function (results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+
+                                var startlat = results[0].geometry.location.lat();
+                                var startlng = results[0].geometry.location.lng();
+
+                                 map = new google.maps.Map(document.getElementById('map-canvas'), {
+                                    center: {
+                                        lat: startlat,
+                                        lng: startlng
+                                    },
+                                    zoom: 12
+                                });
+
+                                marker = new google.maps.Marker({
+                                    position: {
+                                        lat: startlat,
+                                        lng: startlng
+                                    },
+                                            map: map,
+                                            draggable:true
+                                });
+
+                                 circle = new google.maps.Circle({
+                                    map: map,
+                                    radius: 4023,    // 2.5 miles in metres
+                                    fillColor: '#AA0000'
+                                 });
+
+                                circle.bindTo('center', marker, 'position');
+
+                                searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
+                                map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('pac-input'));
+
+                                google.maps.event.addListener(searchBox, 'places_changed', function() {
+                                searchBox.set('map', null);
+
+                                var places = searchBox.getPlaces();
+
+                                 var bounds = new google.maps.LatLngBounds();
+                                 var i, place;
+                                 for (i = 0; place = places[i]; i++) {
+                                   (function(place) {
+                                     var marker = new google.maps.Marker({
+
+                                       position: place.geometry.location
+                                     });
+                                       marker.bindTo('map', searchBox, 'map');
+                                       circle.bindTo('center', marker, 'position');
+                                     google.maps.event.addListener(marker, 'map_changed', function() {
+                                       if (!this.getMap()) {
+                                         this.unbindAll();
+                                       }
+                                     });
+                                     bounds.extend(place.geometry.location);
+
+
+                                   }(place));
+
+                                 }
+                                 map.fitBounds(bounds);
+                                 searchBox.set('map', map);
+                                 map.setZoom(Math.min(map.getZoom(),12));
+
+                               });
+
+
+                            } else {
+                                alert("Request failed.")
+                            }
+                        });
+                
+                 }
+                 google.maps.event.addDomListener(window, 'load', init);
+        
+            </script>
+
+        </div>
+
 
 </asp:Content>
