@@ -83,7 +83,8 @@ public partial class SearchResults : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("Login.aspx");
+            Response.Write("<script> alert('You need to login first.'); </script>");
+            return;
         }
     }
 }
