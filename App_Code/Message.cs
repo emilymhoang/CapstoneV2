@@ -22,8 +22,8 @@ public class Message
     public Message(int tenantID, int hostID, String message, string lastUpdatedBy)
     {
         this.hostID = hostID;
-        this.messageDate = DateTime.Today;
-        this.lastUpdated = DateTime.Today;
+        this.messageDate = DateTime.Now;
+        this.lastUpdated = DateTime.Now;
         this.tenantID = tenantID;
         this.message = message;
         this.lastUpdatedBy = lastUpdatedBy;

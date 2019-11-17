@@ -93,7 +93,7 @@
                     </div>
             <div class="container row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group " style="margin-top: 1rem; overflow:auto">
+                    <div class="list-group " style="margin-top: 1rem; overflow:scroll; height: 500px;">
         <asp:ListView id="lvFavorites" runat="server" Visible="true" >
 
             <LayoutTemplate>
@@ -237,7 +237,7 @@
 
             <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="overflow:auto;">
+                    <div class="list-group" style="overflow:scroll; height: 290px;">
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
