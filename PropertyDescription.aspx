@@ -112,7 +112,7 @@
       <a href class="btn" style="margin-top: 1.5rem; margin-left: .5rem;">Back</a>
       </div>
     <div class="col-md-8" style="margin-top: 1rem; "> 
-          <h1>John Smith's Property <img src="images/icons-07.png" style="max-width: 30px;" alt="background check approved icon"></h1> 
+          <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label><img src="images/icons-07.png" style="max-width: 30px;" alt="background check approved icon"></h1> 
         </div> <!--end col-->
       <div class="col-md-3" style="margin-top: 1.5rem; "> 
           <p style=" float: center; "><a href="#"><img src="images/badges-11.png" style="max-width: 100px;" alt="message icon"></a>
@@ -123,15 +123,10 @@
     
     <div class="row prop" style="border-bottom: solid; border-bottom-width: 1px; ">
         <div class="col-md-6" >
-            <h2 ><asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="backgroundcheck" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 20px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
-
-            </h2>
-
-            <h5><asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("resultLocation") %>'></asp:Label>
-
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label></h5>
-            <p ><asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text='<%#Eval("resultDescription") %>'></asp:Label>
-</p>
+            <h2> <asp:Label runat="server"  style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text = "Property Name"></asp:Label></h2>
+            <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text = "Property Location"></asp:Label></h5>     
+            <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text = "Property Price"></asp:Label></h5>
+            <p > <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text = "The brief description of the property would go here."></asp:Label></p>
             <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">
         </div>
         
@@ -162,9 +157,9 @@
     
     <div class="row" style="margin-top: 1rem;">
         <div class="col-md-6" >
-            <h2 >Host(s) Name Here</h2>
-            <h5>Title of host's goes here.</h5>
-            <p >The brief bio of a host would go here. I am a nice person to live with, I am a retired teacher, I enjoy knitting, cooking and watching movies. </p>
+            <h2> <asp:Label runat="server" Text = "Host Name" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblHostName"></asp:Label> </h2>
+            <h5> <asp:Label runat="server" Text = "Host " style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblHostTitle"></asp:Label>  </h5>
+            <p> <asp:Label runat="server" Text = "The brief bio of a host would go here." style="font-family: 'Raleway', sans-serif; font-size: 18px;" ID="lblHostBio"></asp:Label>  </p>
             <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">
         </div>
         
