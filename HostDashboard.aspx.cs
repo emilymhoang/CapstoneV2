@@ -47,7 +47,7 @@ public partial class HostDashboard : System.Web.UI.Page
         insert.ExecuteNonQuery();
         Session["hostID"] = hostID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2 FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2, HostBio FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
         filter.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader rdr = filter.ExecuteReader();
         String backgroundCheckResult;
@@ -57,6 +57,7 @@ public partial class HostDashboard : System.Web.UI.Page
             emailTextbox.Text = rdr["Email"].ToString();
             phoneTextbox.Text = rdr["PhoneNumber"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
+            hostBioTextbox.Text = rdr["HostBio"].ToString();
             backgroundCheckResult = rdr["BackgroundCheckResult"].ToString();
             if (backgroundCheckResult == "y")
             {
@@ -71,12 +72,13 @@ public partial class HostDashboard : System.Web.UI.Page
                 backgroundCheckResultLbl.Text = "Our people are working hard to get your background check completed. Background checks are important to us, we take your safety seriously.";
             }
 
-            byte[] imgData = (byte[])rdr["imageV2"];
+             
             if (!(imgData == null))
             {
                 string img = Convert.ToBase64String(imgData, 0, imgData.Length);
                 image1.ImageUrl = "data:image;base64," + img;
             }
+            
         }
         usernameTextbox.Text = Session["username"].ToString();
 
