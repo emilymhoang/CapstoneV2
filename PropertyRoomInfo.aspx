@@ -63,7 +63,13 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Monthly Price</label>
-              <asp:Textbox ID="monthlyPriceTextbox" class="form-control" MaxLength="10" placeholder="Ex. 800.00" runat="server"></asp:Textbox>
+                <script> 
+                 function setTwoNumberDecimal(event) {
+                    this.value = parseFloat(this.value).toFixed(2);
+                    }
+                </script>
+                <asp:TextBox ID="monthlyPriceTextbox" class="form-control" runat="server" placeholder="Ex. 800.00" onchange="setTwoNumberDecimal" MaxLength="7" step="0.01" value="0.00" type="number" name="item[amount]"></asp:TextBox>
+              
                 <asp:RequiredFieldValidator ID="monthlyPriceRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="monthlyPriceTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
