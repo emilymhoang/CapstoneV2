@@ -12,7 +12,14 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (IsPostBack==false)
+        {
+            dateOfBirthRequiredFieldValidator.Enabled = false;
+        }
+        else
+        {
+            dateOfBirthRequiredFieldValidator.Enabled = true;
+        }
     }
 
     
@@ -58,6 +65,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         {
             if (emailTextbox.Text == confirmEmailTextbox.Text)
             {
+                if(DropDownListGender.SelectedValue != "-1") { 
                 //if (age > 18 || age < 100)
                 //    {
                         Session["firstName"] = firstNameTextbox.Text;
@@ -71,7 +79,11 @@ public partial class BasicInfoTenant : System.Web.UI.Page
                         Response.Redirect("CreateLoginTenant.aspx");
                         //resultmessagedob.Text = "Student must be between 18 - 30 years old, age is " + age;
                         
-                //}
+                }
+                else
+                {
+                    resultmessagegender.Text = "Must select a valid gender";
+                }
             }
             else
             {

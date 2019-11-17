@@ -47,11 +47,13 @@
           <div class="row">
             <div class="col">
              <label for="formGroupExampleInput">Gender</label><br />
-               <asp:DropDownList ID="DropDownListGender" runat="server">
-	                <asp:ListItem Value="M">Male</asp:ListItem>
+               <asp:DropDownList ID="DropDownListGender" runat="server" AutoPostBack="true">
+	               <asp:ListItem Value="-1">Select One</asp:ListItem> 
+                   <asp:ListItem Value="M">Male</asp:ListItem>
                     <asp:ListItem Value="F">Female</asp:ListItem>
-                    <asp:ListItem Value="O">Other</asp:ListItem>
-                  </asp:DropDownList>
+                    <asp:ListItem Value="O">I do not wish to answer</asp:ListItem>
+                  </asp:DropDownList> <br/>
+                <asp:Label ID="resultmessagegender" runat="server" ForeColor="Red"></asp:Label><br/>
               <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListGender" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
@@ -82,7 +84,7 @@
               <label for="formGroupExampleInput">Email</label>
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-               <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invaid Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="emailTextBox"></asp:RegularExpressionValidator>             
+               <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="#B23325" ControlToValidate="emailTextBox"></asp:RegularExpressionValidator>             
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Confirm Email</label>
@@ -109,7 +111,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           
             <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" AutoPostBack="true" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
         </div>     
       </div> <!--end container-->
     </section>
