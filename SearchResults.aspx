@@ -125,7 +125,7 @@
                                      <td>
                                         <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/>
                                         &nbsp;
-                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" />
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" OnClick="profileButton"/>
                                     </td
                                 </tr>
                              </table>

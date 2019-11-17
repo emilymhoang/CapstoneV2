@@ -99,4 +99,9 @@ public partial class SearchResults : System.Web.UI.Page
             return;
         }
     }
+    protected void profileButton(object sender, EventArgs e)
+    {
+        Response.Redirect("PropertyDescription.aspx");
+    }
+
 }
