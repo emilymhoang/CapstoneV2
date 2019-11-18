@@ -41,14 +41,14 @@ public partial class HostDashboard : System.Web.UI.Page
         int accountID = Convert.ToInt32(Session["accountID"]);
         Response.Write(accountID);
 
-        SqlCommand insert = new SqlCommand("SELECT HostID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
+        SqlCommand insert = new SqlCommand("SELECT HostID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);
         insert.Connection = sc;
         int hostID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
         Session["hostID"] = hostID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2, HostBio FROM [Capstone].[dbo].[Host] WHERE HostID = @HostID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2, HostBio FROM [dbo].[Host] WHERE HostID = @HostID", sc);
         filter.Parameters.AddWithValue("@HostID", hostID);
         SqlDataReader rdr = filter.ExecuteReader();
         String backgroundCheckResult;
@@ -87,7 +87,7 @@ public partial class HostDashboard : System.Web.UI.Page
         //Change badge property info
 
         int roomID = Convert.ToInt32(Session["RoomID"]);
-        SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [Capstone].[dbo].[BadgeProperty] WHERE RoomID =" + roomID, sc);
+        SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID =" + roomID, sc);
 
         SqlDataReader rdr2 = badge2.ExecuteReader();
 
@@ -183,8 +183,8 @@ public partial class HostDashboard : System.Web.UI.Page
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
                 command.CommandText = "SELECT PropertyRoom.RoomID, PropertyRoom.PropertyID, Host.HostID, PropertyRoom.MonthlyPrice, isnull(PropertyRoom.BriefDescription, 'No Description') as BriefDescription, isnull(PropertyRoom.RoomDescription, 'No Description') as RoomDescription, PropertyRoom.Availability," +
-                "PropertyRoom.SquareFootage, PropertyRoom.Image1, PropertyRoom.Image2, PropertyRoom.Image3 FROM Capstone.[dbo].[Host] inner join Capstone.[dbo].[Property]" +
-                "on Property.HostID = Host.HostID left join Capstone.[dbo].[PropertyRoom] ON PropertyRoom.propertyID = Property.PropertyID WHERE Host.HostID = @HostID";
+                "PropertyRoom.SquareFootage, PropertyRoom.Image1, PropertyRoom.Image2, PropertyRoom.Image3 FROM [dbo].[Host] inner join [dbo].[Property]" +
+                "on Property.HostID = Host.HostID left join [dbo].[PropertyRoom] ON PropertyRoom.propertyID = Property.PropertyID WHERE Host.HostID = @HostID";
 
                 command.Parameters.AddWithValue("@HostID", hostID);
                 try

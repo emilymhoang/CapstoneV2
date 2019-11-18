@@ -35,7 +35,7 @@ public partial class SearchResults : System.Web.UI.Page
                     var index = item.DataItemIndex;
                     var roomID = SearchResult.lstSearchResults[index].resultID;
 
-                    command.CommandText = "SELECT PropertyID, HostID FROM [Capstone].[dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [Capstone].[dbo].[PropertyRoom] where RoomID = @RoomID)";
+                    command.CommandText = "SELECT PropertyID, HostID FROM [dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [dbo].[PropertyRoom] where RoomID = @RoomID)";
                     command.Parameters.AddWithValue("@RoomID", roomID);
                     int propertyID = 0, hostID = 0;
                     try
@@ -55,7 +55,7 @@ public partial class SearchResults : System.Web.UI.Page
                         }
                     getName.Connection = connection;
                     getName.CommandType = CommandType.Text;
-                    getName.CommandText = "SELECT FirstName, LastName from [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID";
+                    getName.CommandText = "SELECT FirstName, LastName from [dbo].[Tenant] WHERE TenantID = @TenantID";
                     getName.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["tenantID"]));
                     string firstName = "", lastName = "";
 
@@ -72,7 +72,7 @@ public partial class SearchResults : System.Web.UI.Page
                         }
                     }
 
-                    SqlCommand favorite = new SqlCommand("INSERT INTO [Capstone].[dbo].[Favorite] (TenantID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated, HostID)" +
+                    SqlCommand favorite = new SqlCommand("INSERT INTO [dbo].[Favorite] (TenantID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated, HostID)" +
                         " values (@TenantID, @PropertyID, @RoomID, @SearchDate, @LastUpdatedBy, @LastUpdated, @HostID)", connection);
                         favorite.Parameters.AddWithValue("@TenantID", Session["tenantID"].ToString());
                         favorite.Parameters.AddWithValue("@PropertyID", propertyID);

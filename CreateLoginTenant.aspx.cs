@@ -43,7 +43,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
 
         sc.Open();
-        SqlCommand userCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Login] WHERE lower(Username) = @Username", sc);
+        SqlCommand userCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Login] WHERE lower(Username) = @Username", sc);
 
         userCheck.Parameters.AddWithValue("@Username", userNew);
         userCheck.Connection = sc;
@@ -87,7 +87,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                 {
                     Tenant newTenant = new Tenant(firstName, lastName, gender, dateOfBirth, email, phoneNumber, userNameTextbox.Text, passwordTextbox.Text, confirmPasswordTextbox.Text);
                     resultmessage.Text = "";
-                    insertTenant.CommandText = "INSERT INTO [Capstone].[dbo].[Tenant] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
+                    insertTenant.CommandText = "INSERT INTO [dbo].[Tenant] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
                                 "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
                                 "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated); ";
 
@@ -109,7 +109,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
 
 
-                    SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Tenant] WHERE lower(Email) = @Email", sc);
+                    SqlCommand insert = new SqlCommand("SELECT TenantID FROM [dbo].[Tenant] WHERE lower(Email) = @Email", sc);
                     insert.Parameters.AddWithValue("@Email", email.ToLower());
                     insert.Connection = sc;
                     int tenantID = Convert.ToInt32(insert.ExecuteScalar());
@@ -118,7 +118,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
 
                     BadgeTenant newBadgeTenant = new BadgeTenant(tenantID, underGraduate, graduate);
-                    insertBadgeTenant.CommandText = "INSERT INTO [Capstone].[dbo].[BadgeTenant] (TenantID, Undergraduate, graduate) VALUES (@TenantID, @Undergraduate, @graduate);";
+                    insertBadgeTenant.CommandText = "INSERT INTO [dbo].[BadgeTenant] (TenantID, Undergraduate, graduate) VALUES (@TenantID, @Undergraduate, @graduate);";
                     insertBadgeTenant.Parameters.AddWithValue("@TenantID", tenantID);
                     insertBadgeTenant.Parameters.AddWithValue("@Undergraduate", underGraduate);
                     insertBadgeTenant.Parameters.AddWithValue("@graduate", graduate);
@@ -149,7 +149,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                             BinaryReader br = new BinaryReader(stream);
                             byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                            SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET imageV2 = @imgdata WHERE TenantID = @TenantID", sc);
+                            SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Tenant] SET imageV2 = @imgdata WHERE TenantID = @TenantID", sc);
                             cmd.Parameters.AddWithValue("@TenantID", tenantID);
                             cmd.Parameters.AddWithValue("@imgdata", bytes);
                             cmd.ExecuteNonQuery();
@@ -167,14 +167,14 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     }
 
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
-                    insertLogin.CommandText = "INSERT INTO [Capstone].[dbo].[Login] (Username, Password, TenantID) VALUES (@userName, @Password, @TenantID)";
+                    insertLogin.CommandText = "INSERT INTO [dbo].[Login] (Username, Password, TenantID) VALUES (@userName, @Password, @TenantID)";
                     insertLogin.Parameters.AddWithValue("@userName", newTenant.userName);
                     insertLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(newTenant.password));
                     insertLogin.Parameters.AddWithValue("@TenantID", tenantID);
 
                     insertLogin.ExecuteNonQuery();
 
-                    SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE TenantID = @TenantID", sc);
+                    SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [dbo].[Login] WHERE TenantID = @TenantID", sc);
                     getAccountID.Parameters.AddWithValue("@TenantID", tenantID);
                     getAccountID.Connection = sc;
                     int accountID = Convert.ToInt32(getAccountID.ExecuteScalar());

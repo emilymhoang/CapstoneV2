@@ -43,7 +43,7 @@ public partial class PropertyInfoHomeowner : System.Web.UI.Page
 
 
         sc.Open();
-        SqlCommand propCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Property] WHERE HouseNumber = @HouseNumber AND Street = @Street", sc);
+        SqlCommand propCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Property] WHERE HouseNumber = @HouseNumber AND Street = @Street", sc);
 
         propCheck.Parameters.AddWithValue("@HouseNumber", houseNumNew);
         propCheck.Parameters.AddWithValue("@Street", streetNew);
@@ -61,7 +61,7 @@ public partial class PropertyInfoHomeowner : System.Web.UI.Page
         {
             Property newProp = new Property(HouseNumber, Street, CityCounty, HomeState, Country, Zip);
             //resultmessage.Text = "";
-            insertProperty.CommandText = "INSERT INTO [Capstone].[dbo].[Property] (HouseNumber, Street, Zip, CityCounty, HomeState, Country," +
+            insertProperty.CommandText = "INSERT INTO [dbo].[Property] (HouseNumber, Street, Zip, CityCounty, HomeState, Country," +
                                 "MonthlyPrice, NumberBedrooms, LastUpdatedBy, LastUpdated, HostID) VALUES (@HouseNumber, @Street, @Zip, @CityCounty," +
                                 "@HomeState, @Country, @MonthlyPrice, @NumberBedrooms, @LastUpdatedBy, @LastUpdated, @HostID); ";
 

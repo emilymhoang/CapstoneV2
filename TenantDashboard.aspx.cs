@@ -44,14 +44,14 @@ public partial class TenantDashboard : System.Web.UI.Page
         int accountID = Convert.ToInt32(Session["accountID"]);
         Response.Write(accountID);
 
-        SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
+        SqlCommand insert = new SqlCommand("SELECT TenantID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);
         insert.Connection = sc;
         int tenantID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
         Session["tenantID"] = tenantID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2 FROM [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2 FROM [dbo].[Tenant] WHERE TenantID = @TenantID", sc);
         filter.Parameters.AddWithValue("@TenantID", tenantID);
         SqlDataReader rdr = filter.ExecuteReader();
         String backgroundCheckResult;
@@ -86,7 +86,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         int tenantIDRefresh = Convert.ToInt32(Session["tenantID"]);
         Message.lstMessages.Clear();
 
-        SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [Capstone].[dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
+        SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
         badge.Parameters.AddWithValue("@TenantID", tenantID);
 
         SqlDataReader rdr2 = badge.ExecuteReader();

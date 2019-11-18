@@ -23,7 +23,7 @@ public partial class _Default : System.Web.UI.Page
             findPass.Connection = sc;
             // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
             sc.Open();
-            findPass.CommandText = "select Password from [Capstone].[dbo].[Login] where Username = @Username";
+            findPass.CommandText = "select Password from [dbo].[Login] where Username = @Username";
             findPass.Parameters.Add(new SqlParameter("@Username", userNameTextbox.Text));
 
             SqlDataReader reader = findPass.ExecuteReader(); // create a reader
@@ -40,7 +40,7 @@ public partial class _Default : System.Web.UI.Page
                         loginButton.Enabled = false;
                         userNameTextbox.Enabled = false;
                         passwordTextbox.Enabled = false;
-                        SqlCommand insert = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE Username = @Username", sc);
+                        SqlCommand insert = new SqlCommand("SELECT AccountID FROM [dbo].[Login] WHERE Username = @Username", sc);
                         insert.Parameters.AddWithValue("@Username", userNameTextbox.Text);
                         insert.Connection = sc;
                         int accountID = Convert.ToInt32(insert.ExecuteScalar());
@@ -50,7 +50,7 @@ public partial class _Default : System.Web.UI.Page
                         Session["LoggedIn"] = "true";
 
 
-                        SqlCommand filter = new SqlCommand("SELECT TenantID, HostID, AdminID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
+                        SqlCommand filter = new SqlCommand("SELECT TenantID, HostID, AdminID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
                         filter.Parameters.AddWithValue("@AccountID", accountID);
                         SqlDataReader rdr = filter.ExecuteReader();
                         string tenantID = "", hostID = "", adminID = "";
@@ -84,35 +84,6 @@ public partial class _Default : System.Web.UI.Page
             }
         sc.Close();
 
-        //}
-        //catch
-        //{
-        //    resultmessage.Text = "Database Error.";
-        //}
     }
 
-//    protected Boolean EmailValidation(String email)
-//{
-//    Boolean emailRegistered = false;
-//    SqlCommand checkUser;
-//    sc.Open();
-//    //parameterized queries with XXS
-//    checkUser = new SqlCommand("Select count(*) from [CapProject].[dbo].[Login] where (Email = @Email)", sc);
-//    checkUser.Parameters.AddWithValue("@Email", HttpUtility.HtmlEncode(userNameTextbox.Text));
-//    int userExist = (int)checkUser.ExecuteScalar();
-//    sc.Close();
-
-//    //works if the login info is already in DB but not if it's not 
-//    if (userExist > 0)
-//    {
-//        emailRegistered = true;
-
-//    }
-//    else
-//    {
-//        emailRegistered = false;
-//    }
-
-//    return emailRegistered;
-//    }
 } 

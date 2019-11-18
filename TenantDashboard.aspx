@@ -140,7 +140,7 @@
                                 </tr>
                              </table>
                         </td>
-                        <td>
+                        <td style="width: 200px;">
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
                                 <center>
                                 <div class="col-md-6" style="margin-top: 1rem;">

@@ -21,7 +21,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
 
 
         sc.Open();
-        SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Host] WHERE lower(email) = @Email", sc);
+        SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Host] WHERE lower(email) = @Email", sc);
         emailCheck.Parameters.AddWithValue("@Email", emailNew);
         emailCheck.Connection = sc;
         int count = Convert.ToInt32(emailCheck.ExecuteScalar());

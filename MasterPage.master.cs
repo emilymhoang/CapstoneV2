@@ -32,7 +32,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
                  
-                command.CommandText = "select [dbo].[Tenant].imageV2 from [dbo].[Tenant] where [dbo].[Tenant].TenantID = 108";
+                command.CommandText = "select [dbo].[Tenant].imageV2 from [dbo].[Tenant] where [dbo].[Tenant].TenantID = 422";
                 
                 try
                 {
@@ -81,7 +81,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             int accountID = Convert.ToInt32(Session["accountID"]);
             Response.Write(accountID);
 
-            SqlCommand login = new SqlCommand("SELECT HostID, TenantID, AdminID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
+            SqlCommand login = new SqlCommand("SELECT HostID, TenantID, AdminID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
             login.Parameters.AddWithValue("@AccountID", accountID);
             login.Connection = sc;
             SqlDataReader rdr = login.ExecuteReader();
