@@ -12,7 +12,7 @@
     h4{
         font-family: 'Oswald', sans-serif;
         
-        font-size: 30px;
+        font-size: 40px;
     }
 
         .btn {
@@ -24,7 +24,7 @@
         .paragraph{
             font-family: 'Oswald', sans-serif;
                 color: #756664;
-                font-size: 20px;
+                font-size: 30px;
         }
         </style>
 
@@ -36,10 +36,6 @@
                 <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 25%; " aria-valuenow="25" ></div>
                </div>
       </div>
-       
-   
-       
-       
     </header>
 
     <section id="creation" style="margin-top: 4rem;">
@@ -47,12 +43,12 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">First Name</label>
-              <asp:Textbox ID="firstNameTextbox" class="form-control" MaxLength="30" placeholder="First Name" runat="server"></asp:Textbox>
+              <asp:Textbox ID="firstNameTextbox" class="form-control" MaxLength="30" placeholder="First Name" runat="server" type="text"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="firstNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="firstNameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Last Name</label>
-              <asp:Textbox id="lastNameTextbox" class="form-control" MaxLength="30" placeholder="Last Name" runat="server"></asp:Textbox>
+              <asp:Textbox id="lastNameTextbox" class="form-control" MaxLength="30" placeholder="Last Name" runat="server" type="text"></asp:Textbox>
               <asp:RequiredFieldValidator ID="lastNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="lastNameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
@@ -61,21 +57,23 @@
             <div class="col">
              <label for="formGroupExampleInput">Gender</label>
               <asp:DropDownList ID="DropDownListGender" runat="server">
+                <asp:ListItem Value="-1">Select One</asp:ListItem> 
                   <asp:ListItem Value="O">I do not wish to Answer</asp:ListItem>
 	                <asp:ListItem Value="M">Male</asp:ListItem>
                     <asp:ListItem Value="F">Female</asp:ListItem>
     
                   </asp:DropDownList>
+                <asp:Label ID="resultmessagegender" runat="server" ForeColor="Red"></asp:Label><br/>
               <asp:RequiredFieldValidator ID="genderRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListGender" ForeColor="#B23325"></asp:RequiredFieldValidator>
                 </div>
             <div class="col">
                  <div class="form-group">
               <label for="formGroupExampleInput">Date of Birth</label>
                     
-              <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server" CssClass="m-wrap span12 date form_datetime" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY"></asp:TextBox>
-
+              <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server"  class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" type="date"></asp:TextBox>
+<%--CssClass="m-wrap span12 date form_datetime"--%>
               <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-            <script type="text/javascript">
+<%--            <script type="text/javascript">
             $(function () {
             $('#dateOfBirthTextbox').datepicker({
                 changeMonth: true,
@@ -84,7 +82,7 @@
                 language: "tr"
             });
         });
-            </script>
+            </script>--%>
                 </div>            
              </div> <!--end col-->
           </div> <!--end row class-->
@@ -92,12 +90,12 @@
         <div class="row">
             <div class="col">
                <label for="formGroupExampleInput">Email</label>
-              <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
+              <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
            <div class="col">
               <label for="formGroupExampleInput">Confirm Email</label>
-              <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
+              <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:Label ID="resultmessage" runat="server" ForeColor="Red"></asp:Label>
                <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="Red"></asp:Label>
                 
@@ -109,12 +107,25 @@
           <div class="row">
              <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
-              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="50" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
+                 <script> 
+                     window.addFormat = function addFormat(f) {
+        var r = /(\D+)/g,
+            npa = '',
+            nxx = '',
+            last4 = '';
+        f.value = f.value.replace(r, '');
+        npa = f.value.substr(0, 3);
+        nxx = f.value.substr(3, 3);
+        last4 = f.value.substr(6, 4);
+        f.value = '(' + npa + ') ' + nxx + '-' + last4;
+    }
+                 </script>
+              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="13" onKeyup="addFormat(this)" placeholder="(xxx)xxx-xxxx" runat="server" type="tel"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
                    <label for="formGroupExampleInput">Host Bio</label>
-                   <asp:Textbox id="HostBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="300" placeholder="Ex. I am retired and live at home. I have an empty furnished basement that I am looking to fill and am hoping to find someone who will help with chores around my house."></asp:Textbox>
+                   <asp:Textbox id="HostBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="300" placeholder="Ex. I am retired and live at home. I have an empty furnished basement that I am looking to fill and am hoping to find someone who will help with chores around my house." type="text"></asp:Textbox>
                    <asp:Label ID="result" runat="server" ForeColor="Red"></asp:Label>
                    <asp:RequiredFieldValidator ID="BioRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="HostBioTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
            

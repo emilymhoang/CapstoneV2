@@ -182,8 +182,8 @@ public partial class TenantDashboard : System.Web.UI.Page
 
                 command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, " +
                     "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') " +
-                    "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, isnull(PropertyRoom.Image1, 0) " +
-                    "AS Image1, isnull(PropertyRoom.Image2, 0) AS Image2, isnull(PropertyRoom.Image3, 0) AS Image3 from [dbo].[Host] left join [dbo].[Property] " +
+                    "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, PropertyRoom.Image1 " +
+                    "AS Image1, PropertyRoom.Image2 AS Image2, PropertyRoom.Image3 AS Image3 from [dbo].[Host] left join [dbo].[Property] " +
                     "on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on " +
                     "[dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID left join [dbo].[Favorite] on " +
                     "[dbo].[PropertyRoom].RoomID = [dbo].[Favorite].RoomID where [dbo].[Favorite].TenantID = @tenantid";
@@ -205,7 +205,7 @@ public partial class TenantDashboard : System.Web.UI.Page
                                 string description = (string)reader["BriefDescription"];
 
 
-                                string price = reader["MonthlyPrice"].ToString();
+                                string price = Math.Round(Convert.ToDouble(reader["MonthlyPrice"])).ToString();
                                 backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 string backgroundCheckPhoto = "";
                                 if (backgroundCheckResult == "n")

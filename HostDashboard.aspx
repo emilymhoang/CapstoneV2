@@ -85,26 +85,47 @@
         </div>
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
-            <div class="col-md-6" style="margin-top: 1rem;">
-                                <h2><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h2>
-
-                 <div>
+            <div class="col-md-12" style="margin-top: 1rem;">
+                <h3>Your Available Rooms in: </h3>
+                <h4><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h4>
+        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 400px;">
         <asp:ListView id="lvPropertyRoom" runat="server" Visible="true" >
 
             <LayoutTemplate>
-                <%--<h1>Your Property Room</h1>--%>
                 <table id="tbl1" runat="server">
                     <tr id="itemPlaceholder" runat="server"></tr>
                 </table>
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table style="margin-top: 1rem; border-bottom: solid; width:500px; border-bottom-width: 1px;">
+                <table style="margin-top: 1rem; border-bottom: solid; border-top: solid 1px; border-bottom-width: 1px;">
                     <tr>
+                         <td>
+                             <table >
+                                 
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label> </br>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                     <td>
+                                        <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br>
+                                         </br>
+                                    </td>
+                                 </tr>   
+                                
+                             </table>
+                        </td>
+
                         <td>
-                            <td style="max-width: 500px;">
-                            <div class="row" style="margin:auto; margin-bottom: 1rem;" >
-                                <div class="col-md-6" style="margin-top: 1rem;">
+                            <div class="row" style="margin:auto; margin-bottom: 1rem; margin-top: 1rem;" >
+                                <center>
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -114,14 +135,13 @@
                                     <div class="carousel-inner">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" ImageUrl='<%#Eval("roomimage1") %>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" ImageUrl='<%#Eval("roomimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
-
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" ImageUrl='<%#Eval("roomimage2") %>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" ImageUrl='<%#Eval("roomimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("roomimage3") %>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("roomimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>
@@ -135,20 +155,10 @@
                                     </a>
                                 </div>
                                </div>
+                                    </center>
                               </div>
-                                <td>
-                                     <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label4" Text='<%#Eval("availability") %>'></asp:Label> </br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label5" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
-                            <asp:Label runat="server" ID="Label6" style="max-width: 200px; min-width: 200px; word-wrap: break-word; font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("roomDescription") %>'></asp:Label></br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label7" Text='<%#Eval("monthlyPrice") %>'></asp:Label></br>    
-                                    </td>
                         </td>
-                        <td>
-                           <%-- <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("availability") %>'></asp:Label> </br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
-                            <asp:Label runat="server" ID="lblResultDesc" style="max-width: 200px; min-width: 200px; word-wrap: break-word; font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("roomDescription") %>'></asp:Label></br>
-                            <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label></br>    --%>
-                        </td>
+
                     </tr>
                 </table>
 
@@ -156,7 +166,8 @@
             </ItemTemplate>
 
         </asp:ListView>
-    </div>
+            </div>
+    
 
 <%--                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -261,7 +272,7 @@
 
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="overflow:scroll">
+                    <div class="list-group" style=" overflow: scroll">
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>

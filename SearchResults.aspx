@@ -125,7 +125,7 @@
                                      <td>
                                         <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/>
                                         &nbsp;
-                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" OnClick="profileButton"/>
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Additional Info" OnClick="profileButton"/>
                                     </td
                                 </tr>
                              </table>
@@ -171,6 +171,7 @@
             </ItemTemplate>
 
         </asp:ListView>
+        </div>  
 <%--            <asp:Button runat="server" class="btn" ID="btnRedirect" style="display: none;" Text="Favorite"/>
             <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
                         <asp:Label style="font-family: 'Oswald', sans-serif;  font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
@@ -179,7 +180,7 @@
                 </asp:Panel>
                 <AjaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="btnRedirect" BackgroundCssClass="modalBackground" CancelControlID="OKButton">
                 </AjaxToolkit:ModalPopupExtender>--%>
-    </div>    
+      
 </div> <!-- end div container! -->   
 </asp:Content>
 

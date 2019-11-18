@@ -29,11 +29,12 @@ public partial class HostDashboard : System.Web.UI.Page
         {
             Response.Redirect("Login.aspx");
         }
-        lvMessages.DataSource = Message.lstMessages;
-        lvMessages.DataBind();
 
-        lvPropertyRoom.DataSource = PropertyRoom.listPropertyRoom;
-        lvPropertyRoom.DataBind();
+        //lvMessages.DataSource = Message.lstMessages;
+        //lvMessages.DataBind();
+
+        //lvPropertyRoom.DataSource = PropertyRoom.listPropertyRoom;
+        //lvPropertyRoom.DataBind();
 
         sc.Open();
 
@@ -72,12 +73,11 @@ public partial class HostDashboard : System.Web.UI.Page
                 backgroundCheckResultLbl.Text = "Our people are working hard to get your background check completed. Background checks are important to us, we take your safety seriously.";
             }
 
-             
-            if (!(imgData == null))
-            {
-                string img = Convert.ToBase64String(imgData, 0, imgData.Length);
-                image1.ImageUrl = "data:image;base64," + img;
-            }
+
+            byte[] ppImgData = (byte[])rdr["imagev2"];
+            string ppImage = "data:image;base64," + Convert.ToBase64String(ppImgData, 0, ppImgData.Length);
+            image1.ImageUrl = ppImage;
+            
             
         }
         usernameTextbox.Text = Session["username"].ToString();
@@ -150,7 +150,7 @@ public partial class HostDashboard : System.Web.UI.Page
             //priceTextbox.Text = readr["MonthlyPrice"].ToString();
             //descriptionTextbox.Text = readr["BriefDescription"].ToString();
             //roomDescripTextbox.Text = readr["RoomDescription"].ToString();
-            byte[] imgData = (byte[])readr["PRimage1"];
+            //byte[] imgData = (byte[])readr["PRimage1"];
             //if (!(imgData == null))
             //{
             //    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
@@ -170,6 +170,7 @@ public partial class HostDashboard : System.Web.UI.Page
             //}
         }
 
+        //------------------------------------------------------------------------------------------------------------
         //display property rooms
 
         PropertyRoom.listPropertyRoom.Clear();
@@ -181,8 +182,8 @@ public partial class HostDashboard : System.Web.UI.Page
                 hostID = Convert.ToInt32(Session["hostID"]);
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
-                command.CommandText = "SELECT PropertyRoom.RoomID, PropertyRoom.PropertyID, Host.HostID, PropertyRoom.MonthlyPrice, PropertyRoom.BriefDescription, PropertyRoom.RoomDescription, PropertyRoom.Availability," +
-                "PropertyRoom.SquareFootage, isnull(PropertyRoom.Image1, 0) AS Image1, isnull(PropertyRoom.Image2, 0) AS Image2, isnull(PropertyRoom.Image3, 0) AS Image3 FROM Capstone.[dbo].[Host] inner join Capstone.[dbo].[Property]" +
+                command.CommandText = "SELECT PropertyRoom.RoomID, PropertyRoom.PropertyID, Host.HostID, PropertyRoom.MonthlyPrice, isnull(PropertyRoom.BriefDescription, 'No Description') as BriefDescription, isnull(PropertyRoom.RoomDescription, 'No Description') as RoomDescription, PropertyRoom.Availability," +
+                "PropertyRoom.SquareFootage, PropertyRoom.Image1, PropertyRoom.Image2, PropertyRoom.Image3 FROM Capstone.[dbo].[Host] inner join Capstone.[dbo].[Property]" +
                 "on Property.HostID = Host.HostID left join Capstone.[dbo].[PropertyRoom] ON PropertyRoom.propertyID = Property.PropertyID WHERE Host.HostID = @HostID";
 
                 command.Parameters.AddWithValue("@HostID", hostID);
@@ -198,7 +199,7 @@ public partial class HostDashboard : System.Web.UI.Page
                                 int propertyID = Convert.ToInt32(reader["PropertyID"]);
                                 string description = (string)reader["BriefDescription"];
                                 int id = Convert.ToInt32(reader["RoomID"]);
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
+                                string price = Math.Round(Convert.ToDouble(reader["MonthlyPrice"])).ToString();
                                 string squareFootage = (string)reader["SquareFootage"];
                                 string availability = (string)reader["Availability"];
                                 string roomDescription = (string)reader["RoomDescription"];
@@ -326,6 +327,9 @@ public partial class HostDashboard : System.Web.UI.Page
 
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
+
+        lvPropertyRoom.DataSource = PropertyRoom.listPropertyRoom;
+        lvPropertyRoom.DataBind();
 
     }
     protected void sendMessage(object sender, EventArgs e)
