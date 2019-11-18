@@ -121,14 +121,14 @@
 
   <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
     <div class="col-md-1" >
-      <a href class="btn" style="margin-top: 1.5rem; margin-left: .5rem;">Back</a>
+      <a href= "SearchResults.aspx" class="btn" style="margin-top: 1.5rem; margin-left: .5rem;">Back</a>
       </div>
     <div class="col-md-8" style="margin-top: 1rem; "> 
           <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label><img src="images/icons-07.png" style="max-width: 30px;" alt="background check approved icon"></h1> 
         </div> <!--end col-->
       <div class="col-md-3" style="margin-top: 1.5rem; "> 
           <p style=" float: center; "><a href="#"><img src="images/badges-11.png" style="max-width: 100px;" alt="message icon"></a>
-            <a href="#"><img src="images/badges-12.png" style="max-width: 90px;" alt="favorite icon"></a> </p>
+            <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button> </p>
         </div> <!--end col-->
     </div><!-- end div row -->  
     
@@ -139,18 +139,32 @@
             <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text = "Property Location"></asp:Label></h5>     
             <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text = "Property Price"></asp:Label></h5>
             <p > <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text = "The brief description of the property would go here."></asp:Label></p>
-            <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">
+                 <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="privateBathroomBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="furnishBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="storageBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+            <%--<img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">--%>
         </div>
         
         <div class="col-md-6" style="margin-top: .5rem;  margin-bottom: 1rem;">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-
+                <br>
+                <ol class="carousel-indicators">
+                           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
                 <div class="carousel-inner"> 
                           <div class="carousel-item active">
-                            <img src="images/kitchen.jpeg"  class="d-block w-100">
+                            <asp:Image ID="image1" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat ="server" />
                         </div>
                           <div class="carousel-item">
-                            <img src="images/kitchen.jpeg"  class="d-block w-100">
+                            <asp:Image ID="image2" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat ="server" />
+                        </div>
+                        <div class="carousel-item">
+                            <asp:Image ID="image3" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat ="server" />
                         </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -163,7 +177,7 @@
                 </div> 
             </div> 
         </div>
-        
+
     </div><!-- end div row --> 
     
     
@@ -180,11 +194,11 @@
 
                 <div class="carousel-inner"> 
                           <div class="carousel-item active">
-                            <img src="images/johnsmith1.jpeg"  class="d-block w-100">
+                           <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat ="server" />
                         </div>
-                          <div class="carousel-item">
+<%--                          <div class="carousel-item">
                             <img src="images/johnsmith1.jpeg"  class="d-block w-100">
-                        </div>
+                        </div>--%>
                   <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>

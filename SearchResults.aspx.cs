@@ -106,9 +106,8 @@ public partial class SearchResults : System.Web.UI.Page
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
+        Session["position"] = index;
         SearchResult.selectedReultFullAddress = SearchResult.lstSearchResults[index].resultFullAddress;
-
-
         Response.Redirect("PropertyDescription.aspx");
     }
 
