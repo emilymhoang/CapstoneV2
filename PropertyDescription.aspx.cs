@@ -23,9 +23,6 @@ public partial class PropertyDescription : System.Web.UI.Page
     {
 
         //var int = Session["tenantID"].ToString();
-        if (Convert.ToInt32(Session["tenantID"]) > 0)
-        {
-
             using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand())
@@ -141,7 +138,6 @@ public partial class PropertyDescription : System.Web.UI.Page
             }
 
         }
-    }
 
     protected void FavoriteClick(object sender, EventArgs e)
     {
