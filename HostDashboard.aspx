@@ -102,7 +102,7 @@
             <ItemTemplate>
                 <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <tr>
-                         <td >
+                         <td style="width: 200px;">
                              <table >
                                  
                                 <tr>
@@ -127,6 +127,7 @@
 
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
+                                <center>
                                 <div class="col-md-6" style="margin-top: 1rem;">
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
@@ -157,6 +158,7 @@
                                     </a>
                                 </div>
                                </div>
+                                    </center>
                               </div>
                         </td>
 
