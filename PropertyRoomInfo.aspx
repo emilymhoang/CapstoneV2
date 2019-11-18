@@ -1,12 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="PropertyRoomInfo.aspx.cs" Inherits="PropertyRoomInfo" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-     <style type="text/css">
-       h1 {
+     <style type="text/css">   
+    h1 {
         font-family: 'Oswald', sans-serif;
         
         font-size: 50px;
         }
+    h4{
+        font-family: 'Oswald', sans-serif;
+        
+        font-size: 40px;
+    }
 
         .btn {
            font-family: 'Oswald', sans-serif;
@@ -14,15 +19,17 @@
            font-size: 20px;
        }
 
-        .form-control{
-            height: 50px;
-            font-size:20px;
+        .paragraph{
+            font-family: 'Oswald', sans-serif;
+                color: #756664;
+                font-size: 30px;
         }
         </style>
 
    <header style="margin-top: 8rem;">
       <div class="container">
         <h1>Tell us about the room</h1>
+         <p>Let us find you the perfect housemate.</p>   
                 <div class="progress " >
                 <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 90%; " aria-valuenow="90" ></div>
                </div>
@@ -39,7 +46,7 @@
             <div class="col">
              <label for="formGroupExampleInput">Room Picture*</label><br>
                 <asp:FileUpload id="FileUploadControl" runat="server" />
-                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">Profile Picture is required.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">At least one profile picture is required.</asp:RequiredFieldValidator>
                 <br /><br />
 
             </div>
@@ -72,8 +79,9 @@
               
                 <asp:RequiredFieldValidator ID="monthlyPriceRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="monthlyPriceTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
+              
             <div class="col">
-              <label for="formGroupExampleInput">Square Footage</label>
+              <label for="formGroupExampleInput">Room Size</label>
               <asp:DropDownList ID="DropDownListSize" runat="server">
                      <asp:ListItem Value="Small">Small</asp:ListItem>
                   <asp:ListItem Value="Medium">Medium</asp:ListItem>
@@ -81,28 +89,37 @@
 </asp:DropDownList>
               <asp:RequiredFieldValidator ID="squareFootageRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListSize" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
-          </div> <!--end row class-->
-          <br>
-          <div class="row">
-          
-            <div class="col">
-              <label for="formGroupExampleInput">Please briefly describe your Room*</label>
-              <asp:DropDownList ID="DropDownListRoom" runat="server">
-    <asp:ListItem Value="Single Room">Single Room</asp:ListItem>
-                  <asp:ListItem Value="Shared Space">Shared Space</asp:ListItem>
-</asp:DropDownList>
-            </div>
-         
-            <div class="col">
-             <label for="formGroupExampleInput">Availibility</label>
-              <asp:DropDownList ID="DropDownListAvailibility" runat="server">
+              <div class="col"> 
+                   <label for="formGroupExampleInput">Availability</label>
+              <asp:DropDownList ID="DropDownListAvailability" runat="server">
 	<asp:ListItem Value='Y'>Yes</asp:ListItem>
     <asp:ListItem Value='N'>No</asp:ListItem>
                   </asp:DropDownList>
                <label for="formGroupExampleInput">Availability will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
           
-              <asp:RequiredFieldValidator ID="AvailibilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailibility" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <asp:RequiredFieldValidator ID="AvailabilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailability" ForeColor="#B23325"></asp:RequiredFieldValidator>
+           
+
+             </div>
+          </div> <!--end row class-->
+          <br>
+          <div class="row">
+          
+            <div class="col">
+          
+              <label for="formGroupExampleInput">Brief Room Description*</label>
+              <asp:Textbox ID="displayTextbox" type="text" class="form-control" placeholder="Ex. Basement bedroom near City" runat="server" MaxLength="75"></asp:Textbox>
+                <br>
+      
             </div>
+         
+            <div class="col">
+               <label for="formGroupExampleInput">Property Room Layout*</label>
+              <asp:DropDownList ID="DropDownListRoom" runat="server">
+    <asp:ListItem Value="Single Room">Single Room</asp:ListItem>
+    <asp:ListItem Value="Shared Space">Shared Space</asp:ListItem>
+</asp:DropDownList>
+              </div>
             <div class="col">
                  
                 <asp:Label runat="server" id="StatusLabel" text=" " />
@@ -111,8 +128,8 @@
  <br>
             <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">What best describes your property? (To be shown to potential Tenant's)*</label>
-              <asp:Textbox ID="displayTextbox" class="form-control" placeholder="Ex. Basement bedroom near City" runat="server" MaxLength="200"></asp:Textbox>
+              <label for="formGroupExampleInput">Property Bio (To be shown to potential Tenant's)*</label>
+              <asp:Textbox ID="bioTextbox" class="form-control" type="text" TextMode="MultiLine" style="height:100px; width:1150px;" placeholder="Ex. Fully furnished basement bedroom with separate kitchen and lounge area. Two miles from metro and close to multiple shopping centers." runat="server" MaxLength="300"></asp:Textbox>
                 <br>
             </div>
           </div> <!--end row class-->
