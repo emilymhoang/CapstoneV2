@@ -24,7 +24,7 @@ public class Favorite
         this.favName = favName;
         this.favLocation = favLocation;
         this.favDescription = favDescription;
-        this.favPrice = "Price: $" + favPrice + "/Month";
+        this.favPrice = "$" + favPrice + "/Month";
         this.backgroundCheckResult = backgroundCheckResult;
         this.resultimage1 = resultimage1;
         this.resultimage2 = resultimage2;
