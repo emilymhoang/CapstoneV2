@@ -25,7 +25,23 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     
     protected void submitBasicInfo(object sender, EventArgs e)
     {
-        
+
+        // converting Time 
+        var today = DateTime.Today;
+
+        var birthdate = Convert.ToDateTime(dateOfBirthTextbox.Text);
+        var age = today.Year - birthdate.Year;
+        if (birthdate.Date > today.AddYears(-age)) age--;
+
+        //age Validation 
+        if (age < 18)
+        {
+            resultmessagedob.Text = "All users must be atleast 18 years old";
+
+        }
+
+
+
         //AGE VALIDATION
         //var today = DateTime.Today;
         //var birthdate = Convert.ToDateTime(dateOfBirthTextbox.Text);
@@ -50,7 +66,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
 
         //int days = today.Subtract(lastYear.AddMonths(month)).Days;
         //int hours = today.Subtract(lastYear).Hours;
-        
+
         String emailNew = emailTextbox.Text;
         Session["Email"] = emailNew;
         sc.Open();
