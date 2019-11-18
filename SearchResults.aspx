@@ -76,10 +76,6 @@
         
     </div><!-- end div row --> 
 
-
-
-
-    <div>
         <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
 
             <LayoutTemplate>
@@ -117,7 +113,7 @@
                                 </tr>
                                  <tr>
                                      <td>
-                                        <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br>
+                                        <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br> </br> </br></br>
                                          </br>
                                     </td>
                                  </tr>   
@@ -173,16 +169,6 @@
             </ItemTemplate>
 
         </asp:ListView>
-        </div>  
-<%--            <asp:Button runat="server" class="btn" ID="btnRedirect" style="display: none;" Text="Favorite"/>
-            <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
-                        <asp:Label style="font-family: 'Oswald', sans-serif;  font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
-                        <asp:Button class="btn" ID="redirectButton" href="GetStarted.aspx" runat="server" Text="Create an Account" />
-                        <asp:Button class="btn" ID="okButton" runat="server" Text="OK" /> <br/>
-                </asp:Panel>
-                <AjaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="btnRedirect" BackgroundCssClass="modalBackground" CancelControlID="OKButton">
-                </AjaxToolkit:ModalPopupExtender>--%>
-      
 </div> <!-- end div container! -->   
 </asp:Content>
 
