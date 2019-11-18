@@ -39,13 +39,13 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">House Number*</label>
-              <asp:Textbox ID="houseNumTextbox" class="form-control" placeholder="" runat="server" MaxLength="15"></asp:Textbox>
+              <asp:Textbox ID="houseNumTextbox" class="form-control" placeholder="" runat="server" MaxLength="15" type="number"></asp:Textbox>
                  <asp:Label ID="propertyResult" runat="server" ForeColor="Red"></asp:Label>
                 <asp:RequiredFieldValidator ID="HouseNumRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="HouseNumTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Street Name*</label>
-              <asp:Textbox id="StreetTextbox" class="form-control" placeholder="" runat="server" MaxLength="30"></asp:Textbox>
+              <asp:Textbox id="StreetTextbox" class="form-control" placeholder="" runat="server" MaxLength="30" type="text"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="StreetRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="StreetTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
@@ -53,7 +53,7 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">City*</label>
-              <asp:Textbox id="cityTextbox" class="form-control" placeholder="" runat="server" MaxLength="40"></asp:Textbox>
+              <asp:Textbox id="cityTextbox" class="form-control" placeholder="" runat="server" MaxLength="40" type="text"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="cityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="cityTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <br />
@@ -117,7 +117,7 @@
             </div> <!--end col-->
               <div class="col">
               <label for="formGroupExampleInput">Zip*</label>
-              <asp:Textbox id="zipTextbox" class="form-control" placeholder="" runat="server" MaxLength="9"></asp:Textbox>
+              <asp:Textbox id="zipTextbox" class="form-control" placeholder="" runat="server" MaxLength="9" type="number"></asp:Textbox>
                   <asp:RequiredFieldValidator ID="zipRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="zipTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
 <%--              <div class="col">
