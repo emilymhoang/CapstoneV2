@@ -216,7 +216,7 @@
                         //will use this once pages are all linked up
                         //--code here--
                         //
-                        var address = 'san francisco, ca';
+                        var address = "<%= addressForMap %>";
                         var map;
                         var marker;
                         var circle;
@@ -252,6 +252,7 @@
                                  });
 
                                 circle.bindTo('center', marker, 'position');
+                                marker.setVisible(false);
 
                                 searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
                                 map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById('pac-input'));
@@ -271,6 +272,7 @@
                                      });
                                        marker.bindTo('map', searchBox, 'map');
                                        circle.bindTo('center', marker, 'position');
+                                       marker.setVisible(false);
                                      google.maps.event.addListener(marker, 'map_changed', function() {
                                        if (!this.getMap()) {
                                          this.unbindAll();

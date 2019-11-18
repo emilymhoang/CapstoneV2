@@ -10,6 +10,9 @@ using System.Web.UI.WebControls;
 
 public partial class PropertyDescription : System.Web.UI.Page
 {
+
+    public string addressForMap = SearchResult.selectedReultFullAddress;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         
