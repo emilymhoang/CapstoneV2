@@ -12,8 +12,8 @@ using System.Web.UI.WebControls;
 public partial class AddRoom : System.Web.UI.Page
 {
     int PropertyID;
-
-    double MonthlyPrice;
+    int roomID;
+    string monthlyPrice;
     int SquareFootage;
     int NumberBedrooms;
     string privateBath;
@@ -64,15 +64,15 @@ public partial class AddRoom : System.Web.UI.Page
         Session["accountID"] = accountID;
         sc.Close();
 
-        double monthlyPrice = Convert.ToDouble(monthlyPriceTextbox.Text);
+        monthlyPrice = monthlyPriceTextbox.Text;
         //int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
         String sqFoot = DropDownListSize.SelectedValue;
         String avail = DropDownListAvailibility.SelectedValue;
         String display = displayTextbox.Text;
         String roomDescription = DropDownListRoom.SelectedValue;
 
+
         //roomID
-        int roomID;
         sc.Open();
         SqlCommand getRoomID = new SqlCommand("SELECT PropertyRoom.RoomID FROM [Capstone].[dbo].[PropertyRoom] INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
         getRoomID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
