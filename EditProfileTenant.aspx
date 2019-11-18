@@ -24,16 +24,7 @@
       <div class="container">
         <h1>Edit Profile</h1>
       </div>
-       
-      <%-- <div class="row">
-           <div class="col-md-6 promar" >
-                <div class="progress " >
-                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 33%; " aria-valuenow="33" ></div>
-               </div>
-           </div>
-       </div>--%>
-       
-       
+    
     </header>
 
     <section id="creation" style="margin-top: 4rem; font-family: 'Oswald', sans-serif; color: #756664; font-size: 18px">
@@ -65,14 +56,27 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Email</label>
-              <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com"></asp:Textbox>
+              <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
                 <asp:Label ID="resultmessage" runat="server" ForeColor="#53A39F"></asp:Label>  
                 <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="#53A39F"></asp:Label>
             </div>
             <div class="col">
               <label for="formGroupExampleInput">Phone Number</label>
-              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="50" placeholder="xxx-xxx-xxxx" runat="server"></asp:Textbox>
+                 <script> 
+                     window.addFormat = function addFormat(f) {
+        var r = /(\D+)/g,
+            npa = '',
+            nxx = '',
+            last4 = '';
+        f.value = f.value.replace(r, '');
+        npa = f.value.substr(0, 3);
+        nxx = f.value.substr(3, 3);
+        last4 = f.value.substr(6, 4);
+        f.value = '(' + npa + ') ' + nxx + '-' + last4;
+    }
+                 </script>
+              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="15" onKeyup="addFormat(this)" placeholder="(xxx)xxx-xxxx" runat="server" type="tel"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
@@ -88,6 +92,7 @@
              </div>
             
         </div>     
-      </div> <!--end container-->
+      </div> 
+           </div> <!--end container-->
     </section>
 </asp:Content>

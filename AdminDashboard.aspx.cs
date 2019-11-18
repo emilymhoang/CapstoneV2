@@ -37,7 +37,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         SqlDataReader rdr = filter.ExecuteReader();
         while (rdr.Read())
         {
-            nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
+            //nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
             dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Admin Dashboard";
             //byte[] imgData = (byte[])rdr["imageV2"];
             //if (!(imgData == null))
@@ -46,7 +46,7 @@ public partial class AdminDashboard : System.Web.UI.Page
             //    image1.ImageUrl = "data:image;base64," + img;
             //}
         }
-        usernameTextbox.Text = Session["username"].ToString();
+        //usernameTextbox.Text = Session["username"].ToString();
 
         int adminIDRefresh = Convert.ToInt32(Session["adminID"]);
 

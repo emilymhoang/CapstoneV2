@@ -65,7 +65,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         double monthlyPrice = Convert.ToDouble(monthlyPriceTextbox.Text);
         //int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
         String sqFoot = DropDownListSize.SelectedValue;
-        String avail = DropDownListAvailibility.SelectedValue;
+        String avail = DropDownListAvailability.SelectedValue;
         String display = displayTextbox.Text;
         String roomDescription = DropDownListRoom.SelectedValue;
 

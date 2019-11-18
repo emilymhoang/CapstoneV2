@@ -85,24 +85,22 @@
         </div>
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
-            <div class="col-md-6" style="margin-top: 1rem;">
-                <h2><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h2>
-
-                 
-
+            <div class="col-md-12" style="margin-top: 1rem;">
+                <h3>Your Available Rooms in: </h3>
+                <h4><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h4>
+        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 400px;">
         <asp:ListView id="lvPropertyRoom" runat="server" Visible="true" >
 
             <LayoutTemplate>
-                <h1>Your Available Rooms</h1>
                 <table id="tbl1" runat="server">
                     <tr id="itemPlaceholder" runat="server"></tr>
                 </table>
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                <table style="margin-top: 1rem; border-bottom: solid; border-top: solid 1px; border-bottom-width: 1px;">
                     <tr>
-                         <td >
+                         <td>
                              <table >
                                  
                                 <tr>
@@ -126,8 +124,8 @@
                         </td>
 
                         <td>
-                            <div class="row" style="margin:auto; margin-bottom: 1rem;" >
-                                <div class="col-md-6" style="margin-top: 1rem;">
+                            <div class="row" style="margin:auto; margin-bottom: 1rem; margin-top: 1rem;" >
+                                <center>
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -157,6 +155,7 @@
                                     </a>
                                 </div>
                                </div>
+                                    </center>
                               </div>
                         </td>
 
@@ -167,6 +166,7 @@
             </ItemTemplate>
 
         </asp:ListView>
+            </div>
     
 
 <%--                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
