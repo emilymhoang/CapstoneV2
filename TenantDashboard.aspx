@@ -97,7 +97,6 @@
         <asp:ListView id="lvFavorites" runat="server" Visible="true" >
 
             <LayoutTemplate>
-                <h1>Search Results</h1>
                 <table id="tbl1" runat="server">
                     <tr id="itemPlaceholder" runat="server"></tr>
                 </table>
@@ -132,12 +131,11 @@
                                  <tr>
                                      <td>
                                         <asp:Label runat="server" Text=" "></asp:Label>
-                                         </br>
                                     </td>
                                  </tr>   
                                 <tr>
                                      <td>
-                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" />
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" onClick="profileButton" Text="View Profile" />
                                     </td
                                 </tr>
                              </table>

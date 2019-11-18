@@ -81,8 +81,8 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     Homeowner newHost = new Homeowner(firstName, lastName, gender, dateOfBirth, email, phoneNumber, userNameTextbox.Text, passwordTextbox.Text, confirmPasswordTextbox.Text);
                     resultmessage.Text = "";
                     insertHost.CommandText = "INSERT INTO [Capstone].[dbo].[Host] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
-                                "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated); ";
+                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, HostBio) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
+                                "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated, @HostBio); ";
 
                     insertHost.Parameters.AddWithValue("@Email", email);
                     insertHost.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
@@ -96,6 +96,8 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     //ADD USERNAME and CONFIRM PASSOWRD IN DATABASE
                     insertHost.Parameters.AddWithValue("@LastUpdatedBy", lastName);
                     insertHost.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+                    insertHost.Parameters.AddWithValue("@HostBio", Session["hostBio"].ToString());
+
 
                     sc.Open();
                     insertHost.ExecuteNonQuery();

@@ -38,6 +38,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
                 Session["dateOfBirth"] = dateOfBirthTextbox.Text;
                 Session["email"] = emailTextbox.Text;
                 Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
+                Session["hostBio"] = HostBioTextbox.Text;
 
                 Response.Redirect("CreateLoginHomeowner.aspx");
             }

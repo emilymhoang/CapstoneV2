@@ -43,7 +43,8 @@ public partial class PropertyDescription : System.Web.UI.Page
                     image1.ImageUrl = SearchResult.lstSearchResults[index].resultimage1;
                     image2.ImageUrl = SearchResult.lstSearchResults[index].resultimage2;
                     image3.ImageUrl = SearchResult.lstSearchResults[index].resultimage3;
-                    
+                    PropertyHeaderTextbox.Text = SearchResult.lstSearchResults[index].resultName + "'s Property";
+
 
                     //property room badges
                     int index1 = (int)Session["position"];
@@ -51,7 +52,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                     SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [Capstone].[dbo].[BadgeProperty] WHERE RoomID =" + roomID1, connection);
                     connection.Open();
                     SqlDataReader rdr2 = badge2.ExecuteReader();
-                    
+
                     while (rdr2.Read())
                     {
                         privateEntrance = rdr2["privateEntrance"].ToString();
@@ -138,87 +139,92 @@ public partial class PropertyDescription : System.Web.UI.Page
                 }
 
             }
-          
+
         }
     }
 
-protected void FavoriteClick(object sender, EventArgs e)
-{
-    if (Convert.ToInt32(Session["tenantID"]) > 0)
+    protected void FavoriteClick(object sender, EventArgs e)
     {
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        if (Convert.ToInt32(Session["tenantID"]) > 0)
         {
-            SqlCommand command = new SqlCommand();
-            SqlCommand getName = new SqlCommand();
+            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+            {
+                SqlCommand command = new SqlCommand();
+                SqlCommand getName = new SqlCommand();
 
-            command.Connection = connection;
-            command.CommandType = CommandType.Text;
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
 
                 int index = (int)Session["position"];
                 var roomID = SearchResult.lstSearchResults[index].resultID;
 
-            command.CommandText = "SELECT PropertyID, HostID FROM [Capstone].[dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [Capstone].[dbo].[PropertyRoom] where RoomID = @RoomID)";
-            command.Parameters.AddWithValue("@RoomID", roomID);
-            int propertyID = 0, hostID = 0;
-            try
-            {
-                connection.Open();
-                using (SqlDataReader reader = command.ExecuteReader())
+                command.CommandText = "SELECT PropertyID, HostID FROM [Capstone].[dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [Capstone].[dbo].[PropertyRoom] where RoomID = @RoomID)";
+                command.Parameters.AddWithValue("@RoomID", roomID);
+                int propertyID = 0, hostID = 0;
+                try
                 {
-                    if (reader.HasRows)
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            propertyID = Convert.ToInt32(reader["PropertyID"]);
-                            hostID = Convert.ToInt32(reader["HostID"]);
+                            while (reader.Read())
+                            {
+                                propertyID = Convert.ToInt32(reader["PropertyID"]);
+                                hostID = Convert.ToInt32(reader["HostID"]);
+                            }
+
                         }
-
                     }
-                }
-                getName.Connection = connection;
-                getName.CommandType = CommandType.Text;
-                getName.CommandText = "SELECT FirstName, LastName from [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID";
-                getName.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["tenantID"]));
-                string firstName = "", lastName = "";
+                    getName.Connection = connection;
+                    getName.CommandType = CommandType.Text;
+                    getName.CommandText = "SELECT FirstName, LastName from [Capstone].[dbo].[Tenant] WHERE TenantID = @TenantID";
+                    getName.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["tenantID"]));
+                    string firstName = "", lastName = "";
 
-                using (SqlDataReader reader = getName.ExecuteReader())
+                    using (SqlDataReader reader = getName.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                firstName = reader["FirstName"].ToString();
+                                lastName = reader["LastName"].ToString();
+                            }
+
+                        }
+                    }
+
+                    SqlCommand favorite = new SqlCommand("INSERT INTO [Capstone].[dbo].[Favorite] (TenantID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated, HostID)" +
+                        " values (@TenantID, @PropertyID, @RoomID, @SearchDate, @LastUpdatedBy, @LastUpdated, @HostID)", connection);
+                    favorite.Parameters.AddWithValue("@TenantID", Session["tenantID"].ToString());
+                    favorite.Parameters.AddWithValue("@PropertyID", propertyID);
+                    favorite.Parameters.AddWithValue("@RoomID", roomID);
+                    favorite.Parameters.AddWithValue("@HostID", hostID);
+                    favorite.Parameters.AddWithValue("@SearchDate", DateTime.Now);
+                    favorite.Parameters.AddWithValue("@LastUpdatedBy", firstName + " " + lastName);
+                    favorite.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+                    favorite.ExecuteNonQuery();
+                }
+                catch (SqlException t)
                 {
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            firstName = reader["FirstName"].ToString();
-                            lastName = reader["LastName"].ToString();
-                        }
-
-                    }
+                    string b = t.ToString();
                 }
-
-                SqlCommand favorite = new SqlCommand("INSERT INTO [Capstone].[dbo].[Favorite] (TenantID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated, HostID)" +
-                    " values (@TenantID, @PropertyID, @RoomID, @SearchDate, @LastUpdatedBy, @LastUpdated, @HostID)", connection);
-                favorite.Parameters.AddWithValue("@TenantID", Session["tenantID"].ToString());
-                favorite.Parameters.AddWithValue("@PropertyID", propertyID);
-                favorite.Parameters.AddWithValue("@RoomID", roomID);
-                favorite.Parameters.AddWithValue("@HostID", hostID);
-                favorite.Parameters.AddWithValue("@SearchDate", DateTime.Now);
-                favorite.Parameters.AddWithValue("@LastUpdatedBy", firstName + " " + lastName);
-                favorite.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
-                favorite.ExecuteNonQuery();
-            }
-            catch (SqlException t)
-            {
-                string b = t.ToString();
-            }
-            finally
-            {
-                connection.Close();
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
+        else
+        {
+            return;
+        }
     }
-    else
+
+    protected void goBack(object sender, EventArgs e)
     {
-        return;
+        Response.Redirect("SearchResults.aspx");
     }
-}
 }
 

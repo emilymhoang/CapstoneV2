@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PropertyDescription.aspx.cs" Inherits="PropertyDescription" %>
+﻿<%@ Page Title="Room Magnet Property" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PropertyDescription.aspx.cs" Inherits="PropertyDescription" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -83,45 +83,10 @@
     
 </head>
 <div  class="container">
-    <div class=" fixed-top navbar-expand-lg " style="background-color: white;" id="custom-nav">
-    	<div class="row" >
-        <div class="col-md-3"> 
-       		<a href="index.html"><img src="images/logo-01.png" alt="Room Magnet Logo" class="img-fluid" style="margin-left: 1em; max-width: 100px;"></a> 
-        </div> <!-- end div header left - logo -->       
-        
-        <div class="col-md-9 navhome" style="text-align: right;"><!-- start nav header right -->   	
-           
-               <a href="#" class="btn btnb">Get Started</a>
-           
-               <a href="#" class="btn btnb">My Account</a>
-           
-               
-          
-            <nav ><ul class="nav justify-content-end">
-             
-              <li class="nav-item ">
-                <a class="nav-link " href="#" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 16px;">Home-Owners</a>
-              </li>
-                
-                <li class="nav-item">
-                <a class="nav-link" href="#" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 16px;">Tenants</a>
-              </li>
-               
-              
-                
-                <li class="nav-item">
-                <a class="nav-link" href="#" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 16px;">FAQ</a>
-              </li>
-            </ul>   
-        </nav> 
-            </div>
-        </div> <!-- end nav row -->  
-     </div>  <!-- end div navbar -->
      
-
   <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
     <div class="col-md-1" >
-      <a href= "SearchResults.aspx" class="btn" style="margin-top: 1.5rem; margin-left: .5rem;">Back</a>
+      <asp:Button runat="server" style="margin-top: 1rem;" class="btn" ID="backButton" onClick="goBack" Text="Back"></asp:Button>
       </div>
     <div class="col-md-8" style="margin-top: 1rem; "> 
           <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label><img src="images/icons-07.png" style="max-width: 30px;" alt="background check approved icon"></h1> 

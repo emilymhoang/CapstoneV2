@@ -396,6 +396,19 @@ public partial class TenantDashboard : System.Web.UI.Page
         Response.Redirect("Contract.aspx");
     }
 
+    protected void profileButton(object sender, EventArgs e)
+    {
+
+        SearchResult.selectedReultFullAddress = string.Empty;
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        SearchResult.selectedReultFullAddress = SearchResult.lstSearchResults[index].resultFullAddress;
+
+
+        Response.Redirect("PropertyDescription.aspx");
+    }
+
     protected void logout(object sender, EventArgs e)
     {
         Session.Abandon();
