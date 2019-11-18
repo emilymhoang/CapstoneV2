@@ -69,7 +69,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
                     int count = Convert.ToInt32(emailCheck.ExecuteScalar());
                     emailCheck.ExecuteNonQuery();
 
-                    if (count == 0)
+                    if (count <= 1)
                     {
 
                     Session["email"] = emailTextbox.Text;
