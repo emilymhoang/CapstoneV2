@@ -12,7 +12,7 @@ public class PropertyRoom
     public int propertyID { get; private set; }
     public int roomID { get; private set; }
     public int tenantID { get; private set; }
-    public double monthlyPrice { get; private set; }
+    public string monthlyPrice { get; private set; }
     public String squareFootage { get; private set; }
     public String availability { get; private set; }
     public String briefDescription { get; private set; }
@@ -24,10 +24,10 @@ public class PropertyRoom
     public string roomimage3 { get; private set; }
 
 
-    public PropertyRoom(int propertyID, double monthlyPrice, String squareFootage,
+    public PropertyRoom(int propertyID, string monthlyPrice, String squareFootage,
         String availability, String briefDescription, String roomDescription, string roomimage1, string roomimage2, string roomimage3)
     {
-        this.monthlyPrice = monthlyPrice;
+        this.monthlyPrice = "$" + monthlyPrice + "/Month";
         this.squareFootage = squareFootage;
         this.availability = availability;
         this.briefDescription = briefDescription;

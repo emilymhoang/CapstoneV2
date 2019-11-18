@@ -199,7 +199,7 @@ public partial class HostDashboard : System.Web.UI.Page
                                 int propertyID = Convert.ToInt32(reader["PropertyID"]);
                                 string description = (string)reader["BriefDescription"];
                                 int id = Convert.ToInt32(reader["RoomID"]);
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
+                                string price = Math.Round(Convert.ToDouble(reader["MonthlyPrice"])).ToString();
                                 string squareFootage = (string)reader["SquareFootage"];
                                 string availability = (string)reader["Availability"];
                                 string roomDescription = (string)reader["RoomDescription"];
