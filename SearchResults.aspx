@@ -93,7 +93,7 @@
                 <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                     <tr>
                          <td style="width: 450px;">
-                             <table style="display:block;width:99.9%;clear:both">
+                             <table>
                                  <tr>
                                      <td>
                                         <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="Image1" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 35px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
@@ -132,6 +132,7 @@
                         </td>
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
+                              <center>
                                 <div class="col-md-6" style="margin-top: 1rem;">
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
@@ -162,6 +163,7 @@
                                     </a>
                                 </div>
                                </div>
+                                  </center>
                               </div>
                         </td>
                     </tr>

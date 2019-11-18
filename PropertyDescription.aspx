@@ -88,13 +88,43 @@
     <div class="col-md-1" >
       <asp:Button runat="server" style="margin-top: 1rem;" class="btn" ID="backButton" onClick="goBack" Text="Back"></asp:Button>
       </div>
-    <div class="col-md-8" style="margin-top: 1rem; "> 
+    <div class="col-md-7" style="margin-top: 1rem; "> 
           <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label><img src="images/icons-07.png" style="max-width: 30px;" alt="background check approved icon"></h1> 
         </div> <!--end col-->
-      <div class="col-md-3" style="margin-top: 1.5rem; "> 
-          <p style=" float: center; "><a href="#"><img src="images/badges-11.png" style="max-width: 100px;" alt="message icon"></a>
-            <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button> </p>
+      <div class="col-md-1.5" style="margin-top: 1.5rem; ">     
+              <div class="col-md-3">
+                        <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit" class="btn"/>
+                        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                        </asp:ScriptManager>        
+                <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
+                    <center>
+                        <asp:Label style="font-family: 'Oswald', sans-serif;  font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
+                    </center>
+                    <asp:Label style="font-family: 'Oswald', sans-serif; ; font-size: 20px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
+                       
+                        <asp:DropDownList ID="hostNameDropdown" runat="server">
+                            <asp:ListItem Value="02">Ryan Krane</asp:ListItem>
+                            <asp:ListItem Value="42">Hank Sherbert</asp:ListItem>
+                            <asp:ListItem Value="43">Jason Gerhardt</asp:ListItem>
+                            <asp:ListItem Value="44">Shannon Hoang</asp:ListItem>
+                        </asp:DropDownList>
+                       
+                        
+                        <br />
+                    <center>
+                        <asp:TextBox ID="messageTextbox" TextMode="MultiLine" class="form-control" style="height:300px; width:400px; margin-top: 1rem;" runat="server"></asp:TextBox>
+                        <br />
+                        <asp:Button class="btn" ID="sendButton" onClick="sendMessage" runat="server" Text="Send" />
+                        <asp:Button class="btn" ID="cancelButton" runat="server" Text="Cancel" /> <br/>
+                    </center>
+                </asp:Panel>
+                <AjaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="createMessageButton" BackgroundCssClass="modalBackground" CancelControlID="cancelButton">
+                </AjaxToolkit:ModalPopupExtender>
+            </div><%--<asp:Button runat="server" class="btn" ID="messageButton" OnClick="messageClick" Text="Favorite"></asp:Button>--%>
         </div> <!--end col-->
+        <div class="col-md-1" style="margin-top: 1.5rem; "> 
+        <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button> </p>
+            </div>
     </div><!-- end div row -->  
     
     

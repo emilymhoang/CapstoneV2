@@ -42,7 +42,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
 
 
         sc.Open();
-        SqlCommand userCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Login] WHERE lower(Username) = @Username", sc);
+        SqlCommand userCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Login] WHERE lower(Username) = @Username", sc);
 
         userCheck.Parameters.AddWithValue("@Username", userNew);
         userCheck.Connection = sc;
@@ -80,7 +80,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                 {
                     Homeowner newHost = new Homeowner(firstName, lastName, gender, dateOfBirth, email, phoneNumber, userNameTextbox.Text, passwordTextbox.Text, confirmPasswordTextbox.Text);
                     resultmessage.Text = "";
-                    insertHost.CommandText = "INSERT INTO [Capstone].[dbo].[Host] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
+                    insertHost.CommandText = "INSERT INTO [dbo].[Host] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
                                 "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, HostBio) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
                                 "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated, @HostBio); ";
 
@@ -102,7 +102,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     sc.Open();
                     insertHost.ExecuteNonQuery();
 
-                    SqlCommand insert = new SqlCommand("SELECT HostID FROM [Capstone].[dbo].[Host] WHERE lower(Email) = @Email", sc);
+                    SqlCommand insert = new SqlCommand("SELECT HostID FROM [dbo].[Host] WHERE lower(Email) = @Email", sc);
                     insert.Parameters.AddWithValue("@Email", email.ToLower());
                     insert.Connection = sc;
                     int hostID = Convert.ToInt32(insert.ExecuteScalar());
@@ -124,7 +124,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                             BinaryReader br = new BinaryReader(stream);
                             byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                            SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Host] SET imageV2 = @imgdata WHERE HostID = @HostID", sc);
+                            SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Host] SET imageV2 = @imgdata WHERE HostID = @HostID", sc);
                             cmd.Parameters.AddWithValue("@HostID", hostID);
                             cmd.Parameters.AddWithValue("@imgdata", bytes);
                             cmd.ExecuteNonQuery();
@@ -143,12 +143,12 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
 
 
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
-                    insertLogin.CommandText = "INSERT INTO [Capstone].[dbo].[Login] (Username, Password, hostID) VALUES (@userName, @Password, @hostID)";
+                    insertLogin.CommandText = "INSERT INTO [dbo].[Login] (Username, Password, hostID) VALUES (@userName, @Password, @hostID)";
                     insertLogin.Parameters.AddWithValue("@userName", newHost.userName);
                     insertLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(newHost.password));
                     insertLogin.Parameters.AddWithValue("@hostID", hostID);
 
-                    SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE HostID = @HostID", sc);
+                    SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [dbo].[Login] WHERE HostID = @HostID", sc);
                     getAccountID.Parameters.AddWithValue("@HostID", hostID);
                     getAccountID.Connection = sc;
                     int accountID = Convert.ToInt32(getAccountID.ExecuteScalar());
