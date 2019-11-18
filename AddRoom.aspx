@@ -73,7 +73,7 @@
                   </asp:DropDownList>
                <label for="formGroupExampleInput">Availability will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
           
-              <asp:RequiredFieldValidator ID="AvailibilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailibility" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <asp:RequiredFieldValidator ID="AvailbilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailibility" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
                  
