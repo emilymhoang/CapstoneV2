@@ -41,17 +41,16 @@
     <div class="col-md-6" style="border: solid; border-color: white;">
         <div class="row">
             <div class="col-md-6">
-               <h2 >Admin Dashboard</h2> 
+               <h2 >Admin Data</h2> 
             </div>
         </div>
            <%--    begin file container--%>
-        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+        <%--<div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
              <div class="col-md-6" style="margin-top: 1rem;">
                 <h2><asp:Label ID="nameTextbox" runat="server" Text="John Smith" BackColor="#ebebeb"></asp:Label></h2>
                  <p><asp:Label ID="usernameTextbox" runat="server" Text="JohnSmith1" BackColor="#ebebeb"></asp:Label></p>
             </div>
-            </div>
-            <h2 >Admin Data</h2>
+            </div>--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
         <%--    end profile container--%>
 
@@ -81,7 +80,7 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
             <asp:Label ID="backgroundChecklbl" runat="server"></asp:Label>
-        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 740px;">
+        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 570px;">
         <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
             <LayoutTemplate>
                 <table id="tbl1" runat="server">
