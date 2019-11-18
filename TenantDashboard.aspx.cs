@@ -19,10 +19,20 @@ public partial class TenantDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null)
+        string strPreviousPage = "";
+        if (Request.UrlReferrer != null)
+        {
+            strPreviousPage = Request.UrlReferrer.Segments[Request.UrlReferrer.Segments.Length - 1];
+        }
+        if (strPreviousPage == "")
         {
             Response.Redirect("Login.aspx");
         }
+
+        //if (Session["username"] == null)
+        //{
+        //    Response.Redirect("Login.aspx");
+        //}
 
         lvMessages.DataSource = Message.lstMessages;
         lvMessages.DataBind();
