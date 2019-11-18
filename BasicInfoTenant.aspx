@@ -120,13 +120,14 @@
         f.value = '(' + npa + ') ' + nxx + '-' + last4;
     }
                  </script>
-              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="13" placeholder="(xxx)xxx-xxxx" onKeyup="addFormat(this)" runat="server" type="tel"></asp:Textbox>
+              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="15" placeholder="(xxx)xxx-xxxx" onKeyup="addFormat(this)" runat="server" type="tel"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
-                  <h3>Institution Level</h3>
+                  <h3>Institution Level </h3>
               <asp:CheckBox ID="undergradCheck" type=" checkbox" name="Undergraduate Student" value="undergrad" runat="server"></asp:Checkbox> Undergraduate Student<br>
                <asp:CheckBox ID="gradCheck" type=" checkbox" name="Graduate Student" value="grad" runat="server"></asp:Checkbox> Graduate Student<br>
+                   <asp:CheckBox ID="NAcheck" type=" checkbox" name="Not Applicable" value="NA" runat="server"></asp:Checkbox> Not Applicable<br>
              </div> <!--end col-->
           </div> <!--end row class-->
                           
