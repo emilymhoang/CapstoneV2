@@ -29,7 +29,7 @@
                 <a href="Search.aspx" class="btn " style=" font-size: 22px;">Go Back to Search</a>
         </div> <!--end col-->
     </div><!-- end div row -->  
-
+    <div style="margin-top: 6.35rem;">
         <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
 
             <LayoutTemplate>
@@ -46,8 +46,14 @@
                              <table>
                                  <tr>
                                      <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="Image1" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 35px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("propertyTitle") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label>
 </br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 25px;" ID="Label2" Text='<%#Eval("resultName") %>'></asp:Label>
+                                         <asp:Image ID="Image1" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 25px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
                                     </td>
                                 </tr>
                                 <tr>
@@ -123,6 +129,7 @@
             </ItemTemplate>
 
         </asp:ListView>
+        </div>
 </div> <!-- end div container! -->   
 </asp:Content>
 

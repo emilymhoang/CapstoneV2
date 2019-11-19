@@ -34,6 +34,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                     int index = (int)Session["position"];
                     var roomID = SearchResult.lstSearchResults[index].resultID;
                     lblHostName.Text = SearchResult.lstSearchResults[index].resultName;
+                    lblResultName.Text = SearchResult.lstSearchResults[index].propertyTitle;
                     lblResultLocation.Text = SearchResult.lstSearchResults[index].resultLocation;
                     lblResultPrice.Text = SearchResult.lstSearchResults[index].resultPrice;
                     lblHostBio.Text = SearchResult.lstSearchResults[index].resultDescription;
@@ -47,9 +48,9 @@ public partial class PropertyDescription : System.Web.UI.Page
                     int index1 = (int)Session["position"];
                     var roomID1 = SearchResult.lstSearchResults[index1].resultID;
                     SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
-                    command.Parameters.AddWithValue("@roomID", roomID1);
+                    badge2.Parameters.AddWithValue("@roomID", roomID1);
 
-                connection.Open();
+                    connection.Open();
                     SqlDataReader rdr2 = badge2.ExecuteReader();
 
                     while (rdr2.Read())
@@ -214,8 +215,9 @@ public partial class PropertyDescription : System.Web.UI.Page
                 }
             }
         }
-        else
+        if (!(Convert.ToInt32(Session["tenantID"]) > 0))
         {
+            Response.Write("<script> alert('You need to login first.'); </script>");
             return;
         }
     }

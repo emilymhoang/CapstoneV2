@@ -172,8 +172,8 @@ public partial class Search : System.Web.UI.Page
                                 int id = Convert.ToInt32(reader["RoomID"]);
                                 string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
                                 double price = Convert.ToDouble(reader["MonthlyPrice"]);
-                                string fullAddress = (string)reader["HouseNumber"] + " " + (string)reader["Street"] + ", " + (string)reader["CityCounty"] + ", " +(string)reader["HomeState"] + " " + (string)reader["Zip"]; 
-
+                                string fullAddress = (string)reader["HouseNumber"] + " " + (string)reader["Street"] + ", " + (string)reader["CityCounty"] + ", " +(string)reader["HomeState"] + " " + (string)reader["Zip"];
+                                string propertyTitle = (string)reader["BriefDescription"];
                                 byte[] imgData1;
                                 byte[] imgData2;
                                 byte[] imgData3;
@@ -221,7 +221,7 @@ public partial class Search : System.Web.UI.Page
                                 }
 
 
-                                SearchResult result = new SearchResult(id, name, location, description, price, image1, image2, image3, backgroundCheckPhoto);
+                                SearchResult result = new SearchResult(id, name, location, propertyTitle, description, price, image1, image2, image3, backgroundCheckPhoto);
                                 result.setFullAddress(fullAddress);
 
                                 SearchResult.lstSearchResults.Add(result);
