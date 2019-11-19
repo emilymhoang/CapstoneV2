@@ -14,6 +14,13 @@ public partial class Search : System.Web.UI.Page
 {
 
     //SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["CapstoneConnectionString"].ConnectionString);
+    string furnished;
+    string bathroom;
+    string closet;
+    string nonsmoker;
+    string kitchen;
+    string entrance;
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -49,6 +56,54 @@ public partial class Search : System.Web.UI.Page
 
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
+            if (furnishedCheck.Checked)
+            {
+                furnished = "y";
+            }
+            else
+            {
+                furnished = "n";
+            }
+            if (privateBathroomCheck.Checked)
+            {
+                bathroom = "y";
+            }
+            else
+            {
+                bathroom = "n";
+            }
+            if (closetCheck.Checked)
+            {
+                closet = "y";
+            }
+            else
+            {
+                closet = "n";
+            }
+            if (kitchenCheck.Checked)
+            {
+                kitchen = "y";
+            }
+            else
+            {
+                kitchen = "n";
+            }
+            if (nonSmokerCheck.Checked)
+            {
+                nonsmoker = "y";
+            }
+            else
+            {
+                nonsmoker = "n";
+            }
+            if (privateEntranceCheck.Checked)
+            {
+                entrance = "y";
+            }
+            else
+            {
+                entrance = "n";
+            }
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection;
@@ -56,29 +111,45 @@ public partial class Search : System.Web.UI.Page
 
                 if (searchBy)
                 {
-                    command.CommandText = "select " +
-                        "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
-                        "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
-                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
-                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from" +
-                        " [dbo].[Host] left join [dbo].[Property] on " +
-                        "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
-                        "where [dbo].[Property].Zip = @zip";
+                    
+                        command.CommandText = "select " +
+                            "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
+                            "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
+                            "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
+                            "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, BadgeProperty.PrivateEntrance, BadgeProperty.Kitchen, BadgeProperty.PrivateBathroom, BadgeProperty.Furnished, BadgeProperty.ClosetSpace, BadgeProperty.NonSmoker " +
+                            "FROM [dbo].[Host] left join [dbo].[Property] on " +
+                            "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID inner join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
+                            "where [dbo].[Property].Zip = @zip AND [dbo].[BadgeProperty].PrivateEntrance = @entrance AND [dbo].[BadgeProperty].Kitchen = @kitchen AND [dbo].[BadgeProperty].PrivateBathroom = @bathroom" +
+                            " AND [dbo].[BadgeProperty].Furnished = @furnished AND [dbo].[BadgeProperty].ClosetSpace = @closet AND [dbo].[BadgeProperty].NonSmoker = @nonsmoker";
 
-                    command.Parameters.AddWithValue("@zip", propertySearch);
+                        command.Parameters.AddWithValue("@zip", propertySearch);
+                        command.Parameters.AddWithValue("@entrance", entrance);
+                        command.Parameters.AddWithValue("@kitchen", furnished);
+                        command.Parameters.AddWithValue("@bathroom", bathroom);
+                        command.Parameters.AddWithValue("@furnished", furnished);
+                        command.Parameters.AddWithValue("@closet", closet);
+                        command.Parameters.AddWithValue("@nonsmoker", nonsmoker);
                 }
                 else
                 {
                     command.CommandText = "select " +
-                        "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
-                        "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
-                        "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
-                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
-                        "[dbo].[Host] left join [dbo].[Property] on " +
-                        "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
-                        "where [dbo].[Property].CityCounty = @city";
+                            "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
+                            "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
+                            "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
+                            "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, BadgeProperty.PrivateEntrance, BadgeProperty.Kitchen, BadgeProperty.PrivateBathroom, BadgeProperty.Furnished, BadgeProperty.ClosetSpace, BadgeProperty.NonSmoker " +
+                            "FROM [dbo].[Host] left join [dbo].[Property] on " +
+                            "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID inner join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
+                            "where [dbo].[Property].CityCounty = @city AND [dbo].[BadgeProperty].PrivateEntrance = @entrance AND [dbo].[BadgeProperty].Kitchen = @kitchen AND [dbo].[BadgeProperty].PrivateBathroom = @bathroom" +
+                            " AND [dbo].[BadgeProperty].Furnished = @furnished AND [dbo].[BadgeProperty].ClosetSpace = @closet AND [dbo].[BadgeProperty].NonSmoker = @nonsmoker";
+
 
                     command.Parameters.AddWithValue("@city", propertySearch);
+                    command.Parameters.AddWithValue("@entrance", entrance);
+                    command.Parameters.AddWithValue("@kitchen", furnished);
+                    command.Parameters.AddWithValue("@bathroom", bathroom);
+                    command.Parameters.AddWithValue("@furnished", furnished);
+                    command.Parameters.AddWithValue("@closet", closet);
+                    command.Parameters.AddWithValue("@nonsmoker", nonsmoker);
                     //command.Parameters.AddWithValue("@default", Session["defaultPicture"]);
                 }
 
