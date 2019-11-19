@@ -269,7 +269,7 @@ public partial class PropertyDescription : System.Web.UI.Page
         }
 
 
-        Message.lstMessages.Clear();
+        Message.lstTenantMessages.Clear();
 
         //displays all of tenants messages
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
@@ -308,7 +308,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                                 msg.setRecieverName(recievername);
 
 
-                                Message.lstMessages.Add(msg);
+                                Message.lstTenantMessages.Add(msg);
                             }
 
                         }

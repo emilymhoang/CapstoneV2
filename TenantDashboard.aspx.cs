@@ -34,8 +34,8 @@ public partial class TenantDashboard : System.Web.UI.Page
         //    Response.Redirect("Login.aspx");
         //}
 
-        lvMessages.DataSource = Message.lstMessages;
-        lvMessages.DataBind();
+        lvMessagesTenant.DataSource = Message.lstTenantMessages;
+        lvMessagesTenant.DataBind();
 
         lvFavorites.DataSource = Favorite.lstFavorites;
         lvFavorites.DataBind();
@@ -84,7 +84,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         usernameTextbox.Text = Session["username"].ToString();
 
         int tenantIDRefresh = Convert.ToInt32(Session["tenantID"]);
-        Message.lstMessages.Clear();
+        Message.lstTenantMessages.Clear();
 
         SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
         badge.Parameters.AddWithValue("@TenantID", tenantID);
@@ -109,14 +109,17 @@ public partial class TenantDashboard : System.Web.UI.Page
 
 
         }
-    
-        
 
 
-    
+
+
+
 
 
         //displays all of tenants messages
+
+        string messageSender = Session["username"].ToString();
+
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -125,9 +128,12 @@ public partial class TenantDashboard : System.Web.UI.Page
                 command.CommandType = CommandType.Text;
 
 
-                command.CommandText = "select  Message.HostID, Message.TenantID, Message.Message, Message.MessageDate," +
-                    " Message.LastUpdated, Message.LastUpdatedBy, Host.FirstName, Host.LastName from Message " +
-                    "left join Host on message.HostID = host.HostID where Message.TenantID = @tenantid order by Message.MessageID desc";
+                command.CommandText = "select Host.FirstName HostFirst, Host.LastName HostLast, [dbo].[Message].[HostID], " +
+                    "[dbo].[Message].[TenantID], [dbo].[Message].[Message], [dbo].[Message].[MessageDate], [dbo].[Message].[LastUpdatedBy], " +
+                    "[dbo].[Message].[LastUpdated], [dbo].[Tenant].FirstName TenantFirst, [dbo].[Tenant].LastName TenantLast " +
+                    "from [dbo].[Host] left join [dbo].[Message] on [dbo].[Host].HostID = [dbo].[Message].HostID " +
+                    "left join [dbo].[Tenant] on [dbo].[Message].TenantID = [dbo].[Tenant].TenantID " +
+                    "where Message.TenantID = @tenantid order by Message.MessageID desc";
                 command.Parameters.AddWithValue("@tenantid", tenantIDRefresh);
 
 
@@ -146,14 +152,24 @@ public partial class TenantDashboard : System.Web.UI.Page
                                 string lub = (string)reader["LastUpdatedBy"];
 
 
-                                Message msg = new Message(hostid, tenantid, message, lub);
+                                Message msg = new Message(tenantid, hostid, message, lub);
 
                                 msg.setMessageDate(Convert.ToDateTime(reader["MessageDate"]));
-                                string recievername = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                msg.setRecieverName(recievername);
+                                string recieverName = string.Empty;
+
+                                if (messageSender.Equals(lub))
+                                {
+                                    recieverName = "To: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"] + "\tFrom: Me";
+                                }
+                                else
+                                {
+                                    recieverName = "To: Me\tFrom: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"];
+                                }
+
+                                msg.setRecieverName(recieverName);
 
 
-                                Message.lstMessages.Add(msg);
+                                Message.lstTenantMessages.Add(msg);
                             }
 
                         }
@@ -177,8 +193,8 @@ public partial class TenantDashboard : System.Web.UI.Page
             }
         }
 
-        lvMessages.DataSource = Message.lstMessages;
-        lvMessages.DataBind();
+        lvMessagesTenant.DataSource = Message.lstTenantMessages;
+        lvMessagesTenant.DataBind();
 
         //favorite
         Favorite.lstFavorites.Clear();
@@ -289,7 +305,65 @@ public partial class TenantDashboard : System.Web.UI.Page
 
         lvFavorites.DataSource = Favorite.lstFavorites;
         lvFavorites.DataBind();
+
+
+        //populates dropdown for messages
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
+
+
+                command.CommandText = "select distinct [dbo].[Favorite].HostID, [dbo].[Host].FirstName, [dbo].[Host].LastName " +
+                    "from [dbo].[Favorite] left join [dbo].[Host] " +
+                    "on [dbo].[Favorite].HostID = [dbo].[Host].HostID " +
+                    "where [dbo].[Favorite].TenantID = @tenantid";
+                command.Parameters.AddWithValue("@tenantid", tenantIDRefresh);
+
+
+                try
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                ListItem item = new ListItem();
+                                var val = Convert.ToInt32(reader["HostID"]);
+                                item.Text = (string)reader["FirstName"] + (string)reader["Lastname"];
+                                item.Value = val.ToString();
+                                hostNameDropdown.Items.Add(item);
+                            }
+
+                        }
+                        else
+                        {
+                            //lblInvalidSearch.Text = "Search returned no properties";
+                        }
+
+                    }
+                }
+                catch (SqlException t)
+                {
+                    string b = t.ToString();
+                }
+                finally
+                {
+                    connection.Close();
+
+                }
+
+            }
+        }
+
+
     }
+
+
     protected void sendMessage(object sender, EventArgs e)
     {
         int tenantID = Convert.ToInt32(Session["tenantID"]);
@@ -333,7 +407,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         }
 
 
-        Message.lstMessages.Clear();
+        Message.lstTenantMessages.Clear();
 
         //displays all of tenants messages
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
@@ -344,9 +418,12 @@ public partial class TenantDashboard : System.Web.UI.Page
                 command.CommandType = CommandType.Text;
 
 
-                command.CommandText = "select  Message.HostID, Message.TenantID, Message.Message, Message.MessageDate," +
-                    " Message.LastUpdated, Message.LastUpdatedBy, Host.FirstName, Host.LastName from Message " +
-                    "left join Host on message.HostID = host.HostID where Message.TenantID = @tenantid order by Message.MessageID desc";
+                command.CommandText = "select Host.FirstName HostFirst, Host.LastName HostLast, [dbo].[Message].[HostID], " +
+                    "[dbo].[Message].[TenantID], [dbo].[Message].[Message], [dbo].[Message].[MessageDate], [dbo].[Message].[LastUpdatedBy], " +
+                    "[dbo].[Message].[LastUpdated], [dbo].[Tenant].FirstName TenantFirst, [dbo].[Tenant].LastName TenantLast " +
+                    "from [dbo].[Host] left join [dbo].[Message] on [dbo].[Host].HostID = [dbo].[Message].HostID " +
+                    "left join [dbo].[Tenant] on [dbo].[Message].TenantID = [dbo].[Tenant].TenantID " +
+                    "where Message.TenantID = @tenantid order by Message.MessageID desc";
                 command.Parameters.AddWithValue("@tenantid", tenantID);
 
 
@@ -365,14 +442,23 @@ public partial class TenantDashboard : System.Web.UI.Page
                                 string lub = (string)reader["LastUpdatedBy"];
 
 
-                                Message msg = new Message(hostid, tenantid, message, lub);
+                                Message msg = new Message(tenantid, hostid, message, lub);
 
                                 msg.setMessageDate(Convert.ToDateTime(reader["MessageDate"]));
-                                string recievername = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                msg.setRecieverName(recievername);
+                                string recieverName = string.Empty;
+
+                                if (messageSender.Equals(lub))
+                                {
+                                    recieverName = "To: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"] + "\tFrom: Me";
+                                } else
+                                {
+                                    recieverName = "To: Me\tFrom: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"];
+                                }
+                                
+                                msg.setRecieverName(recieverName);
 
 
-                                Message.lstMessages.Add(msg);
+                                Message.lstTenantMessages.Add(msg);
                             }
 
                         }
@@ -396,8 +482,8 @@ public partial class TenantDashboard : System.Web.UI.Page
             }
         }
 
-        lvMessages.DataSource = Message.lstMessages;
-        lvMessages.DataBind();
+        lvMessagesTenant.DataSource = Message.lstTenantMessages;
+        lvMessagesTenant.DataBind();
         messageTextbox.Text = string.Empty;
     }
 

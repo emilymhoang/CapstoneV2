@@ -8,7 +8,9 @@ using System.Web;
 /// </summary>
 public class Message
 {
-    public static List<Message> lstMessages = new List<Message>();
+    public static List<Message> lstHostMessages = new List<Message>();
+
+    public static List<Message> lstTenantMessages = new List<Message>();
     public int tenantID { get; private set; }
     public String message { get; private set; }
 
@@ -18,6 +20,8 @@ public class Message
     public DateTime lastUpdated { get; private set; }
 
     public string recieverName { get; private set; }
+
+    public string tenantName { get; private set; }
 
     public Message(int tenantID, int hostID, String message, string lastUpdatedBy)
     {
@@ -39,6 +43,11 @@ public class Message
     public void setMessageDate(DateTime messageDate)
     {
         this.messageDate = messageDate;
+    }
+
+    public void setTenantName(string tenantName)
+    {
+        this.tenantName = tenantName;
     }
 
 }

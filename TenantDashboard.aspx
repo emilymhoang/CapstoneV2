@@ -215,10 +215,7 @@
                     <asp:Label style="font-family: 'Oswald', sans-serif; ; font-size: 20px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
                        
                         <asp:DropDownList ID="hostNameDropdown" runat="server">
-                            <asp:ListItem Value="02">Ryan Krane</asp:ListItem>
-                            <asp:ListItem Value="42">Hank Sherbert</asp:ListItem>
-                            <asp:ListItem Value="43">Jason Gerhardt</asp:ListItem>
-                            <asp:ListItem Value="44">Shannon Hoang</asp:ListItem>
+                            
                         </asp:DropDownList>
                        
                         
@@ -237,8 +234,10 @@
 
             <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+
                     <div class="list-group" style=" height: 290px;">
-                        <asp:ListView id="lvMessages" runat="server" Visible="true" >
+
+                        <asp:ListView id="lvMessagesTenant" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
                         <table id="tbl1" runat="server">
