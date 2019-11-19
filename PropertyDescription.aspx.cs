@@ -226,115 +226,115 @@ public partial class PropertyDescription : System.Web.UI.Page
     {
         Response.Redirect("SearchResults.aspx");
     }
-    protected void sendMessage(object sender, EventArgs e)
-    {
-        int tenantID = Convert.ToInt32(Session["tenantID"]);
-        int hostID = Convert.ToInt32(hostNameDropdown.SelectedItem.Value);
-        string msgtxt = messageTextbox.Text;
-        string messageSender = Session["username"].ToString();
+    //protected void sendMessage(object sender, EventArgs e)
+    //{
+    //    int tenantID = Convert.ToInt32(Session["tenantID"]);
+    //    int hostID = Convert.ToInt32(hostNameDropdown.SelectedItem.Value);
+    //    string msgtxt = messageTextbox.Text;
+    //    string messageSender = Session["username"].ToString();
 
-        Message newMessage = new Message(tenantID, hostID, msgtxt, messageSender);
+    //    Message newMessage = new Message(tenantID, hostID, msgtxt, messageSender);
 
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO [dbo].[Message] ([HostID],[TenantID],[Message],[MessageDate]," +
-                    "[LastUpdatedBy],[LastUpdated]) VALUES (@host,@tenant,@message,@msgdate,@lub,@lu)";
+    //    using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+    //    {
+    //        using (SqlCommand command = new SqlCommand())
+    //        {
+    //            command.Connection = connection;
+    //            command.CommandType = CommandType.Text;
+    //            command.CommandText = "INSERT INTO [dbo].[Message] ([HostID],[TenantID],[Message],[MessageDate]," +
+    //                "[LastUpdatedBy],[LastUpdated]) VALUES (@host,@tenant,@message,@msgdate,@lub,@lu)";
 
-                command.Parameters.AddWithValue("@host", newMessage.hostID);
-                command.Parameters.AddWithValue("@tenant", newMessage.tenantID);
-                command.Parameters.AddWithValue("@message", newMessage.message);
-                command.Parameters.AddWithValue("@msgdate", newMessage.messageDate);
-                command.Parameters.AddWithValue("@lub", newMessage.lastUpdatedBy);
-                command.Parameters.AddWithValue("@lu", newMessage.lastUpdated);
-
-
-                try
-                {
-                    connection.Open();
-                    int recordsAffected = command.ExecuteNonQuery();
-                }
-                catch (SqlException)
-                {
-
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
-        }
+    //            command.Parameters.AddWithValue("@host", newMessage.hostID);
+    //            command.Parameters.AddWithValue("@tenant", newMessage.tenantID);
+    //            command.Parameters.AddWithValue("@message", newMessage.message);
+    //            command.Parameters.AddWithValue("@msgdate", newMessage.messageDate);
+    //            command.Parameters.AddWithValue("@lub", newMessage.lastUpdatedBy);
+    //            command.Parameters.AddWithValue("@lu", newMessage.lastUpdated);
 
 
-        Message.lstTenantMessages.Clear();
+    //            try
+    //            {
+    //                connection.Open();
+    //                int recordsAffected = command.ExecuteNonQuery();
+    //            }
+    //            catch (SqlException)
+    //            {
 
-        //displays all of tenants messages
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-
-
-                command.CommandText = "select  Message.HostID, Message.TenantID, Message.Message, Message.MessageDate," +
-                    " Message.LastUpdated, Message.LastUpdatedBy, Host.FirstName, Host.LastName from Message " +
-                    "left join Host on message.HostID = host.HostID where Message.TenantID = @tenantid order by Message.MessageID desc";
-                command.Parameters.AddWithValue("@tenantid", tenantID);
-
-
-                try
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int hostid = Convert.ToInt32(reader["HostID"]);
-                                int tenantid = Convert.ToInt32(reader["TenantID"]);
-                                string message = (string)reader["Message"];
-                                string lub = (string)reader["LastUpdatedBy"];
+    //            }
+    //            finally
+    //            {
+    //                connection.Close();
+    //            }
+    //        }
+    //    }
 
 
-                                Message msg = new Message(hostid, tenantid, message, lub);
+    //    Message.lstTenantMessages.Clear();
 
-                                msg.setMessageDate(Convert.ToDateTime(reader["MessageDate"]));
-                                string recievername = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                msg.setRecieverName(recievername);
+    //    //displays all of tenants messages
+    //    using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+    //    {
+    //        using (SqlCommand command = new SqlCommand())
+    //        {
+    //            command.Connection = connection;
+    //            command.CommandType = CommandType.Text;
 
 
-                                Message.lstTenantMessages.Add(msg);
-                            }
+    //            command.CommandText = "select  Message.HostID, Message.TenantID, Message.Message, Message.MessageDate," +
+    //                " Message.LastUpdated, Message.LastUpdatedBy, Host.FirstName, Host.LastName from Message " +
+    //                "left join Host on message.HostID = host.HostID where Message.TenantID = @tenantid order by Message.MessageID desc";
+    //            command.Parameters.AddWithValue("@tenantid", tenantID);
 
-                        }
-                        else
-                        {
-                            //lblInvalidSearch.Text = "Search returned no properties";
-                        }
 
-                    }
-                }
-                catch (SqlException t)
-                {
-                    string b = t.ToString();
-                }
-                finally
-                {
-                    connection.Close();
+    //            try
+    //            {
+    //                connection.Open();
+    //                using (SqlDataReader reader = command.ExecuteReader())
+    //                {
+    //                    if (reader.HasRows)
+    //                    {
+    //                        while (reader.Read())
+    //                        {
+    //                            int hostid = Convert.ToInt32(reader["HostID"]);
+    //                            int tenantid = Convert.ToInt32(reader["TenantID"]);
+    //                            string message = (string)reader["Message"];
+    //                            string lub = (string)reader["LastUpdatedBy"];
 
-                }
 
-            }
-        }
+    //                            Message msg = new Message(hostid, tenantid, message, lub);
 
-        //lvMessages.DataSource = Message.lstMessages;
-        //lvMessages.DataBind();
-        messageTextbox.Text = string.Empty;
-    }
+    //                            msg.setMessageDate(Convert.ToDateTime(reader["MessageDate"]));
+    //                            string recievername = (string)reader["FirstName"] + " " + (string)reader["LastName"];
+    //                            msg.setRecieverName(recievername);
+
+
+    //                            Message.lstTenantMessages.Add(msg);
+    //                        }
+
+    //                    }
+    //                    else
+    //                    {
+    //                        //lblInvalidSearch.Text = "Search returned no properties";
+    //                    }
+
+    //                }
+    //            }
+    //            catch (SqlException t)
+    //            {
+    //                string b = t.ToString();
+    //            }
+    //            finally
+    //            {
+    //                connection.Close();
+
+    //            }
+
+    //        }
+    //    }
+
+    //    //lvMessages.DataSource = Message.lstMessages;
+    //    //lvMessages.DataBind();
+    //    messageTextbox.Text = string.Empty;
+    //}
 }
 

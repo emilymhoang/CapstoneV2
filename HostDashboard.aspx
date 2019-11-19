@@ -241,7 +241,7 @@
                     </div>
                     </div>
               <div class="col-md-3">
-                        <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit" class="btn"/>
+                        <asp:Button ID="createMessageButton" runat="server" Text="Respond to Message" AutoPostBack="true" type="submit" class="btn"/>
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>        
                 <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">

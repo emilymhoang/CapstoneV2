@@ -91,8 +91,8 @@
     <div class="col-md-7" style="margin-top: 1rem; "> 
           <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label><img src="images/icons-07.png" style="max-width: 30px;" alt="background check approved icon"></h1> 
         </div> <!--end col-->
-      <div class="col-md-1.5" style="margin-top: 1.5rem; ">     
-              <div class="col-md-3">
+     <div class="col-md-1.5" style="margin-top: 1.5rem; ">     
+     <%--         <div class="col-md-3">
                         <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit" class="btn"/>
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>        
@@ -120,7 +120,7 @@
                 </asp:Panel>
                 <AjaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="createMessageButton" BackgroundCssClass="modalBackground" CancelControlID="cancelButton">
                 </AjaxToolkit:ModalPopupExtender>
-            </div><%--<asp:Button runat="server" class="btn" ID="messageButton" OnClick="messageClick" Text="Favorite"></asp:Button>--%>
+            </div>--%><%--<asp:Button runat="server" class="btn" ID="messageButton" OnClick="messageClick" Text="Favorite"></asp:Button>--%>
         </div> <!--end col-->
         <div class="col-md-1" style="margin-top: 1.5rem; "> 
         <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button> </p>
