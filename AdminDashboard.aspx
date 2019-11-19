@@ -202,9 +202,9 @@
                                  </tr>   
                                 <tr>
                                      <td>
-                                        <asp:Button runat="server" class="btn" ID="deleteProperties" OnClick="deleteProperty" Text="Delete Property Room"/>
+                                        <asp:Button runat="server" class="btn" ID="deleteProperties" OnClick="deleteProperty" AutoPostBack="true" Text="Delete Property Room"/>
                                         &nbsp;
-                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Profile" />
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" onClick="viewProperty" Text="View Profile" />
                                     </td
                                 </tr>
                              </table>
@@ -255,7 +255,7 @@
 </div><!-- end div big row -->  
 </div><!-- end div container! -->
         </div>
-    </div>
+            
 
 </asp:Content>
 

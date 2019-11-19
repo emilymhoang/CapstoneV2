@@ -340,7 +340,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void deleteProperty(object sender, EventArgs e)
     {
-
+        Response.Write("<script> alert('Are you sure you want to delete this property?'); </script>");
         //var lcount = lvSearchResultsAdmin.SelectedIndex;
 
         Button btn = sender as Button;
@@ -351,10 +351,13 @@ public partial class AdminDashboard : System.Web.UI.Page
         //lvSearchResults.SelectedIndex;
         //lvSearchResults.Items[lcount].Selected = 1;
 
-        SqlCommand delete = new SqlCommand("DELETE FROM [dbo].[PropertyRoom] WHERE RoomID = @RoomID", sc);
+        SqlCommand delete = new SqlCommand("DELETE FROM [dbo].[BadgeProperty] WHERE RoomID = @RoomID", sc);
+        SqlCommand delete1 = new SqlCommand("DELETE FROM [dbo].[PropertyRoom] WHERE RoomID = @RoomID", sc);
         delete.Parameters.AddWithValue("@RoomID", selectedPRid);
-        delete.Connection = sc;
+        delete1.Parameters.AddWithValue("@RoomID", selectedPRid);
         delete.ExecuteNonQuery();
+        delete1.ExecuteNonQuery();
+
     }
 
     protected void approveApplicant(object sender, EventArgs e)
@@ -387,5 +390,17 @@ public partial class AdminDashboard : System.Web.UI.Page
         Session.Abandon();
         Response.Redirect("Index.aspx");
         SearchResult.lstSearchResults.Clear();
+    }
+
+    protected void viewProperty(object sender, EventArgs e)
+    {
+
+        SearchResult.selectedReultFullAddress = string.Empty;
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        Session["position"] = index;
+        SearchResult.selectedReultFullAddress = SearchResult.lstSearchResults[index].resultFullAddress;
+        Response.Redirect("PropertyDescription.aspx");
     }
 }
