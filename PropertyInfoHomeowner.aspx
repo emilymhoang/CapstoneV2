@@ -25,7 +25,7 @@
         <h1>Tell us about yourself.</h1>
         <p>Let us find you the perfect housemate.</p>   
           <div class="progress " >
-                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 75%; " aria-valuenow="75" ></div>
+                <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 75%; " aria-valuenow="70" ></div>
                </div>
       </div>
      
@@ -39,7 +39,7 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">House Number*</label>
-              <asp:Textbox ID="houseNumTextbox" class="form-control" placeholder="" runat="server" MaxLength="15" type="number"></asp:Textbox>
+              <asp:Textbox ID="houseNumTextbox" class="form-control" placeholder="" runat="server" MaxLength="10" type="number"></asp:Textbox>
                  <asp:Label ID="propertyResult" runat="server" ForeColor="Red"></asp:Label>
                 <asp:RequiredFieldValidator ID="HouseNumRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="HouseNumTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
@@ -53,7 +53,7 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">City*</label>
-              <asp:Textbox id="cityTextbox" class="form-control" placeholder="" runat="server" MaxLength="40" type="text"></asp:Textbox>
+              <asp:Textbox id="cityTextbox" class="form-control" placeholder="" runat="server" MaxLength="30" type="text"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="cityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="cityTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <br />
