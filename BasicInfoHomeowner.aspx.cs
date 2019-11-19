@@ -16,6 +16,19 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
     
     protected void submitBasicInfo(object sender, EventArgs e)
     {
+        var today = DateTime.Today;
+
+        var birthdate = Convert.ToDateTime(dateOfBirthTextbox.Text);
+        var age = today.Year - birthdate.Year;
+        if (birthdate.Date > today.AddYears(-age)) age--;
+
+        //age Validation 
+        if (age < 18)
+        {
+            resultmessagedob.Text = "All users must be atleast 18 years old";
+
+        }
+
         String emailNew = emailTextbox.Text;
         Session["Email"] = emailNew;
 
@@ -32,15 +45,22 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
         {
             if (emailTextbox.Text == confirmEmailTextbox.Text)
             {
-                Session["firstName"] = firstNameTextbox.Text;
-                Session["lastName"] = lastNameTextbox.Text;
-                Session["gender"] = DropDownListGender.SelectedValue;
-                Session["dateOfBirth"] = dateOfBirthTextbox.Text;
-                Session["email"] = emailTextbox.Text;
-                Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
-                Session["hostBio"] = HostBioTextbox.Text;
+                if (DropDownListGender.SelectedValue != "-1")
+                {
+                    Session["firstName"] = firstNameTextbox.Text;
+                    Session["lastName"] = lastNameTextbox.Text;
+                    Session["gender"] = DropDownListGender.SelectedValue;
+                    Session["dateOfBirth"] = dateOfBirthTextbox.Text;
+                    Session["email"] = emailTextbox.Text;
+                    Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
+                    Session["hostBio"] = HostBioTextbox.Text;
 
                 Response.Redirect("CreateLoginHomeowner.aspx");
+                }
+                else
+                {
+                    resultmessagegender.Text = "Must select a valid gender";
+                }
             }
             else
             {
