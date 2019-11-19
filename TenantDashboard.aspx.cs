@@ -32,6 +32,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         //if (Session["username"] == null)
         //{
         //    Response.Redirect("Login.aspx");
+        //    Session["LoggedIn"] == "false";
         //}
 
         lvMessagesTenant.DataSource = Message.lstTenantMessages;

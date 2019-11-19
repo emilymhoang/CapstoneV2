@@ -92,7 +92,7 @@
                         </div>
                     </div>
             <div class="container row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
-                <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                <div class="col-md-12" style="margin-top: 1rem;">
                     <div class="list-group " style="margin-top: 1rem;  height: 500px;">
          <asp:ListView id="lvFavorites" runat="server" Visible="true" >
 
@@ -150,16 +150,16 @@
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-                                    <div class="carousel-inner">
+                                     <div class="carousel-inner" style="width: 200px; max-height: 200px;">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" style="width:1000px;" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" style="width:1000px" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" style="width:1000px" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>

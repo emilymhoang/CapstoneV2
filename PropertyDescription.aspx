@@ -122,15 +122,15 @@
                 </AjaxToolkit:ModalPopupExtender>
             </div>--%><%--<asp:Button runat="server" class="btn" ID="messageButton" OnClick="messageClick" Text="Favorite"></asp:Button>--%>
         </div> <!--end col-->
-        <div class="col-md-1" style="margin-top: 1.5rem; "> 
+<%--        <div class="col-md-1" style="margin-top: 1.5rem; "> 
         <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button> </p>
-            </div>
+            </div>--%>
     </div><!-- end div row -->  
     
     
     <div class="row prop" style="border-bottom: solid; border-bottom-width: 1px; ">
         <div class="col-md-6" >
-            <h2> <asp:Label runat="server"  style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text = "Property Name"></asp:Label></h2>
+            <h2> <asp:Label runat="server"  style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text = "Property Name"></asp:Label></h2><asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button> </p>
             <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text = "Property Location"></asp:Label></h5>     
             <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text = "Property Price"></asp:Label></h5>
             <p > <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text = "The brief description of the property would go here."></asp:Label></p>
