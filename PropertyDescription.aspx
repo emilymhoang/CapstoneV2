@@ -85,7 +85,7 @@
 <div  class="container">
      
   <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
-    <div class="col-md-1" >
+    <div class="col-md-1" style="margin-left: 2rem;">
       <asp:Button runat="server" style="margin-top: 1rem;" class="btn" ID="backButton" onClick="goBack" Text="Back"></asp:Button>
       </div>
     <div class="col-md-7" style="margin-top: 1rem; "> 

@@ -269,7 +269,7 @@
                 </div>
 
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
-                <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                <div class="col-md-12" style="margin-top: 1rem;">
                     <div class="list-group" >
                         <asp:ListView id="lvMessagesHost" runat="server" Visible="true" >
                         
@@ -288,23 +288,24 @@
                                             <asp:Label ID="lblSenderName" runat="Server" Text='<%#Eval("recieverName") %>' />
                                         </h3>
                                     </td>
-                                    <td>
+<%--                                    <td>
                                         <h3>
                                             <asp:Label ID="Label3" runat="Server" Text="--" />
                                         </h3>
-                                    </td>
+                                    </td>--%>
                                     <td>
-                                        <h3>
+                                        <h5>
                                             <asp:Label ID="lblMessageDate" runat="Server" Text='<%#Eval("messageDate") %>' />
-                                        </h3>
+                                        </h5>
                                     </td>
                                 </tr>
+                            </table>
+                            <table style="border-bottom: 1px solid black">
                                 <tr>
                                     <td>
                                         <asp:Label ID="lblMessage" runat="Server" Text='<%#Eval("message") %>' />
                                     </td>
                                 </tr>
-                                
                             </table>
                         </ItemTemplate>
 

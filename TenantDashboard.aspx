@@ -233,7 +233,7 @@
                 </div>
 
             <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
-                <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                <div class="col-md-12" style="margin-top: 1rem;">
 
                     <div class="list-group" style=" height: 290px;">
 
@@ -249,9 +249,9 @@
                         <table>
                                 <tr>
                                     <td>
-                                        <h4>
+                                        <h3>
                                             <asp:Label ID="lblSenderName" runat="Server" Text='<%#Eval("recieverName") %>' />
-                                        </h4>
+                                        </h3>
                                     </td>
 <%--                                    <td>
                                         <h3>
