@@ -51,13 +51,13 @@
                  <p><asp:Label ID="usernameTextbox" runat="server" Text="JohnSmith1" BackColor="#ebebeb"></asp:Label></p>
             </div>
             </div>--%>
-        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
         <%--    end profile container--%>
 
             <%-- tableau start --%>
     <div class="col-md-12"  style="border: solid; border-color: white;">
-    <h4 >Room Pricing</h4>
-    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
+    <h3 style="margin-top:1rem;">Room Pricing</h3>
+    <div class="row " style="background-color: #ebebeb; ">
         <div class="col-md-6"  style=" margin-top: 1rem;">
            <div class='tableauPlaceholder' id='viz1574042206509' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Av&#47;Averageroomprices2&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Averageroomprices2&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Av&#47;Averageroomprices2&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1574042206509');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='527px';vizElement.style.height='485px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
                   
@@ -77,10 +77,10 @@
 
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Verify Background Checks</h2> 
-            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
+            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
             <asp:Label ID="backgroundChecklbl" runat="server"></asp:Label>
-        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 570px;">
+        <div class="list-group" style="margin-top: 1rem; height: 570px;">
         <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
             <LayoutTemplate>
                 <table id="tbl1" runat="server">
@@ -134,7 +134,7 @@
         </div>--%>
 
      <div class="col-md-12"  style="border: solid; border-color: white;">
-    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
+    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; overflow:auto !important; height:410px !important; border-radius:25px;">
         <div class="col-md-6"  style=" margin-top: 1rem;">
                <h4 >Host Age</h4>
             <div class='tableauPlaceholder' id='viz1574038682954' style='position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;Hostsbyage&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Hostsbyage&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ho&#47;Hostsbyage&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1574038682954');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='500px';vizElement.style.height='427px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>  
@@ -149,15 +149,15 @@
     
     <div class="col-md-12"  style="border: solid; border-color: white;">
     <h2 >Search for properties</h2>
-    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
+    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; overflow:auto !important; height:410px !important; border-radius:25px;">
         <div class="col-md-10"  style=" margin-top: 1rem;">
-       <asp:Textbox ID="searchTextbox" type="text" style="font-size: 30px; height:75px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+       <asp:Textbox ID="searchTextbox" type="text" style="font-size: 22px; height:50px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
               <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
         </div>
         <div class="col-md-2">
                 <asp:Button ID="searchButton" style="margin-top: 2rem;" onClick="search_Click" AutoPostBack="false" runat="server" Text="Search" class="btn"/>
         </div>
-        <div class="list-group" style="overflow:scroll; height: 500px;">
+        <div class="list-group" style=" height: 500px;">
         <div style="margin-left: 1rem;">
         <asp:ListView id="lvSearchResultsAdmin" runat="server" Visible="true" >
 

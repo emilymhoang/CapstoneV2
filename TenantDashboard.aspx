@@ -58,7 +58,7 @@
             </div>
         </div>
            <%--    begin file container--%>
-        <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto;" >
+        <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-6 " style="margin-top: 1rem;">
                     <asp:Image ID="image1" ImageUrl="" class="img-fluid" runat="server" />
                 
@@ -91,10 +91,10 @@
                     <h3 >Your Favorites</h3> 
                         </div>
                     </div>
-            <div class="container row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+            <div class="container row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group " style="margin-top: 1rem; overflow:scroll; height: 500px;">
-        <asp:ListView id="lvFavorites" runat="server" Visible="true" >
+                    <div class="list-group " style="margin-top: 1rem;  height: 500px;">
+         <asp:ListView id="lvFavorites" runat="server" Visible="true" >
 
             <LayoutTemplate>
                 <table id="tbl1" runat="server">
@@ -103,7 +103,7 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                <table style=" border-bottom: solid; border-bottom-width: 1px;">
                     <tr>
                          <td style="width: 200px;">
                              <table>
@@ -235,9 +235,9 @@
             </div>
                 </div>
 
-            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style="overflow:scroll; height: 290px;">
+                    <div class="list-group" style=" height: 290px;">
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
@@ -304,7 +304,7 @@
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Background Check Status</h2> 
-            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem;" >
+            <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem; ">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
                 <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 100px;" ImageUrl="" class="img-fluid" runat="server" /></p>
@@ -320,7 +320,7 @@
           </div>
     </div><!-- end div big row -->  
     
-    <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
+    <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
         <div class="col-md-12"  style=" margin-top: 1rem;">
             <h2>Your Rental Agreements</h2>
             <p>When you have a rental agreement, it will be indicated here. We hope you find your perfect housing match so that you can have some wonderful rental agreements.</p>
