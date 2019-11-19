@@ -351,13 +351,9 @@ public partial class AdminDashboard : System.Web.UI.Page
         //lvSearchResults.SelectedIndex;
         //lvSearchResults.Items[lcount].Selected = 1;
 
-        SqlCommand delete = new SqlCommand("DELETE FROM [dbo].[BadgeProperty] WHERE RoomID = @RoomID", sc);
-        SqlCommand delete1 = new SqlCommand("DELETE FROM [dbo].[PropertyRoom] WHERE RoomID = @RoomID", sc);
+        SqlCommand delete = new SqlCommand("DELETE FROM [dbo].[PropertyRoom] Availability = 'N' WHERE RoomID = @RoomID", sc);
         delete.Parameters.AddWithValue("@RoomID", selectedPRid);
-        delete1.Parameters.AddWithValue("@RoomID", selectedPRid);
         delete.ExecuteNonQuery();
-        delete1.ExecuteNonQuery();
-
     }
 
     protected void approveApplicant(object sender, EventArgs e)
