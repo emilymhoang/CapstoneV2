@@ -85,7 +85,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[RoomDescription],[LastUpdatedBy],[LastUpdated],[Image1],[Image2],[Image3]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@roomdescrip,@lub,@lu, @image1, @image2, @image3)";
 
                 command.Parameters.AddWithValue("@propid", newRoom.propertyID);
-                command.Parameters.AddWithValue("@tenantid", newRoom.tenantID);
+                command.Parameters.AddWithValue("@tenantid", DBNull.Value);
                 command.Parameters.AddWithValue("@price", monthlyPriceTextbox.Text);
                 command.Parameters.AddWithValue("@sqft", newRoom.squareFootage);
                 command.Parameters.AddWithValue("@avail", newRoom.availability);

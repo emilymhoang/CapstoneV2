@@ -32,7 +32,6 @@ public class PropertyRoom
         this.availability = availability;
         this.briefDescription = briefDescription;
         this.propertyID = propertyID;
-        this.tenantID = 2;
         this.roomDescription = roomDescription;
         this.roomimage1 = roomimage1;
         this.roomimage2 = roomimage2;
