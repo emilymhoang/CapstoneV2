@@ -19,6 +19,13 @@ public partial class TenantDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        //if (Session["username"] == null)
+        //{
+        //    Session["LoggedIn"] = "false";
+        //    Response.Redirect("Login.aspx");
+        //}
+
         string strPreviousPage = "";
         if (Request.UrlReferrer != null)
         {
@@ -26,14 +33,9 @@ public partial class TenantDashboard : System.Web.UI.Page
         }
         if (strPreviousPage == "")
         {
+            Session["LoggedIn"] = "false";
             Response.Redirect("Login.aspx");
         }
-
-        //if (Session["username"] == null)
-        //{
-        //    Response.Redirect("Login.aspx");
-        //    Session["LoggedIn"] == "false";
-        //}
 
         lvMessagesTenant.DataSource = Message.lstTenantMessages;
         lvMessagesTenant.DataBind();

@@ -25,8 +25,14 @@ public partial class HostDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null)
+        string strPreviousPage = "";
+        if (Request.UrlReferrer != null)
         {
+            strPreviousPage = Request.UrlReferrer.Segments[Request.UrlReferrer.Segments.Length - 1];
+        }
+        if (strPreviousPage == "")
+        {
+            Session["LoggedIn"] = "false";
             Response.Redirect("Login.aspx");
         }
 

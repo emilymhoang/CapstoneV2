@@ -15,8 +15,14 @@ public partial class AdminDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["username"] == null)
+        string strPreviousPage = "";
+        if (Request.UrlReferrer != null)
         {
+            strPreviousPage = Request.UrlReferrer.Segments[Request.UrlReferrer.Segments.Length - 1];
+        }
+        if (strPreviousPage == "")
+        {
+            Session["LoggedIn"] = "false";
             Response.Redirect("Login.aspx");
         }
 
@@ -338,7 +344,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         lvBackgroundResults.DataBind();
     }
 
-    protected void deleteProperty(object sender, EventArgs e)
+    protected void hideProperties(object sender, EventArgs e)
     {
         Response.Write("<script> alert('Are you sure you want to delete this property?'); </script>");
         //var lcount = lvSearchResultsAdmin.SelectedIndex;
@@ -351,7 +357,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         //lvSearchResults.SelectedIndex;
         //lvSearchResults.Items[lcount].Selected = 1;
 
-        SqlCommand delete = new SqlCommand("DELETE FROM [dbo].[PropertyRoom] Availability = 'N' WHERE RoomID = @RoomID", sc);
+        SqlCommand delete = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' WHERE RoomID = @RoomID", sc);
         delete.Parameters.AddWithValue("@RoomID", selectedPRid);
         delete.ExecuteNonQuery();
     }
