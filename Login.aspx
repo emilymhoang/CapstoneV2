@@ -50,10 +50,10 @@
           </div> <!--end row class-->
         
         <div class="row" style="margin-bottom: 3rem;"> 
-          <div class="col-md-6"></div>
-             <div class="col-md-6">
+         
+             <div class="col-md-12" >
                  <asp:Label ID="resultmessage" runat="server" Text="" ForeColor="Red"></asp:Label>
-                 <asp:Button ID="loginButton" class="btn" type="submit" style="float: right;" runat="server" Text="Login" OnCommand="submitLogin_Click" AutoPostBack ="true"></asp:Button></div>
+                 <asp:Button ID="loginButton" class="btn" type="submit" style="float:left;" runat="server" Text="Login" OnCommand="submitLogin_Click" AutoPostBack ="true" ></asp:Button></div>
             
         </div>     
       </div> <!--end container-->

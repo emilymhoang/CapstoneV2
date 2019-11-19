@@ -47,7 +47,7 @@
             </div>
         </div>
            <%--    begin file container--%>
-        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-6" style="margin-top: 1rem;">
                     <asp:Image ID="image1" ImageUrl="" class="img-fluid" runat="server" />
                 
@@ -84,11 +84,11 @@
             </div>
         </div>
            <%--    begin file container--%>
-        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem;">
                 <h3>Your Available Rooms in: </h3>
                 <h4><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h4>
-        <div class="list-group" style="margin-top: 1rem;overflow:scroll; height: 400px;">
+        <div class="list-group" style="margin-top: 1rem; height: 400px;">
         <asp:ListView id="lvPropertyRoom" runat="server" Visible="true" >
 
             <LayoutTemplate>
@@ -270,9 +270,9 @@
             </div>
                 </div>
 
-            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem;" >
+            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
                 <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-                    <div class="list-group" style=" overflow: scroll">
+                    <div class="list-group" >
                         <asp:ListView id="lvMessages" runat="server" Visible="true" >
                         
                         <LayoutTemplate>
@@ -320,7 +320,7 @@
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Background Check Status</h2> 
-            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
+            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
                 <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 200px;" ImageUrl="" class="img-fluid" runat="server" /></p>
@@ -336,11 +336,11 @@
           </div>
     </div><!-- end div big row -->  
     
-    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;">
+    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem;  border-radius:25px;">
         <div class="col-md-12"  style=" margin-top: 1rem;">
             <h2>Your Rental Agreements</h2>
             <p>When you have a rental agreement, it will be indicated here. We hope you find your perfect housing match so that you can have some wonderful rental agreements.</p>
-            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Sample Agreement" AutoPostBack="true" type="submit" class="btn"/><br/>
+            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Sample Agreement" AutoPostBack="true" type="submit" class="btn"/><br/><br />
           </div>
     </div><!-- end div big row -->  
     

@@ -107,7 +107,7 @@
           
             <div class="col">
           
-              <label for="formGroupExampleInput">Brief Room Description*</label>
+              <label for="formGroupExampleInput">Property Room Title</label>
               <asp:Textbox ID="displayTextbox" type="text" class="form-control" placeholder="Ex. Basement bedroom near City" runat="server" MaxLength="75"></asp:Textbox>
                 <br>
       
@@ -128,7 +128,7 @@
  <br>
             <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">Property Bio (To be shown to potential Tenant's)*</label>
+              <label for="formGroupExampleInput">Property Description/Biography</label>
               <asp:Textbox ID="bioTextbox" class="form-control" type="text" TextMode="MultiLine" style="height:100px; width:1150px;" placeholder="Ex. Fully furnished basement bedroom with separate kitchen and lounge area. Two miles from metro and close to multiple shopping centers." runat="server" MaxLength="300"></asp:Textbox>
                 <br>
             </div>

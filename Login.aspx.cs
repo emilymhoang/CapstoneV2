@@ -85,5 +85,29 @@ public partial class _Default : System.Web.UI.Page
         sc.Close();
 
     }
+    protected void CheckChange(object sender, EventArgs e)
+    {
+        if ((rememberCheck.Checked == true))
+        {
+            //stay logged in 
+        }
+        else
+        {
+            string strPreviousPage = string.Empty;
+            if (Request.UrlReferrer != null)
+            {
+                strPreviousPage = Request.UrlReferrer.Segments[Request.UrlReferrer.Segments.Length - 1];
 
+            }
+            if (strPreviousPage == "")
+            {
+                Response.Redirect("Login.aspx");
+            }
+
+            if (Session["username"] == null)
+            {
+                Response.Redirect("Login.aspx");
+            }
+        }
+    }
 } 
