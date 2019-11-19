@@ -78,7 +78,7 @@
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Verify Background Checks</h2> 
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
-            <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+            <div class="col-md-12" style="margin-top: 1rem;">
             <asp:Label ID="backgroundChecklbl" runat="server"></asp:Label>
         <div class="list-group" style="margin-top: 1rem; height: 570px;">
         <asp:ListView id="lvBackgroundResults" runat="server" Visible="true" >
@@ -89,22 +89,25 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+                <table style="margin-top: 1rem;">
                         <tr>
-                            <td>
+                            <td style="width: 150px">
                                 <asp:Image ID="image7" style="  object-fit: cover; width:100px; height:100px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
                             </td>
-                            <td>
+                            <td style="width: 200px">
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="backgroundcheck" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 20px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
                                 <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="Label3" Text='<%#Eval("resultPhone") %>'></asp:Label></br>
                                 <asp:Label runat="server" ID="Label4" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label></br>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>
+                            <td style="width: 100px">
                                 <asp:Button runat="server" class="btn" ID="btnApprove" AutoPostBack="true" OnClick="approveApplicant" Text="Approve"/>
                             </td>
                         </tr>
+<%--                        <tr>
+                            <td>
+                                <asp:Button runat="server" class="btn" ID="btnApprove" AutoPostBack="true" OnClick="approveApplicant" Text="Approve"/>
+                            </td>
+                        </tr>--%>
                 </table>
             </ItemTemplate>
 
@@ -218,16 +221,16 @@
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-                                    <div class="carousel-inner">
+                                    <div class="carousel-inner" style="width: 400px">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" style="width:2000px" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" style="width:2000px" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" style="width:2000px" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>
