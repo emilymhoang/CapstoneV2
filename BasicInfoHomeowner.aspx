@@ -121,7 +121,7 @@
         f.value = '(' + npa + ') ' + nxx + '-' + last4;
     }
                  </script>
-              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="13" onKeyup="addFormat(this)" placeholder="(xxx)xxx-xxxx" runat="server" type="tel"></asp:Textbox>
+              <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="15" onKeyup="addFormat(this)" placeholder="(xxx)xxx-xxxx" runat="server" type="tel"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">

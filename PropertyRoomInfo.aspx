@@ -75,7 +75,7 @@
                     this.value = parseFloat(this.value).toFixed(2);
                     }
                 </script>
-                <asp:TextBox ID="monthlyPriceTextbox" class="form-control" runat="server" placeholder="Ex. 800.00" onchange="setTwoNumberDecimal" MaxLength="7" step="0.01" value="0.00" type="number" name="item[amount]"></asp:TextBox>
+                <asp:TextBox ID="monthlyPriceTextbox" class="form-control" runat="server" placeholder="Ex. 800.00" onchange="setTwoNumberDecimal" step="0.01" value="0.00" min="0" max="9999" type="number" maxlength="7" name="item[amount]"></asp:TextBox>
               
                 <asp:RequiredFieldValidator ID="monthlyPriceRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="monthlyPriceTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
