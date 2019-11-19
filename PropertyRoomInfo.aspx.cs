@@ -48,13 +48,13 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
 
 
         sc.Open();
-        SqlCommand insert = new SqlCommand("SELECT PropertyID FROM [Capstone].[dbo].[Property] WHERE HostID = @HostID", sc);
+        SqlCommand insert = new SqlCommand("SELECT PropertyID FROM [dbo].[Property] WHERE HostID = @HostID", sc);
         insert.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         insert.Connection = sc;
         int propertyID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
 
-        SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [Capstone].[dbo].[Login] WHERE HostID = @HostID", sc);
+        SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [dbo].[Login] WHERE HostID = @HostID", sc);
         getAccountID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         getAccountID.Connection = sc;
         int accountID = Convert.ToInt32(getAccountID.ExecuteScalar());
@@ -62,7 +62,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         Session["accountID"] = accountID;
         sc.Close();
 
-        double monthlyPrice = Convert.ToDouble(monthlyPriceTextbox.Text);
+        string monthlyPrice = (Convert.ToDouble(monthlyPriceTextbox.Text)).ToString();
         //int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
         String sqFoot = DropDownListSize.SelectedValue;
         String avail = DropDownListAvailability.SelectedValue;
@@ -86,7 +86,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
 
                 command.Parameters.AddWithValue("@propid", newRoom.propertyID);
                 command.Parameters.AddWithValue("@tenantid", newRoom.tenantID);
-                command.Parameters.AddWithValue("@price", newRoom.monthlyPrice);
+                command.Parameters.AddWithValue("@price", monthlyPriceTextbox.Text);
                 command.Parameters.AddWithValue("@sqft", newRoom.squareFootage);
                 command.Parameters.AddWithValue("@avail", newRoom.availability);
                 command.Parameters.AddWithValue("@desc", newRoom.briefDescription);
@@ -96,17 +96,19 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 command.Parameters.AddWithValue("@image1", 0);
                 command.Parameters.AddWithValue("@image2", 0);
                 command.Parameters.AddWithValue("@image3", 0);
+                connection.Open();
+                int recordsAffected = command.ExecuteNonQuery();
+                connection.Close();
+
 
 
 
 
 
                 try
-               {
+                {
                     connection.Open();
-                    int recordsAffected = command.ExecuteNonQuery();
-
-                    SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [Capstone].[dbo].[PropertyRoom]", connection);
+                    SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [dbo].[PropertyRoom]", connection);
                     room.Connection = connection;
                     roomID = Convert.ToInt32(room.ExecuteScalar());
                     Session["RoomID"] = roomID;
@@ -115,7 +117,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
 
                     BadgeProperty newBadgeProperty = new BadgeProperty(roomID, privateEnt, kitchen, privateBath, furnish, storage, smoker);
 
-                    insertBadgeProperty.CommandText = "INSERT INTO [Capstone].[dbo].[BadgeProperty] (RoomID, PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker) VALUES (@roomID, @privateEnt, @kitchen, @privateBath, @furnish, @storage, @smoker);";
+                    insertBadgeProperty.CommandText = "INSERT INTO [dbo].[BadgeProperty] (RoomID, PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker) VALUES (@roomID, @privateEnt, @kitchen, @privateBath, @furnish, @storage, @smoker);";
                     insertBadgeProperty.Parameters.AddWithValue("@roomID", newBadgeProperty.RoomID);
                     insertBadgeProperty.Parameters.AddWithValue("@privateEnt", newBadgeProperty.privateEntrance);
                     insertBadgeProperty.Parameters.AddWithValue("@kitchen", newBadgeProperty.kitchen);
@@ -158,7 +160,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 BinaryReader br = new BinaryReader(stream);
                 byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                SqlCommand cmd = new SqlCommand("UPDATE [Capstone].[dbo].[PropertyRoom] SET Image1 = @imgdata WHERE RoomID = @RoomID", sc);
+                SqlCommand cmd = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Image1 = @imgdata WHERE RoomID = @RoomID", sc);
                 cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
                 cmd.Parameters.AddWithValue("@imgdata", bytes);
                 cmd.ExecuteNonQuery();
@@ -195,7 +197,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 BinaryReader br = new BinaryReader(stream);
                 byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image2 = @imgdata WHERE RoomID = @RoomID", sc);
+                SqlCommand cmd = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Image2 = @imgdata WHERE RoomID = @RoomID", sc);
                 cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
                 cmd.Parameters.AddWithValue("@imgdata", bytes);
                 cmd.ExecuteNonQuery();
@@ -226,7 +228,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
                 BinaryReader br = new BinaryReader(stream);
                 byte[] bytes = br.ReadBytes((int)stream.Length);
 
-                SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[PropertyRoom] SET Image3 = @imgdata WHERE RoomID = @RoomID", sc);
+                SqlCommand cmd = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Image3 = @imgdata WHERE RoomID = @RoomID", sc);
                 cmd.Parameters.AddWithValue("@RoomID", Session["RoomID"]);
                 cmd.Parameters.AddWithValue("@imgdata", bytes);
                 cmd.ExecuteNonQuery();

@@ -19,13 +19,13 @@ public partial class EditProfileTenant : System.Web.UI.Page
             sc.Open();
             String username = Session["username"].ToString();
 
-            SqlCommand insert = new SqlCommand("SELECT TenantID FROM [Capstone].[dbo].[Login] WHERE Username = @Username", sc);
+            SqlCommand insert = new SqlCommand("SELECT TenantID FROM [dbo].[Login] WHERE Username = @Username", sc);
             insert.Parameters.AddWithValue("@Username", username);
             insert.Connection = sc;
             tenantID = Convert.ToInt32(insert.ExecuteScalar());
             insert.ExecuteNonQuery();
             SqlCommand filter = new SqlCommand("SELECT Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [Capstone].[dbo].[Tenant] WHERE " +
+                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [dbo].[Tenant] WHERE " +
                                 "TenantID = " + tenantID, sc);
         if (IsPostBack == false)
         {
@@ -52,7 +52,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
                 try
                 {
                     update.Connection = sc;
-                    update.CommandText = "UPDATE [Capstone].[dbo].[Tenant] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
+                    update.CommandText = "UPDATE [dbo].[Tenant] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
                     "LastName = @LastName WHERE TenantID = " + tenantID;
                     update.Parameters.AddWithValue("@Email", emailTextbox.Text);
                     update.Parameters.AddWithValue("@PhoneNumber", phoneNumberTextbox.Text);
@@ -63,7 +63,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
                     //email stuff
                     String emailNew = emailTextbox.Text;
                     Session["Email"] = emailNew;
-                    SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
+                    SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Tenant] WHERE lower(email) = @Email", sc);
                     emailCheck.Parameters.AddWithValue("@Email", emailNew);
                     emailCheck.Connection = sc;
                     int count = Convert.ToInt32(emailCheck.ExecuteScalar());
@@ -101,7 +101,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
             using (SqlCommand updateLogin = new SqlCommand())
             {
                 updateLogin.Connection = sc;
-                updateLogin.CommandText = "UPDATE [Capstone].[dbo].[Login] SET Password = @Password WHERE TenantID = " + tenantID;
+                updateLogin.CommandText = "UPDATE [dbo].[Login] SET Password = @Password WHERE TenantID = " + tenantID;
                 updateLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(passwordTextbox.Text));
 
                 try

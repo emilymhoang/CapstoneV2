@@ -57,7 +57,7 @@
             <div class="col">
              <label for="formGroupExampleInput">Gender</label>
               <asp:DropDownList ID="DropDownListGender" runat="server">
-                <asp:ListItem Value="-1">Select One</asp:ListItem> 
+	               <asp:ListItem Value="-1">Select One</asp:ListItem> 
                   <asp:ListItem Value="O">I do not wish to Answer</asp:ListItem>
 	                <asp:ListItem Value="M">Male</asp:ListItem>
                     <asp:ListItem Value="F">Female</asp:ListItem>
@@ -71,7 +71,8 @@
               <label for="formGroupExampleInput">Date of Birth</label>
                     
               <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server"  class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" type="date"></asp:TextBox>
-<%--CssClass="m-wrap span12 date form_datetime"--%>
+<%--CssClass="m-wrap span12 date form_datetime"--%>           
+                     <asp:Label ID="resultmessagedob" runat="server" ForeColor="Red"></asp:Label>
               <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
 <%--            <script type="text/javascript">
             $(function () {
@@ -91,7 +92,7 @@
             <div class="col">
                <label for="formGroupExampleInput">Email</label>
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
-              <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" AutoPostBack="true" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
            <div class="col">
               <label for="formGroupExampleInput">Confirm Email</label>
@@ -137,7 +138,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
              <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" onClick="submitBasicInfo" style="float: right;" runat="server"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" onClick="submitBasicInfo" AutoPostBack="true" style="float: right;" runat="server"></asp:Button></div>
             
         </div>     
       </div> <!--end container-->

@@ -25,14 +25,14 @@ public partial class AdminDashboard : System.Web.UI.Page
         int accountID = Convert.ToInt32(Session["accountID"]);
         Response.Write(accountID);
 
-        SqlCommand insert = new SqlCommand("SELECT AdminID FROM [Capstone].[dbo].[Login] WHERE AccountID = @AccountID", sc);
+        SqlCommand insert = new SqlCommand("SELECT AdminID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);
         insert.Connection = sc;
         int adminID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
         Session["adminID"] = adminID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName FROM [Capstone].[dbo].[Admin] WHERE AdminID = @AdminID", sc);
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName FROM [dbo].[Admin] WHERE AdminID = @AdminID", sc);
         filter.Parameters.AddWithValue("@AdminID", adminID);
         SqlDataReader rdr = filter.ExecuteReader();
         while (rdr.Read())
@@ -59,7 +59,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "SELECT HostID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
+                    command.CommandText = "SELECT HostID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [dbo].[Host] WHERE lower(BackgroundCheckResult) = 'n'";
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -120,7 +120,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.Text;
-                    command.CommandText = "SELECT TenantID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [Capstone].[dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
+                    command.CommandText = "SELECT TenantID, FirstName, LastName, PhoneNumber, Email, imageV2, BackgroundCheckResult FROM [dbo].[Tenant] WHERE lower(BackgroundCheckResult) = 'n'";
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -351,7 +351,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         //lvSearchResults.SelectedIndex;
         //lvSearchResults.Items[lcount].Selected = 1;
 
-        SqlCommand delete = new SqlCommand("DELETE FROM [Capstone].[dbo].[PropertyRoom] WHERE RoomID = @RoomID", sc);
+        SqlCommand delete = new SqlCommand("DELETE FROM [dbo].[PropertyRoom] WHERE RoomID = @RoomID", sc);
         delete.Parameters.AddWithValue("@RoomID", selectedPRid);
         delete.Connection = sc;
         delete.ExecuteNonQuery();
@@ -366,7 +366,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         if (spot == "h")
         {
             var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
-            SqlCommand approveh = new SqlCommand("UPDATE [Capstone].[dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
+            SqlCommand approveh = new SqlCommand("UPDATE [dbo].[Host] SET BackgroundCheckResult = 'y' WHERE HostID = @HostID", sc);
             approveh.Parameters.AddWithValue("@HostID", userid);
             approveh.Connection = sc;
             approveh.ExecuteNonQuery();
@@ -374,7 +374,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         else if (BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType == "t")
         {
             var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
-            SqlCommand approvet = new SqlCommand("UPDATE [Capstone].[dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
+            SqlCommand approvet = new SqlCommand("UPDATE [dbo].[Tenant] SET BackgroundCheckResult = 'y' WHERE TenantID = @TenantID", sc);
             approvet.Parameters.AddWithValue("@TenantID", userid);
             approvet.Connection = sc;
             approvet.ExecuteNonQuery();

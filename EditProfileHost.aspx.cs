@@ -19,13 +19,13 @@ public partial class EditProfileHost : System.Web.UI.Page
         sc.Open();
         String username = Session["username"].ToString();
 
-        SqlCommand insert = new SqlCommand("SELECT HostID FROM [Capstone].[dbo].[Login] WHERE Username = @Username", sc);
+        SqlCommand insert = new SqlCommand("SELECT HostID FROM [dbo].[Login] WHERE Username = @Username", sc);
         insert.Parameters.AddWithValue("@Username", username);
         insert.Connection = sc;
         hostID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
         SqlCommand filter = new SqlCommand("SELECT Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [Capstone].[dbo].[Host] WHERE " +
+                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [dbo].[Host] WHERE " +
                             "HostID = " + hostID, sc);
         if (IsPostBack == false)
         {
@@ -52,7 +52,7 @@ public partial class EditProfileHost : System.Web.UI.Page
                 try
                 {
                     update.Connection = sc;
-                    update.CommandText = "UPDATE [Capstone].[dbo].[Host] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
+                    update.CommandText = "UPDATE [dbo].[Host] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
                     "LastName = @LastName WHERE HostID = " + hostID;
                     update.Parameters.AddWithValue("@Email", emailTextbox.Text);
                     update.Parameters.AddWithValue("@PhoneNumber", phoneNumberTextbox.Text);
@@ -63,7 +63,7 @@ public partial class EditProfileHost : System.Web.UI.Page
                     // email stuff
                     String emailNew = emailTextbox.Text;
                     Session["Email"] = emailNew;
-                    SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Host] WHERE lower(email) = @Email", sc);
+                    SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Host] WHERE lower(email) = @Email", sc);
                     emailCheck.Parameters.AddWithValue("@Email", emailNew);
                     emailCheck.Connection = sc;
                     int count = Convert.ToInt32(emailCheck.ExecuteScalar());
@@ -99,7 +99,7 @@ public partial class EditProfileHost : System.Web.UI.Page
             using (SqlCommand updateLogin = new SqlCommand())
             {
                 updateLogin.Connection = sc;
-                updateLogin.CommandText = "UPDATE [Capstone].[dbo].[Login] SET Password = @Password WHERE HostID = " + hostID;
+                updateLogin.CommandText = "UPDATE [dbo].[Login] SET Password = @Password WHERE HostID = " + hostID;
                 updateLogin.Parameters.AddWithValue("@Password", PasswordHash.HashPassword(passwordTextbox.Text));
 
                 try

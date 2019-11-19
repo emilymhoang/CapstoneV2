@@ -70,7 +70,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         String emailNew = emailTextbox.Text;
         Session["Email"] = emailNew;
         sc.Open();
-        SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [Capstone].[dbo].[Tenant] WHERE lower(email) = @Email", sc);
+        SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Tenant] WHERE lower(email) = @Email", sc);
         emailCheck.Parameters.AddWithValue("@Email", emailNew);
         emailCheck.Connection = sc;
         int count = Convert.ToInt32(emailCheck.ExecuteScalar());
