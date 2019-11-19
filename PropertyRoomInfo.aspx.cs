@@ -67,7 +67,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         String sqFoot = DropDownListSize.SelectedValue;
         String avail = DropDownListAvailability.SelectedValue;
         String display = displayTextbox.Text;
-        String roomDescription = DropDownListRoom.SelectedValue;
+        String roomDescription = bioTextbox.Text;
 
         //roomID
         int roomID;

@@ -113,13 +113,13 @@
       
             </div>
          
-            <div class="col">
+            <%--<div class="col">
                <label for="formGroupExampleInput">Property Room Layout*</label>
               <asp:DropDownList ID="DropDownListRoom" runat="server">
     <asp:ListItem Value="Single Room">Single Room</asp:ListItem>
     <asp:ListItem Value="Shared Space">Shared Space</asp:ListItem>
 </asp:DropDownList>
-              </div>
+              </div>--%>
             <div class="col">
                  
                 <asp:Label runat="server" id="StatusLabel" text=" " />

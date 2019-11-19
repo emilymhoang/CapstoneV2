@@ -18,7 +18,7 @@ public partial class PropertyDescription : System.Web.UI.Page
     string privateBathroom;
     string furnish;
     string storage;
-    string smoker;
+    string nonsmoker;
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -46,8 +46,10 @@ public partial class PropertyDescription : System.Web.UI.Page
                     //property room badges
                     int index1 = (int)Session["position"];
                     var roomID1 = SearchResult.lstSearchResults[index1].resultID;
-                    SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID =" + roomID1, connection);
-                    connection.Open();
+                    SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
+                    command.Parameters.AddWithValue("@roomID", roomID1);
+
+                connection.Open();
                     SqlDataReader rdr2 = badge2.ExecuteReader();
 
                     while (rdr2.Read())
@@ -57,7 +59,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                         privateBathroom = rdr2["privateBathroom"].ToString();
                         furnish = rdr2["Furnished"].ToString();
                         storage = rdr2["ClosetSpace"].ToString();
-                        smoker = rdr2["NonSmoker"].ToString();
+                        nonsmoker = rdr2["NonSmoker"].ToString();
                     }
 
                     if (privateEntrance == "y")
@@ -109,7 +111,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                         storageBadge.Visible = false;
                     }
 
-                    if (smoker == "n")
+                    if (nonsmoker == "y")
                     {
                         smokerBadge.ImageUrl = "images/badges-10.png";
 
