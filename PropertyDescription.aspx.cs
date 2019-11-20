@@ -33,10 +33,11 @@ public partial class PropertyDescription : System.Web.UI.Page
                     int index = (int)Session["position"];
                     var roomID = SearchResult.lstSearchResults[index].resultID;
                     lblHostName.Text = SearchResult.lstSearchResults[index].resultName;
-                    lblResultName.Text = SearchResult.lstSearchResults[index].propertyTitle;
+                    lblPropName.Text = SearchResult.lstSearchResults[index].propertyTitle;
+                    lblResultDesc.Text = SearchResult.lstSearchResults[index].resultDescription; //resultdescrip is short bio
                     lblResultLocation.Text = SearchResult.lstSearchResults[index].resultLocation;
                     lblResultPrice.Text = SearchResult.lstSearchResults[index].resultPrice;
-                    lblHostBio.Text = SearchResult.lstSearchResults[index].resultDescription;
+                    lblHostBio.Text = SearchResult.lstSearchResults[index].hostBio; //find host bio
                     image1.ImageUrl = SearchResult.lstSearchResults[index].resultimage1;
                     image2.ImageUrl = SearchResult.lstSearchResults[index].resultimage2;
                     image3.ImageUrl = SearchResult.lstSearchResults[index].resultimage3;

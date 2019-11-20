@@ -33,19 +33,13 @@
     <div  class="container">
      <div class="row">
             <div class="col">
-              <label style="font-size: 28px" for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
-                <label  style="font-size: 24px; color: black;" for="formGroupExampleInput">Search for...</label>
+              <label  style="font-family: 'Oswald', sans-serif; font-size: 20px; color: black;" for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
+                <label  style="font-family: 'Oswald', sans-serif; font-size: 18px; color: black;" for="formGroupExampleInput">Search for...</label>
             </div>
              <!--end col-->
           </div> <!--end row class-->
           
-          <%--<div class="row">
-            <div class="col-md-4" >
-              <p ><asp:CheckBox ID="singleRoomCheck" type=" checkbox" name="Single Room" value="Single Room" runat="server"></asp:Checkbox> Single Room<br>
-               <asp:CheckBox ID="privateRoomCheck" type=" checkbox" name="Private Room" value="Private Room" runat="server"></asp:Checkbox> Private Room<br>
-                <asp:CheckBox ID="privateAptCheck" type="checkbox" name="Private Apartment" value="Private Apartment" runat="server"></asp:Checkbox> Private Room<br></p>
-            </div>
-              </div>--%>
+
     <br />
     <br />
     <br />
@@ -125,7 +119,8 @@
                                      <td>
                                         <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/>
                                         &nbsp;
-                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Additional Info" OnClick="profileButton"/>
+                                        
+                                         <br /><asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Additional Info" OnClick="profileButton"/>
                                     </td
                                 </tr>
                              </table>
