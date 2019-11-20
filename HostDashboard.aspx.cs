@@ -21,6 +21,7 @@ public partial class HostDashboard : System.Web.UI.Page
     String roomImg1;
     String roomImg2;
     String roomImg3;
+   
   
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
@@ -552,5 +553,23 @@ public partial class HostDashboard : System.Web.UI.Page
     {
         Session.Abandon();
         Response.Redirect("Index.aspx");
+    }
+
+    protected void hideProperties(object sender, EventArgs e)
+    {
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        var selectedPRid = SearchResult.lstSearchResults[index].resultID;
+        var tenantID = tenantNameDropdown.SelectedValue;
+
+        //lvSearchResults.SelectedIndex;
+        //lvSearchResults.Items[lcount].Selected = 1;
+
+        SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' AND TenantID = @TenantID WHERE RoomID = @RoomID", sc);
+        update.Parameters.AddWithValue("@RoomID", selectedPRid);
+        update.Parameters.AddWithValue("@TenantID", tenantID);
+        update.ExecuteNonQuery();
+
     }
 }

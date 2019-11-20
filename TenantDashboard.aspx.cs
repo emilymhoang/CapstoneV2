@@ -9,16 +9,41 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Configuration;
+using Stripe;
 
 public partial class TenantDashboard : System.Web.UI.Page
 {
 
     String underGraduate;
     String graduate;
-
+    public string stripePublishableKey = WebConfigurationManager.AppSettings["StripePublishableKey"];
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        var secretKey = WebConfigurationManager.AppSettings["StripeSecretKey"];
+        StripeConfiguration.ApiKey = secretKey;
+        if (Request.Form["stripeToken"] != null)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            var customer = customers.Create(new CustomerCreateOptions
+            {
+                Email = Request.Form["stripeEmail"],
+                SourceToken = Request.Form["stripeToken"]
+            });
+
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 500,
+                Description = "Sample Charge",
+                Currency = "usd",
+                Customer = customer.Id
+            });
+
+            Console.WriteLine(charge);
+        }
 
         //if (Session["username"] == null)
         //{
