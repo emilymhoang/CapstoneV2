@@ -123,7 +123,7 @@
                                 </tr>
                                  <tr>
                                      <td>
-<%--                                        <asp:DropDownList runat="server" ID="drpTenantName" DataSource=""></asp:DropDownList> --%>
+                                        <asp:DropDownList runat="server" ID="drpTenantName"></asp:DropDownList> 
                                          <br />
                                         <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Reserve a Room"/>
                                          </br>

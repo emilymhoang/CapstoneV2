@@ -56,54 +56,7 @@ public partial class Search : System.Web.UI.Page
 
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
-            //if (furnishedCheck.Checked)
-            //{
-            //    furnished = "y";
-            //}
-            //else
-            //{
-            //    furnished = "n";
-            //}
-            //if (privateBathroomCheck.Checked)
-            //{
-            //    bathroom = "y";
-            //}
-            //else
-            //{
-            //    bathroom = "n";
-            //}
-            //if (closetCheck.Checked)
-            //{
-            //    closet = "y";
-            //}
-            //else
-            //{
-            //    closet = "n";
-            //}
-            //if (kitchenCheck.Checked)
-            //{
-            //    kitchen = "y";
-            //}
-            //else
-            //{
-            //    kitchen = "n";
-            //}
-            //if (nonSmokerCheck.Checked)
-            //{
-            //    nonsmoker = "y";
-            //}
-            //else
-            //{
-            //    nonsmoker = "n";
-            //}
-            //if (privateEntranceCheck.Checked)
-            //{
-            //    entrance = "y";
-            //}
-            //else
-            //{
-            //    entrance = "n";
-            //}
+            
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection;
