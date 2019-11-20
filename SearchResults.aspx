@@ -20,30 +20,33 @@
         }
 
     </style>
-<div  class="container">
-  <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
-    <div class="col-md-8">
-      <h1 style="margin-left: 2rem;">Search for your perfect space.</h1>
-      </div>
-    <div class="col-md-4" style="margin-top: .3rem; ">
-                <a href="Search.aspx" class="btn " style=" font-size: 22px;">Go Back to Search</a>
-        </div> <!--end col-->
-    </div><!-- end div row -->
-    </div>
+
+    <header style="margin-top: 8rem;">
+      <div class="container">
+        <h1>Search for your perfect space</h1>
+          <br>
+         <asp:Textbox ID="searchTextbox" type="text" style="font-size: 28px; height:60px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+              <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
+               </div>
+    </header>
+
     <div  class="container">
      <div class="row">
             <div class="col">
-              <label  style="font-family: 'Oswald', sans-serif; font-size: 20px; color: black;" for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
-                <label  style="font-family: 'Oswald', sans-serif; font-size: 18px; color: black;" for="formGroupExampleInput">Search for...</label>
+              <label style="font-size: 28px" for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
+                <label  style="font-size: 24px; color: black;" for="formGroupExampleInput">Search for...</label>
             </div>
              <!--end col-->
           </div> <!--end row class-->
           
-
-    <br />
-    <br />
-    <br />
-    <br />
+          <%--<div class="row">
+            <div class="col-md-4" >
+              <p ><asp:CheckBox ID="singleRoomCheck" type=" checkbox" name="Single Room" value="Single Room" runat="server"></asp:Checkbox> Single Room<br>
+               <asp:CheckBox ID="privateRoomCheck" type=" checkbox" name="Private Room" value="Private Room" runat="server"></asp:Checkbox> Private Room<br>
+                <asp:CheckBox ID="privateAptCheck" type="checkbox" name="Private Apartment" value="Private Apartment" runat="server"></asp:Checkbox> Private Room<br></p>
+            </div>
+              </div>--%>
+    
            <div class="row">  
           <div class="col-md-4">
               <h5><asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="y" runat="server"></asp:Checkbox>Furnished<br>
@@ -64,13 +67,13 @@
              <!--end col-->
           </div> <!--end row class-->
         </div>
-
         <div  class="container">
 
     <div style="margin-top: 6.35rem;">
         <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
 
             <LayoutTemplate>
+                <h2>------------------------------------------------------------------------------------------------------</h2>
                 <h1>Search Results</h1>
                 <table id="tbl1" runat="server">
                     <tr id="itemPlaceholder" runat="server"></tr>
@@ -119,8 +122,7 @@
                                      <td>
                                         <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/>
                                         &nbsp;
-                                        
-                                         <br /><asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Additional Info" OnClick="profileButton"/>
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Additional Info" OnClick="profileButton"/>
                                     </td
                                 </tr>
                              </table>

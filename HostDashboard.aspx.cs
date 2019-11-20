@@ -379,7 +379,6 @@ public partial class HostDashboard : System.Web.UI.Page
                                 item.Text = HttpUtility.HtmlEncode((string)reader["FirstName"]) + HttpUtility.HtmlEncode((string)reader["Lastname"]);
                                 item.Value = val.ToString();
                                 tenantNameDropdown.Items.Add(item);
-                                tNameDD.Items.Add(item);
                             }
 
                         }
@@ -403,14 +402,16 @@ public partial class HostDashboard : System.Web.UI.Page
             }
         }
 
-        ////message dropdown selection
-        //foreach(var message in Message.lstHostMessages)
-        //{
-        //    ListItem item = new ListItem();
-        //    item.Text = message.tenantName;
-        //    item.Value = message.tenantID.ToString();
-        //    tenantNameDropdown.Items.Add(item);
-        //}
+        DropDownList list = (DropDownList) Page.FindControl("drpTenantName");
+        
+        //message dropdown selection
+        foreach (ListItem item in tenantNameDropdown.Items)
+        {
+            ListItem item2 = new ListItem();
+            item2.Text = item.Text;
+            item2.Value = item.Value;
+            list.Items.Add(item2);
+        }
 
         lvMessagesHost.DataSource = Message.lstHostMessages;
         lvMessagesHost.DataBind();
@@ -561,8 +562,9 @@ public partial class HostDashboard : System.Web.UI.Page
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
+        DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
         var selectedPRid = SearchResult.lstSearchResults[index].resultID;
-        var tenantID = tenantNameDropdown2.SelectedValue;
+        var tenantID = list.SelectedItem.Value;
 
         SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PropertyID FROM [dbo].[Host] WHERE HostID = @HostID", sc);
         filter.Parameters.AddWithValue("@HostID", Session["HostID"]);
