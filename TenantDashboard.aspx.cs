@@ -453,126 +453,137 @@ public partial class TenantDashboard : System.Web.UI.Page
 
     protected void sendMessage(object sender, EventArgs e)
     {
-        int tenantID = Convert.ToInt32(Session["tenantID"]);
-        int hostID = Convert.ToInt32(hostNameDropdown.SelectedItem.Value);
-        string msgtxt = messageTextbox.Text;
-        string messageSender = Session["username"].ToString();
-
-        Message newMessage = new Message(tenantID, hostID, msgtxt, messageSender);
-
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        resultmessageMessage.Text = "";
+        if (messageTextbox.Text.Trim() != "")
         {
-            using (SqlCommand command = new SqlCommand())
+            int tenantID = Convert.ToInt32(Session["tenantID"]);
+            int hostID = Convert.ToInt32(hostNameDropdown.SelectedItem.Value);
+            string msgtxt = messageTextbox.Text;
+            string messageSender = Session["username"].ToString();
+
+            Message newMessage = new Message(tenantID, hostID, msgtxt, messageSender);
+
+            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-                command.CommandText = "INSERT INTO [dbo].[Message] ([HostID],[TenantID],[Message],[MessageDate]," +
-                    "[LastUpdatedBy],[LastUpdated]) VALUES (@host,@tenant,@message,@msgdate,@lub,@lu)";
-
-                command.Parameters.AddWithValue("@host", newMessage.hostID);
-                command.Parameters.AddWithValue("@tenant", newMessage.tenantID);
-                command.Parameters.AddWithValue("@message", newMessage.message);
-                command.Parameters.AddWithValue("@msgdate", newMessage.messageDate);
-                command.Parameters.AddWithValue("@lub", newMessage.lastUpdatedBy);
-                command.Parameters.AddWithValue("@lu", newMessage.lastUpdated);
-
-
-                try
+                using (SqlCommand command = new SqlCommand())
                 {
-                    connection.Open();
-                    int recordsAffected = command.ExecuteNonQuery();
-                }
-                catch (SqlException)
-                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+                    command.CommandText = "INSERT INTO [dbo].[Message] ([HostID],[TenantID],[Message],[MessageDate]," +
+                        "[LastUpdatedBy],[LastUpdated]) VALUES (@host,@tenant,@message,@msgdate,@lub,@lu)";
 
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
-        }
+                    command.Parameters.AddWithValue("@host", newMessage.hostID);
+                    command.Parameters.AddWithValue("@tenant", newMessage.tenantID);
+                    command.Parameters.AddWithValue("@message", newMessage.message);
+                    command.Parameters.AddWithValue("@msgdate", newMessage.messageDate);
+                    command.Parameters.AddWithValue("@lub", newMessage.lastUpdatedBy);
+                    command.Parameters.AddWithValue("@lu", newMessage.lastUpdated);
 
 
-        Message.lstTenantMessages.Clear();
-
-        //displays all of tenants messages
-        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = connection;
-                command.CommandType = CommandType.Text;
-
-
-                command.CommandText = "select Host.FirstName HostFirst, Host.LastName HostLast, [dbo].[Message].[HostID], " +
-                    "[dbo].[Message].[TenantID], [dbo].[Message].[Message], [dbo].[Message].[MessageDate], [dbo].[Message].[LastUpdatedBy], " +
-                    "[dbo].[Message].[LastUpdated], [dbo].[Tenant].FirstName TenantFirst, [dbo].[Tenant].LastName TenantLast " +
-                    "from [dbo].[Host] left join [dbo].[Message] on [dbo].[Host].HostID = [dbo].[Message].HostID " +
-                    "left join [dbo].[Tenant] on [dbo].[Message].TenantID = [dbo].[Tenant].TenantID " +
-                    "where Message.TenantID = @tenantid order by Message.MessageID desc";
-                command.Parameters.AddWithValue("@tenantid", tenantID);
-
-
-                try
-                {
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    try
                     {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                int hostid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
-                                int tenantid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["TenantID"]));
-                                string message = HttpUtility.HtmlEncode((string)reader["Message"]);
-                                string lub = HttpUtility.HtmlEncode((string)reader["LastUpdatedBy"]);
-
-
-                                Message msg = new Message(tenantid, hostid, message, lub);
-
-                                msg.setMessageDate(Convert.ToDateTime(HttpUtility.HtmlEncode(reader["MessageDate"])));
-                                string recieverName = string.Empty;
-
-                                if (messageSender.Equals(lub))
-                                {
-                                    recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["HostFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["HostLast"] )+ "\tFrom: Me";
-                                } else
-                                {
-                                    recieverName = "To: Me\tFrom: " + HttpUtility.HtmlEncode((string)reader["HostFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["HostLast"]);
-                                }
-                                
-                                msg.setRecieverName(recieverName);
-
-
-                                Message.lstTenantMessages.Add(msg);
-                            }me
-
-                        }
-                        else
-                        {
-                            //lblInvalidSearch.Text = "Search returned no properties";
-                        }
+                        connection.Open();
+                        int recordsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (SqlException)
+                    {
 
                     }
+                    finally
+                    {
+                        connection.Close();
+                    }
                 }
-                catch (SqlException t)
-                {
-                    string b = t.ToString();
-                }
-                finally
-                {
-                    connection.Close();
-
-                }
-
             }
-        }
 
-        lvMessagesTenant.DataSource = Message.lstTenantMessages;
-        lvMessagesTenant.DataBind();
-        messageTextbox.Text = string.Empty;
+
+            Message.lstTenantMessages.Clear();
+
+            //displays all of tenants messages
+            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.Text;
+
+
+                    command.CommandText = "select Host.FirstName HostFirst, Host.LastName HostLast, [dbo].[Message].[HostID], " +
+                        "[dbo].[Message].[TenantID], [dbo].[Message].[Message], [dbo].[Message].[MessageDate], [dbo].[Message].[LastUpdatedBy], " +
+                        "[dbo].[Message].[LastUpdated], [dbo].[Tenant].FirstName TenantFirst, [dbo].[Tenant].LastName TenantLast " +
+                        "from [dbo].[Host] left join [dbo].[Message] on [dbo].[Host].HostID = [dbo].[Message].HostID " +
+                        "left join [dbo].[Tenant] on [dbo].[Message].TenantID = [dbo].[Tenant].TenantID " +
+                        "where Message.TenantID = @tenantid order by Message.MessageID desc";
+                    command.Parameters.AddWithValue("@tenantid", tenantID);
+
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    int hostid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
+                                    int tenantid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["TenantID"]));
+                                    string message = HttpUtility.HtmlEncode((string)reader["Message"]);
+                                    string lub = HttpUtility.HtmlEncode((string)reader["LastUpdatedBy"]);
+
+
+                                    Message msg = new Message(tenantid, hostid, message, lub);
+
+                                    msg.setMessageDate(Convert.ToDateTime(HttpUtility.HtmlEncode(reader["MessageDate"])));
+                                    string recieverName = string.Empty;
+
+                                    if (messageSender.Equals(lub))
+                                    {
+                                        recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["HostFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["HostLast"]) + "\tFrom: Me";
+                                    }
+                                    else
+                                    {
+                                        recieverName = "To: Me\tFrom: " + HttpUtility.HtmlEncode((string)reader["HostFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["HostLast"]);
+                                    }
+
+                                    msg.setRecieverName(recieverName);
+
+
+                                    Message.lstTenantMessages.Add(msg);
+                                }
+
+                            }
+                            else
+                            {
+                                //lblInvalidSearch.Text = "Search returned no properties";
+                            }
+
+                        }
+                    }
+                    catch (SqlException t)
+                    {
+                        string b = t.ToString();
+                    }
+                    finally
+                    {
+                        connection.Close();
+
+                    }
+
+                }
+            }
+
+            lvMessagesTenant.DataSource = Message.lstTenantMessages;
+            lvMessagesTenant.DataBind();
+            messageTextbox.Text = string.Empty;
+        }
+        else
+        {
+            Response.Write("<script> alert('Message is empty. Please try again.'); </script>");
+            //resultmessageMessage.Text = "Message is empty.";
+        }
     }
+    
 
     protected void contract(object sender, EventArgs e)
     {

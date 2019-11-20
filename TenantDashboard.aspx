@@ -15,7 +15,7 @@
             width: 500px;
             height: 500px;
             background-color: white;
-            border: 1px solid black;
+            border-radius: 2%;
         }
         .btn {
            font-family: 'Oswald', sans-serif;
@@ -220,11 +220,12 @@
                        
                         
                         <br />
+                    <br />
                     <center>
                         <asp:TextBox ID="messageTextbox" TextMode="MultiLine" class="form-control" style="height:300px; width:400px;" runat="server"></asp:TextBox>
                         <br />
                     <asp:Label ID="resultmessageMessage" runat="server" ForeColor="Red"></asp:Label><br/>
-                        <asp:Button class="btn" ID="sendButton" onClick="sendMessage" runat="server" Text="Send" />
+                        <asp:Button class="btn" ID="sendButton" onClick="sendMessage" AutoPostBack="true" runat="server" Text="Send" />
                         <asp:Button class="btn" ID="cancelButton" runat="server" Text="Cancel" /> <br/>
                     </center>
                 </asp:Panel>
