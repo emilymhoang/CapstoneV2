@@ -402,16 +402,16 @@ public partial class HostDashboard : System.Web.UI.Page
             }
         }
 
-        DropDownList list = (DropDownList) Page.FindControl("drpTenantName");
+        //DropDownList list = (DropDownList) Page.FindControl("drpTenantName");
         
-        //message dropdown selection
-        foreach (ListItem item in tenantNameDropdown.Items)
-        {
-            ListItem item2 = new ListItem();
-            item2.Text = item.Text;
-            item2.Value = item.Value;
-            list.Items.Add(item2);
-        }
+        ////message dropdown selection
+        //foreach (ListItem item in tenantNameDropdown.Items)
+        //{
+        //    ListItem item2 = new ListItem();
+        //    item2.Text = item.Text;
+        //    item2.Value = item.Value;
+        //    list.Items.Add(item2);
+        //}
 
         lvMessagesHost.DataSource = Message.lstHostMessages;
         lvMessagesHost.DataBind();
