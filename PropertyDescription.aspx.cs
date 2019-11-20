@@ -24,17 +24,41 @@ public partial class PropertyDescription : System.Web.UI.Page
             //var int = Session["tenantID"].ToString();
             using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.Text;
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = connection;
+                command.CommandType = CommandType.Text;
 
-                    //grabbing host and property data
-                    int index = (int)Session["position"];
+                //grabbing host and property data
+                int index = (int)Session["position"];
+
+                if (SearchResult.lstSearchResults[index] != null)
+                {
                     var roomID = SearchResult.lstSearchResults[index].resultID;
                     lblHostName.Text = SearchResult.lstSearchResults[index].resultName;
-                    lblResultName.Text = SearchResult.lstSearchResults[index].propertyTitle;
+                    lblPropName.Text = SearchResult.lstSearchResults[index].propertyTitle;
+                    lblResultDesc.Text = SearchResult.lstSearchResults[index].resultDescription; //resultdescrip is short bio
                     lblResultLocation.Text = SearchResult.lstSearchResults[index].resultLocation;
+                    lblResultPrice.Text = SearchResult.lstSearchResults[index].resultPrice;
+                    lblHostBio.Text = SearchResult.lstSearchResults[index].hostBio; //find host bio
+                    image1.ImageUrl = SearchResult.lstSearchResults[index].resultimage1;
+                    image2.ImageUrl = SearchResult.lstSearchResults[index].resultimage2;
+                    image3.ImageUrl = SearchResult.lstSearchResults[index].resultimage3;
+                    imgbackgroundCheck.ImageUrl = SearchResult.lstSearchResults[index].backgroundCheckResult;
+                    PropertyHeaderTextbox.Text = SearchResult.lstSearchResults[index].resultName + "'s Property";
+
+
+                    //property room badges
+                    int index1 = (int)Session["position"];
+                    var roomID1 = SearchResult.lstSearchResults[index1].resultID;
+                }
+
+                if (Favorite.lstFavorites[index] != null)
+                {
+                    var roomID = Favorite.lstFavorites[index].resultID;
+                    lblHostName.Text = Favorite.lstFavorites[index].favName;
+                    lblResultName.Text = Favorite.lstFavorites[index].propertyTitle;
+                    lblResultLocation.Text = Favorite.lstFavorites[index].resultLocation;
                     lblResultPrice.Text = SearchResult.lstSearchResults[index].resultPrice;
                     lblHostBio.Text = SearchResult.lstSearchResults[index].resultDescription;
                     image1.ImageUrl = SearchResult.lstSearchResults[index].resultimage1;
@@ -47,7 +71,9 @@ public partial class PropertyDescription : System.Web.UI.Page
                     //property room badges
                     int index1 = (int)Session["position"];
                     var roomID1 = SearchResult.lstSearchResults[index1].resultID;
-                    SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
+                }
+
+                SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
                     badge2.Parameters.AddWithValue("@roomID", roomID1);
 
                     connection.Open();

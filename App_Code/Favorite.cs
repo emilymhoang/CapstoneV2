@@ -9,6 +9,8 @@ using System.Web;
 public class Favorite
 {
     public static List<Favorite> lstFavorites = new List<Favorite>();
+    public static string selectedReultFullAddress;
+
     public string favName { get; private set; }
     public string favLocation { get; private set; }
     public string favDescription { get; private set; }
@@ -17,9 +19,12 @@ public class Favorite
     public string resultimage1 { get; private set; }
     public string resultimage2 { get; private set; }
     public string resultimage3 { get; private set; }
+    public string resultFullAddress { get; private set; }
+    public int resultID { get; private set; }
 
 
-    public Favorite(string favName, string favLocation, string favDescription, string favPrice, string backgroundCheckResult, string resultimage1, string resultimage2, string resultimage3)
+
+    public Favorite(int id, string favName, string favLocation, string favDescription, string favPrice, string backgroundCheckResult, string resultimage1, string resultimage2, string resultimage3)
     {
         this.favName = favName;
         this.favLocation = favLocation;
@@ -29,5 +34,10 @@ public class Favorite
         this.resultimage1 = resultimage1;
         this.resultimage2 = resultimage2;
         this.resultimage3 = resultimage3;
+        this.resultID = id;
+    }
+    public void setFullAddress(string resultFullAddress)
+    {
+        this.resultFullAddress = resultFullAddress;
     }
 }
