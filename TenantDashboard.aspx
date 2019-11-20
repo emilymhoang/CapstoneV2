@@ -314,18 +314,42 @@
 
      <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
         <div class="col-md-12"  style=" margin-top: 1rem;">
-            <h2>Your Rental Agreements</h2>
-            <form action="/Charge" method="POST">
-                <script
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="<%= stripePublishableKey %>"
-                    data-amount="500"
-                    data-name="Stripe.com"
-                    data-description="Sample Charge"
-                    data-locale="auto"
-                    data-zip-code="true">
-                </script>
-            </form>
+            <h2>Properties Currently Rented</h2>
+<table style="margin-top: 1rem; border-bottom: solid; border-top: solid 1px; border-bottom-width: 1px;">
+                             <table >
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="rentalTitle" Text=""></asp:Label> <asp:Label runat="server" Text=" "></asp:Label>
+</br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="hostNames" Text=""></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                           <form action="/Charge" method="POST">
+                                                <script
+                                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                    data-key="<%= stripePublishableKey %>"
+                                                    data-amount="500"
+                                                    data-name="Stripe.com"
+                                                    data-description="Sample Charge"
+                                                    data-locale="auto"
+                                                    data-zip-code="true">
+                                                </script>
+                                            </form>
+                                    </td>
+                                </tr>
+                                 <tr>
+                                     <td>
+                                        <asp:Label runat="server" ID="city" Text=" "></asp:Label>
+                                    </td>
+                                 </tr>   
+                </table>
           </div>
     </div><!-- end div big row -->  
     
