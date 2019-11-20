@@ -29,8 +29,23 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Email</label>
-              <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
+              <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="" type="email"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" AutoPostBack="true" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+            </div>
+           <div class="col">
+              <label for="formGroupExampleInput"></label>
+            </div>
+               
+              </div>
+          <div class="row">
+              <div class="col">
+              <label for="formGroupExampleInput">Username</label>
+              <asp:Textbox id="usernameTextbox" runat="server" class="form-control" MaxLength="50" placeholder="" type="text"></asp:Textbox>
+              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Required" AutoPostBack="true" ControlToValidate="usernameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+            <asp:Label ID="lblMessage" runat="server" ForeColor="Red"></asp:Label>
+              </div>
+               <div class="col">
+              <label for="formGroupExampleInput"></label>
             </div>
               </div>
                  <asp:Label ID="resultmessage" runat="server" Text="" ForeColor="Red"></asp:Label>

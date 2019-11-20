@@ -51,7 +51,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
          
              <div class="col-md-12" >
-                 <asp:CheckBox ID="SaveLogin" Text="Save Login?" runat="server" oncheckedchanged="SaveLogin_CheckedChanged" />
+                 <asp:CheckBox ID="SaveLogin" Text="Remember Me" runat="server" oncheckedchanged="SaveLogin_CheckedChanged" style="margin-top: 4rem;font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;"/>
                  </div>
             </div>
 
@@ -60,7 +60,7 @@
          
              <div class="col-md-12" >      
                  <asp:Button ID="loginButton" class="btn" type="submit" style="float:left;" runat="server" Text="Login" OnCommand="submitLogin_Click" AutoPostBack ="true" ></asp:Button></div>
-            <a href="ForgotPassword.aspx">Forgot Password?</a>
+            <a href="ForgotPassword.aspx" style="margin-top: 4rem;font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Forgot Password?</a>
             </div>     
       </div> <!--end container-->
     </section>
