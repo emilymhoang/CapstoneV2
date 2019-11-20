@@ -89,7 +89,8 @@
       <asp:Button runat="server" style="margin-top: 1rem;" class="btn" ID="backButton" onClick="goBack" Text="Back"></asp:Button>
       </div>
     <div class="col-md-7" style="margin-top: 1rem; "> 
-          <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label><img src="images/icons-07.png" style="max-width: 30px;" alt="background check approved icon"></h1> 
+          <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label></h1>
+        <asp:Image ID="imgbackgroundCheck" ImageUrl="" style="max-width: 30px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
         </div> <!--end col-->
      <div class="col-md-1.5" style="margin-top: 1.5rem; ">     
      <%--         <div class="col-md-3">
@@ -176,24 +177,39 @@
     </div><!-- end div row --> 
     
     
-    <div class="row" style="margin-top: 1rem;">
+<%--    <div class="row" style="margin-top: 1rem;">
         <div class="col-md-6" >
             <h2> <asp:Label runat="server" Text = "Host Name" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblHostName"></asp:Label> </h2>
             <h5> <asp:Label runat="server" Text = "Host " style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblHostTitle"></asp:Label>  </h5>
             <p> <asp:Label runat="server" Text = "The brief bio of a host would go here." style="font-family: 'Raleway', sans-serif; font-size: 18px;" ID="lblHostBio"></asp:Label>  </p>
             <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">
-        </div>
+        </div>--%>
         
-        <div class="col-md-6" style="margin-top: .5rem;  margin-bottom: 1rem;">
-             <div id="carousel2" class="carousel slide" data-ride="carousel">
+<%--        <div class="col-md-6" style="margin-top: .5rem;  margin-bottom: 1rem;">--%>
+    <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px; height:410px !important;">
+            <div class="col-md-12" style="margin-top: 1rem;">
+                <div class="row">
+                      <div class="col-md-6" >
+                            <h2> <asp:Label runat="server" Text = "Host Name" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblHostName"></asp:Label> </h2>
+                            <h5> <asp:Label runat="server" Text = "Host " style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblHostTitle"></asp:Label>  </h5>
+                            <p> <asp:Label runat="server" Text = "The brief bio of a host would go here." style="font-family: 'Raleway', sans-serif; font-size: 18px;" ID="lblHostBio"></asp:Label>  </p>
+                            <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">
+                      </div>
+                       <div class="col-md-6" >
+                            <asp:Image ID="image7" ImageUrl="" style="border-radius: 10%;" class="img-fluid" runat="server" />
+                       </div>
+                </div>
+          </div>
+    </div><!-- end div big row -->  
+<%--             <div id="carousel2" class="carousel slide" data-ride="carousel">
 
                 <div class="carousel-inner"> 
                           <div class="carousel-item active">
                            <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat ="server" />
                         </div>
-<%--                          <div class="carousel-item">
+                          <div class="carousel-item">
                             <img src="images/johnsmith1.jpeg"  class="d-block w-100">
-                        </div>--%>
+                        </div>
                   <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -203,7 +219,7 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div> 
-            </div> 
+            </div> --%>
         </div>
         
     </div><!-- end div row --> 

@@ -21,8 +21,7 @@ public partial class PropertyDescription : System.Web.UI.Page
     string nonsmoker;
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        //var int = Session["tenantID"].ToString();
+            //var int = Session["tenantID"].ToString();
             using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand())
@@ -41,6 +40,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                     image1.ImageUrl = SearchResult.lstSearchResults[index].resultimage1;
                     image2.ImageUrl = SearchResult.lstSearchResults[index].resultimage2;
                     image3.ImageUrl = SearchResult.lstSearchResults[index].resultimage3;
+                    imgbackgroundCheck.ImageUrl = SearchResult.lstSearchResults[index].backgroundCheckResult;
                     PropertyHeaderTextbox.Text = SearchResult.lstSearchResults[index].resultName + "'s Property";
 
 

@@ -3,24 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Capstone project", ".", "{853E2884-2446-4C8E-9E22-21DEDA4C080E}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CapstoneV2", ".", "{853E2884-2446-4C8E-9E22-21DEDA4C080E}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_58981"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\OneDrive\Documents\Capstone project\"
+		Debug.AspNetCompiler.PhysicalPath = "..\CapstoneV2\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58981\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_58981"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\OneDrive\Documents\Capstone project\"
+		Release.AspNetCompiler.PhysicalPath = "..\CapstoneV2\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_58981\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "58981"
+		SlnRelativePath = "..\CapstoneV2\"
 	EndProjectSection
 EndProject
 Global

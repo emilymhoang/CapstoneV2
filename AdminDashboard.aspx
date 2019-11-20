@@ -93,7 +93,7 @@
                 <table style="margin-top: 1rem;">
                         <tr>
                             <td style="width: 150px">
-                                <asp:Image ID="image7" style="  object-fit: cover; width:100px; height:100px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
+                                <asp:Image ID="image7" style="object-fit: cover; width:100px; height:100px;" ImageUrl='<%#Eval("resultImageV2") %>' class="img-fluid" runat="server" />
                             </td>
                             <td style="width: 200px">
                             <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblResultName" Text='<%#Eval("resultName") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label><asp:Image ID="backgroundcheck" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 20px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
@@ -214,23 +214,23 @@
                         </td>
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
-                                <div class="col-md-6" style="margin-top: 1rem;">
+                                <div class="col-md-8" style="margin-top: 1rem;">
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-                                    <div class="carousel-inner" style="width: 400px">
+                                    <div class="carousel-inner" style="width: 500px">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" style="width:2000px" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" style="width:2000px" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" style="width:2000px" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>

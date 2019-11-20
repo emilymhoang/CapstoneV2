@@ -60,7 +60,7 @@
            <%--    begin file container--%>
         <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-6 " style="margin-top: 1rem;">
-                    <asp:Image ID="image1" ImageUrl="" class="img-fluid" runat="server" />
+                    <asp:Image ID="image1" ImageUrl="" style="border-radius: 10%;"  class="img-fluid" runat="server" />
                 
                 <div class="row" style="margin-top: 1rem;">
                     <div class="col-md-6">
@@ -150,16 +150,16 @@
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-                                     <div class="carousel-inner" style="width: 200px; max-height: 200px;">
+                                    <div class="carousel-inner" style="width: 500px">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" style="width:1000px;" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" style="width:1000px" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" style="width:1000px" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>
@@ -311,6 +311,23 @@
             </div>
             </div>
             </div>
+
+     <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
+        <div class="col-md-12"  style=" margin-top: 1rem;">
+            <h2>Your Rental Agreements</h2>
+            <form action="/Charge" method="POST">
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="<%= stripePublishableKey %>"
+                    data-amount="500"
+                    data-name="Stripe.com"
+                    data-description="Sample Charge"
+                    data-locale="auto"
+                    data-zip-code="true">
+                </script>
+            </form>
+          </div>
+    </div><!-- end div big row -->  
     
    
     <div class="row " style="margin-top: 1rem;">
