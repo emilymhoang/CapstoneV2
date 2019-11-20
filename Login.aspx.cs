@@ -12,14 +12,47 @@ public partial class _Default : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!IsPostBack)
+        {
+            if (Request.Cookies["Username"] != null && Request.Cookies["Password"] != null)
+            {
+                userNameTextbox.Text = Request.Cookies["Username"].Value;
+                passwordTextbox.Text = Request.Cookies["Password"].Value;
+            }
+        }
+        
+        
+        
+        
+        
+        
         //this is page load. yes it is
     }
 
     protected void submitLogin_Click(object sender, EventArgs e)
     {
+
+        if (SaveLogin.Checked)
+        {
+            Response.Cookies["Username"].Value = userNameTextbox.Text;
+            Response.Cookies["Password"].Value = passwordTextbox.Text;
+
+            Response.Cookies["Email"].Expires = DateTime.Now.AddMinutes(10);
+            Response.Cookies["Password"].Expires = DateTime.Now.AddMinutes(10);
+
+        }
+        else
+        {
+            Response.Cookies["Email"].Expires = DateTime.Now.AddMinutes(-1);
+            Response.Cookies["Password"].Expires = DateTime.Now.AddMinutes(-1);
+
+        }
+
+
+
         // connect to database to retrieve stored password stringhttp://localhost:58981/Login.aspx.cs
         //try
-            System.Data.SqlClient.SqlCommand findPass = new System.Data.SqlClient.SqlCommand();
+        System.Data.SqlClient.SqlCommand findPass = new System.Data.SqlClient.SqlCommand();
             findPass.Connection = sc;
             // SELECT PASSWORD STRING WHERE THE ENTERED USERNAME MATCHES
             sc.Open();
@@ -83,6 +116,9 @@ public partial class _Default : System.Web.UI.Page
                 resultmessage.Text = "User does not exist.";
             }
         sc.Close();
+
+
+      
 
     }
     //protected void CheckChange(object sender, EventArgs e)
