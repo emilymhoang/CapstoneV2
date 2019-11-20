@@ -83,11 +83,11 @@ public partial class TenantDashboard : System.Web.UI.Page
         String backgroundCheckResult;
         while (rdr.Read())
         {
-            nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
-            emailTextbox.Text = rdr["Email"].ToString();
-            phoneTextbox.Text = rdr["PhoneNumber"].ToString();
-            dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Dashboard";
-            backgroundCheckResult = rdr["BackgroundCheckResult"].ToString();
+            nameTextbox.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(rdr["LastName"].ToString());
+            emailTextbox.Text = HttpUtility.HtmlEncode(rdr["Email"].ToString());
+            phoneTextbox.Text = HttpUtility.HtmlEncode(rdr["PhoneNumber"].ToString());
+            dashboardTitle.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString()) + "'s Dashboard";
+            backgroundCheckResult = HttpUtility.HtmlEncode(rdr["BackgroundCheckResult"].ToString());
             if (backgroundCheckResult == "y")
             {
                 backgroundCheckResultTitle.Text = "Complete";
@@ -120,8 +120,8 @@ public partial class TenantDashboard : System.Web.UI.Page
 
         while (rdr2.Read())
         {
-            underGraduate = rdr2["Undergraduate"].ToString();
-            graduate = rdr2["graduate"].ToString();
+            underGraduate = HttpUtility.HtmlEncode(rdr2["Undergraduate"].ToString());
+            graduate = HttpUtility.HtmlEncode(rdr2["graduate"].ToString());
         }
 
         if (underGraduate == "True")
@@ -172,24 +172,24 @@ public partial class TenantDashboard : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                int hostid = Convert.ToInt32(reader["HostID"]);
-                                int tenantid = Convert.ToInt32(reader["TenantID"]);
-                                string message = (string)reader["Message"];
-                                string lub = (string)reader["LastUpdatedBy"];
+                                int hostid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
+                                int tenantid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["TenantID"]));
+                                string message = HttpUtility.HtmlEncode((string)reader["Message"]);
+                                string lub = HttpUtility.HtmlEncode((string)reader["LastUpdatedBy"]);
 
 
                                 Message msg = new Message(tenantid, hostid, message, lub);
 
-                                msg.setMessageDate(Convert.ToDateTime(reader["MessageDate"]));
+                                msg.setMessageDate(Convert.ToDateTime(HttpUtility.HtmlEncode(reader["MessageDate"])));
                                 string recieverName = string.Empty;
 
                                 if (messageSender.Equals(lub))
                                 {
-                                    recieverName = "To: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"] + "\tFrom: Me";
+                                    recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["HostFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["HostLast"] )+ "\tFrom: Me";
                                 }
                                 else
                                 {
-                                    recieverName = "To: Me\tFrom: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"];
+                                    recieverName = "To: Me\tFrom: " + HttpUtility.HtmlEncode((string)reader["HostFirst"] )+ " " + HttpUtility.HtmlEncode((string)reader["HostLast"]);
                                 }
 
                                 msg.setRecieverName(recieverName);
@@ -251,14 +251,14 @@ public partial class TenantDashboard : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
+                                string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
+                                string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
 
-                                string description = (string)reader["BriefDescription"];
+                                string description = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
 
 
-                                string price = Math.Round(Convert.ToDouble(reader["MonthlyPrice"])).ToString();
-                                backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
+                                string price = HttpUtility.HtmlEncode(Math.Round(Convert.ToDouble(reader["MonthlyPrice"])).ToString());
+                                backgroundCheckResult = HttpUtility.HtmlEncode(reader["BackgroundCheckResult"].ToString().ToLower());
                                 string backgroundCheckPhoto = "";
                                 if (backgroundCheckResult == "n")
                                 {
@@ -359,8 +359,8 @@ public partial class TenantDashboard : System.Web.UI.Page
                             while (reader.Read())
                             {
                                 ListItem item = new ListItem();
-                                var val = Convert.ToInt32(reader["HostID"]);
-                                item.Text = (string)reader["FirstName"] + (string)reader["Lastname"];
+                                var val = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
+                                item.Text = HttpUtility.HtmlEncode((string)reader["FirstName"] )+ HttpUtility.HtmlEncode((string)reader["Lastname"]);
                                 item.Value = val.ToString();
                                 hostNameDropdown.Items.Add(item);
                             }
@@ -401,9 +401,9 @@ public partial class TenantDashboard : System.Web.UI.Page
         {
             noReservation.Visible = false;
             Panel2.Visible = true;
-            rentalTitle.Text = r["BriefDescription"].ToString();
-            hostNames.Text = r["FirstName"].ToString() + " " + r["LastName"].ToString();
-            city.Text = r["CityCounty"].ToString() + ", " + r["HomeState"].ToString();
+            rentalTitle.Text = HttpUtility.HtmlEncode(r["BriefDescription"].ToString());
+            hostNames.Text = HttpUtility.HtmlEncode(r["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(r["LastName"].ToString());
+            city.Text = HttpUtility.HtmlEncode(r["CityCounty"].ToString()) + ", " + HttpUtility.HtmlEncode(r["HomeState"].ToString());
             byte[] imgD1;
             byte[] imgD2;
             byte[] imgD3;
@@ -520,23 +520,23 @@ public partial class TenantDashboard : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                int hostid = Convert.ToInt32(reader["HostID"]);
-                                int tenantid = Convert.ToInt32(reader["TenantID"]);
-                                string message = (string)reader["Message"];
-                                string lub = (string)reader["LastUpdatedBy"];
+                                int hostid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
+                                int tenantid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["TenantID"]));
+                                string message = HttpUtility.HtmlEncode((string)reader["Message"]);
+                                string lub = HttpUtility.HtmlEncode((string)reader["LastUpdatedBy"]);
 
 
                                 Message msg = new Message(tenantid, hostid, message, lub);
 
-                                msg.setMessageDate(Convert.ToDateTime(reader["MessageDate"]));
+                                msg.setMessageDate(Convert.ToDateTime(HttpUtility.HtmlEncode(reader["MessageDate"])));
                                 string recieverName = string.Empty;
 
                                 if (messageSender.Equals(lub))
                                 {
-                                    recieverName = "To: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"] + "\tFrom: Me";
+                                    recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["HostFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["HostLast"] )+ "\tFrom: Me";
                                 } else
                                 {
-                                    recieverName = "To: Me\tFrom: " + (string)reader["HostFirst"] + " " + (string)reader["HostLast"];
+                                    recieverName = "To: Me\tFrom: " + HttpUtility.HtmlEncode((string)reader["HostFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["HostLast"]);
                                 }
                                 
                                 msg.setRecieverName(recieverName);
