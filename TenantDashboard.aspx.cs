@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Configuration;
 using Stripe;
 
 public partial class TenantDashboard : System.Web.UI.Page
@@ -31,7 +30,7 @@ public partial class TenantDashboard : System.Web.UI.Page
             var customer = customers.Create(new CustomerCreateOptions
             {
                 Email = Request.Form["stripeEmail"],
-                SourceToken = Request.Form["stripeToken"]
+                //SourceToken = Request.Form["stripeToken"]
             });
 
             var charge = charges.Create(new ChargeCreateOptions

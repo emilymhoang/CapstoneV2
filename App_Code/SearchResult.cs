@@ -27,8 +27,11 @@ public class SearchResult
     public string resultFullAddress { get; private set; }
     public string propertyTitle { get; private set; }
 
+    public List<string> lstPropertyBadges { get; private set; }
 
-    public SearchResult(int resultID, string resultName, string resultLocation, string resultDescription, double resultPrice, string resultimage1, string resultimage2, string resultimage3, string backgroundCheckResult)
+
+    public SearchResult(int resultID, string resultName, string resultLocation, string resultDescription, double resultPrice, 
+        string resultimage1, string resultimage2, string resultimage3, string backgroundCheckResult)
     {
         this.resultName = resultName;
         this.resultLocation = resultLocation;
@@ -41,7 +44,8 @@ public class SearchResult
         this.backgroundCheckResult = backgroundCheckResult;
     }
 
-    public SearchResult(int resultID, string resultName, string resultLocation, string propertyTitle, string resultDescription, double resultPrice, string resultimage1, string resultimage2, string resultimage3, string backgroundCheckResult)
+    public SearchResult(int resultID, string resultName, string resultLocation, string propertyTitle, string resultDescription, double resultPrice
+        , string resultimage1, string resultimage2, string resultimage3, string backgroundCheckResult, List<string> lstPropertyBadges)
     {
         this.resultName = resultName;
         this.resultLocation = resultLocation;
@@ -53,6 +57,7 @@ public class SearchResult
         this.resultimage3 = resultimage3;
         this.backgroundCheckResult = backgroundCheckResult;
         this.propertyTitle = propertyTitle;
+        this.lstPropertyBadges = lstPropertyBadges;
     }
 
     public void setFullAddress(string resultFullAddress)

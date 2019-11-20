@@ -134,7 +134,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                     image.Connection = connection;
                     byte[] ppImgData = (byte[])(image.ExecuteScalar());
                     string ppImage = "data:image;base64," + Convert.ToBase64String(ppImgData, 0, ppImgData.Length);
-                    image4.ImageUrl = ppImage;
+                    image7.ImageUrl = ppImage;
 
                 }
 

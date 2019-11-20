@@ -111,4 +111,9 @@ public partial class SearchResults : System.Web.UI.Page
         Response.Redirect("PropertyDescription.aspx");
     }
 
+
+    protected void btnFilterResults_Click(object sender, EventArgs e)
+    {
+
+    }
 }
