@@ -155,15 +155,15 @@ public partial class Search : System.Web.UI.Page
                             while (reader.Read())
                             {
 
-                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
+                                string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
+                                string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"] )+ " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
                                 
-                                string description = (string)reader["BriefDescription"];
-                                int id = Convert.ToInt32(reader["RoomID"]);
-                                string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
-                                string fullAddress = (string)reader["HouseNumber"] + " " + (string)reader["Street"] + ", " + (string)reader["CityCounty"] + ", " +(string)reader["HomeState"] + " " + (string)reader["Zip"];
-                                string propertyTitle = (string)reader["BriefDescription"];
+                                string description = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
+                                int id = Convert.ToInt32(HttpUtility.HtmlEncode(reader["RoomID"]));
+                                string backgroundCheckResult = HttpUtility.HtmlEncode(reader["BackgroundCheckResult"].ToString().ToLower());
+                                double price = Convert.ToDouble(HttpUtility.HtmlEncode(reader["MonthlyPrice"]));
+                                string fullAddress = HttpUtility.HtmlEncode((string)reader["HouseNumber"]) + " " + HttpUtility.HtmlEncode((string)reader["Street"]) + ", " + HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
+                                string propertyTitle = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
                                 byte[] imgData1;
                                 byte[] imgData2;
                                 byte[] imgData3;
@@ -210,8 +210,8 @@ public partial class Search : System.Web.UI.Page
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }
 
-                                List<string> badges = new List<string>{(string)reader["PrivateEntrance"], (string)reader["Kitchen"], (string)reader["Furnished"],
-                                (string)reader["ClosetSpace"], (string)reader["NonSmoker"], (string)reader["PrivateBathroom"]};
+                                List<string> badges = new List<string>{HttpUtility.HtmlEncode((string)reader["PrivateEntrance"]), HttpUtility.HtmlEncode((string)reader["Kitchen"]),HttpUtility.HtmlEncode( (string)reader["Furnished"]),
+                               HttpUtility.HtmlEncode((string)reader["ClosetSpace"]), HttpUtility.HtmlEncode((string)reader["NonSmoker"]),HttpUtility.HtmlEncode( (string)reader["PrivateBathroom"])};
 
                                 SearchResult result = new SearchResult(id, name, location, propertyTitle, description, price, image1, image2, image3, backgroundCheckPhoto, badges);
 

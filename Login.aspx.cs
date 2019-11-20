@@ -58,7 +58,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 while (reader.Read()) // this will read the single record that matches the entered username
                 {
-                    string storedHash = reader["Password"].ToString(); // store the database password into this variable
+                    string storedHash = HttpUtility.HtmlEncode(reader["Password"].ToString()); // store the database password into this variable
 
                     if (PasswordHash.ValidatePassword(passwordTextbox.Text, storedHash)) // if the entered password matches what is stored, it will show success
                     {
@@ -82,9 +82,9 @@ public partial class _Default : System.Web.UI.Page
                         string tenantID = "", hostID = "", adminID = "";
                         while (rdr.Read())
                         {
-                            tenantID = rdr["TenantID"].ToString();
-                            hostID = rdr["HostID"].ToString();
-                            adminID = rdr["AdminID"].ToString();
+                            tenantID = HttpUtility.HtmlEncode(rdr["TenantID"].ToString());
+                            hostID = HttpUtility.HtmlEncode(rdr["HostID"].ToString());
+                            adminID = HttpUtility.HtmlEncode(rdr["AdminID"].ToString());
                         }
 
                         if (tenantID != "")

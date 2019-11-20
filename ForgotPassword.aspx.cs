@@ -34,8 +34,8 @@ public partial class ForgotPassword : System.Web.UI.Page
                 {
                     if (sdr.Read())
                     {
-                        username = sdr["Username"].ToString();
-                        password = sdr["Password"].ToString();
+                        HttpUtility.HtmlEncode(username = sdr["Username"].ToString());
+                        HttpUtility.HtmlEncode(password = sdr["Password"].ToString());
                     }
                 }
                 sc.Close();

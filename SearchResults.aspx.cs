@@ -53,8 +53,8 @@ public partial class SearchResults : System.Web.UI.Page
                             {
                                 while (reader.Read())
                                 {
-                                    propertyID = Convert.ToInt32(reader["PropertyID"]);
-                                    hostID = Convert.ToInt32(reader["HostID"]);
+                                    propertyID = Convert.ToInt32(HttpUtility.HtmlEncode(reader["PropertyID"]));
+                                    hostID = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
                                 }
 
                             }
@@ -71,8 +71,8 @@ public partial class SearchResults : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                firstName = reader["FirstName"].ToString();
-                                lastName = reader["LastName"].ToString();
+                                firstName = HttpUtility.HtmlEncode(reader["FirstName"].ToString());
+                                lastName = HttpUtility.HtmlEncode(reader["LastName"].ToString());
                             }
 
                         }

@@ -44,7 +44,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         while (rdr.Read())
         {
             //nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
-            dashboardTitle.Text = rdr["FirstName"].ToString() + "'s Admin Dashboard";
+            dashboardTitle.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString())+ "'s Admin Dashboard";
             //byte[] imgData = (byte[])rdr["imageV2"];
             //if (!(imgData == null))
             //{
@@ -54,7 +54,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         }
         //usernameTextbox.Text = Session["username"].ToString();
 
-        int adminIDRefresh = Convert.ToInt32(Session["adminID"]);
+        int adminIDRefresh = Convert.ToInt32(HttpUtility.HtmlEncode(Session["adminID"]));
 
         //host applicants
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
@@ -73,12 +73,12 @@ public partial class AdminDashboard : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                String name = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
-                                String email = reader["Email"].ToString();
-                                String phone = reader["PhoneNumber"].ToString();
+                                String name = HttpUtility.HtmlEncode(reader["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(reader["LastName"].ToString());
+                                String email = HttpUtility.HtmlEncode(reader["Email"].ToString());
+                                String phone = HttpUtility.HtmlEncode(reader["PhoneNumber"].ToString());
                                 String applicantType = "h";
-                                int id = Convert.ToInt32(reader["HostID"]);
-                                string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
+                                int id = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
+                                string backgroundCheckResult = HttpUtility.HtmlEncode(reader["BackgroundCheckResult"].ToString().ToLower());
                                 byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
                                 if (!(imgData == null))
@@ -134,12 +134,12 @@ public partial class AdminDashboard : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                String name = reader["FirstName"].ToString() + " " + reader["LastName"].ToString();
-                                String email = reader["Email"].ToString();
-                                String phone = reader["PhoneNumber"].ToString();
+                                String name = HttpUtility.HtmlEncode(reader["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(reader["LastName"].ToString());
+                                String email = HttpUtility.HtmlEncode(reader["Email"].ToString());
+                                String phone = HttpUtility.HtmlEncode(reader["PhoneNumber"].ToString());
                                 String applicantType = "t";
-                                int id = Convert.ToInt32(reader["TenantID"]);
-                                string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
+                                int id = Convert.ToInt32(HttpUtility.HtmlEncode(reader["TenantID"]));
+                                string backgroundCheckResult = HttpUtility.HtmlEncode(reader["BackgroundCheckResult"].ToString().ToLower());
                                 byte[] imgData = (byte[])reader["imageV2"];
                                 string img = "";
                                 if (!(imgData == null))
@@ -249,13 +249,13 @@ public partial class AdminDashboard : System.Web.UI.Page
                             while (reader.Read())
                             {
 
-                                string name = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-                                string location = (string)reader["CityCounty"] + ", " + (string)reader["HomeState"] + " " + (string)reader["Zip"];
+                                string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
+                                string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"] )+ " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
                                 
-                                string description = (string)reader["BriefDescription"];
-                                int id = Convert.ToInt32(reader["RoomID"]);
-                                string backgroundCheckResult = reader["BackgroundCheckResult"].ToString().ToLower();
-                                double price = Convert.ToDouble(reader["MonthlyPrice"]);
+                                string description = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
+                                int id = Convert.ToInt32(HttpUtility.HtmlEncode(reader["RoomID"]));
+                                string backgroundCheckResult = HttpUtility.HtmlEncode(reader["BackgroundCheckResult"].ToString().ToLower());
+                                double price = Convert.ToDouble(HttpUtility.HtmlEncode(reader["MonthlyPrice"]));
 
                                 byte[] imgData1;
                                 byte[] imgData2;

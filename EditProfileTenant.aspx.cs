@@ -33,10 +33,10 @@ public partial class EditProfileTenant : System.Web.UI.Page
 
             while (rdr.Read())
             {
-                firstNameTextbox.Text = rdr["FirstName"].ToString();
-                lastNameTextbox.Text = rdr["LastName"].ToString();
-                emailTextbox.Text = rdr["Email"].ToString();
-                phoneNumberTextbox.Text = rdr["PhoneNumber"].ToString();
+                HttpUtility.HtmlEncode(firstNameTextbox.Text = rdr["FirstName"].ToString());
+                HttpUtility.HtmlEncode(lastNameTextbox.Text = rdr["LastName"].ToString());
+                HttpUtility.HtmlEncode(emailTextbox.Text = rdr["Email"].ToString());
+                HttpUtility.HtmlEncode(phoneNumberTextbox.Text = rdr["PhoneNumber"].ToString());
             }
             passwordTextbox.Text = "";
         }

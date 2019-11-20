@@ -55,12 +55,12 @@ public partial class PropertyDescription : System.Web.UI.Page
 
                     while (rdr2.Read())
                     {
-                        privateEntrance = rdr2["privateEntrance"].ToString();
-                        kitchen = rdr2["Kitchen"].ToString();
-                        privateBathroom = rdr2["privateBathroom"].ToString();
-                        furnish = rdr2["Furnished"].ToString();
-                        storage = rdr2["ClosetSpace"].ToString();
-                        nonsmoker = rdr2["NonSmoker"].ToString();
+                        privateEntrance = HttpUtility.HtmlEncode(rdr2["privateEntrance"].ToString());
+                        kitchen = HttpUtility.HtmlEncode(rdr2["Kitchen"].ToString());
+                        privateBathroom = HttpUtility.HtmlEncode(rdr2["privateBathroom"].ToString());
+                        furnish = HttpUtility.HtmlEncode(rdr2["Furnished"].ToString());
+                        storage = HttpUtility.HtmlEncode(rdr2["ClosetSpace"].ToString());
+                        nonsmoker = HttpUtility.HtmlEncode(rdr2["NonSmoker"].ToString());
                     }
 
                     if (privateEntrance == "y")
@@ -169,8 +169,8 @@ public partial class PropertyDescription : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                propertyID = Convert.ToInt32(reader["PropertyID"]);
-                                hostID = Convert.ToInt32(reader["HostID"]);
+                                propertyID = Convert.ToInt32(HttpUtility.HtmlEncode(reader["PropertyID"]));
+                                hostID = Convert.ToInt32(HttpUtility.HtmlEncode(reader["HostID"]));
                             }
 
                         }
@@ -187,8 +187,8 @@ public partial class PropertyDescription : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-                                firstName = reader["FirstName"].ToString();
-                                lastName = reader["LastName"].ToString();
+                                firstName = HttpUtility.HtmlEncode(reader["FirstName"].ToString());
+                                lastName = HttpUtility.HtmlEncode(reader["LastName"].ToString());
                             }
 
                         }

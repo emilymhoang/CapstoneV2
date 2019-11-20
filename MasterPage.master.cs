@@ -88,9 +88,9 @@ public partial class MasterPage : System.Web.UI.MasterPage
             string tenantID = "", hostID = "", adminID = "";
             while (rdr.Read())
             {
-                adminID = rdr["AdminID"].ToString();
-                tenantID = rdr["TenantID"].ToString();
-                hostID = rdr["HostID"].ToString();
+                adminID = HttpUtility.HtmlEncode(rdr["AdminID"].ToString());
+                tenantID = HttpUtility.HtmlEncode(rdr["TenantID"].ToString());
+                hostID = HttpUtility.HtmlEncode(rdr["HostID"].ToString());
             }
             Session["hostID"] = hostID;
             Session["tenantID"] = tenantID;
