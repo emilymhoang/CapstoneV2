@@ -34,7 +34,7 @@ public partial class PropertyDescription : System.Web.UI.Page
 
                 var roomID1 = 0; 
 
-                if (SearchResult.lstSearchResults[index] != null)
+                if (Favorite.lstFavorites[index] == null)
                 {
                     var roomID = SearchResult.lstSearchResults[index].resultID;
                     lblHostName.Text = SearchResult.lstSearchResults[index].resultName;

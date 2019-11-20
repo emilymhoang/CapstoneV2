@@ -232,7 +232,7 @@ public partial class TenantDashboard : System.Web.UI.Page
                 command.CommandType = CommandType.Text;
 
 
-                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[PropertyRoom].RoomID, [dbo].[Host].HostBio, " +
+                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[PropertyRoom].RoomDescription, [dbo].[PropertyRoom].RoomID, [dbo].[Host].HostBio, " +
                     "[dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
                             "[dbo].[Property].HomeState, [dbo].[Property].Zip, [dbo].[PropertyRoom].RoomID, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') " +
                     "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, PropertyRoom.Image1 " +
@@ -254,9 +254,9 @@ public partial class TenantDashboard : System.Web.UI.Page
                             {
                                 string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
                                 string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
-                                string propertyTitle = HttpUtility.HtmlEncode((string)reader["RoomDescription"]);
+                                string propertyTitle = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
                                 string hostBio = HttpUtility.HtmlEncode((string)reader["HostBio"]);
-                                string description = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
+                                string description = HttpUtility.HtmlEncode((string)reader["RoomDescription"]);
                                 int id = Convert.ToInt32(reader["RoomID"]);
                                 string fullAddress = HttpUtility.HtmlEncode((string)reader["HouseNumber"]) + " " + HttpUtility.HtmlEncode((string)reader["Street"]) + ", " + HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
                                 string price = HttpUtility.HtmlEncode(Math.Round(Convert.ToDouble(reader["MonthlyPrice"])).ToString());
@@ -546,7 +546,7 @@ public partial class TenantDashboard : System.Web.UI.Page
 
 
                                 Message.lstTenantMessages.Add(msg);
-                            }
+                            }me
 
                         }
                         else
@@ -575,7 +575,7 @@ public partial class TenantDashboard : System.Web.UI.Page
     }
 
     protected void contract(object sender, EventArgs e)
-    {fav
+    {
         Response.Redirect("Contract.aspx");
     }
 
