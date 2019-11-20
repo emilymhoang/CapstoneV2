@@ -21,8 +21,7 @@ public partial class PropertyDescription : System.Web.UI.Page
     string nonsmoker;
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        //var int = Session["tenantID"].ToString();
+            //var int = Session["tenantID"].ToString();
             using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand())

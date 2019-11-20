@@ -60,7 +60,7 @@
            <%--    begin file container--%>
         <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-6 " style="margin-top: 1rem;">
-                    <asp:Image ID="image1" ImageUrl="" class="img-fluid" runat="server" />
+                    <asp:Image ID="image1" ImageUrl="" style="border-radius: 10%;"  class="img-fluid" runat="server" />
                 
                 <div class="row" style="margin-top: 1rem;">
                     <div class="col-md-6">

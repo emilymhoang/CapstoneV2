@@ -184,16 +184,29 @@
             <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">
         </div>
         
-        <div class="col-md-6" style="margin-top: .5rem;  margin-bottom: 1rem;">
-             <div id="carousel2" class="carousel slide" data-ride="carousel">
+<%--        <div class="col-md-6" style="margin-top: .5rem;  margin-bottom: 1rem;">--%>
+            <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
+            <div class="col-md-6" style="margin-top: 1rem;">
+                    <asp:Image ID="image4" ImageUrl="" style="border-radius: 10%;" class="img-fluid" runat="server" />
+                
+                <div class="row" style="margin-top: 1rem;">
+                    <div class="col-md-6">
+                        <asp:Image ID="image5" ImageUrl="" class="img-fluid" runat="server" />
+                    </div>
+                    <div class="col-md-6">
+                        <asp:Image ID="image6" ImageUrl="" class="img-fluid" runat="server" />
+                    </div>
+                </div>
+            </div>
+<%--             <div id="carousel2" class="carousel slide" data-ride="carousel">
 
                 <div class="carousel-inner"> 
                           <div class="carousel-item active">
                            <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat ="server" />
                         </div>
-<%--                          <div class="carousel-item">
+                          <div class="carousel-item">
                             <img src="images/johnsmith1.jpeg"  class="d-block w-100">
-                        </div>--%>
+                        </div>
                   <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -203,7 +216,7 @@
                     <span class="sr-only">Next</span>
                   </a>
                 </div> 
-            </div> 
+            </div> --%>
         </div>
         
     </div><!-- end div row --> 
