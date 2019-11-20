@@ -379,6 +379,7 @@ public partial class HostDashboard : System.Web.UI.Page
                                 item.Text = HttpUtility.HtmlEncode((string)reader["FirstName"]) + HttpUtility.HtmlEncode((string)reader["Lastname"]);
                                 item.Value = val.ToString();
                                 tenantNameDropdown.Items.Add(item);
+                                tNameDD.Items.Add(item);
                             }
 
                         }
@@ -561,7 +562,7 @@ public partial class HostDashboard : System.Web.UI.Page
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
         var selectedPRid = SearchResult.lstSearchResults[index].resultID;
-        var tenantID = tenantNameDropdown.SelectedValue;
+        var tenantID = tenantNameDropdown2.SelectedValue;
 
         SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PropertyID FROM [dbo].[Host] WHERE HostID = @HostID", sc);
         filter.Parameters.AddWithValue("@HostID", Session["HostID"]);

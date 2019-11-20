@@ -15,6 +15,7 @@
             width: 500px;
             height: 500px;
             background-color: white;
+            border-radius: 10%;
             border: 1px solid black;
         }
         .btn {
@@ -110,7 +111,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                <tr>
                                      <td>
                                         <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Oswald', sans-serif; line-height: 1.3; font-size: 20px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
                                     </td>
@@ -123,18 +123,15 @@
                                 </tr>
                                  <tr>
                                      <td>
-                                        
-                                         
-                                        <asp:DropDownList ID="tenantNameDropdown" runat="server">
-                                        </asp:DropDownList>
-                                        <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Mark as Unavailable"/>
+                                        <asp:DropDownList ID="tenantNameDropdown2" runat="server">
+
+                                        </asp:DropDownList> <br />
+                                        <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Reserve a Room"/>
                                          </br>
                                     </td>
                                  </tr>   
-                                
                              </table>
                         </td>
-
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem; margin-top: 1rem;" >
                                 <center>
@@ -166,11 +163,9 @@
                                         <span class="sr-only">Next</span>
                                     </a>
                                 </div>
-                               </div>
                                     </center>
                               </div>
                         </td>
-
                     </tr>
                 </table>
 
