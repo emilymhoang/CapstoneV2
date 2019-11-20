@@ -21,7 +21,7 @@ public partial class HostDashboard : System.Web.UI.Page
     String roomImg1;
     String roomImg2;
     String roomImg3;
-
+  
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
