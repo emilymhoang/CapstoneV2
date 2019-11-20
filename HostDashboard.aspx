@@ -48,7 +48,7 @@
         </div>
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
-            <div class="col-md-12" style="margin-top: 1rem;">
+            <div class="col-md-6" style="margin-top: 1rem;">
                     <asp:Image ID="image1" ImageUrl="" style="border-radius: 10%;" class="img-fluid" runat="server" />
                 
                 <div class="row" style="margin-top: 1rem;">
@@ -87,7 +87,7 @@
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem;">
                 <h3>Your Available Rooms in: </h3>
-                <h4><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h4>
+                <h2><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h2>
 
         <div class="list-group" style="margin-top: 1rem; height: 400px;">
         <asp:ListView id="lvPropertyRoom" runat="server" Visible="true" >
@@ -105,27 +105,29 @@
                              <table >
                                 <tr>
                                      <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("propertyTitle") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label>
+                                        <%--<asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("briefDescription") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label>--%>
 </br>
                                     </td>
                                 </tr>
                                 <tr>
                                 <tr>
                                      <td>
-                                        <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
+                                        <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Oswald', sans-serif; line-height: 1.3; font-size: 20px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
                                     </td>
                                 </tr>
                                 <tr>
                                      <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label> </br>
-                                        <asp:DropDownList ID="tenantNameDropdown" runat="server">
-                                        </asp:DropDownList>
-                                        <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Mark as Unavailable"/>
+                                         <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 16px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label> </br>
+                                        <asp:Label runat="server" style="font-family: 'Raleway', sans-serif; font-size: 16px;" ID="lblPropertyBio" Text='<%#Eval("roomDescription") %>'></asp:Label></br> </br> </br> </br>
                                     </td>
                                 </tr>
                                  <tr>
                                      <td>
-                                        <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br>
+                                        
+                                         
+                                        <asp:DropDownList ID="tenantNameDropdown" runat="server">
+                                        </asp:DropDownList>
+                                        <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Mark as Unavailable"/>
                                          </br>
                                     </td>
                                  </tr>   
