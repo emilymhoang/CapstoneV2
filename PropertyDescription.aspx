@@ -144,7 +144,7 @@
             <%--<img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">--%>
         </div>
         
-        <div class="col-md-6" style="margin-top: .5rem;  margin-bottom: 1rem;">
+        <div class="col-md-12" style="margin-top: .5rem;  margin-bottom: 1rem;">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <br>
                 <ol class="carousel-indicators">

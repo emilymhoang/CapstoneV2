@@ -89,7 +89,7 @@
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
                               <center>
-                                <div class="col-md-6" style="margin-top: 1rem;">
+                                <div class="col-md-12" style="margin-top: 1rem;">
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
