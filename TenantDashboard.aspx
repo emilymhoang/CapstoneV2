@@ -311,6 +311,23 @@
             </div>
             </div>
             </div>
+
+     <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
+        <div class="col-md-12"  style=" margin-top: 1rem;">
+            <h2>Your Rental Agreements</h2>
+            <form action="/Charge" method="POST">
+                <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="<%= stripePublishableKey %>"
+                    data-amount="500"
+                    data-name="Stripe.com"
+                    data-description="Sample Charge"
+                    data-locale="auto"
+                    data-zip-code="true">
+                </script>
+            </form>
+          </div>
+    </div><!-- end div big row -->  
     
    
     <div class="row " style="margin-top: 1rem;">
