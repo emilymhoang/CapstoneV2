@@ -29,7 +29,8 @@
                 <a href="Search.aspx" class="btn " style=" font-size: 22px;">Go Back to Search</a>
         </div> <!--end col-->
     </div><!-- end div row -->
-    
+    </div>
+    <div  class="container">
      <div class="row">
             <div class="col">
               <label style="font-size: 28px" for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
@@ -51,24 +52,26 @@
     <br />
            <div class="row">  
           <div class="col-md-4">
-              <p><asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="y" runat="server"></asp:Checkbox>Furnished<br>
+              <h5><asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="y" runat="server"></asp:Checkbox>Furnished<br>
                <asp:CheckBox ID="privateBathroomCheck" type="checkbox" name="Private Bathroom" value="y" runat="server"></asp:Checkbox> Private Bathroom<br>
-                <asp:CheckBox ID="closetCheck" type="checkbox" name="Closet/Storage Space" value="y" runat="server"></asp:Checkbox> Closet/ Storage Space<br></p>
+                <asp:CheckBox ID="closetCheck" type="checkbox" name="Closet/Storage Space" value="y" runat="server"></asp:Checkbox> Closet/ Storage Space<br></h5>
             </div>
               <div class="col-md-4">
-              <p ><asp:CheckBox ID="nonSmokerCheck" type="checkbox" name="Non-Smokers" value="y" runat="server"></asp:Checkbox> Non-Smokers<br>
+              <h5><asp:CheckBox ID="nonSmokerCheck" type="checkbox" name="Non-Smokers" value="y" runat="server"></asp:Checkbox> Non-Smokers<br>
                <asp:CheckBox ID="kitchenCheck" type="checkbox" name="Kitchen" value="y" runat="server"></asp:CheckBox> Kitchen<br>
                 <asp:CheckBox ID="privateEntranceCheck" type="checkbox" name="Private Entrance" value="y" runat="server"></asp:Checkbox> Private Entrance
-                  <br></p>
+                  <br></h5>
             </div>
                <div class="col-md-4">
               <p >
-                  <asp:Button runat="server" Text="Filter Results" ID="btnFilterResults" OnClick="btnFilterResults_Click" />
+                  <asp:Button runat="server" class="btn" Text="Filter Results" ID="btnFilterResults" OnClick="btnFilterResults_Click" />
               </p>
             </div>
              <!--end col-->
           </div> <!--end row class-->
+        </div>
 
+        <div  class="container">
 
     <div style="margin-top: 6.35rem;">
         <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
