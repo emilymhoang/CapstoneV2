@@ -32,8 +32,10 @@
     <div class="col-md-3">
         <a href="Search.aspx" class="btn " style="margin-top: 1rem;">Search Properties</a>
         <asp:Button ID="logoutButton" onClick="logout" style="margin-top: 1rem;" runat="server" Text="Logout" AutoPostBack="true" type="submit" class="btn"/>
+        <a href="CreateLoginAdmin.aspx" class="btn " style="margin-top: 1rem;">Add Admin Account</a>
 
       </div>
+      
     </div><!-- end div row -->  
     
     

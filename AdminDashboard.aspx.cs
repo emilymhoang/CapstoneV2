@@ -405,4 +405,9 @@ public partial class AdminDashboard : System.Web.UI.Page
         SearchResult.selectedReultFullAddress = SearchResult.lstSearchResults[index].resultFullAddress;
         Response.Redirect("PropertyDescription.aspx");
     }
+
+    protected void addAdmin_Click(object sender, EventArgs e)
+    {
+
+    }
 }
