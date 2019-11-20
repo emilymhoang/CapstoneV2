@@ -10,6 +10,8 @@ public class SearchResult
 {
     public static List<SearchResult> lstSearchResults = new List<SearchResult>();
 
+    public static List<SearchResult> lstFilteredResults = new List<SearchResult>();
+
     public static string selectedReultFullAddress;
 
     public string resultName { get; private set; }

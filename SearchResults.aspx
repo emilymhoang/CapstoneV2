@@ -45,7 +45,10 @@
                 <asp:CheckBox ID="privateAptCheck" type="checkbox" name="Private Apartment" value="Private Apartment" runat="server"></asp:Checkbox> Private Room<br></p>
             </div>
               </div>--%>
-
+    <br />
+    <br />
+    <br />
+    <br />
            <div class="row">  
           <div class="col-md-4">
               <p><asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="y" runat="server"></asp:Checkbox>Furnished<br>

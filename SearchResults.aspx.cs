@@ -12,10 +12,16 @@ using System.Web.UI.WebControls;
 
 public partial class SearchResults : System.Web.UI.Page
 {
+
+    private List<string> lstFilterCriteria = new List<string>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        lvSearchResults.DataSource = SearchResult.lstSearchResults;
-        lvSearchResults.DataBind();
+        if (IsPostBack == false)
+        {
+            lvSearchResults.DataSource = SearchResult.lstSearchResults;
+            lvSearchResults.DataBind();
+        }
     }
 
     protected void FavoritesButton(object sender, EventArgs e)
@@ -114,6 +120,84 @@ public partial class SearchResults : System.Web.UI.Page
 
     protected void btnFilterResults_Click(object sender, EventArgs e)
     {
+        lstFilterCriteria.Clear();
+        SearchResult.lstFilteredResults.Clear();
+
+        //populating filtered list
+        if (privateEntranceCheck.Checked)
+        {
+            lstFilterCriteria.Add("y");
+        }
+        else
+        {
+            lstFilterCriteria.Add("na");
+        }
+        if (kitchenCheck.Checked)
+        {
+            lstFilterCriteria.Add("y");
+        }
+        else
+        {
+            lstFilterCriteria.Add("na");
+        }
+        if (furnishedCheck.Checked)
+        {
+            lstFilterCriteria.Add("y");
+        }
+        else
+        {
+            lstFilterCriteria.Add("na");
+        }
+        if (closetCheck.Checked)
+        {
+            lstFilterCriteria.Add("y");
+        }
+        else
+        {
+            lstFilterCriteria.Add("na");
+        }
+        if (nonSmokerCheck.Checked)
+        {
+            lstFilterCriteria.Add("y");
+        }
+        else
+        {
+            lstFilterCriteria.Add("na");
+        }
+        if (privateBathroomCheck.Checked)
+        {
+            lstFilterCriteria.Add("y");
+        }
+        else
+        {
+            lstFilterCriteria.Add("na");
+        }
+
+        foreach (var result in SearchResult.lstSearchResults)
+        {
+            bool match = true;
+            for (int i = 0; i < lstFilterCriteria.Count; i++)
+            {
+                if (lstFilterCriteria[i].Equals("na"))
+                {
+                    continue;
+                } else if (!lstFilterCriteria[i].Equals(result.lstPropertyBadges[i]))
+                {
+                    match = false;
+                    break;
+                }
+            }
+
+            if(match == true)
+            {
+                SearchResult.lstFilteredResults.Add(result);
+            }
+
+        }
+
+        lvSearchResults.DataSource = SearchResult.lstFilteredResults;
+        lvSearchResults.DataBind();
+
 
     }
 }
