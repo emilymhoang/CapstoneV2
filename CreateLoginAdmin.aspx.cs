@@ -141,9 +141,8 @@ public partial class CreateLoginAdmin : System.Web.UI.Page
                     getadminID.Connection = sc;
                     int accountID = Convert.ToInt32(getadminID.ExecuteScalar());
                     getadminID.ExecuteNonQuery();
-                    Session["accountID"] = accountID;
+                 
                     Session["username"] = newAdmin.userName;
-
                     insertLogin.ExecuteNonQuery();
                     sc.Close();
                     Response.Redirect("AdminDashboard.aspx");
