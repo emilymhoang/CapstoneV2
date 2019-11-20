@@ -31,9 +31,7 @@
 
 
 </style> 
-    
-
-      <head>
+   
 <meta charset="UTF-8">
 <meta name="description" content="Room Magnet">
 <meta name="keywords" content="room magnet, roommate, housing, matchmaking, house, apartment, living arrangement">
@@ -80,8 +78,6 @@
     
 </style>   
     
-    
-</head>
 <div  class="container">
      
   <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
@@ -90,7 +86,7 @@
       </div>
     <div class="col-md-8" style="margin-top: 1rem; "> 
           <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="PropertyHeaderTextbox"></asp:Label></h1>
-        <asp:Image ID="imgbackgroundCheck" ImageUrl="" style="max-width: 30px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
+        <asp:Image ID="imgbackgroundCheck" style="max-width: 30px; margin-bottom: 1rem;" class="img-fluid" runat="server" />
         </div> <!--end col-->
      <div class="col-md-1" style="margin-top: 1.5rem; ">     
      <%--         <div class="col-md-3">
@@ -131,19 +127,19 @@
     
     <div class="row prop" style="border-bottom: solid; border-bottom-width: 1px; ">
         <div class="col-md-6" >
-            <h2> <asp:Label runat="server"  style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblPropName" Text = "Property Name"></asp:Label>
+            <h2> <asp:Label runat="server"  style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblPropName" Text = "Property Name"></asp:Label></h2>
             
             <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultLocation" Text = "Property Location"></asp:Label></h5>     
             <h5> <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text = "Property Price"></asp:Label></h5>
-            <p > <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text = "The brief description of the property would go here."></asp:Label></p>
-                 <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                 <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                 <asp:Image ID="privateBathroomBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                 <asp:Image ID="furnishBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                 <asp:Image ID="storageBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                 <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+            <p> <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word" Text = "The brief description of the property would go here."></asp:Label></p>
+                 <asp:Image ID="privateEntranceBadge" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="kitchenBadge" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="privateBathroomBadge" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="furnishBadge" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="storageBadge" class="img-fluid" runat="server" Height="35" Width="130" />
+                 <asp:Image ID="smokerBadge" class="img-fluid" runat="server" Height="35" Width="130" />
 
-            </h2><asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button>
+            <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button>
             <%--<img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">--%>
         </div>
         
@@ -199,7 +195,7 @@
                          <%--   <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">--%>
                       </div>
                        <div class="col-md-6" >
-                            <asp:Image ID="image7" ImageUrl="" style="border-radius: 10%;" class="img-fluid" runat="server" />
+                            <asp:Image ID="image7" style="border-radius: 10%;" class="img-fluid" runat="server" />
                        </div>
                 </div>
           </div>

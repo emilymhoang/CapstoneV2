@@ -15,16 +15,12 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
     
     double MonthlyPrice;
     int SquareFootage;
-    int NumberBedrooms;
     string privateBath;
     string privateEnt;
     string storage;
     string furnish;
     string smoker;
     string kitchen;
-    string image1;
-    string image2;
-    string image3;
     SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -73,7 +69,9 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         int roomID;
         Session["RoomID"] = null;
 
-
+        string image1 = "";
+        string image2 = "";
+        string image3 = "";
         PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription, image1, image2, image3);
         System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))

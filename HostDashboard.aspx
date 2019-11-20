@@ -50,14 +50,14 @@
            <%--    begin file container--%>
         <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-6" style="margin-top: 1rem;">
-                    <asp:Image ID="image1" ImageUrl="" style="border-radius: 10%;" class="img-fluid" runat="server" />
+                    <asp:Image ID="image1" style="border-radius: 10%;" class="img-fluid" runat="server" />
                 
                 <div class="row" style="margin-top: 1rem;">
                     <div class="col-md-6">
-                        <asp:Image ID="image2" ImageUrl="" class="img-fluid" runat="server" />
+                        <asp:Image ID="image2" class="img-fluid" runat="server" />
                     </div>
                     <div class="col-md-6">
-                        <asp:Image ID="image3" ImageUrl="" class="img-fluid" runat="server" />
+                        <asp:Image ID="image3" class="img-fluid" runat="server" />
                     </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@
                  <p><asp:Label ID="emailTextbox" Text="name@gmailcom" runat="server" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="phoneTextbox" Text="xxx-xxx-xxx" runat="server"  BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="hostBioTextbox" Text="Host bio will go here displaying a little about the host." runat="server"  BackColor="#ebebeb"></asp:Label></p>
-                <asp:Image ID="undergraduateBadge" ImageUrl="" class="img-fluid" runat="server" />
-                 <asp:Image ID="graduateBadge" ImageUrl="" class="img-fluid" runat="server" />
+                <asp:Image ID="undergraduateBadge" class="img-fluid" runat="server" />
+                 <asp:Image ID="graduateBadge" class="img-fluid" runat="server" />
                  <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
             </div>
 
@@ -242,7 +242,7 @@
                 <div class="col-md-4">
                     <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
                     <div>
-                        <a href="skype:Echo123"><button class="btn btn-primary" style="font-family: 'Oswald', sans-serif; color: white; font-size: 18px; ">Videochat</button></a>
+                        <a href="skype:Echo123"><button class="btn btn-primary" style="font-family: 'Oswald', sans-serif; color: white; font-size: 18px;">Videochat</a>
                     </div>
                     </div>
               <div class="col-md-3">
@@ -327,7 +327,7 @@
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
-                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 200px;" ImageUrl="" class="img-fluid" runat="server" /></p>
+                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 200px;" class="img-fluid" runat="server" /></p>
                 <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
             </div>
             </div>
