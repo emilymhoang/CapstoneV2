@@ -563,8 +563,28 @@ public partial class HostDashboard : System.Web.UI.Page
         var selectedPRid = SearchResult.lstSearchResults[index].resultID;
         var tenantID = tenantNameDropdown.SelectedValue;
 
-        //lvSearchResults.SelectedIndex;
-        //lvSearchResults.Items[lcount].Selected = 1;
+        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PropertyID FROM [dbo].[Host] WHERE HostID = @HostID", sc);
+        filter.Parameters.AddWithValue("@HostID", Session["HostID"]);
+        SqlDataReader rdr = filter.ExecuteReader();
+        String name = "";
+        int propertyID = 0;
+        while (rdr.Read())
+        {
+            name = rdr["FirstName"].ToString() + " " +  rdr["LastName"].ToString();
+            propertyID = Convert.ToInt32(rdr["PropertyID"]); 
+        }
+
+            SqlCommand insert = new SqlCommand("INSERT [dbo].[RoomReservation] (RoomID, TenantID, HostID, PropertyID, StartDate, LastUpdated, LastUpdatedBy) " +
+            "VALUES (@RoomID, @TenantID, @HostID, @PropertyID, @StartDate, @LastUpdated, @LastUpdatedBy)");
+        insert.Parameters.AddWithValue("@TenantID", tenantID);
+        insert.Parameters.AddWithValue("@RoomID", selectedPRid);
+        insert.Parameters.AddWithValue("@HostID", Session["hostID"]);
+        insert.Parameters.AddWithValue("@PropertyID", propertyID);
+        insert.Parameters.AddWithValue("@StartDate", DateTime.Now);
+        insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+        insert.Parameters.AddWithValue("@LastUpdatedBy", name);
+
+        insert.ExecuteNonQuery();
 
         SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' AND TenantID = @TenantID WHERE RoomID = @RoomID", sc);
         update.Parameters.AddWithValue("@RoomID", selectedPRid);

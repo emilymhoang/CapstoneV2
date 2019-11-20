@@ -103,7 +103,13 @@
                     <tr>
                          <td>
                              <table >
-                                 
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="Label1" Text='<%#Eval("propertyTitle") %>'></asp:Label> <asp:Label runat="server" Text=" "></asp:Label>
+</br>
+                                    </td>
+                                </tr>
+                                <tr>
                                 <tr>
                                      <td>
                                         <asp:Label runat="server" ID="lblResultDesc" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; max-width: 200px; min-width: 200px; word-wrap: break-word;" Text='<%#Eval("briefDescription") %>'></asp:Label></br>
