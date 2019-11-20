@@ -232,7 +232,8 @@ public partial class TenantDashboard : System.Web.UI.Page
                 command.CommandType = CommandType.Text;
 
 
-                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
+                command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[PropertyRoom].RoomID, [dbo].[Host].HostBio, " +
+                    "[dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
                             "[dbo].[Property].HomeState, [dbo].[Property].Zip, [dbo].[PropertyRoom].RoomID, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') " +
                     "as BriefDescription, isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, PropertyRoom.Image1 " +
                     "AS Image1, PropertyRoom.Image2 AS Image2, PropertyRoom.Image3 AS Image3 from [dbo].[Host] left join [dbo].[Property] " +
@@ -253,7 +254,8 @@ public partial class TenantDashboard : System.Web.UI.Page
                             {
                                 string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
                                 string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
-
+                                string propertyTitle = HttpUtility.HtmlEncode((string)reader["RoomDescription"]);
+                                string hostBio = HttpUtility.HtmlEncode((string)reader["HostBio"]);
                                 string description = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
                                 int id = Convert.ToInt32(reader["RoomID"]);
                                 string fullAddress = HttpUtility.HtmlEncode((string)reader["HouseNumber"]) + " " + HttpUtility.HtmlEncode((string)reader["Street"]) + ", " + HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
@@ -304,7 +306,7 @@ public partial class TenantDashboard : System.Web.UI.Page
                                 string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length);
                                 string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length);
                                 string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length);
-                                Favorite fav = new Favorite(id, name, location, description, price, backgroundCheckPhoto, image1, image2, image3);
+                                Favorite fav = new Favorite(id, name, location, description, price, backgroundCheckPhoto, image1, image2, image3, hostBio, propertyTitle);
                                 fav.setFullAddress(fullAddress);
                                 Favorite.lstFavorites.Add(fav);
                             }

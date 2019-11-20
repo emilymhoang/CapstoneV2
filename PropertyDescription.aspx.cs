@@ -12,7 +12,7 @@ using System.Web.UI.WebControls;
 public partial class PropertyDescription : System.Web.UI.Page
 {
 
-    public string addressForMap = SearchResult.selectedReultFullAddress;
+    public string addressForMap;
     string privateEntrance;
     string kitchen;
     string privateBathroom;
@@ -32,6 +32,8 @@ public partial class PropertyDescription : System.Web.UI.Page
                 //grabbing host and property data
                 int index = (int)Session["position"];
 
+                var roomID1 = 0; 
+
                 if (SearchResult.lstSearchResults[index] != null)
                 {
                     var roomID = SearchResult.lstSearchResults[index].resultID;
@@ -50,27 +52,28 @@ public partial class PropertyDescription : System.Web.UI.Page
 
                     //property room badges
                     int index1 = (int)Session["position"];
-                    var roomID1 = SearchResult.lstSearchResults[index1].resultID;
+                    roomID1 = SearchResult.lstSearchResults[index1].resultID;
+                    addressForMap = SearchResult.selectedReultFullAddress;
                 }
-
-                if (Favorite.lstFavorites[index] != null)
-                {
+                else { 
                     var roomID = Favorite.lstFavorites[index].resultID;
                     lblHostName.Text = Favorite.lstFavorites[index].favName;
-                    lblResultName.Text = Favorite.lstFavorites[index].propertyTitle;
-                    lblResultLocation.Text = Favorite.lstFavorites[index].resultLocation;
-                    lblResultPrice.Text = SearchResult.lstSearchResults[index].resultPrice;
-                    lblHostBio.Text = SearchResult.lstSearchResults[index].resultDescription;
-                    image1.ImageUrl = SearchResult.lstSearchResults[index].resultimage1;
-                    image2.ImageUrl = SearchResult.lstSearchResults[index].resultimage2;
-                    image3.ImageUrl = SearchResult.lstSearchResults[index].resultimage3;
-                    imgbackgroundCheck.ImageUrl = SearchResult.lstSearchResults[index].backgroundCheckResult;
-                    PropertyHeaderTextbox.Text = SearchResult.lstSearchResults[index].resultName + "'s Property";
+                    lblPropName.Text = Favorite.lstFavorites[index].propertyTitle;
+                    lblResultDesc.Text = Favorite.lstFavorites[index].favDescription; //resultdescrip is short bio
+                    lblResultLocation.Text = Favorite.lstFavorites[index].favLocation;
+                    lblResultPrice.Text = Favorite.lstFavorites[index].favPrice;
+                    lblHostBio.Text = Favorite.lstFavorites[index].hostBio; //find host bio
+                    image1.ImageUrl = Favorite.lstFavorites[index].resultimage1;
+                    image2.ImageUrl = Favorite.lstFavorites[index].resultimage2;
+                    image3.ImageUrl = Favorite.lstFavorites[index].resultimage3;
+                    imgbackgroundCheck.ImageUrl = Favorite.lstFavorites[index].backgroundCheckResult;
+                    PropertyHeaderTextbox.Text = Favorite.lstFavorites[index].favName + "'s Property";
 
 
                     //property room badges
                     int index1 = (int)Session["position"];
-                    var roomID1 = SearchResult.lstSearchResults[index1].resultID;
+                    roomID1 = Favorite.lstFavorites[index].resultID;
+                    addressForMap = Favorite.selectedReultFullAddress;
                 }
 
                 SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
