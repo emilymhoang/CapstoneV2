@@ -112,6 +112,9 @@
                                 <tr>
                                      <td>
                                         <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label> </br>
+                                        <asp:DropDownList ID="tenantNameDropdown" runat="server">
+                                        </asp:DropDownList>
+                                        <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Mark as Unavailable"/>
                                     </td>
                                 </tr>
                                  <tr>
@@ -133,16 +136,16 @@
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-                                    <div class="carousel-inner">
+                                    <div class="carousel-inner" style="width: 200px">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" ImageUrl='<%#Eval("roomimage1")%>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" style="object-fit: cover; width:200px; height:150px;" ImageUrl='<%#Eval("roomimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" ImageUrl='<%#Eval("roomimage2")%>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" style="object-fit: cover;  width:200px; height:150px;" ImageUrl='<%#Eval("roomimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" ImageUrl='<%#Eval("roomimage3")%>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" style="object-fit: cover;  width:200px; height:150px;" ImageUrl='<%#Eval("roomimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>

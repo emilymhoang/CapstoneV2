@@ -150,16 +150,16 @@
                                         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                                         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                                     </ol>
-                                     <div class="carousel-inner" style="width: 200px; max-height: 200px;">
+                                    <div class="carousel-inner" style="width: 500px">
                                         <div class="row">
                                             <div class="carousel-item active">    
-                                                <asp:Image ID="image4" style="width:1000px;" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
+                                                <asp:Image ID="image4" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage1")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">
-                                               <asp:Image ID="image5" style="width:1000px" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
+                                               <asp:Image ID="image5" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage2")%>' class="img-fluid" runat="server" />
                                                    </div>
                                             <div class="carousel-item ">                
-                                                   <asp:Image ID="image6" style="width:1000px" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
+                                                   <asp:Image ID="image6" style="object-fit: cover; width:500px; height:400px;" ImageUrl='<%#Eval("resultimage3")%>' class="img-fluid" runat="server" />
                                                 </div>
                                         </div>
                                     </div>
