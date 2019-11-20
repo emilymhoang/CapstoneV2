@@ -11,4 +11,9 @@ public partial class ForgotPassword : System.Web.UI.Page
     {
 
     }
+
+    protected void getPass_Click(object sender, EventArgs e)
+    {
+
+    }
 }
