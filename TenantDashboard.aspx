@@ -312,44 +312,84 @@
             </div>
             </div>
 
-     <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
-        <div class="col-md-12"  style=" margin-top: 1rem;">
-            <h2>Properties Currently Rented</h2>
-<table style="margin-top: 1rem; border-bottom: solid; border-top: solid 1px; border-bottom-width: 1px;">
-                             <table >
-                                <tr>
-                                     <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="rentalTitle" Text=""></asp:Label> <asp:Label runat="server" Text=" "></asp:Label>
-</br>
-                                    </td>
-                                </tr>
-                                <tr>
-                                <tr>
-                                     <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="hostNames" Text=""></asp:Label>
-                                    </td>
+     <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 1rem; border-radius:25px;">
+        <div class="col-md-12"  style=" margin-top: 1rem; margin-bottom: 1rem;">
+            <h2 style="border-bottom: solid 1px;">Reserved Properties</h2>
+            <asp:Label style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; margin-top: 1rem;" runat="server" ID="noReservation" Text="You currently have no properties reserved."></asp:Label>
+            <asp:Panel runat="server" ID="Panel2">
+            <table style="margin-top: 1rem;" id="reservationTable">
+                    <tr>
+                        <td>
+                        <table>
+                            <tr>
+                                  <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 25px;" ID="rentalTitle" Text=""></asp:Label> <asp:Label runat="server" Text=" "></asp:Label>  
+                                  </td>
                                 </tr>
                                 <tr>
                                      <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="hostNames" Text=""></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 18px;"  ID="city" Text=" "></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                            <form action="/Charge" method="POST">
                                                 <script
                                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                     data-key="<%= stripePublishableKey %>"
                                                     data-amount="500"
                                                     data-name="Stripe.com"
-                                                    data-description="Sample Charge"
+                                                    data-description="First Month's Rent Charge"
                                                     data-locale="auto"
                                                     data-zip-code="true">
                                                 </script>
                                             </form>
                                     </td>
-                                </tr>
-                                 <tr>
-                                     <td>
-                                        <asp:Label runat="server" ID="city" Text=" "></asp:Label>
-                                    </td>
-                                 </tr>   
+                                   </tr>
+                            </table>
+                            </td>
+                            <td>
+                                        <div class="row" style="margin:auto; margin-bottom: 1rem; margin-top: 1rem;" >
+                                            <center>
+                                                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                                <ol class="carousel-indicators">
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                </ol>
+                                                <div class="carousel-inner" style="width: 400px">
+                                                    <div class="row">
+                                                        <div class="carousel-item active">    
+                                                            <asp:Image ID="image4" style="object-fit: cover; width:400px; height:300px;" ImageUrl="" class="img-fluid" runat="server" />
+                                                               </div>
+                                                        <div class="carousel-item ">
+                                                           <asp:Image ID="image5" style="object-fit: cover;  width:400px; height:300px;" ImageUrl="" class="img-fluid" runat="server" />
+                                                               </div>
+                                                        <div class="carousel-item ">                
+                                                               <asp:Image ID="image6" style="object-fit: cover;  width:400px; height:300px;" ImageUrl="" class="img-fluid" runat="server" />
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                                     </div>
+                                                </center>
+                                          </div>
+                               </td>
+                        </tr> 
                 </table>
+            </asp:Panel>
           </div>
     </div><!-- end div big row -->  
     
