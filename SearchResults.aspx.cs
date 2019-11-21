@@ -34,10 +34,20 @@ public partial class SearchResults : System.Web.UI.Page
 
         foreach (var item in SearchResult.lstSearchResults)
         {
-            var index = item.DataItemIndex;
+            ListViewItem itemm = (ListViewItem)(sender as Control).NamingContainer;
+            var index = itemm.DataItemIndex;
             var roomID1 = SearchResult.lstSearchResults[index].resultID;
+
+            Image imageEntrance = (Image)Page.FindControl("privateEntranceBadge");
+            Image imageKitchen = (Image)Page.FindControl("kitchenBadge");
+            Image imageBathroom = (Image)Page.FindControl("privateBathroomBadge");
+            Image imageFurnish = (Image)Page.FindControl("furnishBadge");
+            Image imageStorage = (Image)Page.FindControl("storageBadge");
+            Image imageSmoker = (Image)Page.FindControl("smokerBadge");
+
             SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
             badge2.Parameters.AddWithValue("@roomID", roomID1);
+
 
             connection.Open();
             SqlDataReader rdr2 = badge2.ExecuteReader();
@@ -54,61 +64,61 @@ public partial class SearchResults : System.Web.UI.Page
 
             if (privateEntrance == "y")
             {
-                privateEntranceBadge.ImageUrl = "images/badges-04.png";
+                imageEntrance.ImageUrl = "images/badges-04.png";
             }
             else
             {
-                privateEntranceBadge.Visible = false;
+                imageEntrance.Visible = false;
             }
 
             if (kitchen == "y")
             {
-                kitchenBadge.ImageUrl = "images/badges-06.png";
+                imageKitchen.ImageUrl = "images/badges-06.png";
 
             }
             else
             {
-                kitchenBadge.Visible = false;
+                imageKitchen.Visible = false;
             }
 
             if (privateBathroom == "y")
             {
-                privateBathroomBadge.ImageUrl = "images/badges-07.png";
+                imageBathroom.ImageUrl = "images/badges-07.png";
 
             }
             else
             {
-                privateBathroomBadge.Visible = false;
+                imageBathroom.Visible = false;
             }
 
             if (furnish == "y")
             {
-                furnishBadge.ImageUrl = "images/badges-08.png";
+                imageFurnish.ImageUrl = "images/badges-08.png";
 
             }
             else
             {
-                furnishBadge.Visible = false;
+                imageFurnish.Visible = false;
             }
 
             if (storage == "y")
             {
-                storageBadge.ImageUrl = "images/badges-09.png";
+                imageStorage.ImageUrl = "images/badges-09.png";
 
             }
             else
             {
-                storageBadge.Visible = false;
+                imageStorage.Visible = false;
             }
 
             if (nonsmoker == "y")
             {
-                smokerBadge.ImageUrl = "images/badges-10.png";
+                imageSmoker.ImageUrl = "images/badges-10.png";
 
             }
             else
             {
-                smokerBadge.Visible = false;
+                imageSmoker.Visible = false;
             }
         }
        
