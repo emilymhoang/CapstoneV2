@@ -32,9 +32,11 @@ public partial class PropertyDescription : System.Web.UI.Page
                 //grabbing host and property data
                 int index = (int)Session["position"];
 
-                var roomID1 = 0; 
+                var roomID1 = 0;
 
-                if (Favorite.lstFavorites[index] == null)
+                bool holder = String.IsNullOrEmpty(Favorite.lstFavorites[index].ToString());
+
+                if (holder)
                 {
                     var roomID = SearchResult.lstSearchResults[index].resultID;
                     lblHostName.Text = SearchResult.lstSearchResults[index].resultName;

@@ -12,9 +12,6 @@
            font-family: 'Oswald', sans-serif;
            color: white; 
            font-size: 20px;
-        body {
-            background-image: url("images/young.jpeg");
-        }
        }
         </style>
 <%--    <div style="background-image: url(images/foldimg_A0_Rectangle_2_pattern.png); background-repeat: no-repeat; background-size:cover;">--%>
