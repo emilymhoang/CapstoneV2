@@ -19,10 +19,15 @@
             font-size:20px;
         }
         </style>
-    <header style="margin-top: 8rem;">
+    
       <div class="container"> 
-        <h1 style="color: #756664;">Login to your account</h1>
-      </div>
+
+          <div class="row">
+                <div class="col-md-6">
+                    <header style="margin-top: 8rem;">
+        <h1 style="color: #756664;">Login to Your Account</h1>
+          <p>Find your perfect home-sharing solution today.</p>
+      
     </header>
     <section id="creation" style="margin-top: 4rem;font-family: 'Oswald', sans-serif; color: #756664; font-size: 30px;">
       <div class="container">
@@ -31,29 +36,37 @@
               <label for="formGroupExampleInput">User Name</label>
               <asp:Textbox type="text" ID="userNameTextbox" class="form-control" MaxLength="30" placeholder="User Name" runat="server"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="userNameRequiredFieldValidator" runat="server" ControlToValidate="usernameTextbox" ErrorMessage="Required" ForeColor="#B23325">User Name is required.</asp:RequiredFieldValidator>
+                 <label for="formGroupExampleInput"></label>
+            
             </div>
-              <div class="col">
-              <label for="formGroupExampleInput"></label>
-            </div><!--end col-->
+            
           </div> <!--end row class-->
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Password</label>
               <asp:Textbox type="password" ID="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ControlToValidate="passwordTextbox" ErrorMessage="Required" ForeColor="#B23325">Password is required.</asp:RequiredFieldValidator>
+                <label for="formGroupExampleInput"></label>
             </div>
-              <div class="col">
-              <label for="formGroupExampleInput"></label>
-            </div>
-             <!--end col-->
+             
           </div> <!--end row class-->
                  <asp:Label ID="resultmessage" runat="server" Text="" ForeColor="Red"></asp:Label>
            <div class="row" style=""> 
              <div class="col-md-12" >   
-                                  <asp:CheckBox ID="SaveLogin" Text="Remember Me" runat="server" oncheckedchanged="SaveLogin_CheckedChanged" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;"/><br/>
+                                 
                  <asp:Button ID="loginButton" class="btn" type="submit" style="float:left;" runat="server" Text="Login" OnCommand="submitLogin_Click" AutoPostBack ="true" ></asp:Button></div>
-            <a href="ForgotPassword.aspx" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Forgot Password?</a>
+           <asp:CheckBox ID="SaveLogin" Text="Remember Me" runat="server" oncheckedchanged="SaveLogin_CheckedChanged" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;"/>
             </div>     
       </div> <!--end container-->
     </section>
+
+                </div>
+                 <div class="col-md-6" style="margin-top:9rem;">
+                    <img src="images/banner-technology-grandkids.jpg" class="img-fluid" style="border-radius:25px;"/>
+
+                 </div>
+          </div>
+
+      
+    </div>
 </asp:Content>
