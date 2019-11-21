@@ -571,7 +571,7 @@ public partial class HostDashboard : System.Web.UI.Page
                     var index = item.DataItemIndex;
                     var tenantID = drpTenantName.SelectedItem.Value;
                     //DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
-                    var selectedPRid = PropertyRoom.listPropertyRoom[index].roomID;
+                    //var selectedPRid = PropertyRoom.listPropertyRoom[index].roomID;
 
                     SqlCommand filter = new SqlCommand("SELECT Host.FirstName, Host.LastName, Property.PropertyID FROM [dbo].[Host] LEFT JOIN [dbo].[Property] ON Host.HostID = Property.HostID WHERE Property.HostID = @HostID", connection);
                     filter.Parameters.AddWithValue("@HostID", Session["HostID"]);
@@ -584,20 +584,34 @@ public partial class HostDashboard : System.Web.UI.Page
                         propertyID = Convert.ToInt32(HttpUtility.HtmlEncode(rdr["PropertyID"]));
                     }
 
-                    SqlCommand insert = new SqlCommand("INSERT [dbo].[RoomReservation] (RoomID, TenantID, HostID, PropertyID, StartDate, LastUpdated, LastUpdatedBy) " +
-                    "VALUES (@RoomID, @TenantID, @HostID, @PropertyID, @StartDate, @LastUpdated, @LastUpdatedBy)");
+                    SqlCommand filterr = new SqlCommand("SELECT PropertyRoom.RoomID, PropertyRoom.PropertyID, Host.HostID, PropertyRoom.MonthlyPrice, isnull(PropertyRoom.BriefDescription, 'No Description') as BriefDescription, isnull(PropertyRoom.RoomDescription, 'No Description') as RoomDescription, PropertyRoom.Availability, " +
+                "PropertyRoom.SquareFootage, PropertyRoom.Image1, PropertyRoom.Image2, PropertyRoom.Image3 FROM [dbo].[Host] inner join [dbo].[Property]" +
+                "on Property.HostID = Host.HostID left join [dbo].[PropertyRoom] ON PropertyRoom.propertyID = Property.PropertyID WHERE Host.HostID = @HostID", connection);
+                    filterr.Parameters.AddWithValue("@HostID", Session["HostID"]);
+                    SqlDataReader rd = filterr.ExecuteReader();
+                    int roomID = 0;
+                    while (rd.Read())
+                    {
+                        roomID = Convert.ToInt32(rd["RoomID"]);   
+                    }
+
+                    int hostID = Convert.ToInt32(Session["hostID"]); 
+
+                    SqlCommand insert = new SqlCommand("INSERT INTO [dbo].[RoomReservation] (RoomID, TenantID, HostID, PropertyID, StartDate, EndDate, LastUpdated, LastUpdatedBy) " +
+                    "VALUES (@RoomID, @TenantID, @HostID, @PropertyID, @StartDate, @EndDate, @LastUpdated, @LastUpdatedBy)", connection);
                     insert.Parameters.AddWithValue("@TenantID", tenantID);
-                    insert.Parameters.AddWithValue("@RoomID", selectedPRid);
-                    insert.Parameters.AddWithValue("@HostID", Session["hostID"]);
+                    insert.Parameters.AddWithValue("@RoomID", roomID);
+                    insert.Parameters.AddWithValue("@HostID", hostID);
                     insert.Parameters.AddWithValue("@PropertyID", propertyID);
                     insert.Parameters.AddWithValue("@StartDate", DateTime.Now);
+                    insert.Parameters.AddWithValue("@EndDate", DBNull.Value);
                     insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
                     insert.Parameters.AddWithValue("@LastUpdatedBy", name);
 
                     insert.ExecuteNonQuery();
 
                     SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' AND TenantID = @TenantID WHERE RoomID = @RoomID", connection);
-                    update.Parameters.AddWithValue("@RoomID", selectedPRid);
+                    update.Parameters.AddWithValue("@RoomID", roomID);
                     update.Parameters.AddWithValue("@TenantID", tenantID);
                     update.ExecuteNonQuery();
                 }

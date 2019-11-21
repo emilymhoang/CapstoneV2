@@ -200,9 +200,7 @@
                         </div>
                 <div class="col-md-3">
                     <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
-                    <div>
-                        <a href="skype:Echo123"><button class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
-                    </div>
+                        <a href="skype:Echo123"><button runat="server" class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
                     </div>
               <div class="col-md-3">
                         <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit" class="btn"/>
@@ -321,7 +319,7 @@
             <asp:Panel runat="server" ID="Panel2">
             <table style="margin-top: 1rem;" id="reservationTable">
                     <tr>
-                        <td>
+                        <td style="width: 500px;">
                         <table>
                             <tr>
                                   <td>
@@ -340,7 +338,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                           <form action="/Charge" method="POST">
+                                        <asp:Button ID="payButton" runat="server" Text="Pay With Card" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
+<%--                                           <form action="/Charge" method="POST">
                                                 <script
                                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                     data-key="<%= stripePublishableKey %>"
@@ -350,12 +349,12 @@
                                                     data-locale="auto"
                                                     data-zip-code="true">
                                                 </script>
-                                            </form>
+                                            </form>--%>
                                     </td>
                                    </tr>
                             </table>
                             </td>
-                            <td>
+                            <td style="width: 500px;">
                                         <div class="row" style="margin:auto; margin-bottom: 1rem; margin-top: 1rem;" >
                                             <center>
                                                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
