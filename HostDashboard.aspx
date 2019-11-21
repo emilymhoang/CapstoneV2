@@ -268,9 +268,11 @@
                     </center>
                     <asp:Label style="font-family: 'Oswald', sans-serif; ; font-size: 20px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
                        
-                        <asp:DropDownList ID="tenantNameDropdown" CssClass="form-control" width="150px" runat="server">
+                        <asp:DropDownList ID="tenantNameDropdown" runat="server">
                             
                         </asp:DropDownList>
+                    <br />
+                    <br />
                        
                         
                     <center>
