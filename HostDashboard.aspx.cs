@@ -26,6 +26,8 @@ public partial class HostDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+
+
         string strPreviousPage = "";
         if (Request.UrlReferrer != null)
         {
@@ -405,13 +407,13 @@ public partial class HostDashboard : System.Web.UI.Page
         DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
 
         //message dropdown selection
-        foreach (ListItem item in tenantNameDropdown.Items)
-        {
-            ListItem item2 = new ListItem();
-            item2.Text = item.Text;
-            item2.Value = item.Value;
-            list.Items.Add(item2);
-        }
+        //foreach (ListItem item in tenantNameDropdown.Items)
+        //{
+        //    ListItem item2 = new ListItem();
+        //    item2.Text = item.Text;
+        //    item2.Value = item.Value;
+        //    list.Items.Add(item2);
+        //}
 
         lvMessagesHost.DataSource = Message.lstHostMessages;
         lvMessagesHost.DataBind();
