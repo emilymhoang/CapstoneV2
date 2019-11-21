@@ -123,7 +123,7 @@
                                 </tr>
                                  <tr>
                                      <td>
-                                         <asp:DropDownList runat="server" ID="drpTenantName" DataSourceID="SqlDataSource2" DataTextField="FullName" DataValueField="TenantID"></asp:DropDownList>
+                                         <asp:DropDownList runat="server" ID="drpTenantName" DataSourceID="SqlDataSource2" DataTextField="FullName" CssClass="form-control" width="200px" DataValueField="TenantID"></asp:DropDownList>
                                          <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:HostDashConnectionString %>' SelectCommand="select Tenant.FirstName + ' ' + Tenant.LastName as FullName, Message.TenantID from Tenant left join Message on Tenant.TenantID = Message.TenantID where Message.HostID = @hostid
 ">
                                              <SelectParameters>

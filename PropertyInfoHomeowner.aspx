@@ -59,7 +59,7 @@
             <br />
             <div class="col">
               <label for="formGroupExampleInput">State</label>
-              <asp:DropDownList ID="DropDownListState" runat="server">
+              <asp:DropDownList ID="DropDownListState" CssClass="form-control" runat="server">
 	<asp:ListItem Value="">Select a state</asp:ListItem>
     <asp:ListItem Value="AL">Alabama</asp:ListItem>
 	<asp:ListItem Value="AK">Alaska</asp:ListItem>

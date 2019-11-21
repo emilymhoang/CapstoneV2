@@ -82,7 +82,7 @@
               
             <div class="col">
               <label for="formGroupExampleInput">Room Size</label>
-              <asp:DropDownList ID="DropDownListSize" runat="server">
+              <asp:DropDownList ID="DropDownListSize" CssClass="form-control" runat="server">
                      <asp:ListItem Value="Small">Small</asp:ListItem>
                   <asp:ListItem Value="Medium">Medium</asp:ListItem>
                   <asp:ListItem Value="Large">Large</asp:ListItem>
@@ -91,13 +91,13 @@
             </div> <!--end col-->
               <div class="col"> 
                    <label for="formGroupExampleInput">Availability</label>
-              <asp:DropDownList ID="DropDownListAvailability" runat="server">
+              <asp:DropDownList ID="DropDownListAvailability" CssClass="form-control" runat="server">
 	<asp:ListItem Value='Y'>Yes</asp:ListItem>
     <asp:ListItem Value='N'>No</asp:ListItem>
                   </asp:DropDownList>
                <label for="formGroupExampleInput">Availability will allow you to hide the room when you find a match, and show it as available when you want to bring it back for a new tenant</label>
           
-              <asp:RequiredFieldValidator ID="AvailabilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailability" ForeColor="#B23325"></asp:RequiredFieldValidator>
+              <asp:RequiredFieldValidator ID="AvailabilityRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="DropDownListAvailability" CssClass="form-control" ForeColor="#B23325"></asp:RequiredFieldValidator>
            
 
              </div>
