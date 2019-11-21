@@ -304,7 +304,7 @@
     
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
-            <h2 >Background Check Status</h2> 
+            <h2>Background Check Status</h2> 
             <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem; ">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>

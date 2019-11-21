@@ -245,7 +245,7 @@
                     <div class="col-md-4">
                     <h3 >Message Board</h3> 
                         </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
                     <div>
                         <a href="skype:Echo123"><button class="btn btn-primary" style="font-family: 'Oswald', sans-serif; color: white; font-size: 18px;">Videochat</a>
@@ -256,9 +256,9 @@
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>        
                 <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
-                    <center>
+                 <%--   <center>--%>
                         <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
-                    </center>
+                 <%--   </center>--%>
                     <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
                        
                         <asp:DropDownList ID="tenantNameDropdown" runat="server">
@@ -330,10 +330,11 @@
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Background Check Status</h2> 
+            <br >
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
-                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 200px;" class="img-fluid" runat="server" /></p>
+                <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 100px;" class="img-fluid" runat="server" /></p>
                 <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
             </div>
             </div>

@@ -66,7 +66,7 @@
         
         <div class="row" style="margin-bottom: 3rem;"> 
          
-             <div class="col-md-12"><asp:Button ID="searchButton" text="Submit"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left;"></asp:Button></div>
+             <div class="col-md-12"><asp:Button ID="searchButton" text="Search"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left; font-size: 30px;"></asp:Button></div>
             
         </div>
 <%--          </div>--%>

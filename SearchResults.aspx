@@ -25,8 +25,17 @@
       <div class="container">
         <h1>Search for Your Perfect Space</h1>
           <br>
-         <asp:Textbox ID="searchTextbox" type="text" style="font-size: 24px; height:40px; font-family: 'Raleway', sans-serif;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+         <div class="row">
+          <div class="col">
+          <asp:Textbox ID="searchTextbox" type="text" style="font-size: 28px; height:60px;" width="800px" class="form-control"  placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
               <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
+          </div>
+             <div class="col">
+                <asp:Button ID="searchButton" text="Search"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left; font-size: 30px;"></asp:Button>
+              </div>
+             </div>
+          <br>
+          
                </div>
     </header>
 
@@ -61,7 +70,7 @@
             </div>
                <div class="col-md-4">
               <p >
-                  <asp:Button runat="server" class="btn" Text="Filter Results" ID="btnFilterResults" OnClick="btnFilterResults_Click" />
+                  <asp:Button runat="server" class="btn" Text="Apply Filters" ID="btnFilterResults" style="font-size: 20px;" OnClick="btnFilterResults_Click" />
               </p>
             </div>
              <!--end col-->
@@ -150,12 +159,12 @@
                                 </tr>
                                  <tr>
                                      <td>
-                                        <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+                             <%--           <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
                                         <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
                                         <asp:Image ID="privateBathroomBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
                                         <asp:Image ID="furnishBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
                                         <asp:Image ID="storageBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                                        <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
+                                        <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />--%>
                                      </td>
                                      <td>
                                         <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br> </br> </br></br>
