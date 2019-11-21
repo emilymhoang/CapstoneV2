@@ -200,9 +200,7 @@
                         </div>
                 <div class="col-md-3">
                     <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
-                    <div>
-                        <a href="skype:Echo123"><button class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
-                    </div>
+                        <a href="skype:Echo123"><button runat="server" class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
                     </div>
               <div class="col-md-3">
                         <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit" class="btn"/>
