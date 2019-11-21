@@ -32,85 +32,95 @@ public partial class SearchResults : System.Web.UI.Page
 
 
 
-        //foreach (var item in SearchResult.lstSearchResults)
-        //{
-        //    var index = item.DataItemIndex;
-        //    var roomID1 = SearchResult.lstSearchResults[index].resultID;
-        //    SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
-        //    badge2.Parameters.AddWithValue("@roomID", roomID1);
+        foreach (var item in SearchResult.lstSearchResults)
+        {
+            ListViewItem itemm = (ListViewItem)(sender as Control).NamingContainer;
+            var index = itemm.DataItemIndex;
+            var roomID1 = SearchResult.lstSearchResults[index].resultID;
 
-        //    connection.Open();
-        //    SqlDataReader rdr2 = badge2.ExecuteReader();
+            Image imageEntrance = (Image)Page.FindControl("privateEntranceBadge");
+            Image imageKitchen = (Image)Page.FindControl("kitchenBadge");
+            Image imageBathroom = (Image)Page.FindControl("privateBathroomBadge");
+            Image imageFurnish = (Image)Page.FindControl("furnishBadge");
+            Image imageStorage = (Image)Page.FindControl("storageBadge");
+            Image imageSmoker = (Image)Page.FindControl("smokerBadge");
 
-        //    while (rdr2.Read())
-        //    {
-        //        privateEntrance = HttpUtility.HtmlEncode(rdr2["privateEntrance"].ToString());
-        //        kitchen = HttpUtility.HtmlEncode(rdr2["Kitchen"].ToString());
-        //        privateBathroom = HttpUtility.HtmlEncode(rdr2["privateBathroom"].ToString());
-        //        furnish = HttpUtility.HtmlEncode(rdr2["Furnished"].ToString());
-        //        storage = HttpUtility.HtmlEncode(rdr2["ClosetSpace"].ToString());
-        //        nonsmoker = HttpUtility.HtmlEncode(rdr2["NonSmoker"].ToString());
-        //    }
+            SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
+            badge2.Parameters.AddWithValue("@roomID", roomID1);
 
-        //    if (privateEntrance == "y")
-        //    {
-        //        privateEntranceBadge.ImageUrl = "images/badges-04.png";
-        //    }
-        //    else
-        //    {
-        //        privateEntranceBadge.Visible = false;
-        //    }
 
-        //    if (kitchen == "y")
-        //    {
-        //        kitchenBadge.ImageUrl = "images/badges-06.png";
+            connection.Open();
+            SqlDataReader rdr2 = badge2.ExecuteReader();
 
-        //    }
-        //    else
-        //    {
-        //        kitchenBadge.Visible = false;
-        //    }
+            while (rdr2.Read())
+            {
+                privateEntrance = HttpUtility.HtmlEncode(rdr2["privateEntrance"].ToString());
+                kitchen = HttpUtility.HtmlEncode(rdr2["Kitchen"].ToString());
+                privateBathroom = HttpUtility.HtmlEncode(rdr2["privateBathroom"].ToString());
+                furnish = HttpUtility.HtmlEncode(rdr2["Furnished"].ToString());
+                storage = HttpUtility.HtmlEncode(rdr2["ClosetSpace"].ToString());
+                nonsmoker = HttpUtility.HtmlEncode(rdr2["NonSmoker"].ToString());
+            }
 
-        //    if (privateBathroom == "y")
-        //    {
-        //        privateBathroomBadge.ImageUrl = "images/badges-07.png";
+            if (privateEntrance == "y")
+            {
+                imageEntrance.ImageUrl = "images/badges-04.png";
+            }
+            else
+            {
+                imageEntrance.Visible = false;
+            }
 
-        //    }
-        //    else
-        //    {
-        //        privateBathroomBadge.Visible = false;
-        //    }
+            if (kitchen == "y")
+            {
+                imageKitchen.ImageUrl = "images/badges-06.png";
 
-        //    if (furnish == "y")
-        //    {
-        //        furnishBadge.ImageUrl = "images/badges-08.png";
+            }
+            else
+            {
+                imageKitchen.Visible = false;
+            }
 
-        //    }
-        //    else
-        //    {
-        //        furnishBadge.Visible = false;
-        //    }
+            if (privateBathroom == "y")
+            {
+                imageBathroom.ImageUrl = "images/badges-07.png";
 
-        //    if (storage == "y")
-        //    {
-        //        storageBadge.ImageUrl = "images/badges-09.png";
+            }
+            else
+            {
+                imageBathroom.Visible = false;
+            }
 
-        //    }
-        //    else
-        //    {
-        //        storageBadge.Visible = false;
-        //    }
+            if (furnish == "y")
+            {
+                imageFurnish.ImageUrl = "images/badges-08.png";
 
-        //    if (nonsmoker == "y")
-        //    {
-        //        smokerBadge.ImageUrl = "images/badges-10.png";
+            }
+            else
+            {
+                imageFurnish.Visible = false;
+            }
 
-        //    }
-        //    else
-        //    {
-        //        smokerBadge.Visible = false;
-        //    }
-        //}
+            if (storage == "y")
+            {
+                imageStorage.ImageUrl = "images/badges-09.png";
+
+            }
+            else
+            {
+                imageStorage.Visible = false;
+            }
+
+            if (nonsmoker == "y")
+            {
+                imageSmoker.ImageUrl = "images/badges-10.png";
+
+            }
+            else
+            {
+                imageSmoker.Visible = false;
+            }
+        }
        
     }
 
