@@ -73,7 +73,7 @@
 
 <%--              <asp:Textbox id="dateOfBirthTextbox" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" runat="server"></asp:Textbox>--%>
               <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-           <asp:Label ID="resultmessagedob" runat="server" ForeColor="Red"></asp:Label>
+           <asp:Label ID="resultmessagedob" Text="" runat="server" ForeColor="Red"></asp:Label>
          <%--<script type="text/javascript">
             $(function () {
             $('#dateOfBirthTextbox').datepicker({

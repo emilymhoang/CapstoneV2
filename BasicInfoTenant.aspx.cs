@@ -23,7 +23,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     }
 
     
-    protected void submitBasicInfo(object sender, EventArgs e)
+    protected void submitBasicInfo(object sender, EventArgs e) 
     {
 
         // converting Time 
@@ -37,7 +37,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         if (age < 18)
         {
             resultmessagedob.Text = "All users must be atleast 18 years old";
-
+            return;
         }
 
 
