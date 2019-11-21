@@ -123,7 +123,7 @@
                                 </tr>
                                  <tr>
                                      <td>
-                                        <asp:DropDownList runat="server" ID="drpTenantName"></asp:DropDownList> 
+                                        <asp:DropDownList runat="server" CssClass="form-control" width="120px" ID="drpTenantName"></asp:DropDownList> 
                                          <br />
                                         <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Reserve a Room"/>
                                          </br>
@@ -255,7 +255,7 @@
                     </center>
                     <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
                        
-                        <asp:DropDownList ID="tenantNameDropdown" runat="server">
+                        <asp:DropDownList ID="tenantNameDropdown" CssClass="form-control" width="200px" runat="server">
                             
                         </asp:DropDownList>
                        

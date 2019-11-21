@@ -42,20 +42,20 @@
       <div class="container">
           <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">First Name</label>
+              <label for="formGroupExampleInput">First Name*</label>
               <asp:Textbox ID="firstNameTextbox" class="form-control" MaxLength="30" placeholder="First Name" runat="server" type="text"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="firstNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="firstNameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
-              <label for="formGroupExampleInput">Last Name</label>
+              <label for="formGroupExampleInput">Last Name*</label>
               <asp:Textbox id="lastNameTextbox" class="form-control" MaxLength="30" placeholder="Last Name" runat="server" type="text"></asp:Textbox>
               <asp:RequiredFieldValidator ID="lastNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="lastNameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
           </div> <!--end row class-->
           <div class="row">
             <div class="col">
-             <label for="formGroupExampleInput">Gender</label><br />
-               <asp:DropDownList ID="DropDownListGender" runat="server" AutoPostBack="true">
+             <label for="formGroupExampleInput">Gender*</label><br />
+               <asp:DropDownList ID="DropDownListGender" CssClass="form-control" runat="server" AutoPostBack="true">
 	               <asp:ListItem Value="-1">Select One</asp:ListItem> 
                    <asp:ListItem Value="O">I do not wish to Answer</asp:ListItem>
                    <asp:ListItem Value="M">Male</asp:ListItem>
@@ -67,7 +67,7 @@
             </div>
             <div class="col">
                  <div class="form-group">
-              <label for="formGroupExampleInput">Date of Birth</label>
+              <label for="formGroupExampleInput">Date of Birth*</label>
                     
                <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server"  class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" type="date"></asp:TextBox>
 
@@ -90,13 +90,13 @@
 
         <div class="row" style="margin-top: 2rem;">
             <div class="col">
-              <label for="formGroupExampleInput">Email</label>
+              <label for="formGroupExampleInput">Email*</label>
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
                <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="#B23325" ControlToValidate="emailTextBox"></asp:RegularExpressionValidator>     --%>        
             </div>
             <div class="col">
-              <label for="formGroupExampleInput">Confirm Email</label>
+              <label for="formGroupExampleInput">Confirm Email*</label>
               <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:Label ID="resultmessage" runat="server" ForeColor="Red"></asp:Label>
               <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -106,7 +106,7 @@
           </div> <!--end row class-->
           <div class="row" style="margin-top: 2rem;">
              <div class="col">
-              <label for="formGroupExampleInput">Phone Number</label>
+              <label for="formGroupExampleInput">Phone Number*</label>
                  <script> 
                      window.addFormat = function addFormat(f) {
         var r = /(\D+)/g,
@@ -124,7 +124,7 @@
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
-                  <h3>Institution Level </h3>
+                  <h3>Institution Level</h3>
               <asp:CheckBox ID="undergradCheck" type=" checkbox" name="Undergraduate Student" value="undergrad" runat="server"></asp:Checkbox> Undergraduate Student<br>
                <asp:CheckBox ID="gradCheck" type=" checkbox" name="Graduate Student" value="grad" runat="server"></asp:Checkbox> Graduate Student<br>
                    <asp:CheckBox ID="NAcheck" type=" checkbox" name="Not Applicable" value="NA" runat="server"></asp:Checkbox> Not Applicable<br>

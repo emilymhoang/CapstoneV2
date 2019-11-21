@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="PropertyRoomInfo.aspx.cs" Inherits="PropertyRoomInfo" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <link href="Content/bootstrap.css" rel="stylesheet" />
      <style type="text/css">   
     h1 {
         font-family: 'Oswald', sans-serif;
@@ -82,7 +83,7 @@
               
             <div class="col">
               <label for="formGroupExampleInput">Room Size</label>
-              <asp:DropDownList ID="DropDownListSize" runat="server">
+              <asp:DropDownList ID="DropDownListSize" CssClass="form-control" runat="server">
                      <asp:ListItem Value="Small">Small</asp:ListItem>
                   <asp:ListItem Value="Medium">Medium</asp:ListItem>
                   <asp:ListItem Value="Large">Large</asp:ListItem>
@@ -91,7 +92,7 @@
             </div> <!--end col-->
               <div class="col"> 
                    <label for="formGroupExampleInput">Availability</label>
-              <asp:DropDownList ID="DropDownListAvailability" runat="server">
+              <asp:DropDownList ID="DropDownListAvailability" CssClass="form-control" runat="server">
 	<asp:ListItem Value='Y'>Yes</asp:ListItem>
     <asp:ListItem Value='N'>No</asp:ListItem>
                   </asp:DropDownList>
@@ -136,7 +137,7 @@
              <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Does the space have a private bathroom?*</label>
-              <asp:RadioButtonList ID="rbPrivateBr" runat="server">
+              <asp:RadioButtonList ID="rbPrivateBr" CssClass="form-control"runat="server">
                     <asp:ListItem Text="Yes" Value="y" />
                     <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>

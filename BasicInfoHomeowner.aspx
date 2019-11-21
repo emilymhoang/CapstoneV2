@@ -42,12 +42,12 @@
       <div class="container">
           <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">First Name</label>
+              <label for="formGroupExampleInput">First Name*</label>
               <asp:Textbox ID="firstNameTextbox" class="form-control" MaxLength="30" placeholder="First Name" runat="server" type="text"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="firstNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="firstNameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
-              <label for="formGroupExampleInput">Last Name</label>
+              <label for="formGroupExampleInput">Last Name*</label>
               <asp:Textbox id="lastNameTextbox" class="form-control" MaxLength="30" placeholder="Last Name" runat="server" type="text"></asp:Textbox>
               <asp:RequiredFieldValidator ID="lastNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="lastNameTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div> <!--end col-->
@@ -55,8 +55,8 @@
           <br>
           <div class="row">
             <div class="col">
-             <label for="formGroupExampleInput">Gender</label>
-              <asp:DropDownList ID="DropDownListGender" runat="server">
+             <label for="formGroupExampleInput">Gender*</label>
+              <asp:DropDownList ID="DropDownListGender" CssClass="form-control" runat="server">
 	               <asp:ListItem Value="-1">Select One</asp:ListItem> 
                   <asp:ListItem Value="O">I do not wish to Answer</asp:ListItem>
 	                <asp:ListItem Value="M">Male</asp:ListItem>
@@ -90,12 +90,12 @@
 
         <div class="row">
             <div class="col">
-               <label for="formGroupExampleInput">Email</label>
+               <label for="formGroupExampleInput">Email*</label>
               <asp:Textbox id="emailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" AutoPostBack="true" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
            <div class="col">
-              <label for="formGroupExampleInput">Confirm Email</label>
+              <label for="formGroupExampleInput">Confirm Email*</label>
               <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:Label ID="resultmessage" runat="server" ForeColor="Red"></asp:Label>
                <asp:Label ID="emailLabel" runat="server" Text="" ForeColor="Red"></asp:Label>
@@ -107,7 +107,7 @@
             <br>
           <div class="row">
              <div class="col">
-              <label for="formGroupExampleInput">Phone Number</label>
+              <label for="formGroupExampleInput">Phone Number*</label>
                  <script> 
                      window.addFormat = function addFormat(f) {
         var r = /(\D+)/g,
@@ -125,7 +125,7 @@
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
               <div class="col">
-                   <label for="formGroupExampleInput">Host Bio</label>
+                   <label for="formGroupExampleInput">Host Bio*</label>
                    <asp:Textbox id="HostBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="300" placeholder="Ex. I am retired and live at home. I have an empty furnished basement that I am looking to fill and am hoping to find someone who will help with chores around my house." type="text"></asp:Textbox>
                    <asp:Label ID="result" runat="server" ForeColor="Red"></asp:Label>
                    <asp:RequiredFieldValidator ID="BioRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="HostBioTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
