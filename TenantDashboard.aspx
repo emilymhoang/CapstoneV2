@@ -321,7 +321,7 @@
             <asp:Panel runat="server" ID="Panel2">
             <table style="margin-top: 1rem;" id="reservationTable">
                     <tr>
-                        <td>
+                        <td style="width: 500px;">
                         <table>
                             <tr>
                                   <td>
@@ -340,7 +340,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                           <form action="/Charge" method="POST">
+                                        <asp:Button ID="payButton" runat="server" Text="Pay With Card" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
+<%--                                           <form action="/Charge" method="POST">
                                                 <script
                                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                                     data-key="<%= stripePublishableKey %>"
@@ -350,12 +351,12 @@
                                                     data-locale="auto"
                                                     data-zip-code="true">
                                                 </script>
-                                            </form>
+                                            </form>--%>
                                     </td>
                                    </tr>
                             </table>
                             </td>
-                            <td>
+                            <td style="width: 500px;">
                                         <div class="row" style="margin:auto; margin-bottom: 1rem; margin-top: 1rem;" >
                                             <center>
                                                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
