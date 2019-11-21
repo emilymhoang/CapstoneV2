@@ -21,7 +21,7 @@ public partial class HostDashboard : System.Web.UI.Page
     String roomImg1;
     String roomImg2;
     String roomImg3;
-   // protected global::System.Web.UI.WebControls.DropDownList drpTenantName;
+    // protected global::System.Web.UI.WebControls.DropDownList drpTenantName;
 
 
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
@@ -66,7 +66,7 @@ public partial class HostDashboard : System.Web.UI.Page
             nameTextbox.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(rdr["LastName"].ToString());
             emailTextbox.Text = HttpUtility.HtmlEncode(rdr["Email"].ToString());
             phoneTextbox.Text = HttpUtility.HtmlEncode(rdr["PhoneNumber"].ToString());
-            dashboardTitle.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString() )+ "'s Dashboard";
+            dashboardTitle.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString()) + "'s Dashboard";
             hostBioTextbox.Text = HttpUtility.HtmlEncode(rdr["HostBio"].ToString());
             backgroundCheckResult = HttpUtility.HtmlEncode(rdr["BackgroundCheckResult"].ToString());
             if (backgroundCheckResult == "y")
@@ -86,8 +86,8 @@ public partial class HostDashboard : System.Web.UI.Page
             byte[] ppImgData = (byte[])rdr["imagev2"];
             string ppImage = "data:image;base64," + Convert.ToBase64String(ppImgData, 0, ppImgData.Length);
             image1.ImageUrl = ppImage;
-            
-            
+
+
         }
         usernameTextbox.Text = Session["username"].ToString();
 
@@ -252,8 +252,8 @@ public partial class HostDashboard : System.Web.UI.Page
 
 
 
-                               PropertyRoom newRoom = new PropertyRoom(propertyID, price, squareFootage, availability, description, roomDescription, image1, image2, image3);
-                               PropertyRoom.listPropertyRoom.Add(newRoom);
+                                PropertyRoom newRoom = new PropertyRoom(propertyID, price, squareFootage, availability, description, roomDescription, image1, image2, image3);
+                                PropertyRoom.listPropertyRoom.Add(newRoom);
                             }
                         }
                     }
@@ -316,7 +316,7 @@ public partial class HostDashboard : System.Web.UI.Page
 
                                 if (messageSender.Equals(lub))
                                 {
-                                    recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["TenantFirst"] )+ " " + HttpUtility.HtmlEncode((string)reader["TenantLast"] )+ "\tFrom: Me";
+                                    recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["TenantFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["TenantLast"]) + "\tFrom: Me";
                                 }
                                 else
                                 {
@@ -496,7 +496,7 @@ public partial class HostDashboard : System.Web.UI.Page
                                 int tenantid = Convert.ToInt32(HttpUtility.HtmlEncode(reader["TenantID"]));
                                 string message = HttpUtility.HtmlEncode((string)reader["Message"]);
                                 string lub = HttpUtility.HtmlEncode((string)reader["LastUpdatedBy"]);
-                                string tenantName = HttpUtility.HtmlEncode((string)reader["TenantFirst"] )+ " " + HttpUtility.HtmlEncode((string)reader["TenantLast"]);
+                                string tenantName = HttpUtility.HtmlEncode((string)reader["TenantFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["TenantLast"]);
 
                                 Message msg = new Message(tenantid, hostid, message, lub);
 
@@ -505,7 +505,7 @@ public partial class HostDashboard : System.Web.UI.Page
 
                                 if (messageSender.Equals(lub))
                                 {
-                                    recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["TenantFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["TenantLast"] )+ "\tFrom: Me";
+                                    recieverName = "To: " + HttpUtility.HtmlEncode((string)reader["TenantFirst"]) + " " + HttpUtility.HtmlEncode((string)reader["TenantLast"]) + "\tFrom: Me";
                                 }
                                 else
                                 {
@@ -543,7 +543,7 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessagesHost.DataBind();
         messageTextbox.Text = string.Empty;
 
-        
+
     }
 
     protected void contract(object sender, EventArgs e)
@@ -559,40 +559,55 @@ public partial class HostDashboard : System.Web.UI.Page
 
     protected void hideProperties(object sender, EventArgs e)
     {
-        Button btn = sender as Button;
-        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
-        var index = item.DataItemIndex;
-        var tenantID = drpTenantName.SelectedItem.Value;
-        //DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
-        var selectedPRid = PropertyRoom.listPropertyRoom[index].roomID;
-
-        SqlCommand filter = new SqlCommand("SELECT Host.FirstName, Host.LastName, Property.PropertyID FROM [dbo].[Host] LEFT JOIN ON [dbo].[Property] on Host.HostID = Property.HostID WHERE Property.HostID = @HostID", sc);
-        filter.Parameters.AddWithValue("@HostID", Session["HostID"]);
-        SqlDataReader rdr = filter.ExecuteReader();
-        String name = "";
-        int propertyID = 0;
-        while (rdr.Read())
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
-            name = HttpUtility.HtmlEncode(rdr["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(rdr["LastName"].ToString());
-            propertyID = Convert.ToInt32(HttpUtility.HtmlEncode(rdr["PropertyID"])); 
+            using (SqlCommand command = new SqlCommand())
+            {
+                try
+                {
+                    connection.Open();
+                    Button btn = sender as Button;
+                    ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+                    var index = item.DataItemIndex;
+                    var tenantID = drpTenantName.SelectedItem.Value;
+                    //DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
+                    var selectedPRid = PropertyRoom.listPropertyRoom[index].roomID;
+
+                    SqlCommand filter = new SqlCommand("SELECT Host.FirstName, Host.LastName, Property.PropertyID FROM [dbo].[Host] LEFT JOIN [dbo].[Property] ON Host.HostID = Property.HostID WHERE Property.HostID = @HostID", connection);
+                    filter.Parameters.AddWithValue("@HostID", Session["HostID"]);
+                    SqlDataReader rdr = filter.ExecuteReader();
+                    String name = "";
+                    int propertyID = 0;
+                    while (rdr.Read())
+                    {
+                        name = HttpUtility.HtmlEncode(rdr["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(rdr["LastName"].ToString());
+                        propertyID = Convert.ToInt32(HttpUtility.HtmlEncode(rdr["PropertyID"]));
+                    }
+
+                    SqlCommand insert = new SqlCommand("INSERT [dbo].[RoomReservation] (RoomID, TenantID, HostID, PropertyID, StartDate, LastUpdated, LastUpdatedBy) " +
+                    "VALUES (@RoomID, @TenantID, @HostID, @PropertyID, @StartDate, @LastUpdated, @LastUpdatedBy)");
+                    insert.Parameters.AddWithValue("@TenantID", tenantID);
+                    insert.Parameters.AddWithValue("@RoomID", selectedPRid);
+                    insert.Parameters.AddWithValue("@HostID", Session["hostID"]);
+                    insert.Parameters.AddWithValue("@PropertyID", propertyID);
+                    insert.Parameters.AddWithValue("@StartDate", DateTime.Now);
+                    insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+                    insert.Parameters.AddWithValue("@LastUpdatedBy", name);
+
+                    insert.ExecuteNonQuery();
+
+                    SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' AND TenantID = @TenantID WHERE RoomID = @RoomID", connection);
+                    update.Parameters.AddWithValue("@RoomID", selectedPRid);
+                    update.Parameters.AddWithValue("@TenantID", tenantID);
+                    update.ExecuteNonQuery();
+                }
+                catch { }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
         }
-
-            SqlCommand insert = new SqlCommand("INSERT [dbo].[RoomReservation] (RoomID, TenantID, HostID, PropertyID, StartDate, LastUpdated, LastUpdatedBy) " +
-            "VALUES (@RoomID, @TenantID, @HostID, @PropertyID, @StartDate, @LastUpdated, @LastUpdatedBy)");
-        insert.Parameters.AddWithValue("@TenantID", tenantID);
-        insert.Parameters.AddWithValue("@RoomID", selectedPRid);
-        insert.Parameters.AddWithValue("@HostID", Session["hostID"]);
-        insert.Parameters.AddWithValue("@PropertyID", propertyID);
-        insert.Parameters.AddWithValue("@StartDate", DateTime.Now);
-        insert.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
-        insert.Parameters.AddWithValue("@LastUpdatedBy", name);
-
-        insert.ExecuteNonQuery();
-
-        SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' AND TenantID = @TenantID WHERE RoomID = @RoomID", sc);
-        update.Parameters.AddWithValue("@RoomID", selectedPRid);
-        update.Parameters.AddWithValue("@TenantID", tenantID);
-        update.ExecuteNonQuery();
-
     }
 }

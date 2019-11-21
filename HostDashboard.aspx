@@ -85,13 +85,7 @@
             </div>
         </div>
 
-            <asp:DropDownList runat="server" ID="drpTenantName" DataSourceID="SqlDataSource2" DataTextField="FullName" CssClass="form-control" width="200px" DataValueField="TenantID"></asp:DropDownList>
-                                         <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:HostDashConnectionString %>' SelectCommand="select Tenant.FirstName + ' ' + Tenant.LastName as FullName, Message.TenantID from Tenant left join Message on Tenant.TenantID = Message.TenantID where Message.HostID = @hostid
-">
-                                             <SelectParameters>
-                                                 <asp:SessionParameter SessionField="hostID" DefaultValue="487" Name="hostid"></asp:SessionParameter>
-                                             </SelectParameters>
-                                         </asp:SqlDataSource>
+
 
 
            <%--    begin file container--%>
@@ -110,7 +104,7 @@
             </LayoutTemplate>
 
             <ItemTemplate>
-                <table style="margin-top: 1rem; border-bottom: solid; border-top: solid 1px; border-bottom-width: 1px;">
+                <table style="margin-top: 1rem;  border-top: solid 1px;">
                     <tr>
                          <td>
                              <table >
@@ -128,7 +122,7 @@
                                 <tr>
                                      <td>
                                          <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 16px;" ID="lblResultPrice" Text='<%#Eval("monthlyPrice") %>'></asp:Label> </br>
-                                        <asp:Label runat="server" style="font-family: 'Raleway', sans-serif; font-size: 16px;" ID="lblPropertyBio" Text='<%#Eval("roomDescription") %>'></asp:Label></br> </br> </br> </br>
+                                        <asp:Label runat="server" style="font-family: 'Raleway', sans-serif; font-size: 16px;" ID="lblPropertyBio" Text='<%#Eval("roomDescription") %>'></asp:Label>
                                     </td>
                                 </tr>
                                  <tr>
@@ -186,6 +180,13 @@
             </ItemTemplate>
 
         </asp:ListView>
+                        <asp:DropDownList runat="server" ID="drpTenantName" DataSourceID="SqlDataSource2" DataTextField="FullName" CssClass="form-control" width="200px" DataValueField="TenantID"></asp:DropDownList>
+                                         <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:HostDashConnectionString %>' SelectCommand="select Tenant.FirstName + ' ' + Tenant.LastName as FullName, Message.TenantID from Tenant left join Message on Tenant.TenantID = Message.TenantID where Message.HostID = @hostid
+">
+                                             <SelectParameters>
+                                                 <asp:SessionParameter SessionField="hostID" DefaultValue="487" Name="hostid"></asp:SessionParameter>
+                                             </SelectParameters>
+                                         </asp:SqlDataSource>
             </div>
     
 
