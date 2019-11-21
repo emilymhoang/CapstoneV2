@@ -12,17 +12,15 @@ using System.Web.UI.WebControls;
 public partial class AddRoom : System.Web.UI.Page
 {
     int PropertyID;
-    int roomID;
-    string monthlyPrice;
+
+    double MonthlyPrice;
     int SquareFootage;
-    int NumberBedrooms;
     string privateBath;
     string privateEnt;
     string storage;
     string furnish;
     string smoker;
     string kitchen;
-
     SqlConnection sc = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -61,28 +59,20 @@ public partial class AddRoom : System.Web.UI.Page
         Session["accountID"] = accountID;
         sc.Close();
 
-        monthlyPrice = monthlyPriceTextbox.Text;
+        string monthlyPrice = (Convert.ToDouble(monthlyPriceTextbox.Text)).ToString();
         //int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
         String sqFoot = DropDownListSize.SelectedValue;
-        String avail = DropDownListAvailibility.SelectedValue;
+        String avail = DropDownListAvailability.SelectedValue;
         String display = displayTextbox.Text;
-        String roomDescription = DropDownListRoom.SelectedValue;
-
+        String roomDescription = bioTextbox.Text;
 
         //roomID
-        sc.Open();
-        SqlCommand getRoomID = new SqlCommand("SELECT PropertyRoom.RoomID FROM [dbo].[PropertyRoom] INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
-        getRoomID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
-        getRoomID.Connection = sc;
-        roomID = Convert.ToInt32(getRoomID.ExecuteScalar());
-        getRoomID.ExecuteNonQuery();
-        Session["RoomID"] = roomID;
-        sc.Close();
+        int roomID;
+        Session["RoomID"] = null;
 
-        string image1="";
-        string image2="";
-        string image3="";
-
+        string image1 = "";
+        string image2 = "";
+        string image3 = "";
         PropertyRoom newRoom = new PropertyRoom(propertyID, monthlyPrice, sqFoot, avail, display, roomDescription, image1, image2, image3);
         System.Data.SqlClient.SqlCommand insertBadgeProperty = new System.Data.SqlClient.SqlCommand();
         using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
@@ -95,7 +85,7 @@ public partial class AddRoom : System.Web.UI.Page
 
                 command.Parameters.AddWithValue("@propid", newRoom.propertyID);
                 command.Parameters.AddWithValue("@tenantid", DBNull.Value);
-                command.Parameters.AddWithValue("@price", newRoom.monthlyPrice);
+                command.Parameters.AddWithValue("@price", monthlyPriceTextbox.Text);
                 command.Parameters.AddWithValue("@sqft", newRoom.squareFootage);
                 command.Parameters.AddWithValue("@avail", newRoom.availability);
                 command.Parameters.AddWithValue("@desc", newRoom.briefDescription);
@@ -105,6 +95,11 @@ public partial class AddRoom : System.Web.UI.Page
                 command.Parameters.AddWithValue("@image1", 0);
                 command.Parameters.AddWithValue("@image2", 0);
                 command.Parameters.AddWithValue("@image3", 0);
+                connection.Open();
+                int recordsAffected = command.ExecuteNonQuery();
+                connection.Close();
+
+
 
 
 
@@ -112,8 +107,6 @@ public partial class AddRoom : System.Web.UI.Page
                 try
                 {
                     connection.Open();
-                    int recordsAffected = command.ExecuteNonQuery();
-
                     SqlCommand room = new SqlCommand("SELECT MAX(RoomID) FROM [dbo].[PropertyRoom]", connection);
                     room.Connection = connection;
                     roomID = Convert.ToInt32(room.ExecuteScalar());
@@ -248,7 +241,6 @@ public partial class AddRoom : System.Web.UI.Page
                 return;
             }
         }
-
 
 
         Response.Redirect("HostDashboard.aspx");

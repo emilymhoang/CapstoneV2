@@ -52,7 +52,11 @@
              <div class="col-md-12" >   
                                   <asp:CheckBox ID="SaveLogin" Text="Remember Me" runat="server" oncheckedchanged="SaveLogin_CheckedChanged" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;"/><br/>
                  <asp:Button ID="loginButton" class="btn" type="submit" style="float:left;" runat="server" Text="Login" OnCommand="submitLogin_Click" AutoPostBack ="true" ></asp:Button></div>
-            <a href="ForgotPassword.aspx" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Forgot Password?</a>
+           <div class="row">
+               <div class="col">
+                   </div>
+               </div>
+               <%--<a href="ForgotPassword.aspx" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Forgot Password?</a>--%>
             </div>     
       </div> <!--end container-->
     </section>
