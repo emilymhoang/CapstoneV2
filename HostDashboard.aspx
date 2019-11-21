@@ -123,7 +123,13 @@
                                 </tr>
                                  <tr>
                                      <td>
-                                        <asp:DropDownList runat="server" ID="drpTenantName"></asp:DropDownList> 
+                                         <asp:DropDownList runat="server" ID="drpTenantName" DataSourceID="SqlDataSource2" DataTextField="FullName" DataValueField="TenantID"></asp:DropDownList>
+                                         <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:HostDashConnectionString %>' SelectCommand="select Tenant.FirstName + ' ' + Tenant.LastName as FullName, Message.TenantID from Tenant left join Message on Tenant.TenantID = Message.TenantID where Message.HostID = @hostid
+">
+                                             <SelectParameters>
+                                                 <asp:SessionParameter SessionField="hostID" DefaultValue="487" Name="hostid"></asp:SessionParameter>
+                                             </SelectParameters>
+                                         </asp:SqlDataSource>
                                          <br />
                                         <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Reserve a Room"/>
                                          </br>
