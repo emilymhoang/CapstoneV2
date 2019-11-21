@@ -36,7 +36,7 @@
             <div class="col">
               <label for="formGroupExampleInput">User Name</label>
               <asp:Textbox type="text" ID="userNameTextbox" class="form-control" MaxLength="30" placeholder="User Name" runat="server"></asp:Textbox>
-                <asp:RequiredFieldValidator ID="userNameRequiredFieldValidator" runat="server" ControlToValidate="usernameTextbox" ErrorMessage="Required" ForeColor="#B23325">User Name is required.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="userNameRequiredFieldValidator" runat="server" ControlToValidate="usernameTextbox" ErrorMessage="Required" style="font-family: 'Oswald', sans-serif; color: #B23325; font-size: 20px;">User Name is required.</asp:RequiredFieldValidator>
                  <label for="formGroupExampleInput"></label>
             
             </div>
@@ -46,12 +46,12 @@
             <div class="col">
               <label for="formGroupExampleInput">Password</label>
               <asp:Textbox type="password" ID="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"></asp:Textbox>
-                <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ControlToValidate="passwordTextbox" ErrorMessage="Required" ForeColor="#B23325">Password is required.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ControlToValidate="passwordTextbox" ErrorMessage="Required" style="font-family: 'Oswald', sans-serif; color: #B23325; font-size: 20px;">Password is required.</asp:RequiredFieldValidator>
                 <label for="formGroupExampleInput"></label>
             </div>
              
           </div> <!--end row class-->
-                 <asp:Label ID="resultmessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+                 <asp:Label ID="resultmessage" runat="server" Text="" style="font-family: 'Oswald', sans-serif; color: #B23325; font-size: 20px;"></asp:Label>
            <div class="row" style=""> 
              <div class="col-md-12" >   
                                  
