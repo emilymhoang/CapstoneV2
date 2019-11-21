@@ -34,7 +34,7 @@ public partial class PropertyDescription : System.Web.UI.Page
 
                 var roomID1 = 0;
 
-                bool holder = String.IsNullOrEmpty(Favorite.lstFavorites[index].ToString());
+                bool holder = Favorite.lstFavorites.Count < 1;
 
                 if (holder)
                 {

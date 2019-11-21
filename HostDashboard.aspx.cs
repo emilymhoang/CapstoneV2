@@ -21,12 +21,12 @@ public partial class HostDashboard : System.Web.UI.Page
     String roomImg1;
     String roomImg2;
     String roomImg3;
-   
-  
+   // protected global::System.Web.UI.WebControls.DropDownList drpTenantName;
+
+
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-
 
         string strPreviousPage = "";
         if (Request.UrlReferrer != null)
@@ -404,8 +404,6 @@ public partial class HostDashboard : System.Web.UI.Page
             }
         }
 
-        DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
-
         //message dropdown selection
         //foreach (ListItem item in tenantNameDropdown.Items)
         //{
@@ -564,11 +562,11 @@ public partial class HostDashboard : System.Web.UI.Page
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
-        DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
-        var selectedPRid = SearchResult.lstSearchResults[index].resultID;
-        var tenantID = list.SelectedItem.Value;
+        var tenantID = drpTenantName.SelectedItem.Value;
+        //DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
+        var selectedPRid = PropertyRoom.listPropertyRoom[index].roomID;
 
-        SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PropertyID FROM [dbo].[Host] WHERE HostID = @HostID", sc);
+        SqlCommand filter = new SqlCommand("SELECT Host.FirstName, Host.LastName, Property.PropertyID FROM [dbo].[Host] LEFT JOIN ON [dbo].[Property] on Host.HostID = Property.HostID WHERE Property.HostID = @HostID", sc);
         filter.Parameters.AddWithValue("@HostID", Session["HostID"]);
         SqlDataReader rdr = filter.ExecuteReader();
         String name = "";
