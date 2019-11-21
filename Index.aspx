@@ -8,7 +8,7 @@
             <div class="card card-inverse" style="width: 25rem; margin-top: 2rem; margin-bottom: 2rem; margin-right: 1rem;">
                 <div class="card-body">
                     <h5 class="card-title" style="text-align: center;font-family: 'Oswald', sans-serif; color: #756664; font-size: 30px;"">Room Magnet</h5>
-                    <p class="card-text" style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">An intergenerational rental matching service that attracts the best option for your needs.</p>
+                    <p class="card-text" style="text-align: center;  color: #756664; font-size: 20px;">An intergenerational rental matching service that enables you to homeshare with confidence.</p>
                     <p style="text-align: center;">
                         <a href="BasicInfoHomeowner.aspx" class="btn " style="margin-right: 1rem; font-family: 'Oswald', sans-serif; color: white; font-size: 20px;">Rent My Room</a>
                         <a href="BasicInfoTenant.aspx" class="btn " style="margin-left: 1rem;font-family: 'Oswald', sans-serif; color: white; font-size: 20px;">Find a Room</a>
