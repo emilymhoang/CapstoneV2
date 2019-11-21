@@ -79,11 +79,11 @@
      
   <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
     <div class="col-md-1">
-      <asp:Button runat="server" style="margin-top: 1rem;" class="btn" ID="backButton" onClick="goBack" Text="Back"></asp:Button>
+      <asp:Button runat="server" style="margin-top: 1rem; margin-left:.5rem;" class="btn" ID="backButton" onClick="goBack" Text="Back"></asp:Button>
       </div>
        <div class="col-md-8" style="margin-top: 1rem;"> 
           <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; " ID="PropertyHeaderTextbox"></asp:Label></h1>
-           <asp:Image ID="Image4" style="max-width: 30px;" runat="server" />         
+           <asp:Image ID="imgbackgroundCheck" style="max-width: 30px;" runat="server" />         
         </div> <!--end col-->
         <div class="col-md-3" style="margin-top: 1rem;"> 
             <asp:Button runat="server" class="btn" ID="Button1" OnClick="FavoriteClick" Text="Favorite"></asp:Button>      
@@ -96,7 +96,7 @@
     </div><!-- end div row -->  
     
     
-    <div class="row prop" style="border-bottom: solid; border-bottom-width: 1px; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px; ">
+    <div class="row prop" style=" background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px; ">
         <div class="col-md-6" >
             <h2> <asp:Label runat="server"  style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblPropName" Text = "Property Name"></asp:Label></h2>
             
@@ -124,13 +124,13 @@
                 </ol>
                 <div class="carousel-inner"> 
                           <div class="carousel-item active">
-                            <asp:Image ID="image1" ImageUrl='<%#Eval("resultimage1")%>' style="max-height:300px;" runat ="server" />
+                            <asp:Image ID="image1" ImageUrl='<%#Eval("resultimage1")%>' style="height:300px;" runat ="server" />
                         </div>
                           <div class="carousel-item">
-                            <asp:Image ID="image2" ImageUrl='<%#Eval("resultimage2")%>' style="max-height:300px;" runat ="server" />
+                            <asp:Image ID="image2" ImageUrl='<%#Eval("resultimage2")%>' style="height:300px;" runat ="server" />
                         </div>
                         <div class="carousel-item">
-                            <asp:Image ID="image3" ImageUrl='<%#Eval("resultimage3")%>' style="max-height:300px;" runat ="server" />
+                            <asp:Image ID="image3" ImageUrl='<%#Eval("resultimage3")%>' style="height:300px;" runat ="server" />
                         </div>
                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -156,7 +156,7 @@
         </div>--%>
         
 <%--        <div class="col-md-6" style="margin-top: .5rem;  margin-bottom: 1rem;">--%>
-    <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px; height:410px !important;">
+    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px; height:410px !important;">
             <div class="col-md-12" style="margin-top: 1rem;">
                 <div class="row">
                       <div class="col-md-6" >
@@ -167,7 +167,7 @@
                           <img src="images/badges-10.png" style="max-width: 130px;" />
                       </div>
                        <div class="col-md-6" >
-                            <asp:Image ID="image7" style="max-height:350px; float:right;" runat="server" />
+                            <asp:Image ID="image7" style="max-height:350px; margin-left:1rem;" runat="server" />
                        </div>
                 </div>
           </div>
@@ -191,16 +191,19 @@
                   </a>
                 </div> 
             </div> --%>
-        </div>
+        
         
 <%--    </div><!-- end div row --> 
 
     
 </div> <!-- end div container! -->   --%>
-    
-   
-    <div id="googleMapsApi" style="background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
-        <h2>Where We're Located</h2>
+    <div class="row" style="background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
+        <div class="col-md-12">
+             <h2 style="margin-top:1rem;">Where We're Located</h2>
+
+            
+    <div id="googleMapsApi" style="float:center;">
+       
          <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyCoG7Yz9O6kPXgfXB8dk3S0Ehl0YZwn4r8&sensor=false&libraries=places,geometry"></script>
             <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
                 <div class="container" id="map-canvas" style="height: 400px; width:100%;"></div>
@@ -301,4 +304,8 @@
         </div>
 
 
+        </div>
+    </div>
+   
+</div>
 </asp:Content>
