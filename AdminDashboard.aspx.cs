@@ -209,8 +209,12 @@ public partial class AdminDashboard : System.Web.UI.Page
             lblInvalidSearch.Text = String.Empty;
         }
 
+
+
+
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
+
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection;
@@ -218,27 +222,40 @@ public partial class AdminDashboard : System.Web.UI.Page
 
                 if (searchBy)
                 {
-                    command.CommandText = "select [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, " +
-                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription,  isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
-                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from [dbo].[Host] left join [dbo].[Property] on " +
+
+                    command.CommandText = "select " +
+                        "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
+                        "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
+                        "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].HostBio, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
+                        "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomDescription, 'No Room Bio') as RoomDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
+                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, BadgeProperty.PrivateEntrance, BadgeProperty.Kitchen, BadgeProperty.PrivateBathroom, BadgeProperty.Furnished, BadgeProperty.ClosetSpace, BadgeProperty.NonSmoker " +
+                        "FROM [dbo].[Host] left join [dbo].[Property] on " +
                         "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
-                        "where [dbo].[Property].Zip = @zip";
+                        "left join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
+                        "where [dbo].[Property].Zip = @zip and lower([dbo].[PropertyRoom].Availability) = 'y'";
 
                     command.Parameters.AddWithValue("@zip", propertySearch);
                 }
                 else
                 {
-                    command.CommandText = "select isnull([dbo].[PropertyRoom].Image1, 0), isnull([dbo].[PropertyRoom].Image2, 0)," +
-                        " isnull([dbo].[PropertyRoom].Image3, 0)" +
-                        ", [dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].CityCounty, [dbo].[Property].HomeState, " +
-                        "[dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
-                        "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice from " +
-                        "[dbo].[Host] left join [dbo].[Property] on [dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] " +
-                        "on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID where [dbo].[Property].CityCounty = @city";
+                    command.CommandText = "select " +
+                            "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
+                            "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
+                            "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].HostBio, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
+                            "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomDescription, 'No Room Bio') as RoomDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
+                            "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, BadgeProperty.PrivateEntrance, BadgeProperty.Kitchen, BadgeProperty.PrivateBathroom, BadgeProperty.Furnished, BadgeProperty.ClosetSpace, BadgeProperty.NonSmoker " +
+                            "FROM [dbo].[Host] left join [dbo].[Property] on " +
+                            "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
+                            "left join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
+                            "where [dbo].[Property].CityCounty = @city and lower([dbo].[PropertyRoom].Availability) = 'y' ";
+
 
                     command.Parameters.AddWithValue("@city", propertySearch);
                     //command.Parameters.AddWithValue("@default", Session["defaultPicture"]);
                 }
+
+
+
                 try
                 {
                     connection.Open();
@@ -250,21 +267,23 @@ public partial class AdminDashboard : System.Web.UI.Page
                             {
 
                                 string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
-                                string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"] )+ " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
-                                
-                                string description = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
+                                string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
+                                string description = HttpUtility.HtmlEncode((string)reader["RoomDescription"]);
                                 int id = Convert.ToInt32(HttpUtility.HtmlEncode(reader["RoomID"]));
                                 string backgroundCheckResult = HttpUtility.HtmlEncode(reader["BackgroundCheckResult"].ToString().ToLower());
                                 double price = Convert.ToDouble(HttpUtility.HtmlEncode(reader["MonthlyPrice"]));
-
+                                string fullAddress = HttpUtility.HtmlEncode((string)reader["HouseNumber"]) + " " + HttpUtility.HtmlEncode((string)reader["Street"]) + ", " + HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
+                                string propertyTitle = HttpUtility.HtmlEncode((string)reader["BriefDescription"]);
                                 byte[] imgData1;
                                 byte[] imgData2;
                                 byte[] imgData3;
+                                string hostBio = HttpUtility.HtmlEncode((string)reader["HostBio"]);
 
                                 try
                                 {
                                     imgData1 = (byte[])reader["Image1"];
-                                } catch
+                                }
+                                catch
                                 {
                                     imgData1 = (byte[])Session["defaultPicture"];
                                 }
@@ -287,10 +306,10 @@ public partial class AdminDashboard : System.Web.UI.Page
                                     imgData3 = (byte[])Session["defaultPicture"];
                                 }
 
-                                 
 
-                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length); 
-                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length); 
+
+                                string image1 = "data:image;base64," + Convert.ToBase64String(imgData1, 0, imgData1.Length);
+                                string image2 = "data:image;base64," + Convert.ToBase64String(imgData2, 0, imgData2.Length);
                                 string image3 = "data:image;base64," + Convert.ToBase64String(imgData3, 0, imgData3.Length);
 
                                 string backgroundCheckPhoto = "";
@@ -298,13 +317,17 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 {
                                     backgroundCheckPhoto = "images/NC.png";
                                 }
-                                if(backgroundCheckResult == "y")
+                                if (backgroundCheckResult == "y")
                                 {
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }
 
+                                List<string> badges = new List<string>{HttpUtility.HtmlEncode((string)reader["PrivateEntrance"]), HttpUtility.HtmlEncode((string)reader["Kitchen"]),HttpUtility.HtmlEncode( (string)reader["Furnished"]),
+                               HttpUtility.HtmlEncode((string)reader["ClosetSpace"]), HttpUtility.HtmlEncode((string)reader["NonSmoker"]),HttpUtility.HtmlEncode( (string)reader["PrivateBathroom"])};
 
-                                SearchResult result = new SearchResult(id, name, location, description, price, image1, image2, image3, backgroundCheckPhoto);
+                                SearchResult result = new SearchResult(id, name, location, propertyTitle, description, price, image1, image2, image3, backgroundCheckPhoto, badges, hostBio);
+
+                                result.setFullAddress(fullAddress);
 
                                 SearchResult.lstSearchResults.Add(result);
                             }

@@ -137,7 +137,7 @@
              <div class="row">
             <div class="col">
               <label for="formGroupExampleInput">Does the space have a private bathroom?*</label>
-              <asp:RadioButtonList ID="rbPrivateBr" CssClass="form-control"runat="server">
+              <asp:RadioButtonList ID="rbPrivateBr" runat="server">
                     <asp:ListItem Text="Yes" Value="y" />
                     <asp:ListItem Text="No" Value="n" />
             </asp:RadioButtonList>

@@ -81,6 +81,7 @@
                <p>
                   <label for="amount">Price Range:</label>
                   <input type="text" id="amount" readonly style="border:0; color:black; font-weight:bold; margin-left:2rem; margin-right:2rem; width:500px;">
+                  <asp:Label runat="server" ID="amount1" Width="500px"></asp:Label>
                 </p> 
            </div>
                
@@ -101,16 +102,28 @@
     $( "#slider-range" ).slider({
       range: true,
       min: 0,
-      max: 500,
-      values: [ 75, 300 ],
+      max: 3000,
+      values: [ 100, 1000 ],
       slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+
+          
       }
     });
     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-  } );
+          " - $" + $("#slider-range").slider("values", 1));
+
+      
+      //$('#txtMinPrice').val(sliderElement.slider('values', 0));
+      //$('#txtMaxPrice').val(sliderElement.slider('values', 1));
+
+      });
+
+      
   </script>
+
+    <%--<asp:TextBox runat="server" id="txtMaxPrice" ReadOnly="true"></asp:TextBox>
+    <asp:TextBox runat="server" id="txtMinPrice" ReadOnly="true"></asp:TextBox>--%>
 
         <div  class="container">
 
