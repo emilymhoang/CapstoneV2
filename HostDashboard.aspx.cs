@@ -422,7 +422,10 @@ public partial class HostDashboard : System.Web.UI.Page
     }
     protected void sendMessage(object sender, EventArgs e)
     {
-        int hostID = Convert.ToInt32(Session["hostID"]);
+        resultmessageMessage.Text = "";
+        if (messageTextbox.Text.Trim() != "")
+        {
+            int hostID = Convert.ToInt32(Session["hostID"]);
         int tenantID = Convert.ToInt32(tenantNameDropdown.SelectedItem.Value);
         string msgtxt = messageTextbox.Text;
         string messageSender = Session["username"].ToString();
@@ -542,6 +545,13 @@ public partial class HostDashboard : System.Web.UI.Page
         lvMessagesHost.DataSource = Message.lstHostMessages;
         lvMessagesHost.DataBind();
         messageTextbox.Text = string.Empty;
+    }
+
+else
+        {
+            Response.Write("<script> alert('Message is empty. Please try again.'); </script>");
+            //resultmessageMessage.Text = "Message is empty.";
+        }
 
 
     }

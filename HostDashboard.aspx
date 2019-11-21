@@ -21,7 +21,7 @@
         .btn {
            font-family: 'Oswald', sans-serif;
            color: white; 
-           font-size: 20px;
+           font-size: 18px;
        }
     </style>
 <div  class="container">
@@ -246,7 +246,7 @@
       </div>      <!-- end big row -->
     
     
-     <div class="row " style="margin-top: 1rem;">
+         <div class="row " style="margin-top: 1rem;">
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <div class="row">
                 <div class="col-md-12">
@@ -256,29 +256,27 @@
                         </div>
                 <div class="col-md-3">
                     <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
-                    <div>
-                        <a href="skype:Echo123"><button class="btn btn-primary" style="font-family: 'Oswald', sans-serif; color: white; font-size: 18px;">Videochat</a>
-                    </div>
+                        <a href="skype:Echo123"><button runat="server" class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
                     </div>
               <div class="col-md-3">
-                        <asp:Button ID="createMessageButton" runat="server" Text="Respond to Message" AutoPostBack="true" type="submit" class="btn"/>
+                        <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit" class="btn"/>
                         <asp:ScriptManager ID="ScriptManager1" runat="server">
                         </asp:ScriptManager>        
                 <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
-                 <%--   <center>--%>
-                        <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
-                 <%--   </center>--%>
-                    <asp:Label style="font-family: 'Oswald', sans-serif; color: #53A39F; font-size: 30px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
+                    <center>
+                        <asp:Label style="font-family: 'Oswald', sans-serif;  font-size: 24px" ID="Label2" runat="server" Text="Label">Create a Message</asp:Label>
+                    </center>
+                    <asp:Label style="font-family: 'Oswald', sans-serif; ; font-size: 20px" ID="Label1" runat="server" Text="Label">Send to: </asp:Label>
                        
-                        <asp:DropDownList ID="tenantNameDropdown" runat="server">
+                        <asp:DropDownList ID="tenantNameDropdown" CssClass="form-control" width="150px" runat="server">
                             
                         </asp:DropDownList>
                        
                         
-                        <br />
                     <center>
                         <asp:TextBox ID="messageTextbox" TextMode="MultiLine" class="form-control" style="height:300px; width:400px;" runat="server"></asp:TextBox>
                         <br />
+                                            <asp:Label ID="resultmessageMessage" runat="server" ForeColor="Red"></asp:Label>
                         <asp:Button class="btn" ID="sendButton" onClick="sendMessage" runat="server" Text="Send" />
                         <asp:Button class="btn" ID="cancelButton" runat="server" Text="Cancel" /> <br/>
                     </center>
@@ -339,9 +337,8 @@
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <h2 >Background Check Status</h2> 
-            <br >
             <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
-            <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
+            <div class="col-md-12" style="margin-top: 1rem;">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
                 <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 100px;" class="img-fluid" runat="server" /></p>
                 <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
