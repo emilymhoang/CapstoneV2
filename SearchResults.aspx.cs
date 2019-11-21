@@ -126,6 +126,7 @@ public partial class SearchResults : System.Web.UI.Page
     protected void search_Click(object sender, EventArgs e)
     {
         SearchResult.lstSearchResults.Clear();
+        Favorite.lstFavorites.Clear();
 
         bool searchBy;
         int a;
