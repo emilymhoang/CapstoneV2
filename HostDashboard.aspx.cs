@@ -620,7 +620,7 @@ else
 
                     insert.ExecuteNonQuery();
 
-                    SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' AND TenantID = @TenantID WHERE RoomID = @RoomID", connection);
+                    SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'n', TenantID = @TenantID WHERE RoomID = @RoomID", connection);
                     update.Parameters.AddWithValue("@RoomID", roomID);
                     update.Parameters.AddWithValue("@TenantID", tenantID);
                     update.ExecuteNonQuery();
