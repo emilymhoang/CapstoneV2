@@ -26,14 +26,13 @@
 
 <div class="container">
   <div class="row " style="margin-top: 7rem; ">
-    <div class="col-md-9">
+    <div class="col-md-7">
         <h1><asp:Label ID="dashboardTitle" runat="server" Text=""></asp:Label></h1>
       </div>
-    <div class="col-md-3">
+    <div class="col-md-5">
+        <a href="CreateLoginAdmin.aspx" class="btn " style="margin-top: 1rem;">Add Admin Account</a>
         <a href="Search.aspx" class="btn " style="margin-top: 1rem;">Search Properties</a>
         <asp:Button ID="logoutButton" onClick="logout" style="margin-top: 1rem;" runat="server" Text="Logout" AutoPostBack="true" type="submit" class="btn"/>
-        <a href="CreateLoginAdmin.aspx" class="btn " style="margin-top: 1rem;">Add Admin Account</a>
-
       </div>
       
     </div><!-- end div row -->  
@@ -101,7 +100,8 @@
                                 <asp:Label runat="server" ID="Label4" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label></br>
                             </td>
                             <td style="width: 100px">
-                                <asp:Button runat="server" class="btn" ID="btnApprove" AutoPostBack="true" OnClick="approveApplicant" Text="Approve"/>
+                                <asp:Button runat="server" class="btn" ID="btnApprove" style="font-size: 18px;" AutoPostBack="true" OnClick="approveApplicant" Text="Approve"/> 
+                                <asp:Button runat="server" class="btn" style="margin-top: .25rem; font-size: 18px;" ID="btnReject" AutoPostBack="true" OnClick="rejectApplicant" Text="Reject"/>
                             </td>
                         </tr>
 <%--                        <tr>

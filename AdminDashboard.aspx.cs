@@ -410,6 +410,31 @@ public partial class AdminDashboard : System.Web.UI.Page
         Response.Redirect("AdminDashboard.aspx");
     }
 
+    protected void rejectApplicant(object sender, EventArgs e)
+    {
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        var spot = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType;
+        if (spot == "h")
+        {
+            var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
+            SqlCommand rejecth = new SqlCommand("UPDATE [dbo].[Host] SET BackgroundCheckResult = 'r' WHERE HostID = @HostID", sc);
+            rejecth.Parameters.AddWithValue("@HostID", userid);
+            rejecth.Connection = sc;
+            rejecth.ExecuteNonQuery();
+        }
+        else if (BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].applicantType == "t")
+        {
+            var userid = BackgroundCheckApplicant.lstBackgroundCheckApplicants[index].userid;
+            SqlCommand rejectTen= new SqlCommand("UPDATE [dbo].[Tenant] SET BackgroundCheckResult = 'r' WHERE TenantID = @TenantID", sc);
+            rejectTen.Parameters.AddWithValue("@TenantID", userid);
+            rejectTen.Connection = sc;
+            rejectTen.ExecuteNonQuery();
+        }
+        Response.Redirect("AdminDashboard.aspx");
+    }
+
     protected void logout(object sender, EventArgs e)
     {
         Session.Abandon();

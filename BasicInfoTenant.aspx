@@ -15,7 +15,7 @@
         font-size: 40px;
     }
 
-        .btn {res
+        .btn {
            font-family: 'Oswald', sans-serif;
            color: white; 
            font-size: 20px;
