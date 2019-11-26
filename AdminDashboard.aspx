@@ -197,6 +197,11 @@
                                         <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px;" ID="lblResultPrice" Text='<%#Eval("resultPrice") %>'></asp:Label> </br>
                                     </td>
                                 </tr>
+                                <tr>
+                                     <td>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 20px; color: #B23325" ID="lblShowHost" Text='<%#Eval("showHost") %>'></asp:Label> </br>
+                                    </td>
+                                </tr>
                                  <tr>
                                      <td>
                                         <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br>
@@ -208,6 +213,8 @@
                                         <asp:Button runat="server" class="btn" ID="hideProperty" OnClick="hideProperties" AutoPostBack="true" Text="Mark as Unavailable"/>
                                         &nbsp;
                                         <asp:Button runat="server" class="btn" ID="btnViewProfile" onClick="viewProperty" Text="View Profile" />
+                                         &nbsp;
+                                        <asp:Button runat="server" class="btn" ID="btnHideHost" AutoPostBack="true" onClick="hideHost" Text="Hide Host"></asp:Button>
                                     </td
                                 </tr>
                              </table>

@@ -171,7 +171,7 @@ public partial class SearchResults : System.Web.UI.Page
                         "FROM [dbo].[Host] left join [dbo].[Property] on " +
                         "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
                         "left join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
-                        "where [dbo].[Property].Zip = @zip and lower([dbo].[PropertyRoom].Availability) = 'y'";
+                        "where [dbo].[Property].Zip = @zip and lower([dbo].[PropertyRoom].Availability) = 'y' and lower([dbo].[Host].ShowHost) = 'y'";
 
                     command.Parameters.AddWithValue("@zip", propertySearch);
                 }
@@ -186,7 +186,7 @@ public partial class SearchResults : System.Web.UI.Page
                             "FROM [dbo].[Host] left join [dbo].[Property] on " +
                             "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
                             "left join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
-                            "where [dbo].[Property].CityCounty = @city and lower([dbo].[PropertyRoom].Availability) = 'y' ";
+                            "where [dbo].[Property].CityCounty = @city and lower([dbo].[PropertyRoom].Availability) = 'y' and lower([dbo].[Host].ShowHost) = 'y' ";
 
 
                     command.Parameters.AddWithValue("@city", propertySearch);

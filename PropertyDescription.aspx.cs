@@ -21,9 +21,10 @@ public partial class PropertyDescription : System.Web.UI.Page
     string nonsmoker;
     protected void Page_Load(object sender, EventArgs e)
     {
-            //var int = Session["tenantID"].ToString();
-            using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-            {
+
+        //var int = Session["tenantID"].ToString();
+        using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
+        {
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = connection;
@@ -57,7 +58,8 @@ public partial class PropertyDescription : System.Web.UI.Page
                     roomID1 = SearchResult.lstSearchResults[index1].resultID;
                     addressForMap = SearchResult.selectedReultFullAddress;
                 }
-                else { 
+                else
+                {
                     var roomID = Favorite.lstFavorites[index].resultID;
                     lblHostName.Text = Favorite.lstFavorites[index].favName;
                     lblPropName.Text = Favorite.lstFavorites[index].propertyTitle;
@@ -79,99 +81,101 @@ public partial class PropertyDescription : System.Web.UI.Page
                 }
 
                 SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
-                    badge2.Parameters.AddWithValue("@roomID", roomID1);
+                badge2.Parameters.AddWithValue("@roomID", roomID1);
 
-                    connection.Open();
-                    SqlDataReader rdr2 = badge2.ExecuteReader();
+                connection.Open();
+                SqlDataReader rdr2 = badge2.ExecuteReader();
 
-                    while (rdr2.Read())
-                    {
-                        privateEntrance = HttpUtility.HtmlEncode(rdr2["privateEntrance"].ToString());
-                        kitchen = HttpUtility.HtmlEncode(rdr2["Kitchen"].ToString());
-                        privateBathroom = HttpUtility.HtmlEncode(rdr2["privateBathroom"].ToString());
-                        furnish = HttpUtility.HtmlEncode(rdr2["Furnished"].ToString());
-                        storage = HttpUtility.HtmlEncode(rdr2["ClosetSpace"].ToString());
-                        nonsmoker = HttpUtility.HtmlEncode(rdr2["NonSmoker"].ToString());
-                    }
+                while (rdr2.Read())
+                {
+                    privateEntrance = HttpUtility.HtmlEncode(rdr2["privateEntrance"].ToString());
+                    kitchen = HttpUtility.HtmlEncode(rdr2["Kitchen"].ToString());
+                    privateBathroom = HttpUtility.HtmlEncode(rdr2["privateBathroom"].ToString());
+                    furnish = HttpUtility.HtmlEncode(rdr2["Furnished"].ToString());
+                    storage = HttpUtility.HtmlEncode(rdr2["ClosetSpace"].ToString());
+                    nonsmoker = HttpUtility.HtmlEncode(rdr2["NonSmoker"].ToString());
+                }
 
-                    if (privateEntrance == "y")
-                    {
-                        privateEntranceBadge.ImageUrl = "images/badges-04.png";
-                    }
-                    else
-                    {
-                        privateEntranceBadge.Visible = false;
-                    }
+                if (privateEntrance == "y")
+                {
+                    privateEntranceBadge.ImageUrl = "images/badges-04.png";
+                }
+                else
+                {
+                    privateEntranceBadge.Visible = false;
+                }
 
-                    if (kitchen == "y")
-                    {
-                        kitchenBadge.ImageUrl = "images/badges-06.png";
-
-                    }
-                    else
-                    {
-                        kitchenBadge.Visible = false;
-                    }
-
-                    if (privateBathroom == "y")
-                    {
-                        privateBathroomBadge.ImageUrl = "images/badges-07.png";
-
-                    }
-                    else
-                    {
-                        privateBathroomBadge.Visible = false;
-                    }
-
-                    if (furnish == "y")
-                    {
-                        furnishBadge.ImageUrl = "images/badges-08.png";
-
-                    }
-                    else
-                    {
-                        furnishBadge.Visible = false;
-                    }
-
-                    if (storage == "y")
-                    {
-                        storageBadge.ImageUrl = "images/badges-09.png";
-
-                    }
-                    else
-                    {
-                        storageBadge.Visible = false;
-                    }
-
-                    if (nonsmoker == "y")
-                    {
-                        smokerBadge.ImageUrl = "images/badges-10.png";
-
-                    }
-                    else
-                    {
-                        smokerBadge.Visible = false;
-                    }
-
-
-
-                    SqlCommand host = new SqlCommand("SELECT Property.HostID FROM Property INNER JOIN PropertyRoom ON Property.PropertyID = PropertyRoom.PropertyID WHERE RoomID = " + roomID1, connection);
-                    host.Connection = connection;
-                    int hostID = Convert.ToInt32(host.ExecuteScalar());
-                    host.ExecuteNonQuery();
-
-
-                    SqlCommand image = new SqlCommand("SELECT imageV2 FROM [dbo].[Host] WHERE HostID = " + hostID, connection);
-                    image.Connection = connection;
-                    byte[] ppImgData = (byte[])(image.ExecuteScalar());
-                    string ppImage = "data:image;base64," + Convert.ToBase64String(ppImgData, 0, ppImgData.Length);
-                    image7.ImageUrl = ppImage;
+                if (kitchen == "y")
+                {
+                    kitchenBadge.ImageUrl = "images/badges-06.png";
 
                 }
+                else
+                {
+                    kitchenBadge.Visible = false;
+                }
+
+                if (privateBathroom == "y")
+                {
+                    privateBathroomBadge.ImageUrl = "images/badges-07.png";
+
+                }
+                else
+                {
+                    privateBathroomBadge.Visible = false;
+                }
+
+                if (furnish == "y")
+                {
+                    furnishBadge.ImageUrl = "images/badges-08.png";
+
+                }
+                else
+                {
+                    furnishBadge.Visible = false;
+                }
+
+                if (storage == "y")
+                {
+                    storageBadge.ImageUrl = "images/badges-09.png";
+
+                }
+                else
+                {
+                    storageBadge.Visible = false;
+                }
+
+                if (nonsmoker == "y")
+                {
+                    smokerBadge.ImageUrl = "images/badges-10.png";
+
+                }
+                else
+                {
+                    smokerBadge.Visible = false;
+                }
+
+
+
+                SqlCommand host = new SqlCommand("SELECT Property.HostID FROM Property INNER JOIN PropertyRoom ON Property.PropertyID = PropertyRoom.PropertyID WHERE RoomID = " + roomID1, connection);
+                host.Connection = connection;
+                int hostID = Convert.ToInt32(host.ExecuteScalar());
+                hostIDforHH = hostID;
+
+                host.ExecuteNonQuery();
+
+
+                SqlCommand image = new SqlCommand("SELECT imageV2 FROM [dbo].[Host] WHERE HostID = " + hostID, connection);
+                image.Connection = connection;
+                byte[] ppImgData = (byte[])(image.ExecuteScalar());
+                string ppImage = "data:image;base64," + Convert.ToBase64String(ppImgData, 0, ppImgData.Length);
+                image7.ImageUrl = ppImage;
 
             }
 
         }
+
+    }
 
     protected void FavoriteClick(object sender, EventArgs e)
     {
@@ -257,115 +261,7 @@ public partial class PropertyDescription : System.Web.UI.Page
     {
         Response.Redirect("SearchResults.aspx");
     }
-    //protected void sendMessage(object sender, EventArgs e)
-    //{
-    //    int tenantID = Convert.ToInt32(Session["tenantID"]);
-    //    int hostID = Convert.ToInt32(hostNameDropdown.SelectedItem.Value);
-    //    string msgtxt = messageTextbox.Text;
-    //    string messageSender = Session["username"].ToString();
 
-    //    Message newMessage = new Message(tenantID, hostID, msgtxt, messageSender);
-
-    //    using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-    //    {
-    //        using (SqlCommand command = new SqlCommand())
-    //        {
-    //            command.Connection = connection;
-    //            command.CommandType = CommandType.Text;
-    //            command.CommandText = "INSERT INTO [dbo].[Message] ([HostID],[TenantID],[Message],[MessageDate]," +
-    //                "[LastUpdatedBy],[LastUpdated]) VALUES (@host,@tenant,@message,@msgdate,@lub,@lu)";
-
-    //            command.Parameters.AddWithValue("@host", newMessage.hostID);
-    //            command.Parameters.AddWithValue("@tenant", newMessage.tenantID);
-    //            command.Parameters.AddWithValue("@message", newMessage.message);
-    //            command.Parameters.AddWithValue("@msgdate", newMessage.messageDate);
-    //            command.Parameters.AddWithValue("@lub", newMessage.lastUpdatedBy);
-    //            command.Parameters.AddWithValue("@lu", newMessage.lastUpdated);
-
-
-    //            try
-    //            {
-    //                connection.Open();
-    //                int recordsAffected = command.ExecuteNonQuery();
-    //            }
-    //            catch (SqlException)
-    //            {
-
-    //            }
-    //            finally
-    //            {
-    //                connection.Close();
-    //            }
-    //        }
-    //    }
-
-
-    //    Message.lstTenantMessages.Clear();
-
-    //    //displays all of tenants messages
-    //    using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
-    //    {
-    //        using (SqlCommand command = new SqlCommand())
-    //        {
-    //            command.Connection = connection;
-    //            command.CommandType = CommandType.Text;
-
-
-    //            command.CommandText = "select  Message.HostID, Message.TenantID, Message.Message, Message.MessageDate," +
-    //                " Message.LastUpdated, Message.LastUpdatedBy, Host.FirstName, Host.LastName from Message " +
-    //                "left join Host on message.HostID = host.HostID where Message.TenantID = @tenantid order by Message.MessageID desc";
-    //            command.Parameters.AddWithValue("@tenantid", tenantID);
-
-
-    //            try
-    //            {
-    //                connection.Open();
-    //                using (SqlDataReader reader = command.ExecuteReader())
-    //                {
-    //                    if (reader.HasRows)
-    //                    {
-    //                        while (reader.Read())
-    //                        {
-    //                            int hostid = Convert.ToInt32(reader["HostID"]);
-    //                            int tenantid = Convert.ToInt32(reader["TenantID"]);
-    //                            string message = (string)reader["Message"];
-    //                            string lub = (string)reader["LastUpdatedBy"];
-
-
-    //                            Message msg = new Message(hostid, tenantid, message, lub);
-
-    //                            msg.setMessageDate(Convert.ToDateTime(reader["MessageDate"]));
-    //                            string recievername = (string)reader["FirstName"] + " " + (string)reader["LastName"];
-    //                            msg.setRecieverName(recievername);
-
-
-    //                            Message.lstTenantMessages.Add(msg);
-    //                        }
-
-    //                    }
-    //                    else
-    //                    {
-    //                        //lblInvalidSearch.Text = "Search returned no properties";
-    //                    }
-
-    //                }
-    //            }
-    //            catch (SqlException t)
-    //            {
-    //                string b = t.ToString();
-    //            }
-    //            finally
-    //            {
-    //                connection.Close();
-
-    //            }
-
-    //        }
-    //    }
-
-    //    //lvMessages.DataSource = Message.lstMessages;
-    //    //lvMessages.DataBind();
-    //    messageTextbox.Text = string.Empty;
-    //}
+   
 }
 

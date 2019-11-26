@@ -81,8 +81,8 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     Homeowner newHost = new Homeowner(firstName, lastName, gender, dateOfBirth, email, phoneNumber, userNameTextbox.Text, passwordTextbox.Text, confirmPasswordTextbox.Text);
                     resultmessage.Text = "";
                     insertHost.CommandText = "INSERT INTO [dbo].[Host] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, HostBio) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
-                                "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated, @HostBio); ";
+                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, HostBio, ShowHost) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
+                                "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated, @HostBio, @ShowHost); ";
 
                     insertHost.Parameters.AddWithValue("@Email", email);
                     insertHost.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
@@ -97,6 +97,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     insertHost.Parameters.AddWithValue("@LastUpdatedBy", lastName);
                     insertHost.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
                     insertHost.Parameters.AddWithValue("@HostBio", Session["hostBio"].ToString());
+                    insertHost.Parameters.AddWithValue("@ShowHost", "y");
 
 
                     sc.Open();

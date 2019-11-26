@@ -43,16 +43,8 @@ public partial class AdminDashboard : System.Web.UI.Page
         SqlDataReader rdr = filter.ExecuteReader();
         while (rdr.Read())
         {
-            //nameTextbox.Text = rdr["FirstName"].ToString() + " " + rdr["LastName"].ToString();
             dashboardTitle.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString())+ "'s Admin Dashboard";
-            //byte[] imgData = (byte[])rdr["imageV2"];
-            //if (!(imgData == null))
-            //{
-            //    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
-            //    image1.ImageUrl = "data:image;base64," + img;
-            //}
         }
-        //usernameTextbox.Text = Session["username"].ToString();
 
         int adminIDRefresh = Convert.ToInt32(HttpUtility.HtmlEncode(Session["adminID"]));
 
@@ -226,7 +218,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                     command.CommandText = "select " +
                         "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
                         "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
-                        "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].HostBio, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
+                        "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].ShowHost, [dbo].[Host].HostBio, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
                         "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomDescription, 'No Room Bio') as RoomDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
                         "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, BadgeProperty.PrivateEntrance, BadgeProperty.Kitchen, BadgeProperty.PrivateBathroom, BadgeProperty.Furnished, BadgeProperty.ClosetSpace, BadgeProperty.NonSmoker " +
                         "FROM [dbo].[Host] left join [dbo].[Property] on " +
@@ -241,7 +233,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                     command.CommandText = "select " +
                             "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
                             "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
-                            "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].HostBio, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
+                            "[dbo].[Host].FirstName, [dbo].[Host].LastName, [dbo].[Host].ShowHost, [dbo].[Host].HostBio, [dbo].[Host].BackgroundCheckResult, [dbo].[Property].HouseNumber, [dbo].[Property].Street, [dbo].[Property].CityCounty, " +
                             "[dbo].[Property].HomeState, [dbo].[Property].Zip, isnull([dbo].[PropertyRoom].BriefDescription, 'No Description') as BriefDescription, isnull([dbo].[PropertyRoom].RoomDescription, 'No Room Bio') as RoomDescription, isnull([dbo].[PropertyRoom].RoomID, 0) as RoomID, " +
                             "isnull([dbo].[PropertyRoom].MonthlyPrice, 0) as MonthlyPrice, BadgeProperty.PrivateEntrance, BadgeProperty.Kitchen, BadgeProperty.PrivateBathroom, BadgeProperty.Furnished, BadgeProperty.ClosetSpace, BadgeProperty.NonSmoker " +
                             "FROM [dbo].[Host] left join [dbo].[Property] on " +
@@ -265,7 +257,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-
+                                string showHost = HttpUtility.HtmlEncode((string)reader["ShowHost"]);
                                 string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
                                 string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"]) + " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
                                 string description = HttpUtility.HtmlEncode((string)reader["RoomDescription"]);
@@ -322,10 +314,20 @@ public partial class AdminDashboard : System.Web.UI.Page
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }
 
+                                if (showHost == "n")
+                                {
+                                    showHost = "Host is currently hidden from search.";
+
+                                }
+                                else
+                                {
+                                    showHost = "";
+                                }
+
                                 List<string> badges = new List<string>{HttpUtility.HtmlEncode((string)reader["PrivateEntrance"]), HttpUtility.HtmlEncode((string)reader["Kitchen"]),HttpUtility.HtmlEncode( (string)reader["Furnished"]),
                                HttpUtility.HtmlEncode((string)reader["ClosetSpace"]), HttpUtility.HtmlEncode((string)reader["NonSmoker"]),HttpUtility.HtmlEncode( (string)reader["PrivateBathroom"])};
 
-                                SearchResult result = new SearchResult(id, name, location, propertyTitle, description, price, image1, image2, image3, backgroundCheckPhoto, badges, hostBio);
+                                SearchResult result = new SearchResult(id, name, location, propertyTitle, description, price, image1, image2, image3, backgroundCheckPhoto, badges, hostBio, showHost);
 
                                 result.setFullAddress(fullAddress);
 
@@ -369,7 +371,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void hideProperties(object sender, EventArgs e)
     {
-        Response.Write("<script> alert('Are you sure you want to delete this property?'); </script>");
+        Response.Write("<script> alert('Are you sure you want to hide this property?'); </script>");
         //var lcount = lvSearchResultsAdmin.SelectedIndex;
 
         Button btn = sender as Button;
@@ -457,5 +459,40 @@ public partial class AdminDashboard : System.Web.UI.Page
     protected void addAdmin_Click(object sender, EventArgs e)
     {
 
+    }
+
+    protected void hideHost(object sender, EventArgs e)
+    {
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        var selectedPRid = SearchResult.lstSearchResults[index].resultID;
+        SqlCommand getHost = new SqlCommand("SELECT HostID FROM[dbo].[Property] WHERE PropertyID = (SELECT PropertyID FROM[dbo].[PropertyRoom] WHERE RoomID = @RoomID)", sc);
+        getHost.Parameters.AddWithValue("@RoomID", selectedPRid);
+        int hostID = Convert.ToInt32(getHost.ExecuteScalar());
+        getHost.ExecuteNonQuery();
+
+        SqlCommand validation = new SqlCommand("SELECT ShowHost FROM [dbo].[Host] WHERE HostID = @HostID", sc);
+        validation.Parameters.AddWithValue("@HostID", hostID);
+        SqlDataReader rdr = validation.ExecuteReader();
+        string showHostResult = "";
+        while (rdr.Read())
+        {
+            showHostResult = rdr["ShowHost"].ToString();
+        }
+
+        if (showHostResult == "y")
+        {
+            SqlCommand hidehost = new SqlCommand("UPDATE [dbo].[Host] SET ShowHost = 'n' WHERE HostID = @HostID", sc);
+            hidehost.Parameters.AddWithValue("@HostID", hostID);
+            hidehost.Connection = sc;
+            hidehost.ExecuteNonQuery();
+            Response.Redirect("AdminDashboard.aspx");
+            Response.Write("<script> alert('Host is now hiden.'); </script>");
+        }
+        else
+        {
+            Response.Write("<script> alert('Host is already hidden from search.'); </script>");
+        }
     }
 }

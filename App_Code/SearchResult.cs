@@ -32,6 +32,7 @@ public class SearchResult
 
 
     public List<string> lstPropertyBadges { get; private set; }
+    public string showHost { get; private set; }
 
 
     public SearchResult(int resultID, string resultName, string resultLocation, string resultDescription, double resultPrice, 
@@ -78,6 +79,24 @@ public class SearchResult
         this.propertyTitle = propertyTitle;
         this.lstPropertyBadges = lstPropertyBadges;
         this.hostBio = hostBio;
+
+    }
+    public SearchResult(int resultID, string resultName, string resultLocation, string propertyTitle, string resultDescription, double resultPrice
+    , string resultimage1, string resultimage2, string resultimage3, string backgroundCheckResult, List<string> lstPropertyBadges, string hostBio, string showHost)
+    {
+        this.resultName = resultName;
+        this.resultLocation = resultLocation;
+        this.resultDescription = resultDescription;
+        this.resultPrice = "$" + resultPrice + "/Month";
+        this.resultID = resultID;
+        this.resultimage1 = resultimage1;
+        this.resultimage2 = resultimage2;
+        this.resultimage3 = resultimage3;
+        this.backgroundCheckResult = backgroundCheckResult;
+        this.propertyTitle = propertyTitle;
+        this.lstPropertyBadges = lstPropertyBadges;
+        this.hostBio = hostBio;
+        this.showHost = showHost;
 
     }
 
