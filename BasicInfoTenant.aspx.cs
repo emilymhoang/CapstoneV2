@@ -92,6 +92,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
                         Session["phoneNumberTextbox"] = phoneNumberTextbox.Text;
                         Session["underGraduate"] = undergradCheck.Checked;
                         Session["graduate"] = gradCheck.Checked;
+                        Session["chores"] = choresCheck.Checked;
                         Response.Redirect("CreateLoginTenant.aspx");
                         //resultmessagedob.Text = "Student must be between 18 - 30 years old, age is " + age;
                         
