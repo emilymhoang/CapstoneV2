@@ -128,6 +128,11 @@
               <asp:CheckBox ID="undergradCheck" type=" checkbox" name="Undergraduate Student" value="undergrad" runat="server"></asp:Checkbox> Undergraduate Student<br>
                <asp:CheckBox ID="gradCheck" type=" checkbox" name="Graduate Student" value="grad" runat="server"></asp:Checkbox> Graduate Student<br>
                    <asp:CheckBox ID="NAcheck" type=" checkbox" name="Not Applicable" value="NA" runat="server"></asp:Checkbox> Not Applicable<br>
+                  <h3>Chores/Tasks</h3>
+                   <asp:CheckBox ID="choresCheck" type=" checkbox" name="Willing to do Chores" value="chores" runat="server"></asp:Checkbox> Willing to do Chores<br>
+
+
+
              </div> <!--end col-->
           </div> <!--end row class-->
                           

@@ -15,6 +15,7 @@ public partial class TenantDashboard : System.Web.UI.Page
 { 
     String underGraduate;
     String graduate;
+    String chores;
     public string stripePublishableKey = WebConfigurationManager.AppSettings["StripePublishableKey"];
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
@@ -112,7 +113,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         int tenantIDRefresh = Convert.ToInt32(Session["tenantID"]);
         Message.lstTenantMessages.Clear();
 
-        SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate FROM [dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
+        SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate, Chores FROM [dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
         badge.Parameters.AddWithValue("@TenantID", tenantID);
 
         SqlDataReader rdr2 = badge.ExecuteReader();
@@ -122,6 +123,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         {
             underGraduate = HttpUtility.HtmlEncode(rdr2["Undergraduate"].ToString());
             graduate = HttpUtility.HtmlEncode(rdr2["graduate"].ToString());
+            chores = HttpUtility.HtmlEncode(rdr2["chores"].ToString());
         }
 
         if (underGraduate == "True")
@@ -133,7 +135,11 @@ public partial class TenantDashboard : System.Web.UI.Page
         {
             graduateBadge.ImageUrl = "images/badges-02.png";
 
+        }
 
+        if (chores == "True")
+        {
+            choresBadge.ImageUrl = "images/badges-21.png";
         }
 
 

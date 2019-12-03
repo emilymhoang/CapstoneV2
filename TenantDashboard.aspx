@@ -78,6 +78,7 @@
                  <p><asp:Label ID="phoneTextbox" Text="xxx-xxx-xxx" runat="server"  BackColor="#ebebeb"></asp:Label></p>
                 <asp:Image ID="undergraduateBadge" class="img-fluid" runat="server" />
                  <asp:Image ID="graduateBadge" class="img-fluid" runat="server" />
+                 <asp:Image ID="choresBadge" class="img-fluid" runat="server" />
                  <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
             </div>
 

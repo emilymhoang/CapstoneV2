@@ -20,6 +20,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
     String phoneNumber;
     String underGraduate;
     String graduate;
+    String chores;
 
 
 
@@ -70,6 +71,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         phoneNumber = Session["phoneNumberTextbox"].ToString();
         underGraduate = Session["underGraduate"].ToString();
         graduate = Session["graduate"].ToString();
+        chores = Session["chores"].ToString();
 
 
 
@@ -117,11 +119,12 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
 
 
-                    BadgeTenant newBadgeTenant = new BadgeTenant(tenantID, underGraduate, graduate);
-                    insertBadgeTenant.CommandText = "INSERT INTO [dbo].[BadgeTenant] (TenantID, Undergraduate, graduate) VALUES (@TenantID, @Undergraduate, @graduate);";
+                    BadgeTenant newBadgeTenant = new BadgeTenant(tenantID, underGraduate, graduate, chores);
+                    insertBadgeTenant.CommandText = "INSERT INTO [dbo].[BadgeTenant] (TenantID, Undergraduate, graduate, Chores) VALUES (@TenantID, @Undergraduate, @graduate, @chores);";
                     insertBadgeTenant.Parameters.AddWithValue("@TenantID", tenantID);
                     insertBadgeTenant.Parameters.AddWithValue("@Undergraduate", underGraduate);
                     insertBadgeTenant.Parameters.AddWithValue("@graduate", graduate);
+                    insertBadgeTenant.Parameters.AddWithValue("@chores", chores);
                     insertBadgeTenant.ExecuteNonQuery();
 
 

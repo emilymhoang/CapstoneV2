@@ -11,12 +11,13 @@ public class BadgeTenant
     public int TenantID { get; private set; }
     public string underGraduateBadge { get; private set; }
     public string graduateBadge { get; private set; }
+    public string choresBadge { get; private set; }
 
-    public BadgeTenant(int TenantID, string underGraduateBadge, string graduateBadge)
+    public BadgeTenant(int TenantID, string underGraduateBadge, string graduateBadge, string choresBadge)
     {
         this.TenantID = TenantID;
         this.underGraduateBadge = underGraduateBadge;
         this.graduateBadge = graduateBadge;
-
+        this.choresBadge = choresBadge;
     }
 }
