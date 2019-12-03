@@ -38,17 +38,24 @@
             <div class="row">
                 <div class="col-md-3">
                     <a href="Index.aspx"><img src="images/logo-01.png" alt="Room Magnet Logo" class="img-fluid" style="margin-left: 1em; max-width: 100px;"></a>
+                 
                 </div> <!-- end div header left - logo -->
+          
+                <div class="col-md-5" style="text-align:right; margin-top:1rem; color:#756664;"><h4>Hello </h4></div>
 
-                <div class="col-md-9 navhome" style="text-align: right;">
+                <div class="col-md-4" navhome" style="text-align: right; margin-top:1rem;">
                     <!-- start nav header right -->
-                    
+                      
                         <asp:Button type="button" class="btn btnb" style="font-family: 'Oswald', sans-serif; color: white; font-size: 20px;" runat="server" Text ="Get Started" onClick="getStarted" CausesValidation="false"></asp:Button>
                    
                         <asp:Button type="button" class="btn btnb" style="font-family: 'Oswald', sans-serif; color: white; font-size: 20px;" runat="server" Text ="My Account" onClick="dashboard" CausesValidation="false"></asp:Button>
               
                     <nav>
                         <ul class="nav justify-content-end">
+
+                            <li class="nav-item">
+                                <a class="nav-link" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 18px;" href="Search.aspx"><img src="images/icons-11.png" alt="search icon" style="max-width: 20px;"> Search</a>
+                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link" style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 18px;" href="AboutUs.aspx">About Us</a>

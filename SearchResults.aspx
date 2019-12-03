@@ -23,15 +23,15 @@
 
     <header style="margin-top: 8rem;">
       <div class="container">
-        <h1>Search for Your Perfect Space</h1>
+        <h2>Search for Your Perfect Space</h2>
           <br>
          <div class="row">
           <div class="col">
-          <asp:Textbox ID="searchTextbox" type="text" style="font-size: 28px; height:60px;" width="800px" class="form-control"  placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+          <asp:Textbox ID="searchTextbox" type="text" style="font-size: 20px; font-family:'raleway'; height:40px;" Width="800" class="form-control"  placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
               <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
           </div>
              <div class="col">
-                <asp:Button ID="searchButton" text="Search"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left; font-size: 30px;"></asp:Button>
+                <asp:Button ID="searchButton" text="Search"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left; font-size: 20px;"></asp:Button>
               </div>
              </div>
           <br>
@@ -42,7 +42,7 @@
     <div  class="container">
      <div class="row">
             <div class="col">
-              <label style="font-size: 24px;  font-family: 'Oswald', sans-serif; " for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
+              <label style="font-size: 20px;  font-family: 'raleway', sans-serif; " for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
                 <label  style="font-size: 24px; color: black; font-family: 'Oswald', sans-serif; " for="formGroupExampleInput">Search for...</label>
             </div>
              <!--end col-->
@@ -57,39 +57,45 @@
               </div>--%>
     
            <div class="row">  
-          <div class="col-md-4">
+          <div class="col-md-6">
               <p><asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="y" runat="server"></asp:Checkbox>Furnished<br>
                <asp:CheckBox ID="privateBathroomCheck" type="checkbox" name="Private Bathroom" value="y" runat="server"></asp:Checkbox> Private Bathroom<br>
                 <asp:CheckBox ID="closetCheck" type="checkbox" name="Closet/Storage Space" value="y" runat="server"></asp:Checkbox> Closet/ Storage Space<br></p>
             </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
               <p><asp:CheckBox ID="nonSmokerCheck" type="checkbox" name="Non-Smokers" value="y" runat="server"></asp:Checkbox> Non-Smokers<br>
                <asp:CheckBox ID="kitchenCheck" type="checkbox" name="Kitchen" value="y" runat="server"></asp:CheckBox> Kitchen<br>
                 <asp:CheckBox ID="privateEntranceCheck" type="checkbox" name="Private Entrance" value="y" runat="server"></asp:Checkbox> Private Entrance
                   <br></p>
             </div>
-               <div class="col-md-4">
-              <p >
-                  <asp:Button runat="server" class="btn" Text="Apply Filters" ID="btnFilterResults" style="font-size: 20px;" OnClick="btnFilterResults_Click" />
-              </p>
-            </div>
+              
              <!--end col-->
           </div> <!--end row class-->
         
        <div class="row">
-           <div class="col-md-10">
+           <div class="col-md-12">
                <p>
                   <label for="amount">Price Range:</label>
                   <input type="text" id="amount" readonly style="border:0; color:black; font-weight:bold; margin-left:2rem; margin-right:2rem; width:500px;">
                   <asp:Label runat="server" ID="amount1" Width="500px"></asp:Label>
                 </p> 
            </div>
-               
+                <div id="slider-range" style="width: 600px;  "></div>
+   
         </div>
+        
+        <div class="row" style="margin-top:1rem;">
+            <div class="col-md-12">
+                <p >
+                  <asp:Button runat="server" class="btn" Text="Apply Filters" ID="Button1" style="font-size: 20px; float:left;" OnClick="btnFilterResults_Click" />
+              </p>
+            </div>
+        </div>
+
     </div>
 
  
-<div id="slider-range" style="width: 600px; float:center; margin-left: 22rem; "></div>
+
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

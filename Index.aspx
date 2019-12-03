@@ -2,7 +2,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <div class="row" style="background-image: url(images/foldimg_A0_Rectangle_2_pattern.png); background-repeat: no-repeat; background-size:cover; margin-top: 6rem;">
+    <div class="row" style="background-image: url(images/foldimg_A0_Rectangle_2_pattern.png); background-repeat: no-repeat; background-size:cover; margin-top: 6rem; min-height:600px;">
 
         <div class="col-md-4  ctahome" style="margin-top: 8rem; margin-bottom: 8rem; ">
             <div class="card card-inverse" style="width: 25rem; margin-top: 2rem; margin-bottom: 2rem; margin-right: 1rem;">
@@ -26,7 +26,7 @@
             <div class="card" style="width: 30rem; border: none; margin: 0 auto;">
                 <img src="images/scott-webb-1ddol8rgUH8-unsplash.jpg"  class="card-img-top img-fluid" alt="picture of a house">
                 <div class="card-body">
-                    <p style="text-align:center;"><a href="AboutUs.aspx" class="btn " style="margin: auto; font-family: 'Oswald', sans-serif; color: white; font-size: 20px;">Your safety is our #1 concern.</a></p>
+                    <p style="text-align:center;"><a href="AboutUs.aspx" class="btn " style="margin: auto; font-family: 'Oswald', sans-serif; color: white; font-size: 22px;">Your safety is our #1 concern &#8250;</a></p>
                 </div>
             </div>
         </div><!-- end div col! -->
@@ -36,7 +36,7 @@
             <div class="card" style="width: 30rem; border: none; margin: 0 auto;">
                 <img src="images/ben-o-bro-wpU4veNGnHg-unsplash.jpg"  class="card-img-top img-fluid" alt="picture of a house">
                 <div class="card-body">
-                    <p style="text-align:center;"> <a href="Search.aspx" class="btn" style="margin: auto;font-family: 'Oswald', sans-serif; color: white; font-size: 20px;">Search by city preferences</a></p>
+                    <p style="text-align:center;"> <a href="Search.aspx" class="btn" style="margin: auto;font-family: 'Oswald', sans-serif; color: white; font-size: 22px;">Search by city & preferences &#8250;</a></p>
 <%--                    <p style="text-align: center; font-family: 'Oswald', sans-serif; color: white; font-size: 20px;"><a href="Search.aspx" class="btn btn-primary">Search by city &amp; preferences.</a></p>--%>
                 </div>
             </div>
@@ -138,7 +138,7 @@
         <div class="col-md-12" >
             <h2 style=" font-family: 'Oswald', sans-serif; color: #756664; margin-bottom:2rem;"; >Explore Our Locations, We're Closer Than You Think</h2>
             
-<div class='tableauPlaceholder' id='viz1572827549069' style='margin:auto; position: relative'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MD&#47;MDFDSM6CD&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;MDFDSM6CD' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MD&#47;MDFDSM6CD&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>               
+<div class='tableauPlaceholder' id='viz1572827549069' style='margin:auto; position: relative; max-height:550px;'><noscript><a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MD&#47;MDFDSM6CD&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;MDFDSM6CD' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MD&#47;MDFDSM6CD&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>               
             <script type='text/javascript'>                    var divElement = document.getElementById('viz1572827549069');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1000px';vizElement.style.height='827px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>            <script type='text/javascript'>var divElement = document.getElementById('viz1572313628086'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '1000px'; vizElement.style.height = '827px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '727px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);</script>
         </div>  
     </div><!-- end div row! -->

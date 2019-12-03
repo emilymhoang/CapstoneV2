@@ -28,7 +28,7 @@
       <div class="container">
           <div class="row">
             <div class="col-md-12">
-              <asp:Textbox ID="searchTextbox" type="text" style="font-size: 28px; height:60px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+              <asp:Textbox ID="searchTextbox" type="text" style="font-size: 20px; height:40px; font-family:'raleway';" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
               <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
             </div>
               <!--end col-->
@@ -66,7 +66,7 @@
         
         <div class="row" style="margin-bottom: 3rem;"> 
          
-             <div class="col-md-12"><asp:Button ID="searchButton" text="Search"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left; font-size: 30px;"></asp:Button></div>
+             <div class="col-md-12"><asp:Button ID="searchButton" text="Search"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left; font-size: 20px;"></asp:Button></div>
             
         </div>
 <%--          </div>--%>
