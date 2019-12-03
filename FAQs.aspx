@@ -61,7 +61,7 @@ Hosts who need assistance with light domestic duties (i.e. shopping, household o
            <div class="row" style="margin-bottom:2rem;">
             <div class="col">
                 <h3>Why is there a need for RoomMagnet?</h3>
-                <label for="formGroupExampleInput">As the cost of housing increases and become more scare in highly populated areas, it becomes harder for responsible students, as well as professional and semi-professionals (ie: doctoral interns, and interning nurses) to find suitable and affordable housing. Likewise, International students not only have the added expense of international living, but also must adjust to the cultural landscape of the U.S., which living with a host family can greatly reduce.
+                <label for="formGroupExampleInput">As the cost of housing increases and become more scarce in highly populated areas, it becomes harder for responsible students, as well as professional and semi-professionals (ie: doctoral interns, and interning nurses) to find suitable and affordable housing. Likewise, International students not only have the added expense of international living, but also must adjust to the cultural landscape of the U.S., which living with a host family can greatly reduce.
 </label>
             </div>
           </div> <!--end row class-->
