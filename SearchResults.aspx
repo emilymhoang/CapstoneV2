@@ -21,6 +21,9 @@
 
     </style>
 
+
+
+
     <header style="margin-top: 8rem;">
       <div class="container">
         <h2>Search for Your Perfect Space</h2>
