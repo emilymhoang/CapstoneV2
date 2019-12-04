@@ -308,7 +308,8 @@
             <div class="col-md-12" style="margin-top: 1rem; ">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
                 <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 100px;" class="img-fluid" runat="server" /></p>
-                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br></p>
+                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br></p>
+                <a href="https://www.intellicorp.net/marketing" class="btn" target="blank">More Information</a><br><br>
             </div>
             </div>
             </div>
@@ -339,7 +340,9 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <asp:Button ID="payButton" runat="server" Text="Pay With Card" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
+                                       
+                                        <a href="https://dashboard.stripe.com/login" class="btn" target="blank">Pay With Card</a>
+                                        <%--<asp:Button ID="payButton" runat="server" Text="Pay With Card" AutoPostBack="true" type="submit" class="btn"/>--%><br/><br/>
 <%--                                           <form action="/Charge" method="POST">
                                                 <script
                                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
