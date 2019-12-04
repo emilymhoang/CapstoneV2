@@ -457,8 +457,9 @@
     color: white;
     background-color: #CC6559;
     border-color: #CC6559;
-    border-radius: 15px;
+    border-radius: 15px;   
     border: 0px;
+    
     font-family: 'Oswald', sans-serif;
 }
 
@@ -510,7 +511,7 @@ a:hover {
 
 
 /* fonts   */
-@import url('https://fonts.googleapis.com/css?family=Oswald:500|Raleway:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Oswald:500|Raleway:400&display=swap');
 
 h1, h2, h3, h4, h5, h6{
     font-family: 'Oswald', sans-serif;

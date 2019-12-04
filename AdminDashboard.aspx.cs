@@ -488,7 +488,7 @@ public partial class AdminDashboard : System.Web.UI.Page
             hidehost.Connection = sc;
             hidehost.ExecuteNonQuery();
             Response.Redirect("AdminDashboard.aspx");
-            Response.Write("<script> alert('Host is now hiden.'); </script>");
+            Response.Write("<script> alert('Host is now hidden.'); </script>");
         }
         else
         {
