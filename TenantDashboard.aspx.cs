@@ -93,7 +93,7 @@ public partial class TenantDashboard : System.Web.UI.Page
             {
                 backgroundCheckResultTitle.Text = "Complete";
                 image7.ImageUrl = "images/icons-07.png";
-                backgroundCheckResultLbl.Text = "Your Background Check has been completed. Background checks are important to us. We take your safety seriously.";
+                backgroundCheckResultLbl.Text = "Your Background Check has been completed. Background checks are important to us. We take your safety seriously. To find out more about the background check process, click the button below.";
             }
             else
             {

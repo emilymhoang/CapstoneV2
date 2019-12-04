@@ -73,13 +73,13 @@ public partial class HostDashboard : System.Web.UI.Page
             {
                 backgroundCheckResultTitle.Text = "Complete";
                 image7.ImageUrl = "images/icons-07.png";
-                backgroundCheckResultLbl.Text = "Your Background Check has been completed. Background checks are important to us, we take your safety seriously.";
+                backgroundCheckResultLbl.Text = "Your Background Check has been completed. Background checks are important to us, we take your safety seriously. To find out more about the background check process, click the button below.";
             }
             else
             {
                 backgroundCheckResultTitle.Text = "Incomplete";
                 image7.ImageUrl = "images/NC.png";
-                backgroundCheckResultLbl.Text = "Our people are working hard to get your background check completed. Background checks are important to us, we take your safety seriously.";
+                backgroundCheckResultLbl.Text = "Our people are working hard to get your background check completed. Background checks are important to us, we take your safety seriously. To find out more about the background check process, click the button below.";
             }
 
 
