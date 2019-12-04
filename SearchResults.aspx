@@ -21,7 +21,9 @@
 
     </style>
 
-    <div class="collapse" id="collapseExample"> 
+
+
+
     <header style="margin-top: 8rem;">
       <div class="container">
         <h2>Search for Your Perfect Space</h2>
@@ -40,10 +42,8 @@
                </div>
     </header>
 
-    
-
     <div  class="container">
-     <div class="row " ">
+     <div class="row">
             <div class="col">
               <label style="font-size: 20px;  font-family: 'raleway', sans-serif; " for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
                 <label  style="font-size: 24px; color: black; font-family: 'Oswald', sans-serif; " for="formGroupExampleInput">Search for...</label>
@@ -131,26 +131,21 @@
       
   </script>
 
-</div> 
-
     <%--<asp:TextBox runat="server" id="txtMaxPrice" ReadOnly="true"></asp:TextBox>
     <asp:TextBox runat="server" id="txtMinPrice" ReadOnly="true"></asp:TextBox>--%>
 
         <div  class="container">
 
     <div style="margin-top: 6.35rem;">
-        <asp:ListView id="lvSearchResults" runat="server" Visible="true">
+        <asp:ListView id="lvSearchResults" runat="server" Visible="true" >
 
 
-            
-                
-               
-                <button class="btn " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Alter Search</button>
+            <LayoutTemplate>
+                <h1>Search Results</h1>
                 <table id="tbl1" runat="server">
                     <tr id="itemPlaceholder" runat="server"></tr>
                 </table>
-                
-           
+            </LayoutTemplate>
 
             <ItemTemplate>
                 <table style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px; margin-bottom:1rem;">
