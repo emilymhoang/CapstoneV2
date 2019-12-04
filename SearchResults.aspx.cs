@@ -379,7 +379,8 @@ public partial class SearchResults : System.Web.UI.Page
     }
     protected void profileButton(object sender, EventArgs e)
     {
-
+        if (Convert.ToInt32(Session["tenantID"]) > 0)
+        {
         SearchResult.selectedReultFullAddress = string.Empty;
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
@@ -387,6 +388,13 @@ public partial class SearchResults : System.Web.UI.Page
         Session["position"] = index;
         SearchResult.selectedReultFullAddress = SearchResult.lstSearchResults[index].resultFullAddress;
         Response.Redirect("PropertyDescription.aspx");
+        }
+
+        else
+        {
+            Response.Write("<script> alert('You need to login to view this information.'); </script>");
+            return;
+        }
     }
 
 

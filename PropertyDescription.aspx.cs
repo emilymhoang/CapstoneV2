@@ -160,7 +160,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                 SqlCommand host = new SqlCommand("SELECT Property.HostID FROM Property INNER JOIN PropertyRoom ON Property.PropertyID = PropertyRoom.PropertyID WHERE RoomID = " + roomID1, connection);
                 host.Connection = connection;
                 int hostID = Convert.ToInt32(host.ExecuteScalar());
-                hostIDforHH = hostID;
+                //hostIDforHH = hostID;
 
                 host.ExecuteNonQuery();
 
