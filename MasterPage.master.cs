@@ -79,7 +79,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             sc.Open();
             int accountID = Convert.ToInt32(Session["accountID"]);
-            Response.Write(accountID);
 
             SqlCommand login = new SqlCommand("SELECT HostID, TenantID, AdminID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
             login.Parameters.AddWithValue("@AccountID", accountID);
