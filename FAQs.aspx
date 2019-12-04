@@ -85,7 +85,9 @@ Hosts who need assistance with light domestic duties (i.e. shopping, household o
            <div class="row" style="margin-bottom:2rem;">
             <div class="col">
                 <h3>What is RoomMagnet’s background screening procedure?</h3>
-                <p>We require all RoomMagnet users ( Tenants and Hosts) who wish to connect on our platform  to initiate a background check. We ask this so that our users feel secure in taking advantage of the benefits of RoomMagnet. Hosts or Tenants may request, and rely upon one or more consumer reports or investigative consumer reports to determine a compatible living arrangement. Should either Host or Tenants not choose to initiate a background screen, either party may continue to search the site to find a compatible match, however before a match is consummated a background screen must be initiated.</p>
+                <p>We strongly suggest all RoomMagnet users ( Tenants and Hosts) who wish to connect on our platform initiate a background check. We ask this so that our users feel secure in taking advantage of the benefits of RoomMagnet. Hosts or Tenants may request, and rely upon one or more consumer reports or investigative consumer reports to determine a compatible living arrangement.
+Please keep in mind that should a Tenant and/or Host proceed without a background screen you will limit your ability to find a preferred match.
+</p>
             </div>
           </div> <!--end row class-->
           
@@ -93,10 +95,10 @@ Hosts who need assistance with light domestic duties (i.e. shopping, household o
            <div class="row" style="margin-bottom:2rem;">
             <div class="col">
                 <h3>What is the cost of my criminal background check?</h3>
-                <p>RoomMagnet has selected a criminal background company that follows the Federal Credit Reporting Act (FCRA) regulations. The background information is obtained from the consumer reporting agency, IntelliCorp Records, Inc. which can be contacted by mail at 3000 Auburn Dr, Suite 410;Beachwood, OH 44122; or phone: 1-888-946-8355; or website: www.intellicorp.net
-The cost of securing your criminal background check with Intellicorp is $24.95. (Use this link to
-begin your criminal background check. Be sure to enter the password located below link:
-Intellicorp Records will provide a link to request copy of your background report once it is completed .
+                <p>RoomMagnet does not charge either Tenants or Hosts a fee to register, develop a profile, list a property or search. RoomMagnet earns a match fee of one month’s rent for rentals 180 days or more once Hosts and Tenants connect and initiate the company’s letter of intent indicating a desirable match and a start date for occupancy. On Lease agreements that are 180 days or less Roommagnet will scale down the match fee based on the total rental term.
+
+Such commission will be deducted from the first month’s base rental rate with the balance then forwarded to the host through their stripe account
+
 
 </p>
             </div>
@@ -117,20 +119,13 @@ Such commission will be deducted from the first month’s base rental rate with 
 
            <div class="row" style="margin-bottom:2rem;">
             <div class="col">
-                <h3>Why do we use Stripe to disperse payments?</h3>
-                <p>Stripe is a recognized secure payment platform that works similar to Paypal in that it collects payments from RoomMagnet Renters (Tenants) and automatically disperses funds to Landlords (Hosts). In order for RoomMagnet to disperse funds, landlords (hosts) will need to set up a simple stripe account. This will enable RoomMagnet to distribute funds directly and quickly to the account provided. Stripe is a network with redundant security encryption, and all information is kept strictly confidential. For more information on stripe visit www.stripe.com.</p>
+                <h3>How will hosts get paid?</h3>
+                <p>In order for RoomMagnet to disperse funds, landlords (hosts) will need to set up a simple stripe account. This will enable funds to be distributed directly and quickly to the Hosts account. Stripe is a network with redundant security encryption, and all information is kept strictly confidential. 
+Stripe is a recognized secure payment platform that works similar to Paypal in that it collects payments from RoomMagnet Renters (Tenants) and automatically disperses funds to Landlords (Hosts).
+For more information on stripe visit www.stripe.com.</p>
             </div>
           </div> <!--end row class-->
           
-
-           <div class="row" style="margin-bottom:2rem;">
-            <div class="col">
-                <h3>How can I get involved with RoomMagnet?</h3>
-                <p>We are currently looking for people with strong writing skills to use their talents to write articles to be featured on www.RoomMagnet.com. Put your journalistic talents to the test by writing about topics that would appeal to our community. If you have a burning desire to vent on social news, sports, college life, then let’s talk.
-Send us an e mail, tell us a little about yourself ,send us an example of your writing and we’ll get back to you. And if you’re unsure about your writing, we have great people here at RoomMagnet that will help turn your pieces into first rate work. Come on! We’re waiting for you.
-</p>
-            </div>
-          </div> <!--end row class-->
          
 
 
