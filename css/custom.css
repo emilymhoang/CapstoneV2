@@ -410,6 +410,8 @@
 
 
 
+
+
 /* caurosel stuff  */
 
 .carousel-control-prev-icon {
@@ -451,10 +453,11 @@
 
 
 /* buttons   */
-.btn{
+.btn {
     color: white;
     background-color: #CC6559;
     border-color: #CC6559;
+    border-radius: 15px;
     border: 0px;
     font-family: 'Oswald', sans-serif;
 }
@@ -471,6 +474,7 @@
     background-color: #CC6559;
     border-color: #CC6559;
     border: 0px;
+    border-radius: 15px;
     font-family: 'Oswald', sans-serif;
 }
 

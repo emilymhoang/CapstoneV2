@@ -5,7 +5,7 @@
     <div class="row" style="background-image: url(images/foldimg_A0_Rectangle_2_pattern.png); background-repeat: no-repeat; background-size:cover; margin-top: 6rem; min-height:600px;">
 
         <div class="col-md-4  ctahome" style="margin-top: 8rem; margin-bottom: 8rem; ">
-            <div class="card card-inverse" style="width: 25rem; margin-top: 2rem; margin-bottom: 2rem; margin-right: 1rem;">
+            <div class="card card-inverse" style="width: 25rem; margin-top: 2rem; margin-bottom: 2rem; margin-right: 1rem; border-radius:15px;">
                 <div class="card-body">
                     <h5 class="card-title" style="text-align: center;font-family: 'Oswald', sans-serif; color: #756664; font-size: 30px;"">Room Magnet</h5>
                     <p class="card-text" style="text-align: center;  color: #756664; font-size: 20px;">An intergenerational rental matching service that enables you to homeshare with confidence.</p>

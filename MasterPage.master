@@ -41,9 +41,9 @@
                  
                 </div> <!-- end div header left - logo -->
           
-                <div class="col-md-5" style="text-align:right; margin-top:1rem; color:#756664;"><h4>Hello </h4></div>
+                
 
-                <div class="col-md-4" navhome" style="text-align: right; margin-top:1rem;">
+                <div class="col-md-9 navhome" style="text-align: right; ">
                     <!-- start nav header right -->
                       
                         <asp:Button type="button" class="btn btnb" style="font-family: 'Oswald', sans-serif; color: white; font-size: 20px;" runat="server" Text ="Get Started" onClick="getStarted" CausesValidation="false"></asp:Button>
