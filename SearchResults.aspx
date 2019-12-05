@@ -79,11 +79,19 @@
            <div class="col-md-12">
                <p>
                   <label for="amount">Price Range:</label>
-                  <input type="text" id="amount" readonly style="border:0; color:black; font-weight:bold; margin-left:2rem; margin-right:2rem; width:500px;">
-                  <asp:Label runat="server" ID="amount1" Width="500px"></asp:Label>
+                  <%--<input type="text" id="amount" readonly style="border:0; color:black; font-weight:bold; margin-left:2rem; margin-right:2rem; width:500px;">--%>
+                  <%--<asp:Label runat="server" ID="amount1" Width="500px"></asp:Label>--%>
+                   <asp:RadioButtonList runat="server" ID="rdoPriceList" RepeatDirection="Horizontal">
+                        <asp:ListItem Value ="none">No Preference</asp:ListItem>
+                        <asp:ListItem Value="low">$0 to $500</asp:ListItem>
+                        <asp:ListItem Value="medium">$501 to $999</asp:ListItem>
+                        <asp:ListItem Value="high">$1000+</asp:ListItem>
+                    </asp:RadioButtonList>
+                   <asp:Label runat="server" ID="lblInvalidFilterResults"></asp:Label>
                 </p> 
            </div>
-                <div id="slider-range" style="width: 600px;  "></div>
+                <%--<div id="slider-range" style="width: 600px;  "></div>--%>
+           
    
         </div>
         
@@ -100,7 +108,7 @@
  
 
 
-  <meta charset="utf-8">
+ <%-- <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
@@ -129,7 +137,9 @@
       });
 
       
-  </script>
+  </script>--%>
+
+    
 
     <%--<asp:TextBox runat="server" id="txtMaxPrice" ReadOnly="true"></asp:TextBox>
     <asp:TextBox runat="server" id="txtMinPrice" ReadOnly="true"></asp:TextBox>--%>
