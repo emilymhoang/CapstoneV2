@@ -175,6 +175,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         {
             backgroundChecklbl.Text = "No one needs background check approved.";
         }
+
     }
 
     protected void search_Click(object sender, EventArgs e)
@@ -371,7 +372,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void hideProperties(object sender, EventArgs e)
     {
-        Response.Write("<script> alert('Are you sure you want to hide this property?'); </script>");
+        //Response.Write("<script> alert('Are you sure you want to hide this property?'); </script>");
         //var lcount = lvSearchResultsAdmin.SelectedIndex;
 
         Button btn = sender as Button;
@@ -382,9 +383,28 @@ public partial class AdminDashboard : System.Web.UI.Page
         //lvSearchResults.SelectedIndex;
         //lvSearchResults.Items[lcount].Selected = 1;
 
-        SqlCommand delete = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' WHERE RoomID = @RoomID", sc);
-        delete.Parameters.AddWithValue("@RoomID", selectedPRid);
-        delete.ExecuteNonQuery();
+        if (btn.Text == "Mark as Unavailable")
+        {
+            Response.Write("<script> alert('Are you sure you want to hide this property?'); </script>");
+            SqlCommand delete = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'N' WHERE RoomID = @RoomID", sc);
+            delete.Parameters.AddWithValue("@RoomID", selectedPRid);
+            delete.ExecuteNonQuery();
+            btn.Text = "Mark as Available";
+
+        }
+        else
+        {
+            SqlCommand undelete = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'Y' WHERE RoomID = @RoomID", sc);
+            undelete.Parameters.AddWithValue("@RoomID", selectedPRid);
+            undelete.ExecuteNonQuery();
+            btn.Text = "Mark as Unavailable";
+        }
+
+
+
+
+
+
     }
 
     protected void approveApplicant(object sender, EventArgs e)
@@ -482,17 +502,25 @@ public partial class AdminDashboard : System.Web.UI.Page
         }
 
         if (showHostResult == "y")
-        {
+        {            
+
             SqlCommand hidehost = new SqlCommand("UPDATE [dbo].[Host] SET ShowHost = 'n' WHERE HostID = @HostID", sc);
             hidehost.Parameters.AddWithValue("@HostID", hostID);
             hidehost.Connection = sc;
             hidehost.ExecuteNonQuery();
-            Response.Redirect("AdminDashboard.aspx");
+            //Response.Redirect("AdminDashboard.aspx");
             Response.Write("<script> alert('Host is now hidden.'); </script>");
+            btn.Text = "Unhide Host";
         }
         else
         {
-            Response.Write("<script> alert('Host is already hidden from search.'); </script>");
+            SqlCommand unhidehost = new SqlCommand("UPDATE [dbo].[Host] SET ShowHost = 'y' WHERE HostID = @HostID", sc);
+            unhidehost.Parameters.AddWithValue("@HostID", hostID);
+            unhidehost.Connection = sc;
+            unhidehost.ExecuteNonQuery();
+            btn.Text = "Hide Host";
         }
     }
+
+
 }
