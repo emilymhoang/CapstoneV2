@@ -27,6 +27,9 @@ public partial class SearchResults : System.Web.UI.Page
             lvSearchResults.DataSource = SearchResult.lstSearchResults;
             lvSearchResults.DataBind();
         }
+
+        lblInvalidFilterResults.Text = string.Empty;
+
         SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
 
 
@@ -453,26 +456,72 @@ public partial class SearchResults : System.Web.UI.Page
             lstFilterCriteria.Add("na");
         }
 
+        //filter price
+        string filterPriceCriteria = rdoPriceList.SelectedItem.Value;
+        double priceUpperLimit = 0;
+        double priceLowerLimit = 0;
+
+        if (filterPriceCriteria.Equals("low"))
+        {
+            priceUpperLimit = 500;
+            priceLowerLimit = 0;
+        } else if (filterPriceCriteria.Equals("medium"))
+        {
+            priceUpperLimit = 999;
+            priceLowerLimit = 501;
+        } else if (filterPriceCriteria.Equals("high"))
+        {
+            priceLowerLimit = 1000;
+            priceUpperLimit = Double.MaxValue;
+        } else if (filterPriceCriteria.Equals("none"))
+        {
+            priceUpperLimit = Double.MaxValue;
+            priceLowerLimit = 0;
+        }
+
         foreach (var result in SearchResult.lstSearchResults)
         {
             bool match = true;
-            for (int i = 0; i < lstFilterCriteria.Count; i++)
+
+            //checks price match
+            
+            if (result.resultPriceDub >= priceLowerLimit && result.resultPriceDub <= priceUpperLimit)
             {
-                if (lstFilterCriteria[i].Equals("na"))
+
+                //checks badges match
+                for (int i = 0; i < lstFilterCriteria.Count; i++)
                 {
-                    continue;
-                } else if (!lstFilterCriteria[i].Equals(result.lstPropertyBadges[i]))
-                {
-                    match = false;
-                    break;
+                    if (lstFilterCriteria[i].Equals("na"))
+                    {
+                        continue;
+                    }
+                    else if (!lstFilterCriteria[i].Equals(result.lstPropertyBadges[i]))
+                    {
+                        match = false;
+                        break;
+                    }
+
+
                 }
+
+
+            } else {
+
+                match = false;
             }
+
+            
 
             if(match == true)
             {
                 SearchResult.lstFilteredResults.Add(result);
             }
 
+        }
+
+        if (SearchResult.lstFilteredResults.Count < 1)
+        {
+            lblInvalidFilterResults.Text = "No properties found with specified criteria!";
         }
 
         lvSearchResults.DataSource = SearchResult.lstFilteredResults;

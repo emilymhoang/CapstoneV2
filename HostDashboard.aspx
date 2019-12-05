@@ -343,7 +343,8 @@
             <div class="col-md-12" style="margin-top: 1rem;">
                <h3><asp:Label ID="backgroundCheckResultTitle" runat="server" Text=""></asp:Label></h3>
                 <p style="text-align: center;"><asp:Image ID="image7" style="max-width: 100px;" class="img-fluid" runat="server" /></p>
-                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br><br><br><br><br><br></p>
+                <p><asp:Label ID="backgroundCheckResultLbl" runat="server" Text=""></asp:Label><br></p>
+                     <a href="https://www.intellicorp.net/marketing" class="btn" target="blank">More Information</a><br><br>
             </div>
             </div>
             </div>

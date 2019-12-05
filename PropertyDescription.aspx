@@ -167,7 +167,7 @@
                           <img src="images/badges-10.png" style="max-width: 130px;" />
                       </div>
                        <div class="col-md-6" >
-                            <asp:Image ID="image7" style="max-height:350px; margin-left:1rem;" runat="server" />
+                            <asp:Image ID="image7" style="max-height:350px; max-width:500px; margin-left:1rem;" runat="server" />
                        </div>
                 </div>
           </div>
