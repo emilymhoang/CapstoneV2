@@ -75,6 +75,13 @@ public partial class HostDashboard : System.Web.UI.Page
                 image7.ImageUrl = "images/icons-07.png";
                 backgroundCheckResultLbl.Text = "Your Background Check has been completed. Background checks are important to us, we take your safety seriously. To find out more about the background check process, click the button below.";
             }
+            if (backgroundCheckResult == "r")
+            {
+                backgroundCheckResultTitle.Text = "Denied";
+                image7.ImageUrl = "images/icons-08.png";
+                backgroundCheckResultLbl.Text = "Your Background Check has been denied. Background checks are important to us. We take our users safety seriously. To find out more about the background check process, click the button below.";
+
+            }
             else
             {
                 backgroundCheckResultTitle.Text = "Incomplete";

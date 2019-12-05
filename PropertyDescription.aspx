@@ -247,7 +247,7 @@
 
                                  circle = new google.maps.Circle({
                                     map: map,
-                                    radius: 4023,    // 2.5 miles in metres
+                                    radius: 1609,    // 2.5 miles in metres
                                     fillColor: '#AA0000'
                                  });
 
