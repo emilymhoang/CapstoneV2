@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="TenantProfile.aspx.cs" Inherits="TenantProfile" %>
 
-<asp:Content ID="<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -78,50 +78,37 @@
 <div  class="container">
      
   <div class="row fixed-top" style="margin-top: 6.35rem; background-color: white; ">
-    <div class="col-md-1">
-      <asp:Button runat="server" style="margin-top: 1rem; margin-left:.5rem;" class="btn" ID="backButton" onClick="goBack" Text="Back"></asp:Button>
+    <div class="col-md-2">
+      <asp:Button runat="server" style="margin-top: 1rem; margin-left:1rem;" class="btn" ID="backButton" onClick="goBack" Text="&#8249; Back"></asp:Button>
       </div>
-       <div class="col-md-8" style="margin-top: 1rem;"> 
-          <h1><asp:Label runat="server" Text = "Homeowner's Property" style="font-family: 'Oswald', sans-serif; " ID="PropertyHeaderTextbox"></asp:Label></h1>
-           <asp:Image ID="imgbackgroundCheck" style="max-width: 30px;" runat="server" />         
+       <div class="col-md-3" style="margin-top: 1rem;"> 
+          <h1><asp:Label runat="server" Text = "Tenant's Profile" style="font-family: 'Oswald', sans-serif; " ID="PropertyHeaderTextbox"></asp:Label></h1>  
         </div> <!--end col-->
-        <div class="col-md-3" style="margin-top: 1rem;"> 
-            <asp:Button runat="server" class="btn" ID="Button1" OnClick="FavoriteClick" Text="Favorite"></asp:Button>      
-        </div> <!--end col-->
+
     
-    
-<%--        <div class="col-md-1" style="margin-top: 1.5rem; "> 
-        <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoriteClick" Text="Favorite"></asp:Button> </p>
-            </div>--%>
+  
     </div><!-- end div row -->  
 
-    <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px; height:410px !important;">
+    <div class="row " style="margin-top: 13rem; background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px; height:410px !important;">
             <div class="col-md-12" style="margin-top: 1rem;">
                 <div class="row">
                       <div class="col-md-6" >
-                            <h2> <asp:Label runat="server" Text = "Host Name" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblHostName"></asp:Label> </h2>
+                            <h2> <asp:Label runat="server" Text = "Tenant Name" style="font-family: 'Oswald', sans-serif; font-size: 30px;" ID="lblTenantName"></asp:Label>          <asp:Image ID="imgbackgroundCheck" style="max-width: 30px;" runat="server" />         
+</h2>
                     
-                            <p> <asp:Label runat="server" Text = "The brief bio of a host would go here." style="font-family: 'Raleway', sans-serif; font-size: 18px;" ID="lblHostBio"></asp:Label>  </p>
+                            <p> <asp:Label runat="server" Text = "The brief bio of a Tenant would go here." style="font-family: 'Raleway', sans-serif; font-size: 18px;" ID="lblTenantBio"></asp:Label>  </p>
                          <%--   <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">--%>
-                          <img src="images/badges-10.png" style="max-width: 130px;" />
+                        <asp:Image ID="undergraduateBadge" style="max-width:130px;" runat="server" />
+                        <asp:Image ID="graduateBadge" style="max-width:150px;" runat="server" />
+                        <asp:Image ID="choresBadge" style="max-width:150px;" runat="server" />
+
                       </div>
                        <div class="col-md-6" >
-                            <asp:Image ID="image7" style="max-height:350px; max-width:500px; margin-left:1rem;" runat="server" />
+                            <asp:Image ID="tenantProfPic" style="max-height:350px; max-width:500px; margin-left:1rem;" runat="server" />
                        </div>
                 </div>
           </div>
     </div><!-- end div big row -->  
-
-    <div class="row" style="background-color: #ebebeb; margin-bottom: 3rem; border-radius:25px;">
-        <div class="col-md-12">
-             <h2 style="margin-top:1rem;">Where We're Located</h2>
-
-
-
-        </div>
-    </div>
-   
 </div>
-</asp:Content>Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 </asp:Content>
 

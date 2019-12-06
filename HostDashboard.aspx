@@ -308,6 +308,9 @@
                                             <asp:Label ID="lblSenderName" runat="Server" Text='<%#Eval("recieverName") %>' />
                                         </h3>
                                     </td>
+                                    <td>
+                                            <asp:Button ID="viewTenantProfile" onClick="viewTenantProfile" style="font-size: 10px;" runat="server" Text="View Profile" AutoPostBack="true" type="submit" class="btn" />
+                                    </td>
 <%--                                    <td>
                                         <h3>
                                             <asp:Label ID="Label3" runat="Server" Text="--" />

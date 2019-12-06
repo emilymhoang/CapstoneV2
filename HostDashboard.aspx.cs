@@ -567,6 +567,15 @@ else
         Response.Redirect("Contract.aspx");
     }
 
+    protected void viewTenantProfile(object sender, EventArgs e)
+    {
+        Button btn = sender as Button;
+        ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
+        var index = item.DataItemIndex;
+        Session["MessageTenantID"] = Message.lstHostMessages[index].tenantID;
+        Response.Redirect("TenantProfile.aspx");
+    }
+
     protected void logout(object sender, EventArgs e)
     {
         Session.Abandon();
