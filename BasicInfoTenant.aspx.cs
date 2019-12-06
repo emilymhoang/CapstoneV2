@@ -93,6 +93,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
                         Session["underGraduate"] = undergradCheck.Checked;
                         Session["graduate"] = gradCheck.Checked;
                         Session["chores"] = choresCheck.Checked;
+                        Session["tenantBio"] = TenantBioTextbox.Text;
                         Response.Redirect("CreateLoginTenant.aspx");
                         //resultmessagedob.Text = "Student must be between 18 - 30 years old, age is " + age;
                         
@@ -124,6 +125,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
         emailTextbox.Text = "hoangex@dukes.jmu.edu";
         confirmEmailTextbox.Text = "hoangex@dukes.jmu.edu";
         phoneNumberTextbox.Text = "703-342-7285";
+        TenantBioTextbox.Text = "I am a Junior Nursing student at James Madison University. I am looking to rent a room where I can exchange my skills obtained from nursing for a discounted price.";
 
     }
     protected void UploadButton_Click(object sender, EventArgs e)

@@ -122,7 +122,11 @@
                  </script>
               <asp:Textbox id="phoneNumberTextbox" class="form-control" MaxLength="17" placeholder="(xxx)xxx-xxxx" onKeyup="addFormat(this)" runat="server" type="tel"></asp:Textbox>
               <asp:RequiredFieldValidator ID="phoneNumberRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="phoneNumberTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-            </div>
+              <label for="formGroupExampleInput">Tenant Bio*</label>
+              <asp:Textbox id="TenantBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="300" placeholder="Ex. I am a Junior Nursing student at James Madison University." type="text"></asp:Textbox>
+              <asp:Label ID="result" runat="server" ForeColor="Red"></asp:Label>
+              <asp:RequiredFieldValidator ID="BioRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="TenantBioTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>            
+             </div>
               <div class="col">
                   <h3>Institution Level</h3>
               <asp:CheckBox ID="undergradCheck" type=" checkbox" name="Undergraduate Student" value="undergrad" runat="server"></asp:Checkbox> Undergraduate Student<br>
