@@ -48,7 +48,6 @@ public partial class HostDashboard : System.Web.UI.Page
         sc.Open();
 
         int accountID = Convert.ToInt32(Session["accountID"]);
-        Response.Write(accountID);
 
         SqlCommand insert = new SqlCommand("SELECT HostID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);

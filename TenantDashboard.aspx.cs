@@ -69,7 +69,6 @@ public partial class TenantDashboard : System.Web.UI.Page
 
         sc.Open();
         int accountID = Convert.ToInt32(Session["accountID"]);
-        Response.Write(accountID);
 
         SqlCommand insert = new SqlCommand("SELECT TenantID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);
