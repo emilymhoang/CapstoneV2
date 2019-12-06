@@ -83,7 +83,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         if (count == 0)
         {
             bool isValid;
-            if (password.Length > 8 && (isValid = ValidatePassword(password)))
+            if (password.Length >= 8 && (isValid = ValidatePassword(password)))
             {
                 if (password == cpassword)
                 {
