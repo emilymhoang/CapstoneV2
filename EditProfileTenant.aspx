@@ -81,6 +81,14 @@
             </div> <!--end col-->
           </div> <!--end row class-->
         <br>
+          <div class="row">
+            <div class="col">
+              <label for="formGroupExampleInput">Tenant Bio </label>
+              <asp:Textbox id="TenantBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:540px;" MaxLength="300" type="text"></asp:Textbox>
+              <asp:Label ID="result" runat="server" ForeColor="Red"></asp:Label>
+              <asp:RequiredFieldValidator ID="BioRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="TenantBioTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
+            </div>
+             </div>
         
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>

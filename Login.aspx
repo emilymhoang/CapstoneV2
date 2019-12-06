@@ -35,7 +35,7 @@
                       <div class="row">
                         <div class="col">
                           <label for="formGroupExampleInput"></label>
-                          <asp:Textbox type="text" ID="userNameTextbox" class="form-control" MaxLength="30" placeholder="User Name" runat="server"></asp:Textbox>
+                          <asp:Textbox type="text" ID="userNameTextbox" class="form-control" MaxLength="30" placeholder="User Name" runat="server" style="font-family: 'Raleway', sans-serif; "></asp:Textbox>
                             <asp:RequiredFieldValidator ID="userNameRequiredFieldValidator" runat="server" ControlToValidate="usernameTextbox" ErrorMessage="Required" style="font-family: 'Raleway', sans-serif; color: #B23325; font-size: 20px;">User Name is required.</asp:RequiredFieldValidator>
                              <label for="formGroupExampleInput"></label>
             
@@ -45,7 +45,7 @@
                       <div class="row">
                         <div class="col">
                           <label for="formGroupExampleInput"></label>
-                          <asp:Textbox type="password" ID="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"></asp:Textbox>
+                          <asp:Textbox type="password" ID="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"  style="font-family: 'Raleway', sans-serif; "></asp:Textbox>
                             <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ControlToValidate="passwordTextbox" ErrorMessage="Required" style="font-family: 'Raleway', sans-serif; color: #B23325; font-size: 20px;">Password is required.</asp:RequiredFieldValidator>
                             <label for="formGroupExampleInput"></label>
                         </div>

@@ -21,7 +21,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
     String underGraduate;
     String graduate;
     String chores;
-
+    String bio;
 
 
     protected void Page_Load(object sender, EventArgs e)
@@ -72,6 +72,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         underGraduate = Session["underGraduate"].ToString();
         graduate = Session["graduate"].ToString();
         chores = Session["chores"].ToString();
+        bio = Session["tenantBio"].ToString();
 
 
 
@@ -90,8 +91,8 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     Tenant newTenant = new Tenant(firstName, lastName, gender, dateOfBirth, email, phoneNumber, userNameTextbox.Text, passwordTextbox.Text, confirmPasswordTextbox.Text);
                     resultmessage.Text = "";
                     insertTenant.CommandText = "INSERT INTO [dbo].[Tenant] (Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
-                                "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated); ";
+                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, TenantBio) VALUES (@Email, @PhoneNumber, @FirstName, @MiddleName," +
+                                "@LastName, @BirthDate, @Gender, @BackgroundCheckDate, @BackgroundCheckResult, @LastUpdatedBy, @LastUpdated, @TenantBio); ";
 
                     insertTenant.Parameters.AddWithValue("@Email", email);
                     insertTenant.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
@@ -105,6 +106,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     //ADD USERNAME and CONFIRM PASSOWRD IN DATABASE
                     insertTenant.Parameters.AddWithValue("@LastUpdatedBy", lastName);
                     insertTenant.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
+                    insertTenant.Parameters.AddWithValue("@TenantBio", bio);
 
                     sc.Open();
                     insertTenant.ExecuteNonQuery();

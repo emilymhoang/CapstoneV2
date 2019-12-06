@@ -25,7 +25,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
             tenantID = Convert.ToInt32(insert.ExecuteScalar());
             insert.ExecuteNonQuery();
             SqlCommand filter = new SqlCommand("SELECT Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [dbo].[Tenant] WHERE " +
+                                "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, TenantBio FROM [dbo].[Tenant] WHERE " +
                                 "TenantID = " + tenantID, sc);
         if (IsPostBack == false)
         {
@@ -37,6 +37,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
                 HttpUtility.HtmlEncode(lastNameTextbox.Text = rdr["LastName"].ToString());
                 HttpUtility.HtmlEncode(emailTextbox.Text = rdr["Email"].ToString());
                 HttpUtility.HtmlEncode(phoneNumberTextbox.Text = rdr["PhoneNumber"].ToString());
+                HttpUtility.HtmlEncode(TenantBioTextbox.Text = rdr["TenantBio"].ToString());
             }
             passwordTextbox.Text = "";
         }
@@ -53,11 +54,12 @@ public partial class EditProfileTenant : System.Web.UI.Page
                 {
                     update.Connection = sc;
                     update.CommandText = "UPDATE [dbo].[Tenant] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
-                    "LastName = @LastName WHERE TenantID = " + tenantID;
+                    "LastName = @LastName, TenantBio = @TenantBio WHERE TenantID = " + tenantID;
                     update.Parameters.AddWithValue("@Email", emailTextbox.Text);
                     update.Parameters.AddWithValue("@PhoneNumber", phoneNumberTextbox.Text);
                     update.Parameters.AddWithValue("@FirstName", firstNameTextbox.Text);
                     update.Parameters.AddWithValue("@LastName", lastNameTextbox.Text);
+                    update.Parameters.AddWithValue("@TenantBio", TenantBioTextbox.Text);
                     sc.Open();
 
                     //email stuff
@@ -78,6 +80,7 @@ public partial class EditProfileTenant : System.Web.UI.Page
                     Session["FirstName"] = firstNameTextbox.Text;
                     Session["LastName"] = lastNameTextbox.Text;
                     Session["PhoneNumber"] = phoneNumberTextbox.Text;
+                    Session["TenantBio"] = TenantBioTextbox.Text;
 
                     }
                     else

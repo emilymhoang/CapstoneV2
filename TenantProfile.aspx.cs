@@ -85,4 +85,8 @@ public partial class TenantProfile : System.Web.UI.Page
     {
     Response.Redirect("Index.aspx");
     }
+    protected void goBack(object sender, EventArgs e)
+    {
+        Response.Redirect("SearchResults.aspx");
+    }
 }

@@ -18,14 +18,22 @@
        }
         </style>
 <%--    <div style="background-image: url(images/foldimg_A0_Rectangle_2_pattern.png); background-repeat: no-repeat; background-size:cover;">--%>
-    <header style="margin-top: 8rem;">
-      <div class="container">
-        <h1 style="margin-top: 1rem; color: #756664;">Search by City or ZIP Code</h1>
-      </div>
-       
-    </header>
-    <section id="creation" style="margin-top: 3rem; font-family: 'Oswald', sans-serif; font-size:20px">
-      <div class="container">
+    
+    <div class="row" style=" background-image: url(images/im3rd-media-CbZ4EDP__VQ-unsplash.jpg); background-repeat: no-repeat; background-size:cover; ">
+           <div class="col-md-12" style=" margin-top:9rem; margin-bottom:2rem; ">
+              
+               <div class="card" style="width:28rem; margin: auto; margin-top:5rem; margin-bottom: 5rem;">
+                  <div class="card-body">
+                        <h1 class="card-title" style="color: #756664;">Search</h1>
+                        <p class="card-text" style="font-size:20px;">By city or zip code.</p> <br /> 
+                    
+                     
+                     
+                     
+                    
+
+    <section id="creation">
+      
           <div class="row">
             <div class="col-md-12">
               <asp:Textbox ID="searchTextbox" type="text" style="font-size: 20px; height:40px; font-family:'raleway';" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
@@ -130,4 +138,14 @@
           </div>
 
     </section>
+
+
+                    
+                     </div>
+                </div>
+
+           </div>
+
+    </div>
+
 </asp:Content>
