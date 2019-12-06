@@ -11,4 +11,8 @@ public partial class TenantProfile : System.Web.UI.Page
     {
 
     }
+    protected void goBack(object sender, EventArgs e)
+    {
+        Response.Redirect("SearchResults.aspx");
+    }
 }
