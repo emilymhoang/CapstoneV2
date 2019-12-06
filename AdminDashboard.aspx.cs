@@ -224,7 +224,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                         "FROM [dbo].[Host] left join [dbo].[Property] on " +
                         "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
                         "left join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
-                        "where [dbo].[Property].Zip = @zip and lower([dbo].[PropertyRoom].Availability) = 'y'";
+                        "where [dbo].[Property].Zip = @zip";
 
                     command.Parameters.AddWithValue("@zip", propertySearch);
                 }
@@ -239,7 +239,7 @@ public partial class AdminDashboard : System.Web.UI.Page
                             "FROM [dbo].[Host] left join [dbo].[Property] on " +
                             "[dbo].[Host].HostID = [dbo].[Property].HostID left join [dbo].[PropertyRoom] on [dbo].[Property].PropertyID = [dbo].[PropertyRoom].PropertyID " +
                             "left join [dbo].[BadgeProperty] on [dbo].[PropertyRoom].RoomID = [dbo].[BadgeProperty].RoomID " +
-                            "where [dbo].[Property].CityCounty = @city and lower([dbo].[PropertyRoom].Availability) = 'y' ";
+                            "where [dbo].[Property].CityCounty = @city";
 
 
                     command.Parameters.AddWithValue("@city", propertySearch);
@@ -486,7 +486,7 @@ public partial class AdminDashboard : System.Web.UI.Page
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
         var selectedPRid = SearchResult.lstSearchResults[index].resultID;
-        SqlCommand getHost = new SqlCommand("SELECT HostID FROM[dbo].[Property] WHERE PropertyID = (SELECT PropertyID FROM[dbo].[PropertyRoom] WHERE RoomID = @RoomID)", sc);
+        SqlCommand getHost = new SqlCommand("SELECT HostID FROM [dbo].[Property] WHERE PropertyID = (SELECT PropertyID FROM[dbo].[PropertyRoom] WHERE RoomID = @RoomID)", sc);
         getHost.Parameters.AddWithValue("@RoomID", selectedPRid);
         int hostID = Convert.ToInt32(getHost.ExecuteScalar());
         getHost.ExecuteNonQuery();
