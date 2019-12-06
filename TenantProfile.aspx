@@ -98,9 +98,9 @@
                     
                             <p> <asp:Label runat="server" Text = "The brief bio of a Tenant would go here." style="font-family: 'Raleway', sans-serif; font-size: 18px;" ID="lblTenantBio"></asp:Label>  </p>
                          <%--   <img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;"><img src="images/badges-03.png" style="max-width: 130px;">--%>
-                        <asp:Image ID="undergraduateBadge" style="max-width:130px;" runat="server" />
-                        <asp:Image ID="graduateBadge" style="max-width:150px;" runat="server" />
-                        <asp:Image ID="choresBadge" style="max-width:150px;" runat="server" />
+                        <asp:Image ID="undergraduateBadge" style="max-width:200px;" runat="server" />
+                        <asp:Image ID="graduateBadge" style="max-width:200px;" runat="server" />
+                        <asp:Image ID="choresBadge" style="max-width:200px;" runat="server" />
 
                       </div>
                        <div class="col-md-6" >

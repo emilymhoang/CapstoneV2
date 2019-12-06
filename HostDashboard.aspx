@@ -21,7 +21,7 @@
         .btn {
            font-family: 'Oswald', sans-serif;
            color: white; 
-           font-size: 18px;
+           font-size: 20px;
        }
     </style>
 <div  class="container">
@@ -309,7 +309,7 @@
                                         </h3>
                                     </td>
                                     <td>
-                                            <asp:Button ID="viewTenantProfile" onClick="viewTenantProfile" style="font-size: 10px;" runat="server" Text="View Profile" AutoPostBack="true" type="submit" class="btn" />
+                                            <asp:Button ID="viewTenantProfile" onClick="viewTenantProfile" style="font-size: 14px;" runat="server" Text="View Profile" AutoPostBack="true" type="submit" class="btn" />
                                     </td>
 <%--                                    <td>
                                         <h3>

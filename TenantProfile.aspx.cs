@@ -83,10 +83,6 @@ public partial class TenantProfile : System.Web.UI.Page
 
     protected void goBack(object sender, EventArgs e)
     {
-    Response.Redirect("Index.aspx");
-    }
-    protected void goBack(object sender, EventArgs e)
-    {
-        Response.Redirect("SearchResults.aspx");
+    Response.Redirect("HostDashboard.aspx");
     }
 }
