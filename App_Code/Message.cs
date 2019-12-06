@@ -26,7 +26,7 @@ public class Message
     public Message(int tenantID, int hostID, String message, string lastUpdatedBy)
     {
         this.hostID = hostID;
-        this.messageDate = DateTime.Now;
+        this.messageDate = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
         this.lastUpdated = DateTime.Now;
         this.tenantID = tenantID;
         this.message = message;

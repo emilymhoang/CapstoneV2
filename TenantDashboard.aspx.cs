@@ -191,7 +191,7 @@ public partial class TenantDashboard : System.Web.UI.Page
 
 
                                 Message msg = new Message(tenantid, hostid, message, lub);
-
+                             
                                 msg.setMessageDate(Convert.ToDateTime(HttpUtility.HtmlEncode(reader["MessageDate"])));
                                 string recieverName = string.Empty;
 
