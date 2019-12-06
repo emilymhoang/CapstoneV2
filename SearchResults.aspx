@@ -35,15 +35,18 @@
           </div>
              <div class="col">
                 <asp:Button ID="searchButton" text="Search"  runat="server" class="btn" type="submit" onClick="search_Click" style="float: left; font-size: 20px;"></asp:Button>
+                 
               </div>
              </div>
           <br>
-          
+           <button class="btn " type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="font-size: 20px;">&#43; Advanced Search </button>
+         
       </div>
     </header>
 
-    <div  class="container">
-     <div class="row">
+    
+    <div  class="container collapse" id="collapseExample">
+     <div class="row" style="margin-top:1rem;">
             <div class="col">
               <label style="font-size: 22px;  font-family: 'raleway', sans-serif; " for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs...</label><br/><br />
                 
@@ -168,7 +171,7 @@
                                 </tr>
                                 <tr>
                                      <td>
-                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 25px;" ID="Label2" Text='<%#Eval("resultName") %>'></asp:Label>
+                                        <asp:Label runat="server" style="font-family: 'Oswald', sans-serif; font-size: 25px;" ID="Label2" Text='<%#Eval("resultName") %>'> </asp:Label>
                                          <asp:Image ID="Image1" ImageUrl='<%#Eval("backgroundCheckResult")%>' style="max-width: 25px; margin-bottom: 1rem;" class="img-fluid" runat="server" /></br>
                                     </td>
                                 </tr>
@@ -207,9 +210,9 @@
                             <table>
                                 <tr>
                                      <td style="float:right;">
-                                        <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="Favorite"/>
+                                        <asp:Button runat="server" class="btn" ID="btnFavorite" OnClick="FavoritesButton" Text="&#10084; Favorite"/>
                                         &nbsp;
-                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="View Additional Info" OnClick="profileButton"/>
+                                        <asp:Button runat="server" class="btn" ID="btnViewProfile" Text="&#43; View Additional Info" OnClick="profileButton"/>
                                     </td</tr>
                                 <tr>
                                     <td>
