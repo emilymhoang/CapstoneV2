@@ -29,7 +29,6 @@ public partial class AdminDashboard : System.Web.UI.Page
         BackgroundCheckApplicant.lstBackgroundCheckApplicants.Clear();
         sc.Open();
         int accountID = Convert.ToInt32(Session["accountID"]);
-        Response.Write(accountID);
 
         SqlCommand insert = new SqlCommand("SELECT AdminID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);
