@@ -25,7 +25,7 @@ public partial class EditProfileHost : System.Web.UI.Page
         hostID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
         SqlCommand filter = new SqlCommand("SELECT Email, PhoneNumber, Firstname, MiddleName, LastName, BirthDate," +
-                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated FROM [dbo].[Host] WHERE " +
+                            "Gender, BackgroundCheckDate, BackgroundCheckResult, LastUpdatedBy, LastUpdated, HostBio FROM [dbo].[Host] WHERE " +
                             "HostID = " + hostID, sc);
         if (IsPostBack == false)
         {
@@ -37,6 +37,7 @@ public partial class EditProfileHost : System.Web.UI.Page
                 HttpUtility.HtmlEncode(lastNameTextbox.Text = rdr["LastName"].ToString());
                 HttpUtility.HtmlEncode(emailTextbox.Text = rdr["Email"].ToString());
                 HttpUtility.HtmlEncode(phoneNumberTextbox.Text = rdr["PhoneNumber"].ToString());
+                HttpUtility.HtmlEncode(HostBioTextbox.Text = rdr["HostBio"].ToString());
             }
             passwordTextbox.Text = "";
         }
@@ -53,11 +54,12 @@ public partial class EditProfileHost : System.Web.UI.Page
                 {
                     update.Connection = sc;
                     update.CommandText = "UPDATE [dbo].[Host] SET Email= @Email, PhoneNumber= @PhoneNumber, FirstName= @FirstName," +
-                    "LastName = @LastName WHERE HostID = " + hostID;
+                    "LastName = @LastName, HostBio = @HostBio WHERE HostID = " + hostID;
                     update.Parameters.AddWithValue("@Email", emailTextbox.Text);
                     update.Parameters.AddWithValue("@PhoneNumber", phoneNumberTextbox.Text);
                     update.Parameters.AddWithValue("@FirstName", firstNameTextbox.Text);
                     update.Parameters.AddWithValue("@LastName", lastNameTextbox.Text);
+                    update.Parameters.AddWithValue("@HostBio", HostBioTextbox.Text);
                     sc.Open();
 
                     // email stuff
@@ -78,6 +80,7 @@ public partial class EditProfileHost : System.Web.UI.Page
                         Session["FirstName"] = firstNameTextbox.Text;
                         Session["LastName"] = lastNameTextbox.Text;
                         Session["PhoneNumber"] = phoneNumberTextbox.Text;
+                        Session["HostBio"] = HostBioTextbox.Text;
 
                     }
                     else

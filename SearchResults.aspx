@@ -45,8 +45,8 @@
     <div  class="container">
      <div class="row">
             <div class="col">
-              <label style="font-size: 20px;  font-family: 'raleway', sans-serif; " for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs.</label><br/><br />
-                <label  style="font-size: 24px; color: black; font-family: 'Oswald', sans-serif; " for="formGroupExampleInput">Search for...</label>
+              <label style="font-size: 22px;  font-family: 'raleway', sans-serif; " for="formGroupExampleInput">Add preferences to your search to find a place perfect for your specific needs...</label><br/><br />
+                
             </div>
              <!--end col-->
           </div> <!--end row class-->
@@ -60,32 +60,29 @@
               </div>--%>
     
            <div class="row">  
-          <div class="col-md-6">
-              <p><asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="y" runat="server"></asp:Checkbox>Furnished<br>
+          <div class="col-md-4">
+              <p><asp:CheckBox ID="furnishedCheck" type="checkbox" name="Furnished" value="y" runat="server"></asp:Checkbox> Furnished<br>
                <asp:CheckBox ID="privateBathroomCheck" type="checkbox" name="Private Bathroom" value="y" runat="server"></asp:Checkbox> Private Bathroom<br>
                 <asp:CheckBox ID="closetCheck" type="checkbox" name="Closet/Storage Space" value="y" runat="server"></asp:Checkbox> Closet/ Storage Space<br></p>
             </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
               <p><asp:CheckBox ID="nonSmokerCheck" type="checkbox" name="Non-Smokers" value="y" runat="server"></asp:Checkbox> Non-Smokers<br>
                <asp:CheckBox ID="kitchenCheck" type="checkbox" name="Kitchen" value="y" runat="server"></asp:CheckBox> Kitchen<br>
                 <asp:CheckBox ID="privateEntranceCheck" type="checkbox" name="Private Entrance" value="y" runat="server"></asp:Checkbox> Private Entrance
                   <br></p>
             </div>
               
-             <!--end col-->
-          </div> <!--end row class-->
-        
-       <div class="row">
-           <div class="col-md-12">
+            
+           <div class="col-md-4">
                <p>
                   <label for="amount">Price Range:</label>
                   <%--<input type="text" id="amount" readonly style="border:0; color:black; font-weight:bold; margin-left:2rem; margin-right:2rem; width:500px;">--%>
                   <%--<asp:Label runat="server" ID="amount1" Width="500px"></asp:Label>--%>
-                   <asp:RadioButtonList runat="server" ID="rdoPriceList" RepeatDirection="Horizontal">
-                        <asp:ListItem Value ="none">No Preference</asp:ListItem>
-                        <asp:ListItem Value="low">$0 to $500</asp:ListItem>
-                        <asp:ListItem Value="medium">$501 to $999</asp:ListItem>
-                        <asp:ListItem Value="high">$1000+</asp:ListItem>
+                   <asp:RadioButtonList runat="server" ID="rdoPriceList" RepeatDirection="Vertical" style="font-family: 'raleway', sans-serif;">
+                        <asp:ListItem Value ="none"> No Preference</asp:ListItem>
+                        <asp:ListItem Value="low"> $0 - $500</asp:ListItem>
+                        <asp:ListItem Value="medium"> $501 - $999</asp:ListItem>
+                        <asp:ListItem Value="high"> $1000+</asp:ListItem>
                     </asp:RadioButtonList>
                    <asp:Label runat="server" ID="lblInvalidFilterResults"></asp:Label>
                 </p> 
