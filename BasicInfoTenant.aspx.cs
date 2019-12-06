@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class BasicInfoTenant : System.Web.UI.Page
 {
+    
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -84,6 +85,8 @@ public partial class BasicInfoTenant : System.Web.UI.Page
                 if(DropDownListGender.SelectedValue != "-1") { 
                 //if (age > 18 || age < 100)
                 //    {
+
+
                         Session["firstName"] = firstNameTextbox.Text;
                         Session["lastName"] = lastNameTextbox.Text;
                         Session["gender"] = DropDownListGender.SelectedValue;
@@ -131,6 +134,11 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     protected void UploadButton_Click(object sender, EventArgs e)
     {
         //Insert image
+    }
+
+    protected void undergradCheck(object sender, EventArgs e)
+    {
+
     }
 
 
