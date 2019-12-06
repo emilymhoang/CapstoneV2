@@ -126,7 +126,7 @@
               </div>
               <div class="col">
                    <label for="formGroupExampleInput" style="font-family:'raleway', sans-serif;">Tenant Bio*</label>
-              <asp:Textbox id="TenantBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="300"  placeholder="Ex. I am a Junior Nursing student at James Madison University." type="text" ></asp:Textbox>
+              <asp:Textbox id="TenantBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="290"  placeholder="Ex. I am going to be a graduate student and am willing to do chores in exchange for redueced rent." type="text" ></asp:Textbox>
               <asp:Label ID="result" runat="server" ForeColor="Red"></asp:Label>
               <asp:RequiredFieldValidator ID="BioRequiredFieldValidator" runat="server" ErrorMessage="Required" style="font-family:'raleway', sans-serif;" ControlToValidate="TenantBioTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>            
              </div>
@@ -151,7 +151,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           
             <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" AutoPostBack="true" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next &#8250;" type="submit" AutoPostBack="true" onClick="submitBasicInfo" style="float: right;" runat="server" CausesValidation="true"></asp:Button></div>
         </div>     
       </div> <!--end container-->
     </section>

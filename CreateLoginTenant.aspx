@@ -85,7 +85,7 @@
        
           <div class="row" style="margin-bottom: 3rem; margin-left:1rem;"> 
         
-            <div class="col-md-6 "><asp:Button ID ="backButton" class="btn" Text ="Back" type="submit" onClick="goBack" style="float: right;" runat="server" CausesValidation="false" validaterequest="fasle"></asp:Button></div>
+            <div class="col-md-6 "><asp:Button ID ="backButton" class="btn" Text ="&#8249; Back" type="submit" onClick="goBack" style="float: right;" runat="server" CausesValidation="false" validaterequest="fasle"></asp:Button></div>
              <div class="col-md-6 "><asp:Button ID="next2Button" class="btn" type="submit" style="float: left;" runat="server" Text="Next" OnCommand="submitLogin_Click" AutoPostBack ="true"></asp:Button></div>
             
         </div>     
