@@ -20,6 +20,8 @@ public partial class Search : System.Web.UI.Page
     string nonsmoker;
     string kitchen;
     string entrance;
+    private List<string> lstFilterCriteria = new List<string>();
+
 
 
     protected void Page_Load(object sender, EventArgs e)
@@ -200,5 +202,139 @@ public partial class Search : System.Web.UI.Page
 
     }
 
- 
+    //protected void btnFilterResults_Click(object sender, EventArgs e)
+    //{
+    //    lstFilterCriteria.Clear();
+    //    SearchResult.lstFilteredResults.Clear();
+
+    //    //populating filtered list
+    //    if (privateEntranceCheck.Checked)
+    //    {
+    //        lstFilterCriteria.Add("y");
+    //    }
+    //    else
+    //    {
+    //        lstFilterCriteria.Add("na");
+    //    }
+    //    if (kitchenCheck.Checked)
+    //    {
+    //        lstFilterCriteria.Add("y");
+    //    }
+    //    else
+    //    {
+    //        lstFilterCriteria.Add("na");
+    //    }
+    //    if (furnishedCheck.Checked)
+    //    {
+    //        lstFilterCriteria.Add("y");
+    //    }
+    //    else
+    //    {
+    //        lstFilterCriteria.Add("na");
+    //    }
+    //    if (closetCheck.Checked)
+    //    {
+    //        lstFilterCriteria.Add("y");
+    //    }
+    //    else
+    //    {
+    //        lstFilterCriteria.Add("na");
+    //    }
+    //    if (nonSmokerCheck.Checked)
+    //    {
+    //        lstFilterCriteria.Add("y");
+    //    }
+    //    else
+    //    {
+    //        lstFilterCriteria.Add("na");
+    //    }
+    //    if (privateBathroomCheck.Checked)
+    //    {
+    //        lstFilterCriteria.Add("y");
+    //    }
+    //    else
+    //    {
+    //        lstFilterCriteria.Add("na");
+    //    }
+
+    //    //filter price
+    //    string filterPriceCriteria = rdoPriceList.SelectedItem.Value;
+    //    double priceUpperLimit = 0;
+    //    double priceLowerLimit = 0;
+
+    //    if (filterPriceCriteria.Equals("low"))
+    //    {
+    //        priceUpperLimit = 500;
+    //        priceLowerLimit = 0;
+    //    }
+    //    else if (filterPriceCriteria.Equals("medium"))
+    //    {
+    //        priceUpperLimit = 999;
+    //        priceLowerLimit = 501;
+    //    }
+    //    else if (filterPriceCriteria.Equals("high"))
+    //    {
+    //        priceLowerLimit = 1000;
+    //        priceUpperLimit = Double.MaxValue;
+    //    }
+    //    else if (filterPriceCriteria.Equals("none"))
+    //    {
+    //        priceUpperLimit = Double.MaxValue;
+    //        priceLowerLimit = 0;
+    //    }
+
+    //    foreach (var result in SearchResult.lstSearchResults)
+    //    {
+    //        bool match = true;
+
+    //        //checks price match
+
+    //        if (result.resultPriceDub >= priceLowerLimit && result.resultPriceDub <= priceUpperLimit)
+    //        {
+
+    //            //checks badges match
+    //            for (int i = 0; i < lstFilterCriteria.Count; i++)
+    //            {
+    //                if (lstFilterCriteria[i].Equals("na"))
+    //                {
+    //                    continue;
+    //                }
+    //                else if (!lstFilterCriteria[i].Equals(result.lstPropertyBadges[i]))
+    //                {
+    //                    match = false;
+    //                    break;
+    //                }
+
+
+    //            }
+
+
+    //        }
+    //        else
+    //        {
+
+    //            match = false;
+    //        }
+
+
+
+    //        if (match == true)
+    //        {
+    //            SearchResult.lstFilteredResults.Add(result);
+    //        }
+
+    //    }
+
+    //    if (SearchResult.lstFilteredResults.Count < 1)
+    //    {
+    //        lblInvalidFilterResults.Text = "No properties found with specified criteria!";
+    //    }
+
+    //    lvSearchResults.DataSource = SearchResult.lstFilteredResults;
+    //    lvSearchResults.DataBind();
+
+
+    //}
+
+
 }
