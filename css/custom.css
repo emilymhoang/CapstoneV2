@@ -443,13 +443,15 @@
 
 
 /* homepage arrows  */
-.arrowr{
+.arrowr {
     color: #CC6559;
+    
 }
 
-.arrowd{
+.arrowd {
     color: #CC6559;
- }
+    
+}
 
 
 /* buttons   */
@@ -459,7 +461,7 @@
     border-color: #CC6559;
     border-radius: 15px;   
     border: 0px;
-    
+    padding: 5px;
     font-family: 'Oswald', sans-serif;
 }
 
