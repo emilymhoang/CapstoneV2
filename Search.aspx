@@ -20,7 +20,7 @@
 <%--    <div style="background-image: url(images/foldimg_A0_Rectangle_2_pattern.png); background-repeat: no-repeat; background-size:cover;">--%>
     <header style="margin-top: 8rem;">
       <div class="container">
-        <h1 style="margin-top: 1rem;">Search by City or ZIP Code</h1>
+        <h1 style="margin-top: 1rem; color: #756664;">Search by City or ZIP Code</h1>
       </div>
        
     </header>

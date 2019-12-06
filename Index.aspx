@@ -24,7 +24,7 @@
 
         <div class="col-md-6 ">
             <div class="card" style="width: 30rem; border: none; margin: 0 auto;">
-                <img src="images/scott-webb-1ddol8rgUH8-unsplash.jpg"  class="card-img-top img-fluid" alt="picture of a house">
+                <img src="images/scott-webb-1ddol8rgUH8-unsplash.jpg" style="border-radius:15px;" class="card-img-top img-fluid" alt="picture of a house">
                 <div class="card-body">
                     <p style="text-align:center;"><a href="AboutUs.aspx" class="btn " style="margin: auto; font-family: 'Oswald', sans-serif; color: white; font-size: 22px;">Your safety is our #1 concern &#8250;</a></p>
                 </div>
@@ -34,7 +34,7 @@
         <div class="col-md-6">
 
             <div class="card" style="width: 30rem; border: none; margin: 0 auto;">
-                <img src="images/ben-o-bro-wpU4veNGnHg-unsplash.jpg"  class="card-img-top img-fluid" alt="picture of a house">
+                <img src="images/ben-o-bro-wpU4veNGnHg-unsplash.jpg" style="border-radius:15px;" class="card-img-top img-fluid" alt="picture of a house">
                 <div class="card-body">
                     <p style="text-align:center;"> <a href="Search.aspx" class="btn" style="margin: auto;font-family: 'Oswald', sans-serif; color: white; font-size: 22px;">Search by city & preferences &#8250;</a></p>
 <%--                    <p style="text-align: center; font-family: 'Oswald', sans-serif; color: white; font-size: 20px;"><a href="Search.aspx" class="btn btn-primary">Search by city &amp; preferences.</a></p>--%>
@@ -101,33 +101,33 @@
     <div class="row">
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-01.png" style="max-width: 150px;"></p>
-            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Create a profile.</p>
+            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 22px;">Create a profile.</p>
         </div>
         <div class="col-md-1">
-            <p class="arrowr" style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8594;</p>
-             <p class="arrowd" style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8595;</p>
+            <p class="arrowr" style="text-align: center;  font-size: 6rem; margin: 0 auto; margin-top: 1rem;">&#10142;</p>
+             <p class="arrowd" style="text-align: center;  font-size: 5rem; margin: 0 auto; margin-top: 1rem;">&#8595;</p>
         </div>
 
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-02.png" style="max-width: 150px;"></p>
-            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664;font-size: 20px;">Fill out your preferences.</p>
+            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664;font-size: 22px;">Fill out your preferences.</p>
         </div>
         <div class="col-md-1">
-            <p class="arrowr" style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8594;</p>
-             <p class="arrowd" style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8595;</p>
+            <p class="arrowr" style="text-align: center;  font-size: 6rem; margin: 0 auto; margin-top: 1rem;">&#10142;</p>
+             <p class="arrowd" style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 1rem;">&#8595;</p>
         </div>
 
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-03.png" style="max-width: 150px;"></p>
-            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Get cleared.</p>
+            <p style="text-align: center; font-family: 'Oswald', sans-serif; color: #756664; font-size: 22px;">Get cleared.</p>
         </div>
         <div class="col-md-1">
-            <p class="arrowr" style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8594;</p>
-             <p class="arrowd" style="text-align: center; font-size: 5rem; margin: 0 auto; margin-top: 2rem;">&#8595;</p>
+            <p class="arrowr" style="text-align: center;  font-size: 6rem; margin: 0 auto; margin-top: 1rem;">&#10142;</p>
+             <p class="arrowd" style="text-align: center;  font-size: 5rem; margin: 0 auto; margin-top: 1rem;">&#8595;</p>
         </div>
         <div class="col-md-2" style="margin: 0 auto;">
             <p style="text-align: center;"><img src="images/icons-04.png" style="max-width: 150px;"></p>
-            <p style="text-align: center;font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Find your housing match.</p>
+            <p style="text-align: center;font-family: 'Oswald', sans-serif; color: #756664; font-size: 22px;">Find your housing match.</p>
         </div>
 
     <    </div><!-- end div row! -->
