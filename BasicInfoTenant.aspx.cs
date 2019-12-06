@@ -138,20 +138,33 @@ public partial class BasicInfoTenant : System.Web.UI.Page
 
     protected void undergradCheck_checkChanged(object sender, EventArgs e)
     {
+        if (undergradCheck.Checked == true)
+        {
         gradCheck.Checked = !undergradCheck.Checked;
         NAcheck.Checked = !undergradCheck.Checked;
+        }
+
     }
 
     protected void gradCheck_checkChanged(object sender, EventArgs e)
     {
+        if (gradCheck.Checked == true)
+        {
         undergradCheck.Checked = !gradCheck.Checked;
         NAcheck.Checked = !gradCheck.Checked;
+
+        }
+
     }
 
     protected void NAcheck_checkChanged(object sender, EventArgs e)
     {
+        if (NAcheck.Checked == true)
+        {
         undergradCheck.Checked = !NAcheck.Checked;
         gradCheck.Checked = !NAcheck.Checked;
+        }
+
     }
 
 
