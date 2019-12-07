@@ -138,7 +138,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
             
-             <div class="col-md-6"><asp:Button ID ="submitPropInfoButton" class="btn" Text ="Next" type="submit" onClick="submitPropInfo" style="float: right;" runat="server"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="submitPropInfoButton" class="btn" Text ="Next &#8250;" type="submit" onClick="submitPropInfo" style="float: right;" runat="server"></asp:Button></div>
             
         </div>     
       </div> <!--end container-->
