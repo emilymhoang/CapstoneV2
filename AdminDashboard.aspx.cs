@@ -87,6 +87,10 @@ public partial class AdminDashboard : System.Web.UI.Page
                                 {
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }
+                                if (backgroundCheckResult == "r")
+                                {
+                                    backgroundCheckPhoto = "images/icons-08.png";
+                                }
                                 BackgroundCheckApplicant hostresult = new BackgroundCheckApplicant(id, name, phone, email, img, applicantType, backgroundCheckPhoto);
 
                                 BackgroundCheckApplicant.lstBackgroundCheckApplicants.Add(hostresult);
