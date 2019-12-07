@@ -165,6 +165,10 @@ public partial class Search : System.Web.UI.Page
                                 {
                                     backgroundCheckPhoto = "images/icons-07.png";
                                 }
+                                if (backgroundCheckResult == "r")
+                                {
+                                    backgroundCheckPhoto = "images/icons-08.png";
+                                }
 
                                 List<string> badges = new List<string>{HttpUtility.HtmlEncode((string)reader["PrivateEntrance"]), HttpUtility.HtmlEncode((string)reader["Kitchen"]),HttpUtility.HtmlEncode( (string)reader["Furnished"]),
                                HttpUtility.HtmlEncode((string)reader["ClosetSpace"]), HttpUtility.HtmlEncode((string)reader["NonSmoker"]),HttpUtility.HtmlEncode( (string)reader["PrivateBathroom"])};

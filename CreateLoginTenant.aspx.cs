@@ -192,17 +192,17 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                 }
                 else
                 {
-                    resultmessage.Text = "Passwords does not match.";
+                    resultmessage.Text = "Passwords do not match";
                 }
             }
             else
             {
-                resultmessage.Text = "Password does not meet minimum password requirements.";
+                resultmessage.Text = "Password does not meet minimum requirements";
             }
         }
         else
         {
-            resultmessage.Text = "Username already exists.";
+            resultmessage.Text = "Username already exists";
         }
 
 
