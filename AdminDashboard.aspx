@@ -26,19 +26,20 @@
 
 <div class="container">
   <div class="row " style="margin-top: 7rem; ">
-    <div class="col-md-7">
+    <div class="col-md-6">
         <h1><asp:Label ID="dashboardTitle" runat="server" Text=""></asp:Label></h1>
       </div>
-    <div class="col-md-5">
-        <a href="CreateLoginAdmin.aspx" class="btn " style="margin-top: 1rem;">Add Admin Account</a>
-        <a href="Search.aspx" class="btn " style="margin-top: 1rem;">Search Properties</a>
-        <asp:Button ID="logoutButton" onClick="logout" style="margin-top: 1rem;" runat="server" Text="Logout" AutoPostBack="true" type="submit" class="btn"/>
+    <div class="col-md-6" style="float:right;">
+        <asp:Button ID="logoutButton" onClick="logout" style="margin-top: 1rem; float:right;  margin-right:.5rem;" runat="server" Text="Logout" AutoPostBack="true" type="submit" class="btn"/>
+        
+        <a href="Search.aspx" class="btn " style="margin-top: 1rem;  margin-right:.5rem; float:right;">Search Properties</a>
+        <a href="CreateLoginAdmin.aspx" class="btn " style="margin-top: 1rem;  margin-right:.5rem; float:right;">Add Admin Account</a>
       </div>
       
     </div><!-- end div row -->  
     
     
-   <div class="row " style="margin-top: 1rem;">
+   <div class="row " style="margin-top: 2rem;">
     <div class="col-md-6" style="border: solid; border-color: white;">
         <div class="row">
             <div class="col-md-6">
@@ -103,8 +104,8 @@
                                 <asp:Label runat="server" ID="Label4" style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px;" Text='<%#Eval("resultEmail") %>'></asp:Label></br>
                             </td>
                             <td style="width: 100px">
-                                <asp:Button runat="server" class="btn" ID="btnApprove" style="font-size: 18px;" AutoPostBack="true" OnClick="approveApplicant" Text="Approve"/> 
-                                <asp:Button runat="server" class="btn" style="margin-top: .25rem; font-size: 18px;" ID="btnReject" AutoPostBack="true" OnClick="rejectApplicant" Text="Reject"/>
+                                <asp:Button runat="server" class="btna" ID="btnApprove" style="font-size: 18px;" AutoPostBack="true" OnClick="approveApplicant" Text="&#10003; Approve"/> 
+                                <asp:Button runat="server" class="btna" style="margin-top: .25rem; font-size: 18px;" ID="btnReject" AutoPostBack="true" OnClick="rejectApplicant" Text="&#x02A2F; Reject"/>
                             </td>
                         </tr>
 <%--                        <tr>
@@ -154,17 +155,17 @@
 <%-- tableau end --%>
     
     <div class="col-md-12"  style="border: solid; border-color: white;">
-    <h2 >Search for properties</h2>
+    <h2 >Search for Properties</h2>
     <div class="row " style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 3rem; overflow:auto !important; height:410px !important; border-radius:25px;">
         <div class="col-md-10"  style=" margin-top: 1rem;">
-       <asp:Textbox ID="searchTextbox" type="text" style="font-size: 22px; height:50px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
+       <asp:Textbox ID="searchTextbox" type="text" style="font-size: 22px; height:40px;" class="form-control" placeholder="Enter a zipcode or a city e.g. Arlington" runat="server"></asp:Textbox>
               <asp:Label ID="lblInvalidSearch" runat="server"></asp:Label>
         </div>
         <div class="col-md-2">
-                <asp:Button ID="searchButton" style="margin-top: 2rem;" onClick="search_Click" AutoPostBack="false" runat="server" Text="Search" class="btn"/>
+                <asp:Button ID="searchButton" style="margin-top: 1rem;" onClick="search_Click" AutoPostBack="false" runat="server" Text="Search" class="btn"/>
         </div>
         <div class="list-group" style=" height: 500px;">
-        <div style="margin-left: 1rem;">
+        <div style="margin-left: 1rem; margin-top:1rem;">
         <asp:ListView id="lvSearchResultsAdmin" runat="server" Visible="true" >
 
             <LayoutTemplate>
@@ -224,7 +225,7 @@
                         </td>
                         <td>
                             <div class="row" style="margin:auto; margin-bottom: 1rem;" >
-                                <div class="col-md-8" style="margin-top: 1rem;">
+                                <div class="col-md-12" style="margin-top: 1rem;">
                                      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                     <ol class="carousel-indicators">
                                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
