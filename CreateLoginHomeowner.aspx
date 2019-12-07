@@ -42,7 +42,7 @@
        
     </header>
 
-    <section id="creation" style="margin-top: 4rem;">
+    <section id="creation" style="margin-top: 4rem; font-family: 'raleway', sans-serif; color: #756664;">
       <div class="container">
           <div class="row">
             <div class="col">

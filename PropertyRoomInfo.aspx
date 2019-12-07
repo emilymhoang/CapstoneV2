@@ -41,24 +41,28 @@
        
     </header>
 
-    <section id="creation" style="margin-top: 4rem;">
+    <section id="creation" style="margin-top: 4rem; font-family: 'raleway', sans-serif;">
       <div class="container">
           <div class="row">
             <div class="col">
              <label for="formGroupExampleInput">Room Picture*</label><br>
                 <asp:FileUpload id="FileUploadControl" runat="server" />
-                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">At least one profile picture is required.</asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">Property pictures required.</asp:RequiredFieldValidator>
                 <br /><br />
 
             </div>
             <div class="col">
-             <label for="formGroupExampleInput">Room Picture 2</label><br>
+             <label for="formGroupExampleInput">Room Picture*</label><br>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">Property pictures required.</asp:RequiredFieldValidator>
+                
                 <asp:FileUpload id="FileUpload2" runat="server" />
                  <br /><br />
 
               </div>
             <div class="col">
-             <label for="formGroupExampleInput">Room Picture 3</label><br>
+             <label for="formGroupExampleInput">Room Picture*</label><br>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="FileUploadControl" ErrorMessage="Required" ForeColor="#B23325">Property pictures required.</asp:RequiredFieldValidator>
+                
                 <asp:FileUpload id="FileUpload3" runat="server" />
                 <br /><br />
 
@@ -108,7 +112,7 @@
           
             <div class="col">
           
-              <label for="formGroupExampleInput">Property Room Title</label>
+              <label for="formGroupExampleInput">Property Room Title*</label>
               <asp:Textbox ID="displayTextbox" type="text" class="form-control" placeholder="Ex. Basement bedroom near City" runat="server" MaxLength="75"></asp:Textbox>
                 <br>
       
@@ -129,7 +133,7 @@
  <br>
             <div class="row">
             <div class="col">
-              <label for="formGroupExampleInput">Property Description/Biography</label>
+              <label for="formGroupExampleInput">Property Description/Biography*</label>
               <asp:Textbox ID="bioTextbox" class="form-control" type="text" TextMode="MultiLine" style="height:100px; width:1150px;" placeholder="Ex. Fully furnished basement bedroom with separate kitchen and lounge area. Two miles from metro and close to multiple shopping centers." runat="server" MaxLength="300"></asp:Textbox>
                 <br>
             </div>
@@ -196,7 +200,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
              <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next" type="submit" onClick="submitPropRoom" style="float: right;" runat="server"></asp:Button></div>
+             <div class="col-md-6"><asp:Button ID ="nextButton" class="btn" Text ="Next &#8250;" type="submit" onClick="submitPropRoom" style="float: right;" runat="server"></asp:Button></div>
             
         </div>     
         </div>
