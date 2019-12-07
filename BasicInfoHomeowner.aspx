@@ -21,14 +21,10 @@
            font-size: 20px;
        }
 
-        .paragraph{
-            font-family: 'Oswald', sans-serif;
-                color: #756664;
-                font-size: 30px;
-        }
+       
         </style>
 
-   <header style="margin-top: 8rem;">
+   <header style="margin-top: 8rem; color: #756664;">
       <div class="container">
         <h1>Tell us about yourself.</h1>
         <p>Let us find you the perfect housemate.</p>
@@ -38,7 +34,7 @@
       </div>
     </header>
 
-    <section id="creation" style="margin-top: 4rem;">
+    <section id="creation" style="margin-top: 4rem; font-family: 'raleway', sans-serif; color: #756664;">
       <div class="container">
           <div class="row">
             <div class="col">

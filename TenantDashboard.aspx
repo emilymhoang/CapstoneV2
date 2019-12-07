@@ -54,7 +54,7 @@
                <h2 >Your Profile</h2> 
             </div>
             <div class="col-md-6">
-                <a href="EditProfileTenant.aspx" class="btn" >Edit Profile</a>
+                <a href="EditProfileTenant.aspx" class="btn" style="float:right; margin-right: 1rem;" >Edit Profile</a>
             </div>
         </div>
            <%--    begin file container--%>
@@ -194,18 +194,16 @@
      <div class="row " style="margin-top: 1rem;">
         <div class="col-md-6"  style="border: solid; border-color: white;">
             <div class="row">
-                <div class="col-md-12">
-                   <div class="row">
-                    <div class="col-md-4">
+                
+                    <div class="col-md-6">
                     <h3 >Message Board</h3> 
                         </div>
-                <div class="col-md-3">
-                    <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org" id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
-                        <a href="skype:Echo123"><button runat="server" class="btn " style="font-family: 'Oswald', sans-serif; color: white;  ">Videochat</button></a>
-                    </div>
-              <div class="col-md-3">
-                        <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit" class="btn"/>
-                        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                <div class="col-md-6" style="float:right; margin">
+                    <a data-config="commands=videocall;size=14;status=off;theme=logo;language=en;bgcolor=#000000;hostname=www.skaip.org"  id="skaip-buttons" href="http://www.skaip.org/">Skype</a><script src="//apps.skaip.org/buttons/widget/core.min.js" defer="defer"></script>
+                        <a href="skype:Echo123"><button runat="server" class="btn " style="font-family: 'Oswald', sans-serif; color: white;">Videochat</button></a>
+                    
+                        <asp:Button ID="createMessageButton" runat="server" Text="Create a Message" AutoPostBack="true" type="submit"  class="btn"/>
+                        <asp:ScriptManager ID="ScriptManager1"  runat="server">
                         </asp:ScriptManager>        
                 <asp:Panel ID="Panel1" runat="server" CssClass="modalpopup">
                     <center>
@@ -279,8 +277,8 @@
                 </div>
                 </div>
             </div>
-          </div>
-         </div>
+          
+         
 
 
         <%--<div class="col-md-6" style="border: solid; border-color: white;" >
@@ -316,8 +314,8 @@
 
      <div class="row container" style="margin-top: 1rem; background-color: #ebebeb; margin-bottom: 1rem; border-radius:25px;">
         <div class="col-md-12"  style=" margin-top: 1rem; margin-bottom: 1rem;">
-            <h2 style="border-bottom: solid 1px;">Reserved Properties</h2>
-            <asp:Label style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; margin-top: 1rem;" runat="server" ID="noReservation" Text="You currently have no properties reserved."></asp:Label>
+            <h2 >Reserved Properties</h2>
+            <asp:Label style="font-family: 'Raleway', sans-serif; line-height: 1.3; font-size: 18px; margin-top: 1rem;" runat="server" ID="noReservation" Text="You currently have no properties reserved. When a host has reserved their property for you, it will appear here."></asp:Label>
             <asp:Panel runat="server" ID="Panel2">
             <table style="margin-top: 1rem;" id="reservationTable">
                     <tr>

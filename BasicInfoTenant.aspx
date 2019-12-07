@@ -43,7 +43,7 @@
           <div class="row">
             <div class="col">
               <label for="formGroupExampleInput" style="font-family:'raleway', sans-serif;">First Name*</label>
-              <asp:Textbox ID="firstNameTextbox" class="form-control" MaxLength="30" placeholder="First Name" runat="server" type="text"></asp:Textbox>
+              <asp:Textbox ID="firstNameTextbox" class="form-control" MaxLength="30" style="font-family:'raleway', sans-serif;" placeholder="First Name" runat="server" type="text"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="firstNameRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="firstNameTextbox" ForeColor="#B23325" style="font-family:'raleway', sans-serif;"></asp:RequiredFieldValidator>
             </div>
             <div class="col">
@@ -55,7 +55,7 @@
           <div class="row">
             <div class="col">
              <label for="formGroupExampleInput" style="font-family:'raleway', sans-serif;">Gender*</label><br />
-               <asp:DropDownList ID="DropDownListGender" CssClass="form-control" runat="server" AutoPostBack="true">
+               <asp:DropDownList ID="DropDownListGender" CssClass="form-control" style="font-family:'raleway', sans-serif;" runat="server" AutoPostBack="true">
 	               <asp:ListItem Value="-1"  style="font-family:'raleway', sans-serif;">Select One</asp:ListItem> 
                    <asp:ListItem Value="O"  style="font-family:'raleway', sans-serif;">I do not wish to answer</asp:ListItem>
                    <asp:ListItem Value="M"  style="font-family:'raleway', sans-serif;">Male</asp:ListItem>
@@ -126,7 +126,7 @@
               </div>
               <div class="col">
                    <label for="formGroupExampleInput" style="font-family:'raleway', sans-serif;">Tenant Bio*</label>
-              <asp:Textbox id="TenantBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px;" MaxLength="290"  placeholder="Ex. I am going to be a graduate student and am willing to do chores in exchange for redueced rent." type="text" ></asp:Textbox>
+              <asp:Textbox id="TenantBioTextbox" runat="server" TextMode="MultiLine" class="form-control" style="height:100px; width:550px; font-family:'raleway', sans-serif;" MaxLength="290"  placeholder="Ex. I am going to be a graduate student and am willing to do chores in exchange for redueced rent." type="text" ></asp:Textbox>
               <asp:Label ID="result" runat="server" ForeColor="Red"></asp:Label>
               <asp:RequiredFieldValidator ID="BioRequiredFieldValidator" runat="server" ErrorMessage="Required" style="font-family:'raleway', sans-serif;" ControlToValidate="TenantBioTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>            
              </div>

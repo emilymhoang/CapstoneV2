@@ -21,10 +21,10 @@
         }
         </style>
 
-    <header style="margin-top: 8rem; font-family: 'Oswald', sans-serif; color: #756664;">
+    <header style="margin-top: 8rem; color: #756664;">
       <div class="container">
         <h1>Tell us about yourself.</h1>
-        <p style="font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">Let us find you the perfect space.</p>    
+        <p style="font-family:  color: #756664; font-size: 20px;">Let us find you the perfect space.</p>    
                 <div class="progress " >
                 <div class="progress-bar progress-bar-striped " role="progressbar" style="width: 66%; " aria-valuenow="66" ></div>
                </div>
@@ -32,7 +32,7 @@
     </header>
    
 
-    <section id="creation" style="margin-top: 4rem; font-family: 'Oswald', sans-serif; color: #756664; font-size: 20px;">
+    <section id="creation" style="margin-top: 4rem; font-family: 'raleway', sans-serif; color: #756664; font-size: 20px;">
       <div class="container">
           <div class="row" style="margin-bottom:2rem;">
             <div class="col">
