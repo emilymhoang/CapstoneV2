@@ -11,7 +11,14 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (IsPostBack == false)
+        {
+            dateOfBirthRequiredFieldValidator.Enabled = false;
+        }
+        else
+        {
+            dateOfBirthRequiredFieldValidator.Enabled = true;
+        }
     }
     
     protected void submitBasicInfo(object sender, EventArgs e)
@@ -26,7 +33,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
         if (age < 18)
         {
             resultmessagedob.Text = "All users must be atleast 18 years old";
-
+            return;
         }
 
         String emailNew = emailTextbox.Text;
