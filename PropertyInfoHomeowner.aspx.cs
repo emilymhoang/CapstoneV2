@@ -31,6 +31,16 @@ public partial class PropertyInfoHomeowner : System.Web.UI.Page
     
     protected void submitPropInfo(object sender, EventArgs e)
     {
+        if (houseNumTextbox.Text.Length > 10)
+        {
+            propertyResult.Text = "House Number must be less than 10 numbers.";
+            return;
+        }
+        if ((zipTextbox.Text.Length > 9) || (zipTextbox.Text.Length < 5))
+        {
+            zipValidator.Text = "Zipcode must be more than 5 numbers and less than 9 numbers.";
+            return;
+        }
 
         String houseNumNew = houseNumTextbox.Text;
         String streetNew = StreetTextbox.Text;

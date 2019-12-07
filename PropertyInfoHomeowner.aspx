@@ -31,7 +31,7 @@
      
     </header>
 
-    <section id="creation" style="margin-top: 4rem; font-family: 'Oswald', sans-serif; color: #756664; font-size: 18px">
+    <section id="creation" style="margin-top: 4rem; font-family: 'Raleway', sans-serif; color: #756664; font-size: 18px">
       <div class="container">
           <div class="row">
             <label for="formGroupExampleInput">Don't fret, only your city, state, and zip code will appear on your profile to potential tenants</label>
@@ -118,6 +118,7 @@
               <div class="col">
               <label for="formGroupExampleInput">Zip*</label>
               <asp:Textbox id="zipTextbox" class="form-control" placeholder="" runat="server" MaxLength="9" type="number"></asp:Textbox>
+              <asp:Label ID="zipValidator" runat="server" ForeColor="Red"></asp:Label>
                   <asp:RequiredFieldValidator ID="zipRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="zipTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
             </div>
 <%--              <div class="col">

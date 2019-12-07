@@ -37,7 +37,7 @@
           <div class="row" style="margin-bottom:2rem;">
             <div class="col">
               <label for="formGroupExampleInput">User Name*</label>
-              <asp:Textbox type="text" ID="userNameTextbox" class="form-control" MaxLength="30" placeholder="User Name" runat="server"></asp:Textbox>
+              <asp:Textbox type="text" ID="userNameTextbox" class="form-control" MaxLength="30" placeholder="User Name*" runat="server"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="userNameRequiredFieldValidator" runat="server" ControlToValidate="usernameTextbox" ErrorMessage="Required" ForeColor="#B23325">User Name is required.</asp:RequiredFieldValidator>
             <asp:Label ID="resultUser" runat="server" ForeColor="Red"></asp:Label>
             </div>
@@ -52,7 +52,7 @@
           <div class="row" >
             <div class="col-md-6">
               <label for="formGroupExampleInput">Password*</label>
-              <asp:Textbox type="password" ID="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password" runat="server"></asp:Textbox>
+              <asp:Textbox type="password" ID="passwordTextbox" class="form-control" MaxLength="30" placeholder="Password*" runat="server"></asp:Textbox>
                 <asp:RequiredFieldValidator ID="passwordRequiredFieldValidator" runat="server" ControlToValidate="passwordTextbox" ErrorMessage="Required" ForeColor="#B23325">Password is required.</asp:RequiredFieldValidator>
             </div>
               <div class="col-md-6">
@@ -63,7 +63,7 @@
           <div class="row">
             <div class="col-md-6">
               <label for="formGroupExampleInput">Confirm Password*</label>
-              <asp:Textbox type="password" ID="confirmPasswordTextbox" class="form-control" MaxLength="30" placeholder="Confirm Password" runat="server"></asp:Textbox>
+              <asp:Textbox type="password" ID="confirmPasswordTextbox" class="form-control" MaxLength="30" placeholder="Confirm Password*" runat="server"></asp:Textbox>
                  <asp:RequiredFieldValidator ID="confirmPasswordRequiredFieldValidator" runat="server" ControlToValidate="confirmPasswordTextbox" ErrorMessage="Required" ForeColor="#B23325">Password is required.</asp:RequiredFieldValidator>
                  <asp:Label ID="resultmessage" runat="server" ForeColor="Red"></asp:Label>
             </div>
