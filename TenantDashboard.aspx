@@ -60,8 +60,10 @@
            <%--    begin file container--%>
         <div class="row container" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; overflow:auto !important; height:410px !important; border-radius:25px;" >
             <div class="col-md-6 " style="margin-top: 1rem;">
-                    <asp:Image ID="image1" style="border-radius: 10%;"  class="img-fluid" runat="server" />
-                
+                    <asp:Image ID="image1" style="border-radius: 10%; margin-bottom: 1rem;"  class="img-fluid" runat="server" />                 
+                                <asp:Image ID="undergraduateBadge" class="img-fluid" runat="server" />
+                 <asp:Image ID="graduateBadge" class="img-fluid" runat="server" />
+                 <asp:Image ID="choresBadge" class="img-fluid" runat="server" />
                 <div class="row" style="margin-top: 1rem;">
                     <div class="col-md-6">
                         <asp:Image ID="image2" class="img-fluid" runat="server" />
@@ -76,9 +78,9 @@
                  <p><asp:Label ID="usernameTextbox" runat="server" Text="JohnSmith1" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="emailTextbox" Text="johnsmith@gmailcom" runat="server" BackColor="#ebebeb"></asp:Label></p>
                  <p><asp:Label ID="phoneTextbox" Text="xxx-xxx-xxx" runat="server"  BackColor="#ebebeb"></asp:Label></p>
-                <asp:Image ID="undergraduateBadge" class="img-fluid" runat="server" />
-                 <asp:Image ID="graduateBadge" class="img-fluid" runat="server" />
-                 <asp:Image ID="choresBadge" class="img-fluid" runat="server" />
+                 <p><asp:Label ID="TenantBioTextbox" Text="Host bio will go here displaying a little about the host." runat="server"  BackColor="#ebebeb"></asp:Label></p>
+
+
                  <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
             </div>
 
@@ -407,7 +409,7 @@
         <div class="col-md-12"  style=" margin-top: 1rem;">
             <h2>Your Rental Agreements</h2>
             <p>When you have a rental agreement, it will be indicated here. We hope you find your perfect housing match so that you can have some wonderful rental agreements.</p>
-            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Sample Agreement" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
+            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Intent to Lease Agreement" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
           </div>
     </div><!-- end div big row -->  
     
