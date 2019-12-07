@@ -407,7 +407,7 @@
         <div class="col-md-12"  style=" margin-top: 1rem;">
             <h2>Your Rental Agreements</h2>
             <p>When you have a rental agreement, it will be indicated here. We hope you find your perfect housing match so that you can have some wonderful rental agreements.</p>
-            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Sample Agreement" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
+            <asp:Button ID="sampleAgreement" onClick="contract" style="margin-top: 1rem;" runat="server" Text="Intent to Lease Agreement" AutoPostBack="true" type="submit" class="btn"/><br/><br/>
           </div>
     </div><!-- end div big row -->  
     
