@@ -195,7 +195,7 @@
         <div class="row" style="margin-bottom: 3rem;"> 
           <div class="col-md-6"></div>
              <div class="col-md-6"><asp:Button ID ="populatebutton" class="btn" Text ="Populate" type="submit" onClick="populate" style="float: right;" runat="server" CausesValidation="false"></asp:Button></div>
-                       <div class="col-md-6"><asp:Button ID ="nextButton &#8250;"  href="HostDashboard.aspx" CssClass="btn" Text ="Add Additional Room" type="submit" onClick="submitPropRoom" style="float: right;" runat="server"></asp:Button></div>
+                       <div class="col-md-6"><asp:Button ID ="nextButton"  href="HostDashboard.aspx" CssClass="btn" Text ="Add Additional Room" type="submit" onClick="submitPropRoom" style="float: right;" runat="server"></asp:Button></div>
 
         </div>     
         </div>
