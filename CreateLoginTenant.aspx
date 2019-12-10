@@ -70,16 +70,6 @@
               <div class="col">
               <label for="formGroupExampleInput"></label>
             </div>
-             <!--end col--
-          </div> <!--end row class-->
-              <%--<div class="row">
-              <div class="col-md-6">
-                  
-             </div> <!--end col-->
-                  <div class="col">
-              <label for="formGroupExampleInput"></label>
-            </div>
-          </div> <!--end row class-->--%>
 
          </div> 
        
@@ -93,4 +83,3 @@
         </div> <!--end container--> 
     </section>
     </asp:Content>
-    

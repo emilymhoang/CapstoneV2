@@ -66,20 +66,10 @@
                  <div class="form-group">
               <label for="formGroupExampleInput" style="font-family:'raleway', sans-serif;">Date of Birth*</label>
                     
-              <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" type="date" style="font-family:'raleway', sans-serif;"></asp:TextBox>
-<%--CssClass="m-wrap span12 date form_datetime"--%>           
+              <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" type="date" style="font-family:'raleway', sans-serif;"></asp:TextBox> 
               <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
               <asp:Label ID="resultmessagedob" runat="server" ForeColor="Red"></asp:Label>
-<%--            <script type="text/javascript">
-            $(function () {
-            $('#dateOfBirthTextbox').datepicker({
-                changeMonth: true,
-                changeYear: true,
-                format: "mm/dd/yyyy",
-                language: "tr"
-            });
-        });
-            </script>--%>
+
                 </div>            
              </div> <!--end col-->
           </div> <!--end row class-->
