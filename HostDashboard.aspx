@@ -190,54 +190,7 @@
             </div>
     
 
-<%--                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-
-                <div class="carousel-inner">
-                    <div class="row">
-                        <div class="carousel-item active">    
-                            <asp:Image ID="image4" ImageUrl="" class="img-fluid" runat="server" />
-                               </div>
-
-                        <div class="carousel-item ">
-                           <asp:Image ID="image5" ImageUrl="" class="img-fluid" runat="server" />
-                               </div>
-                        <div class="carousel-item ">                
-                               <asp:Image ID="image6" ImageUrl="" class="img-fluid" runat="server" />
-                            </div>
-                    </div>
-
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>--%>
-
             </div>
-             <%--<div class="col-md-6" style="margin-top: 1rem;">
-<%--                <h2><asp:Label ID="addressTextbox" runat="server" Text="Address" BackColor="#ebebeb"></asp:Label></h2>--%>
-<%--                 <p><asp:Label ID="priceTextbox" runat="server" Text="Price" BackColor="#ebebeb"></asp:Label></p>--%>
-<%--                 <p><asp:Label ID="descriptionTextbox" Text="Single furnished room on a quiet street" runat="server" BackColor="#ebebeb"></asp:Label></p>
-                 <p><asp:Label ID="roomDescripTextbox" Text="Shared Room" runat="server"  BackColor="#ebebeb"></asp:Label></p>--%>
-
-<%--                <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
-                 <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
-                 <asp:Image ID="privateBathroomBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
-                 <asp:Image ID="furnishBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
-                 <asp:Image ID="storageBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />
-                 <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="140" />--%>
-                
-                 <%--<img src="images/badges-01.png" style="max-width: 150px;">--%>
-            <%--</div>--%>
 
         <%--    end profile container--%>
         </div>

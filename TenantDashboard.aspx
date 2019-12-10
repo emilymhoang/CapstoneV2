@@ -280,26 +280,7 @@
                 </div>
             </div>
           
-         
-
-
-        <%--<div class="col-md-6" style="border: solid; border-color: white;" >
-        <div class="row">
-            <div class="col-md-12">
-               <h2 >Background Check Status</h2> 
-            </div>
-            
-        </div>
         
-        <div class="row" style="background-color: #ebebeb; margin-top: 1rem; margin-bottom: 1rem; " >
-            <div class="col-md-12" style="margin-top: 1rem; border-bottom: solid; border-bottom-width: 1px;">
-               <h3>Completed</h3>
-                <p style="text-align: center;"><img src="images/icons-07.png" style="max-width: 75px;"></p>
-                <p>Your Backround Check has been completed. Background checks are important to us, we take your safety seriously.</p>
-            </div>
-             
-        </div>
-      </div>--%>
     
     </div><!-- end div big row -->
         <div class="col-md-6"  style="border: solid; border-color: white;">
@@ -342,18 +323,7 @@
                                     <td>
                                        
                                         <a href="https://dashboard.stripe.com/login" class="btn" target="blank">Pay With Card</a>
-                                        <%--<asp:Button ID="payButton" runat="server" Text="Pay With Card" AutoPostBack="true" type="submit" class="btn"/>--%><br/><br/>
-<%--                                           <form action="/Charge" method="POST">
-                                                <script
-                                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                                    data-key="<%= stripePublishableKey %>"
-                                                    data-amount="500"
-                                                    data-name="Stripe.com"
-                                                    data-description="First Month's Rent Charge"
-                                                    data-locale="auto"
-                                                    data-zip-code="true">
-                                                </script>
-                                            </form>--%>
+                                        <br/><br/>
                                     </td>
                                    </tr>
                             </table>
