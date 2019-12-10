@@ -15,6 +15,7 @@ public partial class AdminDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
+        //session clear to ensure exiting out of tab 
         string strPreviousPage = "";
         if (Request.UrlReferrer != null)
         {
@@ -26,8 +27,11 @@ public partial class AdminDashboard : System.Web.UI.Page
             Response.Redirect("Login.aspx");
         }
 
+        //clear background check
         BackgroundCheckApplicant.lstBackgroundCheckApplicants.Clear();
         sc.Open();
+
+        //get accountID to see which account (admin, tenant, or host) it is to populate dashboard
         int accountID = Convert.ToInt32(Session["accountID"]);
 
         SqlCommand insert = new SqlCommand("SELECT AdminID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
@@ -47,7 +51,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
         int adminIDRefresh = Convert.ToInt32(HttpUtility.HtmlEncode(Session["adminID"]));
 
-        //host applicants
+        //populating host applicants for background check card
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -111,7 +115,7 @@ public partial class AdminDashboard : System.Web.UI.Page
             }
         }
 
-        //tenant applicants
+        //populating background check card with tenant applicants
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -171,8 +175,9 @@ public partial class AdminDashboard : System.Web.UI.Page
                 }
             }
         }
-        showBackgroundResults();
+        showBackgroundResults(); //call to populate background results
 
+        //response if there are no background check applicants
         bool isEmpty = !BackgroundCheckApplicant.lstBackgroundCheckApplicants.Any();
         if (isEmpty)
         {
@@ -185,6 +190,7 @@ public partial class AdminDashboard : System.Web.UI.Page
     {
         SearchResult.lstSearchResults.Clear();
 
+        //validation to see if theres an invalid input in search
         bool searchBy;
         int a;
         string propertySearch = searchTextbox.Text;
@@ -207,7 +213,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
 
 
-
+        //search queries by city or zipcode
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
 
@@ -247,11 +253,10 @@ public partial class AdminDashboard : System.Web.UI.Page
 
 
                     command.Parameters.AddWithValue("@city", propertySearch);
-                    //command.Parameters.AddWithValue("@default", Session["defaultPicture"]);
                 }
 
 
-
+                //populate search results
                 try
                 {
                     connection.Open();
@@ -363,28 +368,25 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void showResults()
     {
+        //bind results from database
         lvSearchResultsAdmin.DataSource = SearchResult.lstSearchResults;
         lvSearchResultsAdmin.DataBind();
     }
 
     protected void showBackgroundResults()
     {
+        //bind results from database
         lvBackgroundResults.DataSource = BackgroundCheckApplicant.lstBackgroundCheckApplicants;
         lvBackgroundResults.DataBind();
     }
 
     protected void hideProperties(object sender, EventArgs e)
     {
-        //Response.Write("<script> alert('Are you sure you want to hide this property?'); </script>");
-        //var lcount = lvSearchResultsAdmin.SelectedIndex;
-
+        //get id from class and from list view to mark property room as unavailable
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
         var selectedPRid = SearchResult.lstSearchResults[index].resultID;
-
-        //lvSearchResults.SelectedIndex;
-        //lvSearchResults.Items[lcount].Selected = 1;
 
         if (btn.Text == "Mark as Unavailable")
         {
@@ -403,15 +405,11 @@ public partial class AdminDashboard : System.Web.UI.Page
             btn.Text = "Mark as Unavailable";
         }
 
-
-
-
-
-
     }
 
     protected void approveApplicant(object sender, EventArgs e)
     {
+        //get id from class and from list view to approve background check applicant
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
@@ -437,6 +435,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void rejectApplicant(object sender, EventArgs e)
     {
+        //get id from class and from list view to reject background check applicant
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
@@ -462,6 +461,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void logout(object sender, EventArgs e)
     {
+        //get id from class and from list view to approve background check applicant
         Session.Abandon();
         Response.Redirect("Index.aspx");
         SearchResult.lstSearchResults.Clear();
@@ -469,7 +469,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void viewProperty(object sender, EventArgs e)
     {
-
+        //get id from class to set an id into a session variable for property profile
         SearchResult.selectedReultFullAddress = string.Empty;
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
@@ -486,6 +486,7 @@ public partial class AdminDashboard : System.Web.UI.Page
 
     protected void hideHost(object sender, EventArgs e)
     {
+        //get id from class and from list view to mark a host as unavailable
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
