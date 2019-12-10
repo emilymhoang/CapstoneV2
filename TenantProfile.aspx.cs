@@ -12,15 +12,21 @@ public partial class TenantProfile : System.Web.UI.Page
     String underGraduate;
     String graduate;
     String chores;
+
+    //create database connection
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
 
     protected void Page_Load(object sender, EventArgs e)
     {
+    
+        //derive tenant information from database
         sc.Open();
         SqlCommand filter = new SqlCommand("SELECT FirstName, LastName, PhoneNumber, Email, BackgroundCheckResult, imageV2, TenantBio FROM [dbo].[Tenant] WHERE TenantID = @TenantID", sc);
         filter.Parameters.AddWithValue("@TenantID", Convert.ToInt32(Session["MessageTenantID"]));
         SqlDataReader rdr = filter.ExecuteReader();
         String backgroundCheckResult;
+
+        //display tenant name, background check status, bio, and image on page
         while (rdr.Read())
         {
             lblTenantName.Text = HttpUtility.HtmlEncode(rdr["FirstName"].ToString()) + " " + HttpUtility.HtmlEncode(rdr["LastName"].ToString());
@@ -48,6 +54,7 @@ public partial class TenantProfile : System.Web.UI.Page
             }
         }
 
+                //display tenant badges on page 
                 int tenantID = Convert.ToInt32(Session["MessageTenantID"]);
                 SqlCommand badge = new SqlCommand("SELECT Undergraduate, graduate, Chores FROM [dbo].[BadgeTenant] WHERE TenantID = @TenantID", sc);
                 badge.Parameters.AddWithValue("@TenantID", tenantID);
