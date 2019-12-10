@@ -8,7 +8,6 @@ using System.Web.Configuration;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-//prop descrip
 public partial class PropertyDescription : System.Web.UI.Page
 {
 
@@ -22,7 +21,7 @@ public partial class PropertyDescription : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        //var int = Session["tenantID"].ToString();
+        //create database connection
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -80,6 +79,8 @@ public partial class PropertyDescription : System.Web.UI.Page
                     addressForMap = Favorite.selectedReultFullAddress;
                 }
 
+
+                //grab property room badges from database
                 SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
                 badge2.Parameters.AddWithValue("@roomID", roomID1);
 
@@ -96,6 +97,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                     nonsmoker = HttpUtility.HtmlEncode(rdr2["NonSmoker"].ToString());
                 }
 
+                //display badges on page
                 if (privateEntrance == "y")
                 {
                     privateEntranceBadge.ImageUrl = "images/badges-04.png";
@@ -155,8 +157,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                     smokerBadge.Visible = false;
                 }
 
-
-
+                //grab hostID associated with selected property room
                 SqlCommand host = new SqlCommand("SELECT Property.HostID FROM Property INNER JOIN PropertyRoom ON Property.PropertyID = PropertyRoom.PropertyID WHERE RoomID = " + roomID1, connection);
                 host.Connection = connection;
                 int hostID = Convert.ToInt32(host.ExecuteScalar());
@@ -164,7 +165,7 @@ public partial class PropertyDescription : System.Web.UI.Page
 
                 host.ExecuteNonQuery();
 
-
+                //display host image
                 SqlCommand image = new SqlCommand("SELECT imageV2 FROM [dbo].[Host] WHERE HostID = " + hostID, connection);
                 image.Connection = connection;
                 byte[] ppImgData = (byte[])(image.ExecuteScalar());
@@ -177,10 +178,12 @@ public partial class PropertyDescription : System.Web.UI.Page
 
     }
 
+    //favoriting property room method
     protected void FavoriteClick(object sender, EventArgs e)
     {
         if (Convert.ToInt32(Session["tenantID"]) > 0)
         {
+            //create database connection
             using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
             {
                 SqlCommand command = new SqlCommand();
@@ -189,9 +192,11 @@ public partial class PropertyDescription : System.Web.UI.Page
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
 
+                //derive roomID from index of search results array list
                 int index = (int)Session["position"];
                 var roomID = SearchResult.lstSearchResults[index].resultID;
 
+                //grab property and host ID associated with selected property room
                 command.CommandText = "SELECT PropertyID, HostID FROM [dbo].[Property] WHERE PropertyID = (Select PropertyID FROM [dbo].[PropertyRoom] where RoomID = @RoomID)";
                 command.Parameters.AddWithValue("@RoomID", roomID);
                 int propertyID = 0, hostID = 0;
@@ -210,6 +215,8 @@ public partial class PropertyDescription : System.Web.UI.Page
 
                         }
                     }
+
+                    //grab tenant name
                     getName.Connection = connection;
                     getName.CommandType = CommandType.Text;
                     getName.CommandText = "SELECT FirstName, LastName from [dbo].[Tenant] WHERE TenantID = @TenantID";
@@ -229,6 +236,7 @@ public partial class PropertyDescription : System.Web.UI.Page
                         }
                     }
 
+                    //insert selected property room into the favorite table with associated tenantID
                     SqlCommand favorite = new SqlCommand("INSERT INTO [dbo].[Favorite] (TenantID, PropertyID, RoomID, SearchDate, LastUpdatedBy, LastUpdated, HostID)" +
                         " values (@TenantID, @PropertyID, @RoomID, @SearchDate, @LastUpdatedBy, @LastUpdated, @HostID)", connection);
                     favorite.Parameters.AddWithValue("@TenantID", Session["tenantID"].ToString());
@@ -250,8 +258,11 @@ public partial class PropertyDescription : System.Web.UI.Page
                 }
             }
         }
+
+        //validate that a tenant is currently logged in to use favorite functionality
         if (!(Convert.ToInt32(Session["tenantID"]) > 0))
         {
+
             Response.Write("<script> alert('You need to login first.'); </script>");
             return;
         }
