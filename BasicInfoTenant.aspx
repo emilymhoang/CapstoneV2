@@ -71,19 +71,9 @@
                     
                <asp:TextBox ID="dateOfBirthTextbox" ClientIDMode="Static" runat="server"  class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" type="date" style="font-family:'raleway', sans-serif;"></asp:TextBox>
 
-<%--              <asp:Textbox id="dateOfBirthTextbox" class="form-control" MaxLength="10" placeholder="DD-MM-YYYY" runat="server"></asp:Textbox>--%>
               <asp:RequiredFieldValidator ID="dateOfBirthRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="dateOfBirthTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
            <asp:Label ID="resultmessagedob" Text="" runat="server" ForeColor="Red"></asp:Label>
-         <%--<script type="text/javascript">
-            $(function () {
-            $('#dateOfBirthTextbox').datepicker({
-                changeMonth: true,
-                changeYear: true,
-                format: "mm/dd/yyyy",
-                language: "tr"
-            });
-        });
-            </script>--%>
+        
                 </div>            
              </div> <!--end col-->
           </div> <!--end row class-->
@@ -93,8 +83,7 @@
               <label for="formGroupExampleInput" style="font-family:'raleway', sans-serif;">Email*</label>
               <asp:Textbox id="emailTextbox" style="font-family:'raleway', sans-serif;" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email"></asp:Textbox>
               <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ErrorMessage="Required" ControlToValidate="emailTextbox" ForeColor="#B23325"></asp:RequiredFieldValidator>
-               <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Invalid Email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ForeColor="#B23325" ControlToValidate="emailTextBox"></asp:RegularExpressionValidator>     --%>        
-            </div>
+               </div>
             <div class="col">
               <label for="formGroupExampleInput" style="font-family:'raleway', sans-serif;">Confirm Email*</label>
               <asp:Textbox id="confirmEmailTextbox" runat="server" class="form-control" MaxLength="50" placeholder="example@example.com" type="email" style="font-family:'raleway', sans-serif;"></asp:Textbox>
