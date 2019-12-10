@@ -14,17 +14,15 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //cookies 
         HttpCookie userInfo = new HttpCookie("userInfo");
         String username = userInfo["UserName"];
         String password = userInfo["password"];
         Session["defaultPicture"] = null;
         userInfo.Expires.Add(new TimeSpan(0, 1, 0));
         Response.Cookies.Add(userInfo);
-        //something about session variables/cookies and username, password
-        //https://www.c-sharpcorner.com/uploadfile/annathurai/cookies-in-Asp-Net/
 
-
+        //set default picture
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -71,6 +69,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
     protected void dashboard(object sender, EventArgs e)
     {
+        //leads myaccount to a certain dashboard
         if (Session["LoggedIn"] == null)
         {
             Response.Redirect("Login.aspx");
