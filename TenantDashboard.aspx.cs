@@ -20,36 +20,7 @@ public partial class TenantDashboard : System.Web.UI.Page
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-        //var secretKey = WebConfigurationManager.AppSettings["StripeSecretKey"];
-        //StripeConfiguration.ApiKey = secretKey;
-        //if (Request.Form["stripeToken"] != null)
-        //{
-        //    var customers = new CustomerService();
-        //    var charges = new ChargeService();
-
-        //    var customer = customers.Create(new CustomerCreateOptions
-        //    {
-        //        Email = Request.Form["stripeEmail"],
-        //        //SourceToken = Request.Form["stripeToken"]
-        //    });
-
-        //    var charge = charges.Create(new ChargeCreateOptions
-        //    {
-        //        Amount = 500,
-        //        Description = "Sample Charge",
-        //        Currency = "usd",
-        //        Customer = customer.Id
-        //    });
-
-        //    Console.WriteLine(charge);
-        //}
-
-        //if (Session["username"] == null)
-        //{
-        //    Session["LoggedIn"] = "false";
-        //    Response.Redirect("Login.aspx");
-        //}
-
+        //session clear to ensure exiting out of tab 
         string strPreviousPage = "";
         if (Request.UrlReferrer != null)
         {
@@ -67,6 +38,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         lvFavorites.DataSource = Favorite.lstFavorites;
         lvFavorites.DataBind();
 
+        //get accountID to see which account (admin, tenant, or host) it is to populate dashboard
         sc.Open();
         int accountID = Convert.ToInt32(Session["accountID"]);
 
@@ -149,12 +121,6 @@ public partial class TenantDashboard : System.Web.UI.Page
             choresBadge.ImageUrl = "images/badges-21.png";
         }
 
-
-
-
-
-
-
         //displays all of tenants messages
 
         string messageSender = Session["username"].ToString();
@@ -174,7 +140,6 @@ public partial class TenantDashboard : System.Web.UI.Page
                     "left join [dbo].[Tenant] on [dbo].[Message].TenantID = [dbo].[Tenant].TenantID " +
                     "where Message.TenantID = @tenantid order by Message.MessageID desc";
                 command.Parameters.AddWithValue("@tenantid", tenantIDRefresh);
-
 
                 try
                 {
@@ -235,7 +200,7 @@ public partial class TenantDashboard : System.Web.UI.Page
         lvMessagesTenant.DataSource = Message.lstTenantMessages;
         lvMessagesTenant.DataBind();
 
-        //favorite
+        //populating favorites card
         Favorite.lstFavorites.Clear();
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
@@ -466,6 +431,7 @@ public partial class TenantDashboard : System.Web.UI.Page
 
     protected void sendMessage(object sender, EventArgs e)
     {
+        //query to send message
         resultmessageMessage.Text = "";
         if (messageTextbox.Text.Trim() != "")
         {
@@ -600,12 +566,13 @@ public partial class TenantDashboard : System.Web.UI.Page
 
     protected void contract(object sender, EventArgs e)
     {
+        //redirects button to contract.aspx page
         Response.Redirect("Contract.aspx");
     }
 
     protected void profileButton(object sender, EventArgs e)
     {
-
+        //leads to view more information about the property
         Favorite.selectedReultFullAddress = string.Empty;
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
@@ -618,6 +585,7 @@ public partial class TenantDashboard : System.Web.UI.Page
 
     protected void logout(object sender, EventArgs e)
     {
+        //clear session variables and go to homepage after logout
         Session.Abandon();
         Response.Redirect("Index.aspx");
     }

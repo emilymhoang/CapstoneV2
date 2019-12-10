@@ -21,13 +21,12 @@ public partial class HostDashboard : System.Web.UI.Page
     String roomImg1;
     String roomImg2;
     String roomImg3;
-    // protected global::System.Web.UI.WebControls.DropDownList drpTenantName;
 
 
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //session clear to ensure exiting out of tab 
         string strPreviousPage = "";
         if (Request.UrlReferrer != null)
         {
@@ -39,16 +38,11 @@ public partial class HostDashboard : System.Web.UI.Page
             Response.Redirect("Login.aspx");
         }
 
-        //lvMessages.DataSource = Message.lstMessages;
-        //lvMessages.DataBind();
-
-        //lvPropertyRoom.DataSource = PropertyRoom.listPropertyRoom;
-        //lvPropertyRoom.DataBind();
-
         sc.Open();
 
         int accountID = Convert.ToInt32(Session["accountID"]);
 
+        //get accountID to see which account (admin, tenant, or host) it is to populate dashboard
         SqlCommand insert = new SqlCommand("SELECT HostID FROM [dbo].[Login] WHERE AccountID = @AccountID", sc);
         insert.Parameters.AddWithValue("@AccountID", accountID);
         insert.Connection = sc;
@@ -117,43 +111,6 @@ public partial class HostDashboard : System.Web.UI.Page
             smoker = Session["Smoker"].ToString();
         }
 
-        //if (privateEntrance == "y")
-        //{
-        //    privateEntranceBadge.ImageUrl = "images/badges-04.png";
-        //}
-
-        //if (kitchen == "y")
-        //{
-        //    kitchenBadge.ImageUrl = "images/badges-06.png";
-
-        //}
-
-        //if (privateBathroom == "y")
-        //{
-        //    privateBathroomBadge.ImageUrl = "images/badges-07.png";
-
-        //}
-
-        //if (furnish == "y")
-        //{
-        //    furnishBadge.ImageUrl = "images/badges-08.png";
-
-        //}
-
-        //if (storage == "y")
-        //{
-        //    storageBadge.ImageUrl = "images/badges-09.png";
-
-        //}
-
-        //if (smoker == "n")
-        //{
-        //    smokerBadge.ImageUrl = "images/badges-10.png";
-
-        //}
-
-
-
         SqlCommand filterProp = new SqlCommand("SELECT Property.HostID, Property.PropertyID, Property.HouseNumber, PropertyRoom.BriefDescription, " +
             "PropertyRoom.RoomDescription, Property.Street, Property.Zip, Property.CityCounty, Property.HomeState, Property.MonthlyPrice, PropertyRoom.Image1 as PRimage1, PropertyRoom.Image2 as PRimage2, PropertyRoom.Image3 as PRimage3 FROM PropertyRoom" +
             " INNER JOIN Property ON PropertyRoom.PropertyID = Property.PropertyID WHERE Property.HostID = @HostID", sc);
@@ -162,27 +119,6 @@ public partial class HostDashboard : System.Web.UI.Page
         while (readr.Read())
         {
             addressTextbox.Text = HttpUtility.HtmlEncode(readr["HouseNumber"].ToString()) + " " + HttpUtility.HtmlEncode(readr["Street"].ToString()) + " " + HttpUtility.HtmlEncode(readr["CityCounty"].ToString()) + ", " + HttpUtility.HtmlEncode(readr["HomeState"].ToString()) + " " + HttpUtility.HtmlEncode(readr["Zip"].ToString());
-            //priceTextbox.Text = readr["MonthlyPrice"].ToString();
-            //descriptionTextbox.Text = readr["BriefDescription"].ToString();
-            //roomDescripTextbox.Text = readr["RoomDescription"].ToString();
-            //byte[] imgData = (byte[])readr["PRimage1"];
-            //if (!(imgData == null))
-            //{
-            //    string img = Convert.ToBase64String(imgData, 0, imgData.Length);
-            //    image4.ImageUrl = "data:image;base64," + img;
-            //}
-            //byte[] imgData2 = (byte[])readr["PRimage2"];
-            //if (!(imgData2 == null))
-            //{
-            //    string img = Convert.ToBase64String(imgData2, 0, imgData2.Length);
-            //    image5.ImageUrl = "data:image;base64," + img;
-            //}
-            //byte[] imgData3 = (byte[])readr["PRimage3"];
-            //if (!(imgData3 == null))
-            //{
-            //    string img = Convert.ToBase64String(imgData3, 0, imgData3.Length);
-            //    image6.ImageUrl = "data:image;base64," + img;
-            //}
         }
 
         //------------------------------------------------------------------------------------------------------------
@@ -410,15 +346,6 @@ public partial class HostDashboard : System.Web.UI.Page
             }
         }
 
-        //message dropdown selection
-        //foreach (ListItem item in tenantNameDropdown.Items)
-        //{
-        //    ListItem item2 = new ListItem();
-        //    item2.Text = item.Text;
-        //    item2.Value = item.Value;
-        //    list.Items.Add(item2);
-        //}
-
         lvMessagesHost.DataSource = Message.lstHostMessages;
         lvMessagesHost.DataBind();
 
@@ -429,7 +356,7 @@ public partial class HostDashboard : System.Web.UI.Page
     protected void sendMessage(object sender, EventArgs e)
     {
         resultmessageMessage.Text = "";
-        if (messageTextbox.Text.Trim() != "")
+        if (messageTextbox.Text.Trim() != "") //validation
         {
             int hostID = Convert.ToInt32(Session["hostID"]);
         int tenantID = Convert.ToInt32(tenantNameDropdown.SelectedItem.Value);
@@ -569,6 +496,7 @@ else
 
     protected void viewTenantProfile(object sender, EventArgs e)
     {
+        //grab tenant id to use for viewing tenant profile
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
         var index = item.DataItemIndex;
@@ -577,13 +505,14 @@ else
     }
 
     protected void logout(object sender, EventArgs e)
-    {
+    { //clear session variables and go to homepage
         Session.Abandon();
         Response.Redirect("Index.aspx");
     }
 
     protected void hideProperties(object sender, EventArgs e)
     {
+        //marking rooms as unavailable every time theres a reservation
         using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
         {
             using (SqlCommand command = new SqlCommand())
@@ -595,8 +524,6 @@ else
                     ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
                     var index = item.DataItemIndex;
                     var tenantID = drpTenantName.SelectedItem.Value;
-                    //DropDownList list = (DropDownList)Page.FindControl("drpTenantName");
-                    //var selectedPRid = PropertyRoom.listPropertyRoom[index].roomID;
 
                     SqlCommand filter = new SqlCommand("SELECT Host.FirstName, Host.LastName, Property.PropertyID FROM [dbo].[Host] LEFT JOIN [dbo].[Property] ON Host.HostID = Property.HostID WHERE Property.HostID = @HostID", connection);
                     filter.Parameters.AddWithValue("@HostID", Session["HostID"]);
@@ -622,6 +549,7 @@ else
 
                     int hostID = Convert.ToInt32(Session["hostID"]); 
 
+                    //insert into reservation table
                     SqlCommand insert = new SqlCommand("INSERT INTO [dbo].[RoomReservation] (RoomID, TenantID, HostID, PropertyID, StartDate, EndDate, LastUpdated, LastUpdatedBy) " +
                     "VALUES (@RoomID, @TenantID, @HostID, @PropertyID, @StartDate, @EndDate, @LastUpdated, @LastUpdatedBy)", connection);
                     insert.Parameters.AddWithValue("@TenantID", tenantID);
@@ -635,6 +563,7 @@ else
 
                     insert.ExecuteNonQuery();
 
+                    //updating room as unavailable
                     SqlCommand update = new SqlCommand("UPDATE [dbo].[PropertyRoom] SET Availability = 'n', TenantID = @TenantID WHERE RoomID = @RoomID", connection);
                     update.Parameters.AddWithValue("@RoomID", roomID);
                     update.Parameters.AddWithValue("@TenantID", tenantID);
