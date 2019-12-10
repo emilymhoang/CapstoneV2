@@ -11,7 +11,6 @@ public partial class Index : System.Web.UI.Page
 {
 
     SqlConnection sc = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
-    // Isaac was here
     protected void Page_Load(object sender, EventArgs e)
     {
         
