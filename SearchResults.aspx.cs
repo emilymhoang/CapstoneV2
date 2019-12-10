@@ -31,99 +31,6 @@ public partial class SearchResults : System.Web.UI.Page
         lblInvalidFilterResults.Text = string.Empty;
 
         SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString);
-
-
-
-
-        //foreach (var item in SearchResult.lstSearchResults)
-        //{
-        //    ListViewItem itemm = (ListViewItem)(sender as Control).NamingContainer;
-        //    var index = itemm.DataItemIndex;
-        //    var roomID1 = SearchResult.lstSearchResults[index].resultID;
-
-        //    Image imageEntrance = (Image)Page.FindControl("privateEntranceBadge");
-        //    Image imageKitchen = (Image)Page.FindControl("kitchenBadge");
-        //    Image imageBathroom = (Image)Page.FindControl("privateBathroomBadge");
-        //    Image imageFurnish = (Image)Page.FindControl("furnishBadge");
-        //    Image imageStorage = (Image)Page.FindControl("storageBadge");
-        //    Image imageSmoker = (Image)Page.FindControl("smokerBadge");
-
-        //    SqlCommand badge2 = new SqlCommand("SELECT PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker FROM [dbo].[BadgeProperty] WHERE RoomID = @roomID", connection);
-        //    badge2.Parameters.AddWithValue("@roomID", roomID1);
-
-
-        //    connection.Open();
-        //    SqlDataReader rdr2 = badge2.ExecuteReader();
-
-        //    while (rdr2.Read())
-        //    {
-        //        privateEntrance = HttpUtility.HtmlEncode(rdr2["privateEntrance"].ToString());
-        //        kitchen = HttpUtility.HtmlEncode(rdr2["Kitchen"].ToString());
-        //        privateBathroom = HttpUtility.HtmlEncode(rdr2["privateBathroom"].ToString());
-        //        furnish = HttpUtility.HtmlEncode(rdr2["Furnished"].ToString());
-        //        storage = HttpUtility.HtmlEncode(rdr2["ClosetSpace"].ToString());
-        //        nonsmoker = HttpUtility.HtmlEncode(rdr2["NonSmoker"].ToString());
-        //    }
-
-        //    if (privateEntrance == "y")
-        //    {
-        //        imageEntrance.ImageUrl = "images/badges-04.png";
-        //    }
-        //    else
-        //    {
-        //        imageEntrance.Visible = false;
-        //    }
-
-        //    if (kitchen == "y")
-        //    {
-        //        imageKitchen.ImageUrl = "images/badges-06.png";
-
-        //    }
-        //    else
-        //    {
-        //        imageKitchen.Visible = false;
-        //    }
-
-        //    if (privateBathroom == "y")
-        //    {
-        //        imageBathroom.ImageUrl = "images/badges-07.png";
-
-        //    }
-        //    else
-        //    {
-        //        imageBathroom.Visible = false;
-        //    }
-
-        //    if (furnish == "y")
-        //    {
-        //        imageFurnish.ImageUrl = "images/badges-08.png";
-
-        //    }
-        //    else
-        //    {
-        //        imageFurnish.Visible = false;
-        //    }
-
-        //    if (storage == "y")
-        //    {
-        //        imageStorage.ImageUrl = "images/badges-09.png";
-
-        //    }
-        //    else
-        //    {
-        //        imageStorage.Visible = false;
-        //    }
-
-        //    if (nonsmoker == "y")
-        //    {
-        //        imageSmoker.ImageUrl = "images/badges-10.png";
-
-        //    }
-        //    else
-        //    {
-        //        imageSmoker.Visible = false;
-        //    }
-        //}
        
     }
     protected void search_Click(object sender, EventArgs e)
@@ -135,6 +42,7 @@ public partial class SearchResults : System.Web.UI.Page
         int a;
         string propertySearch = searchTextbox.Text;
 
+        //validation
         if (string.IsNullOrEmpty(propertySearch))
         {
             lblInvalidSearch.Text = "You must enter a city OR a zip!";
@@ -164,7 +72,7 @@ public partial class SearchResults : System.Web.UI.Page
 
                 if (searchBy)
                 {
-
+                    //searches by zip
                     command.CommandText = "select " +
                         "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
                         "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
@@ -180,6 +88,7 @@ public partial class SearchResults : System.Web.UI.Page
                 }
                 else
                 {
+                    //searches by city
                     command.CommandText = "select " +
                             "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
                             "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
@@ -197,7 +106,7 @@ public partial class SearchResults : System.Web.UI.Page
                 }
 
 
-
+                //populates search results
                 try
                 {
                     connection.Open();
@@ -305,6 +214,7 @@ public partial class SearchResults : System.Web.UI.Page
     }
     protected void FavoritesButton(object sender, EventArgs e)
     {
+        //favorites property rooms
         if (Convert.ToInt32(Session["tenantID"]) >0)
         {
             using (SqlConnection connection = new SqlConnection(WebConfigurationManager.ConnectionStrings["RDSConnectionString"].ConnectionString))
@@ -380,14 +290,13 @@ public partial class SearchResults : System.Web.UI.Page
             }
         else
         {
-            Response.Write("<script> alert('You need to login first.'); </script>");
+            Response.Write("<script> alert('You need to login first.'); </script>"); //validation if not a tenant
             return;
         }
     }
     protected void profileButton(object sender, EventArgs e)
     {
-        //if (Convert.ToInt32(Session["tenantID"]) > 0)
-        //{
+        //view property profile buttons 
         SearchResult.selectedReultFullAddress = string.Empty;
         Button btn = sender as Button;
         ListViewItem item = (ListViewItem)(sender as Control).NamingContainer;
@@ -395,13 +304,6 @@ public partial class SearchResults : System.Web.UI.Page
         Session["position"] = index;
         SearchResult.selectedReultFullAddress = SearchResult.lstSearchResults[index].resultFullAddress;
         Response.Redirect("PropertyDescription.aspx");
-        //}
-
-        //else
-        //{
-        //    Response.Write("<script> alert('You need to login to view this information.'); </script>");
-        //    return;
-        //}
     }
 
 

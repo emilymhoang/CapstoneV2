@@ -53,14 +53,6 @@
             </div>
              <!--end col-->
           </div> <!--end row class-->
-          
-          <%--<div class="row">
-            <div class="col-md-4" >
-              <p ><asp:CheckBox ID="singleRoomCheck" type=" checkbox" name="Single Room" value="Single Room" runat="server"></asp:Checkbox> Single Room<br>
-               <asp:CheckBox ID="privateRoomCheck" type=" checkbox" name="Private Room" value="Private Room" runat="server"></asp:Checkbox> Private Room<br>
-                <asp:CheckBox ID="privateAptCheck" type="checkbox" name="Private Apartment" value="Private Apartment" runat="server"></asp:Checkbox> Private Room<br></p>
-            </div>
-              </div>--%>
     
            <div class="row">  
           <div class="col-md-4">
@@ -106,44 +98,7 @@
 
     </div>
 
- 
 
-
- <%-- <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 3000,
-      values: [ 100, 1000 ],
-      slide: function( event, ui ) {
-          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-
-          
-      }
-    });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-          " - $" + $("#slider-range").slider("values", 1));
-
-      
-      //$('#txtMinPrice').val(sliderElement.slider('values', 0));
-      //$('#txtMaxPrice').val(sliderElement.slider('values', 1));
-
-      });
-
-      
-  </script>--%>
-
-    
-
-    <%--<asp:TextBox runat="server" id="txtMaxPrice" ReadOnly="true"></asp:TextBox>
-    <asp:TextBox runat="server" id="txtMinPrice" ReadOnly="true"></asp:TextBox>--%>
 
         <div  class="container">
 
@@ -192,12 +147,7 @@
                                 </tr>
                                  <tr>
                                      <td>
-                             <%--           <asp:Image ID="privateEntranceBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                                        <asp:Image ID="kitchenBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                                        <asp:Image ID="privateBathroomBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                                        <asp:Image ID="furnishBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                                        <asp:Image ID="storageBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />
-                                        <asp:Image ID="smokerBadge" ImageUrl="" class="img-fluid" runat="server" Height="35" Width="130" />--%>
+
                                      </td>
                                      <td>
                                         <asp:Label runat="server" Text=" "></asp:Label></br> </br> </br> </br> </br> </br></br>

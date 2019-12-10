@@ -44,12 +44,14 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
 
 
         sc.Open();
+        //find hostid
         SqlCommand insert = new SqlCommand("SELECT PropertyID FROM [dbo].[Property] WHERE HostID = @HostID", sc);
         insert.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         insert.Connection = sc;
         int propertyID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
 
+        //find accountid
         SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [dbo].[Login] WHERE HostID = @HostID", sc);
         getAccountID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         getAccountID.Connection = sc;
@@ -59,13 +61,12 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
         sc.Close();
 
         string monthlyPrice = (Convert.ToDouble(monthlyPriceTextbox.Text)).ToString();
-        //int sqFoot = Convert.ToInt32(squareFootageTextbox.Text);
         String sqFoot = DropDownListSize.SelectedValue;
         String avail = DropDownListAvailability.SelectedValue;
         String display = displayTextbox.Text;
         String roomDescription = bioTextbox.Text;
 
-        //roomID
+        //insert property room into property room description
         int roomID;
         Session["RoomID"] = null;
 
@@ -114,7 +115,7 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
 
 
                     BadgeProperty newBadgeProperty = new BadgeProperty(roomID, privateEnt, kitchen, privateBath, furnish, storage, smoker);
-
+                    //insert badge
                     insertBadgeProperty.CommandText = "INSERT INTO [dbo].[BadgeProperty] (RoomID, PrivateEntrance, Kitchen, PrivateBathroom, Furnished, ClosetSpace, NonSmoker) VALUES (@roomID, @privateEnt, @kitchen, @privateBath, @furnish, @storage, @smoker);";
                     insertBadgeProperty.Parameters.AddWithValue("@roomID", newBadgeProperty.RoomID);
                     insertBadgeProperty.Parameters.AddWithValue("@privateEnt", newBadgeProperty.privateEntrance);
@@ -140,10 +141,9 @@ public partial class PropertyRoomInfo : System.Web.UI.Page
 
         
 
-
+        //validates photo and upload photos
         if (FileUploadControl.HasFile)
         {
-
             HttpPostedFile postedFile = FileUploadControl.PostedFile;
             string fileName = Path.GetFileName(postedFile.FileName);
             string fileExtension = Path.GetExtension(fileName);

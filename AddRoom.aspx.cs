@@ -12,7 +12,6 @@ using System.Web.UI.WebControls;
 public partial class AddRoom : System.Web.UI.Page
 {
     int PropertyID;
-
     double MonthlyPrice;
     int SquareFootage;
     string privateBath;
@@ -28,7 +27,6 @@ public partial class AddRoom : System.Web.UI.Page
     }
     protected void submitPropRoom(object sender, EventArgs e)
     {
-
         Session["privateBathroom"] = rbPrivateBr.SelectedValue;
         Session["privateEntrance"] = rbPrivateEntr.SelectedValue;
         Session["Storage"] = rbStorage.SelectedValue;
@@ -45,12 +43,14 @@ public partial class AddRoom : System.Web.UI.Page
 
 
         sc.Open();
+        //selecting property to add an additional room in
         SqlCommand insert = new SqlCommand("SELECT PropertyID FROM [dbo].[Property] WHERE HostID = @HostID", sc);
         insert.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         insert.Connection = sc;
         int propertyID = Convert.ToInt32(insert.ExecuteScalar());
         insert.ExecuteNonQuery();
 
+        //select account id to see which host to add a room in
         SqlCommand getAccountID = new SqlCommand("SELECT AccountID FROM [dbo].[Login] WHERE HostID = @HostID", sc);
         getAccountID.Parameters.AddWithValue("@HostID", Convert.ToInt32(Session["hostID"]));
         getAccountID.Connection = sc;
@@ -66,7 +66,6 @@ public partial class AddRoom : System.Web.UI.Page
         String display = displayTextbox.Text;
         String roomDescription = bioTextbox.Text;
 
-        //roomID
         int roomID;
         Session["RoomID"] = null;
 
@@ -82,7 +81,7 @@ public partial class AddRoom : System.Web.UI.Page
                 command.Connection = connection;
                 command.CommandType = CommandType.Text;
                 command.CommandText = "INSERT INTO [dbo].[PropertyRoom] ([PropertyID],[TenantID],[MonthlyPrice],[SquareFootage],[Availability],[BriefDescription],[RoomDescription],[LastUpdatedBy],[LastUpdated],[Image1],[Image2],[Image3]) VALUES (@propid,@tenantid,@price,@sqft,@avail,@desc,@roomdescrip,@lub,@lu, @image1, @image2, @image3)";
-
+                //insert into propertyRoom database table
                 command.Parameters.AddWithValue("@propid", newRoom.propertyID);
                 command.Parameters.AddWithValue("@tenantid", DBNull.Value);
                 command.Parameters.AddWithValue("@price", monthlyPriceTextbox.Text);
@@ -98,11 +97,6 @@ public partial class AddRoom : System.Web.UI.Page
                 connection.Open();
                 int recordsAffected = command.ExecuteNonQuery();
                 connection.Close();
-
-
-
-
-
 
                 try
                 {
@@ -141,7 +135,7 @@ public partial class AddRoom : System.Web.UI.Page
 
 
 
-
+        //uploading photos and validation
         if (FileUploadControl.HasFile)
         {
 
@@ -248,6 +242,7 @@ public partial class AddRoom : System.Web.UI.Page
 
     protected void populate(object sender, EventArgs e)
     {
+        //populates for easy demo
         monthlyPriceTextbox.Text = "800.00";
         DropDownListSize.Text = "500";
         displayTextbox.Text = "Basement bedroom near City with a balcony";
@@ -257,7 +252,6 @@ public partial class AddRoom : System.Web.UI.Page
         rbPrivateEntr.SelectedValue = "y";
         rbSmoke.SelectedValue = "n";
         rbStorage.SelectedValue = "y";
-
     }
 
 

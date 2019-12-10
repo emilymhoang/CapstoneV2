@@ -31,6 +31,7 @@ public partial class PropertyInfoHomeowner : System.Web.UI.Page
     
     protected void submitPropInfo(object sender, EventArgs e)
     {
+        //property validation
         if (houseNumTextbox.Text.Length > 10)
         {
             propertyResult.Text = "House Number must be less than 10 numbers.";
@@ -74,7 +75,7 @@ public partial class PropertyInfoHomeowner : System.Web.UI.Page
             insertProperty.CommandText = "INSERT INTO [dbo].[Property] (HouseNumber, Street, Zip, CityCounty, HomeState, Country," +
                                 "MonthlyPrice, NumberBedrooms, LastUpdatedBy, LastUpdated, HostID) VALUES (@HouseNumber, @Street, @Zip, @CityCounty," +
                                 "@HomeState, @Country, @MonthlyPrice, @NumberBedrooms, @LastUpdatedBy, @LastUpdated, @HostID); ";
-
+            //insert into property database table
             insertProperty.Parameters.AddWithValue("@HouseNumber", houseNumNew);
             insertProperty.Parameters.AddWithValue("@Street", streetNew);
             insertProperty.Parameters.AddWithValue("@Zip", Session["Zip"].ToString());

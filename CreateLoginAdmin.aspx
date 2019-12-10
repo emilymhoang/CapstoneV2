@@ -62,11 +62,6 @@
               <div class="col">
                   </div>
               <%--<div class="col">--%>
-           <%--    <label for="formGroupExampleInput">Profile Picture</label><br>
-                <asp:FileUpload id="FileUploadControlHost" runat="server" />
-                <asp:RequiredFieldValidator ID="fileUploadRequiredFieldValidator" runat="server" ControlToValidate="FileUploadControlHost" ErrorMessage="Required" ForeColor="#B23325">Profile picture is required.</asp:RequiredFieldValidator>
-                <br /><br />
-                <asp:Label runat="server" id="StatusLabel" text=" " />--%>
             </div><!--end col-->
           
           <br>

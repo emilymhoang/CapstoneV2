@@ -67,7 +67,7 @@ public partial class Search : System.Web.UI.Page
 
                 if (searchBy)
                 {
-                    
+                    //search by zipcode
                         command.CommandText = "select " +
                             "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
                             "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
@@ -83,6 +83,7 @@ public partial class Search : System.Web.UI.Page
                 }
                 else
                 {
+                    //search by city
                     command.CommandText = "select " +
                             "[dbo].[BadgeProperty].PrivateEntrance, [dbo].[BadgeProperty].Kitchen, [dbo].[BadgeProperty].PrivateBathroom, [dbo].[BadgeProperty].Furnished, [dbo].[BadgeProperty].ClosetSpace, [dbo].[BadgeProperty].NonSmoker, " +
                             "[dbo].[PropertyRoom].Image1, [dbo].[PropertyRoom].Image2, [dbo].[PropertyRoom].Image3, " +
@@ -110,7 +111,7 @@ public partial class Search : System.Web.UI.Page
                         {
                             while (reader.Read())
                             {
-
+                                //populates listview
                                 string name = HttpUtility.HtmlEncode((string)reader["FirstName"]) + " " + HttpUtility.HtmlEncode((string)reader["LastName"]);
                                 string location = HttpUtility.HtmlEncode((string)reader["CityCounty"]) + ", " + HttpUtility.HtmlEncode((string)reader["HomeState"] )+ " " + HttpUtility.HtmlEncode((string)reader["Zip"]);
                                 string description = HttpUtility.HtmlEncode((string)reader["RoomDescription"]);
@@ -205,140 +206,5 @@ public partial class Search : System.Web.UI.Page
 
 
     }
-
-    //protected void btnFilterResults_Click(object sender, EventArgs e)
-    //{
-    //    lstFilterCriteria.Clear();
-    //    SearchResult.lstFilteredResults.Clear();
-
-    //    //populating filtered list
-    //    if (privateEntranceCheck.Checked)
-    //    {
-    //        lstFilterCriteria.Add("y");
-    //    }
-    //    else
-    //    {
-    //        lstFilterCriteria.Add("na");
-    //    }
-    //    if (kitchenCheck.Checked)
-    //    {
-    //        lstFilterCriteria.Add("y");
-    //    }
-    //    else
-    //    {
-    //        lstFilterCriteria.Add("na");
-    //    }
-    //    if (furnishedCheck.Checked)
-    //    {
-    //        lstFilterCriteria.Add("y");
-    //    }
-    //    else
-    //    {
-    //        lstFilterCriteria.Add("na");
-    //    }
-    //    if (closetCheck.Checked)
-    //    {
-    //        lstFilterCriteria.Add("y");
-    //    }
-    //    else
-    //    {
-    //        lstFilterCriteria.Add("na");
-    //    }
-    //    if (nonSmokerCheck.Checked)
-    //    {
-    //        lstFilterCriteria.Add("y");
-    //    }
-    //    else
-    //    {
-    //        lstFilterCriteria.Add("na");
-    //    }
-    //    if (privateBathroomCheck.Checked)
-    //    {
-    //        lstFilterCriteria.Add("y");
-    //    }
-    //    else
-    //    {
-    //        lstFilterCriteria.Add("na");
-    //    }
-
-    //    //filter price
-    //    string filterPriceCriteria = rdoPriceList.SelectedItem.Value;
-    //    double priceUpperLimit = 0;
-    //    double priceLowerLimit = 0;
-
-    //    if (filterPriceCriteria.Equals("low"))
-    //    {
-    //        priceUpperLimit = 500;
-    //        priceLowerLimit = 0;
-    //    }
-    //    else if (filterPriceCriteria.Equals("medium"))
-    //    {
-    //        priceUpperLimit = 999;
-    //        priceLowerLimit = 501;
-    //    }
-    //    else if (filterPriceCriteria.Equals("high"))
-    //    {
-    //        priceLowerLimit = 1000;
-    //        priceUpperLimit = Double.MaxValue;
-    //    }
-    //    else if (filterPriceCriteria.Equals("none"))
-    //    {
-    //        priceUpperLimit = Double.MaxValue;
-    //        priceLowerLimit = 0;
-    //    }
-
-    //    foreach (var result in SearchResult.lstSearchResults)
-    //    {
-    //        bool match = true;
-
-    //        //checks price match
-
-    //        if (result.resultPriceDub >= priceLowerLimit && result.resultPriceDub <= priceUpperLimit)
-    //        {
-
-    //            //checks badges match
-    //            for (int i = 0; i < lstFilterCriteria.Count; i++)
-    //            {
-    //                if (lstFilterCriteria[i].Equals("na"))
-    //                {
-    //                    continue;
-    //                }
-    //                else if (!lstFilterCriteria[i].Equals(result.lstPropertyBadges[i]))
-    //                {
-    //                    match = false;
-    //                    break;
-    //                }
-
-
-    //            }
-
-
-    //        }
-    //        else
-    //        {
-
-    //            match = false;
-    //        }
-
-
-
-    //        if (match == true)
-    //        {
-    //            SearchResult.lstFilteredResults.Add(result);
-    //        }
-
-    //    }
-
-    //    if (SearchResult.lstFilteredResults.Count < 1)
-    //    {
-    //        lblInvalidFilterResults.Text = "No properties found with specified criteria!";
-    //    }
-
-    //    lvSearchResults.DataSource = SearchResult.lstFilteredResults;
-    //    lvSearchResults.DataBind();
-
-
-    //}
-
 
 }

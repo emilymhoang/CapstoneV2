@@ -91,44 +91,6 @@ public partial class CreateLoginAdmin : System.Web.UI.Page
                     sc.Open();
                     insertAdmin.ExecuteNonQuery();
 
-                    //SqlCommand insert = new SqlCommand("SELECT  MAX(AdminID) FROM [Capstone].[dbo].[Admin] ", sc);
-                    //insert.Connection = sc;
-                    //int adminID = Convert.ToInt32(insert.ExecuteScalar());
-                    //insert.ExecuteNonQuery();
-                    //Session["adminID"] = adminID;
-
-                    //if (FileUploadControlHost.HasFile)
-                    //{
-
-                    //    HttpPostedFile postedFile = FileUploadControlHost.PostedFile;
-                    //    string fileName = Path.GetFileName(postedFile.FileName);
-                    //    string fileExtension = Path.GetExtension(fileName);
-                    //    int fileSize = postedFile.ContentLength;
-
-                    //    if (fileExtension.ToLower() == ".jpg" || fileExtension.ToLower() == ".bmp" ||
-                    //        fileExtension.ToLower() == ".gif" || fileExtension.ToLower() == ".png")
-                    //    {
-                    //        Stream stream = postedFile.InputStream;
-                    //        BinaryReader br = new BinaryReader(stream);
-                    //        byte[] bytes = br.ReadBytes((int)stream.Length);
-
-                    //        SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Host] SET imageV2 = @imgdata WHERE HostID = @HostID", sc);
-                    //        cmd.Parameters.AddWithValue("@HostID", hostID);
-                    //        cmd.Parameters.AddWithValue("@imgdata", bytes);
-                    //        cmd.ExecuteNonQuery();
-
-                    //        StatusLabel.Text = "Image Uploaded successfully";
-                    //    }
-                    //    else
-                    //    {
-                    //        StatusLabel.Text = "Only Images (.jpg, .png, .gif and .bmp) can be uploaded!";
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    StatusLabel.Text = "Please select an image to upload";
-                    //}
-
 
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
                     insertLogin.CommandText = "INSERT INTO [dbo].[Login] (Username, Password, AdminID) VALUES (@userName, @Password, @adminID)";
@@ -166,6 +128,7 @@ public partial class CreateLoginAdmin : System.Web.UI.Page
 
     static bool ValidatePassword(string password)
     {
+        //validate password
         const int MIN_LENGTH = 8;
 
         if (password == null) throw new ArgumentNullException();
@@ -185,6 +148,7 @@ public partial class CreateLoginAdmin : System.Web.UI.Page
             }
         }
 
+        //checks password has all requirements
         bool isValid = meetsLengthRequirements
                     && hasUpperCaseLetter
                     && hasLowerCaseLetter
@@ -201,7 +165,6 @@ public partial class CreateLoginAdmin : System.Web.UI.Page
     protected void Back_Click(object sender, EventArgs e)
     {
         Response.Redirect("AdminDashboard.aspx");
-
     }
 
 }
