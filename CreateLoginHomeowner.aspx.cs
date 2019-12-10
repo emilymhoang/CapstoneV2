@@ -33,27 +33,18 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
 
     protected void submitLogin_Click(object sender, EventArgs e)
     {
-        //Username
-
-
-        //ValidatePassword(username);
+        //makes sure username does not already exist in the database
         String userNew = userNameTextbox.Text;
         Session["username"] = userNew;
-
-
         sc.Open();
         SqlCommand userCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Login] WHERE lower(Username) = @Username", sc);
-
         userCheck.Parameters.AddWithValue("@Username", userNew);
         userCheck.Connection = sc;
         int count = Convert.ToInt32(userCheck.ExecuteScalar());
         userCheck.ExecuteNonQuery();
         sc.Close();
 
-
-
-
-        //Password 
+        
         System.Data.SqlClient.SqlCommand insertHost = new System.Data.SqlClient.SqlCommand();
         insertHost.Connection = sc;
         System.Data.SqlClient.SqlCommand insertLogin = new System.Data.SqlClient.SqlCommand();
@@ -66,6 +57,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
         email = Session["email"].ToString();
         phoneNumber = Session["phoneNumberTextbox"].ToString();
 
+        //confirms that the passwords match and meet requirements
         String password = passwordTextbox.Text;
         String cpassword = confirmPasswordTextbox.Text;
 
@@ -93,7 +85,6 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     insertHost.Parameters.AddWithValue("@Gender", gender);
                     insertHost.Parameters.AddWithValue("@BackgroundCheckDate", DateTime.Now);
                     insertHost.Parameters.AddWithValue("@BackgroundCheckResult", "n");
-                    //ADD USERNAME and CONFIRM PASSOWRD IN DATABASE
                     insertHost.Parameters.AddWithValue("@LastUpdatedBy", lastName);
                     insertHost.Parameters.AddWithValue("@LastUpdated", DateTime.Now);
                     insertHost.Parameters.AddWithValue("@HostBio", Session["hostBio"].ToString());
@@ -110,6 +101,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                     insert.ExecuteNonQuery();
                     Session["hostID"] = hostID;
 
+                    //uploads the image to the database
                     if (FileUploadControlHost.HasFile)
                     {
 
@@ -142,7 +134,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
                         StatusLabel.Text = "Please select an image to upload";
                     }
 
-
+                    //inserts login info to the database
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
                     insertLogin.CommandText = "INSERT INTO [dbo].[Login] (Username, Password, hostID) VALUES (@userName, @Password, @hostID)";
                     insertLogin.Parameters.AddWithValue("@userName", newHost.userName);
@@ -178,6 +170,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
 
     }
 
+    //confirms that the passwords meet requirements
     static bool ValidatePassword(string password)
     {
         const int MIN_LENGTH = 8;
@@ -212,6 +205,7 @@ public partial class CreateLoginHomeowner : System.Web.UI.Page
 
     }
 
+    //returns to the basic info homeowner page when back button is clicked
     protected void Back_Click(object sender, EventArgs e)
     {
         Response.Redirect("BasicInfoHomeowner.aspx");

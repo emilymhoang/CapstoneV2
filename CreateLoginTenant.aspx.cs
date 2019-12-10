@@ -35,10 +35,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
     }
     protected void submitLogin_Click(object sender, CommandEventArgs e)
     {
-        //Username
-
-
-        //ValidatePassword(username);
+        //makes sure username does not already exist in the database
         String userNew = userNameTextbox.Text;
         Session["username"] = userNew;
 
@@ -52,9 +49,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         userCheck.ExecuteNonQuery();
         sc.Close();
 
-
-
-        //Password 
+        
         System.Data.SqlClient.SqlCommand insertTenant = new System.Data.SqlClient.SqlCommand();
         insertTenant.Connection = sc;
         System.Data.SqlClient.SqlCommand insertLogin = new System.Data.SqlClient.SqlCommand();
@@ -75,7 +70,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
         bio = Session["tenantBio"].ToString();
 
 
-
+        //confirms that the passwords match and meet requirements
         String password = passwordTextbox.Text;
         String cpassword = confirmPasswordTextbox.Text;
 
@@ -130,17 +125,9 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     insertBadgeTenant.ExecuteNonQuery();
 
 
-
+                    //uploads the image to the database
                     if (FileUploadControl.HasFile)
                     {
-                        //string strname = FileUploadControl.FileName.ToString();
-                        //FileUploadControl.PostedFile.SaveAs(Server.MapPath("~/images/") + strname);
-                        //SqlCommand cmd = new SqlCommand("UPDATE[Capstone].[dbo].[Tenant] SET ProfilePic = @strname WHERE TenantID = @TenantID", sc);
-                        //cmd.Parameters.AddWithValue("@TenantID", tenantID);
-                        //cmd.Parameters.AddWithValue("@strname", strname);
-                        //cmd.ExecuteNonQuery();
-
-                        //StatusLabel.Text = "Image Uploaded successfully";
 
                         HttpPostedFile postedFile = FileUploadControl.PostedFile;
                         string fileName = Path.GetFileName(postedFile.FileName);
@@ -171,6 +158,7 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                         StatusLabel.Text = "Please select an image to upload";
                     }
 
+                    //inserts login info to the database
                     Login tempLogin = new Login(userNameTextbox.Text, passwordTextbox.Text);
                     insertLogin.CommandText = "INSERT INTO [dbo].[Login] (Username, Password, TenantID) VALUES (@userName, @Password, @TenantID)";
                     insertLogin.Parameters.AddWithValue("@userName", newTenant.userName);
@@ -208,21 +196,8 @@ public partial class CreateLoginTenant : System.Web.UI.Page
 
     }
 
-    //static bool ValidatePassword(String password)
-    //{
-    //    bool isValid = false;
-    //    bool containsInt = password.Any(char.IsDigit);
-    //    bool containsUpper = password.Any(char.IsUpper);
-    //    bool containsLower = password.Any(char.IsLower);
 
-    //    if (containsInt == true && containsUpper == true && containsLower == true)
-    //    {
-    //        isValid = true;
-    //    }
-
-    //    return isValid;
-    //}
-
+    //confirms that the passwords meet requirements
     static bool ValidatePassword(string password)
     {
         const int MIN_LENGTH = 8;
@@ -251,14 +226,6 @@ public partial class CreateLoginTenant : System.Web.UI.Page
                     ;
         return isValid;
     }
-
-    //static bool ValidateUsername(string username)
-    //{
-
-    //    bool noDuplicate;
-
-    //    return noDuplicate;
-    //}
 
     
   

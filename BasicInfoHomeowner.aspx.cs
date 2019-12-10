@@ -23,6 +23,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
     
     protected void submitBasicInfo(object sender, EventArgs e)
     {
+        // converting Time
         var today = DateTime.Today;
 
         var birthdate = Convert.ToDateTime(dateOfBirthTextbox.Text);
@@ -36,10 +37,10 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
             return;
         }
 
+        //makes sure email does not already exist in the database
         String emailNew = emailTextbox.Text;
         Session["Email"] = emailNew;
-
-
+        
         sc.Open();
         SqlCommand emailCheck = new SqlCommand("SELECT Count(*) FROM [dbo].[Host] WHERE lower(email) = @Email", sc);
         emailCheck.Parameters.AddWithValue("@Email", emailNew);
@@ -81,6 +82,7 @@ public partial class BasicInfoHomeowner : System.Web.UI.Page
 
     }
 
+    //populate button
     protected void populate(object sender, EventArgs e)
     {
         firstNameTextbox.Text = "Carey";

@@ -41,33 +41,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
             return;
         }
 
-
-
-        //AGE VALIDATION
-        //var today = DateTime.Today;
-        //var birthdate = Convert.ToDateTime(dateOfBirthTextbox.Text);
-        //var age = today.Year - birthdate.Year;
-
-        //age = new DateTime(DateTime.Now.Subtract(birthdate).Ticks).Year - 1;
-        //DateTime lastYear = birthdate.AddYears(age);
-        //int month = 0;
-        //for (int z = 1; z <= 12; z++)
-        //{
-        //    if (lastYear.AddMonths(z) == today)
-        //    {
-        //        month = z;
-        //        break;
-        //    }
-        //    else if (lastYear.AddMonths(z) >= today)
-        //    {
-        //        month = z - 1;
-        //        break;
-        //    }
-        //}
-
-        //int days = today.Subtract(lastYear.AddMonths(month)).Days;
-        //int hours = today.Subtract(lastYear).Hours;
-
+        //makes sure email does not already exist in the database
         String emailNew = emailTextbox.Text;
         Session["Email"] = emailNew;
         sc.Open();
@@ -83,8 +57,6 @@ public partial class BasicInfoTenant : System.Web.UI.Page
             if (emailTextbox.Text == confirmEmailTextbox.Text)
             {
                 if(DropDownListGender.SelectedValue != "-1") { 
-                //if (age > 18 || age < 100)
-                //    {
 
 
                         Session["firstName"] = firstNameTextbox.Text;
@@ -98,7 +70,6 @@ public partial class BasicInfoTenant : System.Web.UI.Page
                         Session["chores"] = choresCheck.Checked;
                         Session["tenantBio"] = TenantBioTextbox.Text;
                         Response.Redirect("CreateLoginTenant.aspx");
-                        //resultmessagedob.Text = "Student must be between 18 - 30 years old, age is " + age;
                         
                 }
                 else
@@ -119,6 +90,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
 
     }
 
+    //populate button
     protected void populate(object sender, EventArgs e)
     {
         firstNameTextbox.Text = "Emily";
@@ -133,9 +105,10 @@ public partial class BasicInfoTenant : System.Web.UI.Page
     }
     protected void UploadButton_Click(object sender, EventArgs e)
     {
-        //Insert image
+        
     }
 
+    //makes sure both undergrad and grad cannot both be checked
     protected void undergradCheck_checkChanged(object sender, EventArgs e)
     {
         if (undergradCheck.Checked == true)
@@ -146,6 +119,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
 
     }
 
+    //makes sure both undergrad and grad cannot both be checked
     protected void gradCheck_checkChanged(object sender, EventArgs e)
     {
         if (gradCheck.Checked == true)
@@ -157,6 +131,7 @@ public partial class BasicInfoTenant : System.Web.UI.Page
 
     }
 
+    //makes sure undergrad and grad are not checked if NA is checked
     protected void NAcheck_checkChanged(object sender, EventArgs e)
     {
         if (NAcheck.Checked == true)
