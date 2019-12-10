@@ -11,6 +11,8 @@ public partial class CreateAccountSafetyHomeowner : System.Web.UI.Page
     {
 
     }
+
+    //redirects homeowner to the dashboard if they accept saftey terms
     protected void Understand(object sender, EventArgs e)
     {
         Response.Redirect("HostDashboard.aspx");

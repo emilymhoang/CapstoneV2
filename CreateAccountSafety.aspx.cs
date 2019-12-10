@@ -12,6 +12,7 @@ public partial class CreateAccountSafety : System.Web.UI.Page
 
     }
 
+    //redirects tenant to the dashboard if they accept saftey terms
     protected void Understand(object sender, EventArgs e)
     {
         Response.Redirect("TenantDashboard.aspx");
